@@ -1,13 +1,9 @@
 import React, { FC, useState } from 'react';
-import cn from 'classnames/bind';
-import styles from './styles.module.scss';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { defaultContext, ThemeContext } from '../utils/ThemeContext';
-import { painters } from '../constants';
-import Footer from '../Footer';
 import Header from '../Header';
-import CardList from '../CardList';
-
-const cx = cn.bind(styles);
+import { PaintersList } from '../pages/PaintersList';
+import { PainterProfile } from '../pages/PainterProfile';
 
 export const App: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);
@@ -22,11 +18,14 @@ export const App: FC = () => {
         toggleTheme,
       }}
     >
-      <Header />
-      <main className={cx('main')}>
-        <CardList painters={painters} />
-      </main>
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<Header />}>
+            <Route path={''} element={<PaintersList />} />
+            <Route path={'profile/:painterId'} element={<PainterProfile />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </ThemeContext.Provider>
   );
 };

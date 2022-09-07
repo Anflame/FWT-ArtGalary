@@ -10,7 +10,7 @@ const cx = cn.bind(styles);
 type LabelsProps = {
   isDelAllowed: boolean;
   children: string;
-  changeSelect: () => void;
+  changeSelect?: () => void;
 };
 
 export const Label: FC<LabelsProps> = ({

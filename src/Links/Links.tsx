@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import cn from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -11,7 +12,7 @@ interface LinksProps {
 }
 
 export const Links: FC<LinksProps> = ({ href, children, ...args }) => (
-  <a className={cx('link')} href={href}>
+  <Link className={cx('link')} to={href}>
     {children}
-  </a>
+  </Link>
 );

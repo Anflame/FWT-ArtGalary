@@ -1,0 +1,165 @@
+@import '../index.scss';
+.profile {
+  background-color: var(--color-primary);
+  padding-top: 136px;
+  padding-bottom: 160px;
+
+  .container {
+    @include small-viewport;
+    @include mini-viewport;
+    @include medium-viewport;
+    @include large-viewport;
+    @include ultra-large-viewport;
+
+    .turnBack {
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .backLink  {
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 14.52px;
+        margin-left: 10px;
+        font-family: var(--font-family-paragraph);
+        color: var(--color-primary-grey);
+        font-weight: var(--font-weght-bold);
+      }
+    }
+
+    .painter {
+      min-height: 1000px;
+      position: relative;
+      margin-bottom: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      // position: relative;
+
+      .painterImg {
+        width: 80%;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+      .painterInfoHeader {
+        position: absolute;
+        left: 0;
+        top: 60px;
+        padding-top: 60px;
+        background: var(--color-primary);
+        width: 604px;
+
+        @media (max-width: 768px) {
+          max-width: 580px;
+          position: relative;
+          align-self: flex-start;
+          margin-top: -240px;
+        }
+
+        .painterLabel {
+          display: flex;
+          justify-content:space-between;
+          align-items: center;
+          padding: 0 80px 32px 80px;
+          color: var(--color-profile-label);
+          font-weight: var(--font-weght-medium);
+          font-family: var(--font-family-heading);
+        }
+        
+        .painterHeading {
+          font-size: 60px;
+          line-height: 73px;
+          text-align: center;
+          margin-bottom: 52px;
+          border-left: 2px solid var(--color-accent);
+          color: var(--color-accent);
+          font-family: var(--font-family-heading);
+        }
+      }
+      .painterInfoFooter {
+        position: absolute;
+        left: 0;
+        top: 295px;
+        padding-bottom: 60px;
+        width: 604px;
+        background: var(--color-primary);
+
+        @media (max-width: 768px) {
+          position: relative;
+          top: 0; 
+          align-self: center;
+          width: 100%;
+          justify-self: center;
+        }
+
+        .painterBiography {
+          padding: 20px 80px;
+          color: var(--color-primary-grey);
+          font-family: var(--font-family-paragraph);
+          font-weight: 300;
+          font-size: 16px;
+          line-height: 140%;
+          margin-bottom: 20px;
+
+          &::before {
+            content: '';
+            display: block;
+            border: 2px solid var(--color-primary-grey);
+            width: 30px;
+            margin-bottom: 20px;
+            
+            @media (max-width: 768px) {
+              display: none;
+            }
+          }
+        }
+
+        .readMoreWrapp {
+          cursor: pointer;
+          padding-left: 80px;
+          margin-bottom: 32px;
+          .readMoreBtn {
+            background: none;
+            border: none;
+            text-decoration: underline;
+            color: var(--color-primary-grey);
+            text-transform: uppercase;
+            margin-right: 10px;
+          }
+
+          &:hover .readMoreBtn{
+            color: var(--color-primary-hover); 
+          }
+        }
+
+        .paintingsList {
+          list-style-type: none;
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          align-items: center;
+          padding-left: 80px;
+          padding-right: 80px;
+
+          .paintingsListes {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+    .artWorks {
+      .artWorksHeader {
+        font-size: 60px;
+        line-height: 73px;
+        text-align: left;
+        margin-bottom: 52px;
+        margin-left: 80px;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        font-family: var(--font-family-heading);
+      }
+    }
+  }
+}
