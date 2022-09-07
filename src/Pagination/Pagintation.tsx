@@ -24,7 +24,7 @@ export const Pagination: FC<PaginationProps> = ({
   const { theme } = Context();
 
   if (pages.length !== 0) {
-    pages.splice(0, 9);
+    pages.splice(0);
   }
   for (let i = 1; i <= maxPages; i += 1) {
     pages.push(i);
