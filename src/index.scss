@@ -1,0 +1,128 @@
+@import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=Inter:wght@300;500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+  outline: none;
+}
+
+:root {
+  --font-family-heading: 'Cormorant SC', serif;
+  --font-family-paragraph: 'Inter', sans-serif;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --heading-first-font-size: 60px;
+  --heading-second-font-size: 48px;
+  --heading-third-font-size: 32px;
+  --heading-forth-font-size: 32px;
+  --paragraph-base-font-size: 16px;
+  --paragraph-small-font-size: 12px;
+  --paragraph-tiny-font-size: 8px;
+  --color-primary-white: #FFF; 
+  --color-primary-black: #121212; 
+  --color-primary-lightGrey: #DEDEDE; 
+  --color-primary-darkGrey: #575757; 
+  --color-secondary-white: #FCFCFC;
+  --color-secondary-black: #1A1818;
+  --color-secondary-lightBlack: #242222;
+  --color-secondary-grey: #9C9C9C;
+  --color-accent-red: #9B4B4B; 
+  --color-accent-gold: #AB8956;
+  --color-accent-error: #AE2917;
+  --box-shadow-gold: 0px 4px 10px rgba(171, 137, 86, 0.25);
+  --box-shadow-black: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme='light'] {
+  --color-primary: #FFF;
+  --color-primary-grey: #575757;
+  --color-primary-heading: #121212;
+  --color-primary-hover: #121212;
+  --color-secondary: #FCFCFC;
+  --color-accent: #9B4B4B;
+  --color-inputs-border: #DEDEDE;
+  --color-inputs-border-hover: #9C9C9C;
+  --color-background-labels:rgba(18, 18, 18, 0.05);
+  --color-background-toasts: #FCFCFC;
+  --color-background-srollbar:#f5f5f5;
+  --color-background-checkbox: #FCFCFC;
+  --color-background-currentPage: rgba(18, 18, 18, 0.05);
+  --color-background-multiSelect-list: #fff;
+  --color-text-logIn: #575757;
+}
+
+html[data-theme='dark'] {
+  --color-primary: #121212;
+  --color-primary-grey: #DEDEDE;
+  --color-primary-heading: #DEDEDE;
+  --color-primary-hover: #fff;
+  --color-secondary: #1A1818;
+  --color-accent: #AB8956;
+  --color-inputs-border: #121212;
+  --color-inputs-border-hover: #575757;
+  --color-background-labels:  rgba(205, 205, 205, 0.05);
+  --color-background-toasts: #1A1818;
+  --color-background-srollbar:#1A1818;
+  --color-background-checkbox: #121212;
+  --color-background-currentPage:#1A1818;
+  --color-background-multiSelect-list:#1A1818;
+  --color-text-logIn: #fff;
+}
+
+@mixin mini-viewport {
+  @media (max-width: 319px) {
+    max-width: 320px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-gap: 5;
+    @content;  
+  }
+}
+
+@mixin small-viewport {
+  @media (min-width: 320px) {
+    max-width: 728px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-gap: 20px;
+    @content; 
+  }
+}
+
+@mixin medium-viewport {
+  @media (min-width: 728px) {
+    max-width: 728px;
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-gap: 24px;
+    @content; 
+  }
+}
+
+@mixin large-viewport {
+  @media (min-width: 1280px){
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-gap: 32px;
+    @content; 
+  }
+}
+
+@mixin ultra-large-viewport {
+  @media (min-width: 1440px){
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-right: 100px;
+    grid-gap: 24px;
+    @content; 
+  }
+}

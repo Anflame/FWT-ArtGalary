@@ -1,0 +1,48 @@
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  
+  .page {
+    font-family: var(--font-family-paragraph);
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--color-primary-grey);
+    padding: 1px 8px;
+    border-radius: 4px;
+    line-height: 140%;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: var(--font-weight-meduim);
+    }
+  }
+
+  .page:not(:last-of-type) {
+    margin-right: 20px;
+  }
+
+  .page:last-of-type {
+    margin-right: 36.2px;
+  }
+  
+  .page:first-of-type {
+    margin-left: 36.2px;
+  }
+
+
+  .currentPage {
+    background: var(--color-background-currentPage);
+    font-weight: var(--font-weight-meduim);
+    cursor: default;
+  }
+
+  .ellipsis {
+    cursor: default;
+    
+    &:hover {
+      font-weight: 300;
+    }
+  }
+}

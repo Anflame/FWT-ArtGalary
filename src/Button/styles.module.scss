@@ -1,0 +1,136 @@
+.commonBtn {
+  background: none;
+  border: none;
+}
+
+.logInBtn {
+  background-color: var(--color-logIn-background-btn);  
+  font-family: var(--font-family-paragraph);
+  color: var(--color-primary-white);
+  text-align: center;
+  padding: 16px 74px;
+  font-size: 12px;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  
+  &:hover, &:focus {
+    box-shadow: var(--color-boxShadow-logIn-btn); 
+  }
+}
+
+.linkBtn {
+  border: none;
+  text-transform: uppercase;
+  border-radius: 30px;
+  font-weight: var(--font-weight-bold);
+  font-size: 12px;
+  background: none;
+  cursor: pointer;
+  line-height: 15px;
+  color: var(--color-primary-grey); 
+  text-decoration: underline;
+
+  &:before {
+    content: '+';
+    display: block;
+    margin-right: 12px;
+    float: left;
+  }
+
+  & > span {
+    text-decoration: underline;
+  }
+
+  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus {
+    color: var(--color-primary-hover); 
+  }
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus  path {
+      fill: var(--color-primary-grey);  
+  }
+
+  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus path {
+      fill: var(--color-primary-hover);  
+  }
+}
+
+.themeBtn {
+  background-color: var(--color-secondary); 
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+
+  & path {
+      fill: var(--color-primary-lightGrey);  
+  }
+
+  &:hover path{
+      fill: var(--color-secondary-white); 
+  }
+}
+
+.expandBtn {
+  transform: rotate(-90deg);
+  padding: 25px 26px;
+  border-radius: 50%;
+  background-color: var(--color-secondary); 
+  border: 1px solid var(--color-inputs-border);
+  color: var(--color-primary-grey);
+  cursor: pointer;
+}
+
+.authBtn {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  color: var(--color-primary-grey); 
+
+  &:hover {
+    color: var(--color-primary-hover); 
+  }
+
+  &:nth-child(2){
+    margin-left: 20px;
+  }
+}
+
+.authBtnMobile {
+  font-family: var(--font-family-heading);
+  font-size: 80px;
+  line-height: 72.66px;
+  background: none;
+  color: var(--color-primary-grey); 
+  border: none;
+  justify-self: left;
+  padding-left: 94px;
+  
+  @media(max-width: 550px){
+    font-size: 32px;
+    line-height: 100%;
+    padding-left: 47px;
+  }
+}
+
+.authBtnMobile:first-child {
+  margin-bottom: 40px;
+}
+
+.btn_disabled {
+  opacity: 0.5;
+  cursor: default;
+}
