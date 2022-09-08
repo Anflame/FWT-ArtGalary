@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
-import checkedImg from '../assets/images/checkedImg.svg';
-import checkedImgLight from '../assets/images/checkedImgLight.svg';
 import { Context } from '../hooks/Context';
+import { CheckedImg } from '../assets/icons';
 
 const cx = cn.bind(styles);
 
@@ -23,10 +22,10 @@ export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
       />
       <label htmlFor="checkBox" className={cx('checkBoxLabel')}>
         {isChecked && (
-          <img
-            className={cx('checkedImg')}
-            src={theme === 'dark' ? checkedImg : checkedImgLight}
-            alt="checked"
+          <CheckedImg
+            width={18}
+            height={14}
+            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
           />
         )}
       </label>

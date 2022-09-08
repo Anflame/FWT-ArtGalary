@@ -17,20 +17,31 @@
     margin-bottom: 8px;
     display: flex;
     align-items: flex-start;
-  }
 
-  .toastHeading::before {
-    content: url(../assets/images/error.svg);
-    display: block;
-    margin-right: 8px;
-    line-height: 140%;
+    .errorImg {
+      display: inline-block;
+      margin-right: 8px;
+      
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
   }
 
   .toastText {
     color: var(--color-primary-grey);
     line-height: 140%;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 12px; 
+
+    .errorImg {
+      margin-right: 8px;
+      display: none;
+
+      @media (max-width: 768px) {
+        display: inline-block;
+      }
+    }
   }
 
   .toastCloseIcon {

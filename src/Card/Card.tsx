@@ -13,19 +13,17 @@ export const Card: FC<CardProps> = ({
   img,
   handleCLick,
   ...args
-}) => {
-  return (
-    <figure className={cx('card')} onClick={handleCLick}>
-      <img src={images} alt={title} className={cx('cardImg')} />
-      <figcaption className={cx('cardInfoWrapp')}>
-        <div className={cx('cardInfo')}>
-          <h2 className={cx('cardTitle')}>{title}</h2>
-          <p className={cx('cardAnotherInfo')}>{'1280-1920'}</p>
-        </div>
-        <div className={cx('cardInfoAfter')}>
-          <Arrow fill={'#DEDEDE'} />
-        </div>
-      </figcaption>
-    </figure>
-  );
-};
+}) => (
+  <figure className={cx('card')} onClick={handleCLick}>
+    <img src={images} alt={title} className={cx('cardImg')} />
+    <figcaption className={cx('cardInfoWrapp')}>
+      <div className={cx('cardInfo')}>
+        <h2 className={cx('cardTitle')}>{title}</h2>
+        <p className={cx('cardAnotherInfo')}>{'1280-1920'}</p>
+      </div>
+      <div className={cx('cardInfoAfter')}>
+        <Arrow fill={'#DEDEDE'} />
+      </div>
+    </figcaption>
+  </figure>
+);

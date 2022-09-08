@@ -1,18 +1,18 @@
-import { FC, useContext, useLayoutEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import cn from 'classnames/bind';
 import { Outlet } from 'react-router';
-import { ThemeContext } from '../utils/ThemeContext';
 import styles from './styles.module.scss';
 import Menu from '../Menu';
 import Button from '../Button';
 import Links from '../Links';
 import { Logo, MenuIcon, ThemeIcon, ThemeIconLight } from '../assets/icons';
 import Footer from '../Footer';
+import { Context } from '../hooks/Context';
 
 const cx = cn.bind(styles);
 
 export const Header: FC = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = Context();
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);

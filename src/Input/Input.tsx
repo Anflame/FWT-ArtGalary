@@ -1,6 +1,6 @@
 import cn from 'classnames/bind';
 import { FC } from 'react';
-import { InputsProps } from '../comon-types';
+import type { InputsProps } from '../comon-types';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

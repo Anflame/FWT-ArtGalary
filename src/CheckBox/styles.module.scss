@@ -28,12 +28,12 @@
   padding: 5px;
 }
 
-html[data-theme='light'] .checkbox:checked+label::before {
-  background-image: url('../assets/images/checkedImgLight.svg');
-  background-size: 18px 14px;
-}
+// html[data-theme='light'] .checkbox:checked+label::before {
+//   background-image: url('../assets/images/checkedImgLight.svg');
+//   background-size: 18px 14px;
+// }
 
-html[data-theme='dark'] .checkbox:checked+label::before {
-  background-image: url('../assets/images/checkedImg.svg');
-  background-size: 18px 14px;
-}
+// html[data-theme='dark'] .checkbox:checked+label::before {
+//   background-image: url('../assets/images/checkedImg.svg');
+//   background-size: 18px 14px;
+// }

@@ -1,5 +1,6 @@
 import cn from 'classnames/bind';
 import { FC } from 'react';
+import { Error } from '../assets/icons';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -27,7 +28,10 @@ export const TextArea: FC<TextAreaProps> = ({ isError }) => (
           className={cx('textarea', 'textAreaError')}
           placeholder="Wrong Text"
         ></textarea>
-        <p className={cx('errorText')}>This is an error message!</p>
+        <p className={cx('errorText')}>
+          {<Error width={16} height={16} className={cx('errorImg')} />}This is
+          an error message!
+        </p>
       </>
     )}
   </>

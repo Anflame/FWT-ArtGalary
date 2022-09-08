@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { Painters } from '../comon-types';
 import { Context } from '../hooks/Context';
-import iconShow from '../assets/images/multiSelectIcon.svg';
-import icon from '../assets/images/multiSelectIconShow.svg';
-import iconShowLight from '../assets/images/multiSelectIconLight.svg';
-import iconLight from '../assets/images/multiSelectIconShowLight.svg';
 import Label from '../Label';
 import CardList from '../CardList';
 import { painters } from '../constants';
-import arrowBack from '../assets/images/arrowBack.svg';
-import arrowBackLight from '../assets/images/arrowBackLight.svg';
 import painterPhoto from '../assets/images/painterImg.png';
+import {
+  ArrowBack,
+  MultiSelectIcon,
+  MultiSelectIconShow,
+} from '../assets/icons';
 
 const cx = cn.bind(styles);
 
@@ -39,7 +38,11 @@ export const Profile: FC<ProfileProps> = ({
     <section className={cx('profile')}>
       <div className={cx('container')}>
         <div className={cx('turnBack')}>
-          <img src={theme === 'dark' ? arrowBack : arrowBackLight} alt="back" />
+          <ArrowBack
+            width={16}
+            height={10}
+            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
+          />
           <Link to={'/'} className={cx('backLink')}>
             {'back'}
           </Link>
@@ -72,17 +75,17 @@ export const Profile: FC<ProfileProps> = ({
                 onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
               >
                 <button className={cx('readMoreBtn')}>read more</button>
-                {theme === 'dark' ? (
-                  <img
-                    className={cx('readMoreIcon')}
-                    src={isShowMoreInfo ? icon : iconShow}
-                    alt="showIcon"
+                {isShowMoreInfo ? (
+                  <MultiSelectIconShow
+                    width={12}
+                    height={6}
+                    fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
                   />
                 ) : (
-                  <img
-                    className={cx('readMoreIcon')}
-                    src={isShowMoreInfo ? iconLight : iconShowLight}
-                    alt="showIcon"
+                  <MultiSelectIcon
+                    width={12}
+                    height={6}
+                    fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
                   />
                 )}
               </div>

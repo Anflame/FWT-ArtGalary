@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import closeIcon from '../assets/images/closeIcon.svg';
 import closeIconLight from '../assets/images/closeIconLight.svg';
 import { Context } from '../hooks/Context';
+import { Error } from '../assets/icons';
 
 const cx = cn.bind(styles);
 
@@ -22,8 +23,14 @@ export const Toast: FC<ToastProps> = ({
 
   return (
     <div className={cx('toast', !isShowToast && 'showToast')}>
-      <h3 className={cx('toastHeading')}>Error!</h3>
-      <p className={cx('toastText')}>{message}</p>
+      <h3 className={cx('toastHeading')}>
+        {<Error width={16} height={16} className={cx('errorImg')} />}
+        Error!
+      </h3>
+      <p className={cx('toastText')}>
+        {<Error width={16} height={16} className={cx('errorImg')} />}
+        {message}
+      </p>
       <img
         className={cx('toastCloseIcon')}
         src={theme === 'dark' ? closeIcon : closeIconLight}

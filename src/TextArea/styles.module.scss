@@ -62,10 +62,9 @@
   font-family: var(--font-family-paragraph);
   line-height: 140%;
   margin-top: 7px;
-}
-
-.errorText::before {
-  content: url(../assets/images/error.svg);
-  float: left;
-  margin-right: 8px;
+  
+  .errorImg {
+    display: block;
+    margin-right: 8px;
+  }
 }

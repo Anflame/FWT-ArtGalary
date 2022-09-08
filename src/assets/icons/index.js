@@ -1,6 +1,7 @@
 export { default as Arrow } from './Arrow';
 export { default as ArrowLeft } from './ArrowLeft';
 export { default as ArrowRight } from './ArrowRight';
+export { default as ArrowBack } from './ArrowBack';
 export { default as CheckedImg } from './CheckedImg';
 export { default as CleanSearchBtn } from './CleanSearchBtn';
 export { default as CloseIcon } from './CloseIcon';
