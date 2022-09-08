@@ -12,7 +12,7 @@ interface LinksProps {
 }
 
 export const Links: FC<LinksProps> = ({ href, children, ...args }) => (
-  <Link className={cx('link')} to={href}>
+  <Link className={cx('link')} to={href} {...args}>
     {children}
   </Link>
 );

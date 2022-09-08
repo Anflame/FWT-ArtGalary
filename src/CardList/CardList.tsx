@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import { CardProps } from '../comon-types';
+import type { CardProps } from '../comon-types';
 import styles from './styles.module.scss';
 import Card from '../Card';
 

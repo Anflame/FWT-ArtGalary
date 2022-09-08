@@ -1,49 +1,26 @@
+@import '../index.scss';
 .card {
   position: relative;
   width: inherit;
   height: inherit;
   cursor: pointer;
 
-  &:hover .cardInfo::after {
-    content:url(../assets/images/arrow.svg);
-    position: absolute;
-    right: -24px;
-    top: 0;
-    background-color: var(--color-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 100%;
-  }
-
-  @media(max-width: 768px) {
-    .cardInfo::after {
-      content:url(../assets/images/arrow.svg);
-      position: absolute;
-      right: -24px;
-      top: 0;
-      background-color: var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 100%;
-    }
-  }
-
   .cardImg {
     display: block;
     width: 100%;
   }
 
-  .cardInfo {
+  .cardInfoWrapp {
     position: absolute;
     bottom: 0;
-    padding: 32px 12px;
     background-color: var(--color-primary);
+    display: grid;
+    grid-template-columns: 1fr 24px;
     box-sizing: border-box;
     
+    .cardInfo {
+      padding: 32px 12px;
+    }
     .cardTitle {
       font-weight: var(--font-weight-bold);
       font-family: var(--font-family--heading);
@@ -58,10 +35,29 @@
       font-weight: var(--font-weight-bold);
       font-family: var(--font-family-paragraph);
       color: var(--color-accent);
-    } 
+    }
+    .cardInfoAfter {
+      display: none;
+      
+      @media(max-width: 768px) {
+        background-color: var(--color-accent);
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } 
+    }
   }
 
-  .cardInfo::before {
+  &:hover .cardInfoAfter {
+    background-color: var(--color-accent);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardInfoWrapp::before {
     content: " ";
     display: block;
     position: absolute;
@@ -72,11 +68,12 @@
     background-color: var(--color-accent);
   }
 
-  &:hover .cardInfo::before {
+  &:hover .cardInfoWrapp::before {
     display: none;
   }
 
   @media (max-width: 768px) {
-    .cardInfo::before {display: none;}
+    .cardInfoWrapp::before {display: none;}
   }
+
 }

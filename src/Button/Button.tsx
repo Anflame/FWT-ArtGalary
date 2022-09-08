@@ -6,7 +6,7 @@ const cx = cn.bind(styles);
 
 type BaseButtonProps = {
   handleClick?: () => void;
-  className: string;
+  className?: string;
   children: ReactNode;
   isOutlined?: boolean;
   isFilled?: boolean;

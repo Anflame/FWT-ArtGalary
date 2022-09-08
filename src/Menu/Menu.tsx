@@ -2,11 +2,8 @@ import { FC, useContext } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import { ThemeContext } from '../utils/ThemeContext';
-import menuIconClose from '../assets/images/menuIconClose.svg';
-import menuIconCloseLight from '../assets/images/menuIconCloseLight.svg';
-import themeIcon from '../assets/images/themeIcon.svg';
-import themeIconLight from '../assets/images/themeIconLight.svg';
 import Button from '../Button';
+import { MenuIconClose, ThemeIcon, ThemeIconLight } from '../assets/icons';
 
 const cx = cn.bind(styles);
 
@@ -28,20 +25,13 @@ export const Menu: FC<MenuProps> = ({
   return (
     <div className={cx('menu')}>
       <div className={cx('menuPopUpContent')}>
-        {isShow && theme === 'dark' && (
-          <img
-            src={menuIconClose}
-            className={cx('menuIconClose')}
-            alt="menuIconClose"
+        {isShow && (
+          <MenuIconClose
+            width={16}
+            height={16}
+            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             onClick={() => setIsShow(!isShow)}
-          />
-        )}
-        {isShow && theme === 'light' && (
-          <img
-            src={menuIconCloseLight}
             className={cx('menuIconClose')}
-            alt="menuIconCloseLight"
-            onClick={() => setIsShow(!isShow)}
           />
         )}
         <div className={cx('menuThemeWrapp')} onClick={toggleTheme}>
@@ -49,9 +39,9 @@ export const Menu: FC<MenuProps> = ({
             className={'themeBtn'}
             children={
               theme === 'dark' ? (
-                <img src={themeIcon} alt="theme" />
+                <ThemeIcon width={20} height={20} fill="#DEDEDE" />
               ) : (
-                <img src={themeIconLight} alt="theme" />
+                <ThemeIconLight width={18} height={21} fill="#575757" />
               )
             }
           />

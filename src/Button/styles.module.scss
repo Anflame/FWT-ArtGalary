@@ -72,12 +72,8 @@
   border-radius: 50%;
   width: 40px;
 
-  & path {
-      fill: var(--color-primary-lightGrey);  
-  }
-
-  &:hover path{
-      fill: var(--color-secondary-white); 
+  &:hover path {
+    fill: var(--color-primary-hover);
   }
 }
 
