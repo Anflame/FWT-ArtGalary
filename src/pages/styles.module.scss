@@ -5,4 +5,8 @@
   padding-bottom: 100px;
   background-color: var(--color-primary);   
   min-height: 100vh;
+  @media (max-width: 320px) {
+    padding-bottom: 80px;
+    padding-top: 80px;
+  }
 }

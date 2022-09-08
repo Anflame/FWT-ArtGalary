@@ -45,17 +45,19 @@ export const Profile: FC<ProfileProps> = ({
           </Link>
         </div>
         <div className={cx('painter')}>
-          <div style={{ position: 'relative' }}>
+          <div className={cx('painterInfo')}>
             <img
               src={cx(painterPhoto)}
               alt="painterPhoto"
               className={cx('painterImg')}
             />
             <div className={cx('painterInfoHeader')}>
-              <div className={cx('painterLabel')}>
-                <p className={cx('painterLabelList')}>{painterYearsOfLife}</p>
-                <p className={cx('painterLabelList')}>{painterMotherland}</p>
-              </div>
+              <p className={cx('painterLabelList', 'painterLabelLeft')}>
+                {painterYearsOfLife}
+              </p>
+              <p className={cx('painterLabelList', 'painterLabelRight')}>
+                {painterMotherland}
+              </p>
               <h2 className={cx('painterHeading')}>{painterTitle}</h2>
             </div>
             <div className={cx('painterInfoFooter')}>
@@ -94,10 +96,10 @@ export const Profile: FC<ProfileProps> = ({
             </div>
           </div>
         </div>
-        <div className={cx('artWorks')}>
-          <h2 className={cx('artWorksHeader')}>Artworks</h2>
-          <CardList painters={painters} />
-        </div>
+      </div>
+      <div className={cx('artWorks')}>
+        <h2 className={cx('artWorksHeader')}>Artworks</h2>
+        <CardList painters={painters} />
       </div>
     </section>
   );

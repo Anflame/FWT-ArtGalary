@@ -2,7 +2,17 @@
 .profile {
   background-color: var(--color-primary);
   padding-top: 136px;
-  padding-bottom: 160px;
+  padding-bottom: 100px;
+  
+  @media (max-width: 768px) {
+    padding-top: 120px;
+  }
+
+  @media (max-width: 320px) {
+    padding-bottom: 80px;
+    padding-top: 103px;
+  }
+  
 
   .container {
     @include small-viewport;
@@ -29,13 +39,22 @@
     }
 
     .painter {
-      min-height: 1000px;
       position: relative;
       margin-bottom: 160px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      // position: relative;
+
+      @media (max-width: 768px) {
+        margin-bottom: 80px;
+      }
+
+      .painterInfo {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
 
       .painterImg {
         width: 80%;
@@ -47,61 +66,123 @@
         position: absolute;
         left: 0;
         top: 60px;
-        padding-top: 60px;
         background: var(--color-primary);
         width: 604px;
+        padding: 60px 0;
+        display: grid;
+        grid-template-areas: 
+        'leftLabel rightLabel' 
+        'header header';
 
         @media (max-width: 768px) {
-          max-width: 580px;
           position: relative;
-          align-self: flex-start;
-          margin-top: -240px;
+          max-width: 580px;
+          margin-top: -225px;
+          padding: 20px 0;
+          bottom: 0;
+          top: auto;
+        }
+        @media (max-width: 600px) {
+          width: 80%;
+          grid-template-areas: 
+          'leftLabel leftLabel' 
+          'header header'
+          'rightLabel rightLabel'
+          ;
         }
 
-        .painterLabel {
-          display: flex;
-          justify-content:space-between;
-          align-items: center;
-          padding: 0 80px 32px 80px;
+        .painterLabelList {
+          margin-bottom: 32px;
           color: var(--color-profile-label);
           font-weight: var(--font-weght-medium);
           font-family: var(--font-family-heading);
+          @media (max-width: 768px) {
+            &:not(:last-of-type) {
+              margin-bottom: 12px;
+            }
+          }
+          @media (max-width: 600px) {
+            &:not(:last-of-type) {
+              margin-bottom: 8px;
+            }
+          }
+        }
+        .painterLabelLeft {
+          grid-area: leftLabel;
+          padding-left: 80px;
+          @media (max-width: 768px) {
+            padding-left: 20px;
+          }
+        }
+        .painterLabelRight {
+          grid-area: rightLabel;
+          padding-right: 80px;
+          text-align: right;
+          @media (max-width: 768px) {
+            padding-right: 20px;
+            margin: 0;
+          }
+          @media (max-width: 600px) {
+            text-align: left;
+            padding-left: 20px;
+          }
         }
         
         .painterHeading {
+          grid-area: header;
           font-size: 60px;
           line-height: 73px;
           text-align: center;
           margin-bottom: 52px;
+          padding: 0 80px;
           border-left: 2px solid var(--color-accent);
           color: var(--color-accent);
           font-family: var(--font-family-heading);
+          font-weight: var(--font-weight-medium);
+          text-align: left;
+          
+          @media (max-width: 768px) {
+            font-size: 48px;
+            line-height: 48px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+          }
+
+          @media(max-width: 600px) {
+            font-size: 32px;
+            line-height: 32px;
+            margin-bottom: 8px;
+          }
         }
       }
       .painterInfoFooter {
         position: absolute;
         left: 0;
         top: 295px;
-        padding-bottom: 60px;
+        padding: 20px 80px 60px 80px;
         width: 604px;
         background: var(--color-primary);
 
         @media (max-width: 768px) {
-          position: relative;
-          top: 0; 
+          position: inherit;
           align-self: center;
+          top: auto;
           width: 100%;
           justify-self: center;
+          padding: 40px 20px;
+        }
+        @media (max-width: 600px) {
+          padding: 20px;
         }
 
         .painterBiography {
-          padding: 20px 80px;
           color: var(--color-primary-grey);
           font-family: var(--font-family-paragraph);
           font-weight: 300;
           font-size: 16px;
           line-height: 140%;
           margin-bottom: 20px;
+          text-align: justify;
 
           &::before {
             content: '';
@@ -117,8 +198,7 @@
         }
 
         .readMoreWrapp {
-          cursor: pointer;
-          padding-left: 80px;
+          cursor: pointer;  
           margin-bottom: 32px;
           .readMoreBtn {
             background: none;
@@ -140,8 +220,6 @@
           justify-content: flex-start;
           flex-wrap: wrap;
           align-items: center;
-          padding-left: 80px;
-          padding-right: 80px;
 
           .paintingsListes {
             margin-right: 20px;
@@ -149,16 +227,43 @@
         }
       }
     }
-    .artWorks {
-      .artWorksHeader {
-        font-size: 60px;
-        line-height: 73px;
-        text-align: left;
-        margin-bottom: 52px;
-        margin-left: 80px;
-        text-transform: uppercase;
-        color: var(--color-accent);
-        font-family: var(--font-family-heading);
+  }
+
+  .artWorks {
+
+    .artWorksHeader { 
+      @include small-viewport {
+        margin-bottom: 60px;
+      };
+      @include mini-viewport {
+        margin-bottom: 60px;
+      };
+      @include medium-viewport {
+        margin-bottom: 60px;
+      };
+      @include large-viewport {
+        margin-bottom: 60px;
+        padding-left: 80px;
+      };
+      @include ultra-large-viewport {
+        margin-bottom: 60px;
+        padding-left: 80px;
+      };
+      font-size: 60px;
+      line-height: 73px;
+      text-align: left;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      font-family: var(--font-family-heading);
+
+     
+      
+      @media (max-width:768px) {  
+        margin-left: 20px;
+      }
+      @media (max-width: 600px) {
+        font-size: 32px;
+        line-height: 32px;
       }
     }
   }
