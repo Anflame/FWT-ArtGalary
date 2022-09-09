@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Pagination from '../Pagination';
+import Pagination from '../components/Pagination';
 
 export default {
   title: 'Pagination',

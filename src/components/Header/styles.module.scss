@@ -1,0 +1,47 @@
+@import '../../index.scss';
+
+.header {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: var(--color-primary);
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    @include small-viewport{align-items: center;};
+    @include mini-viewport{align-items: center;};
+    @include medium-viewport{align-items: center;};
+    @include large-viewport{align-items: center;};
+    @include ultra-large-viewport{align-items: center;};
+
+    .authWrapp {
+        display: flex;
+        justify-content: center;
+        margin-right: 80px;
+    }
+
+    .authAndChangeThemeWrapp {
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu, .menuIcon {
+        display: none;
+    }
+
+    @media(max-width:767px) {
+       
+      .authAndChangeThemeWrapp {
+          display: none;
+      }
+
+      .menuIcon {
+          display: block;
+      }
+    }
+  }
+}

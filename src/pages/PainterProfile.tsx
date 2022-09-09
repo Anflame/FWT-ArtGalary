@@ -2,8 +2,8 @@ import React from 'react';
 import cn from 'classnames/bind';
 import { useParams } from 'react-router';
 import styles from './styles.module.scss';
-import Profile from '../Profile';
 import { biography, paintings } from '../constants';
+import Profile from '../components/Profile';
 
 const cx = cn.bind(styles);
 

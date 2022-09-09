@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import LogIn from '../LogIn';
+import LogIn from '../components/LogIn';
 
 export default {
   title: 'LogIn',
@@ -13,5 +13,5 @@ const Template: ComponentStory<typeof LogIn> = (args) => <LogIn {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  isShow: true,
+  isShowLogIn: true,
 };

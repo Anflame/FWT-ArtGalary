@@ -38,6 +38,7 @@ module.exports = {
       'error',
       {
         singleQuote: true,
+        printWidth: 80,
       },
     ],
     quotes: ['warn', 'single'],

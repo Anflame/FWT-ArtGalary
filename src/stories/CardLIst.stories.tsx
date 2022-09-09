@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CardList } from '../CardList/CardList';
 import img from '../assets/images/cardImg.jpg';
+import CardList from '../components/CardList';
 
 export default {
   title: 'cardList',

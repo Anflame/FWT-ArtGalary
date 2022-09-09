@@ -1,0 +1,23 @@
+.label {
+  font-family: var(--font-family-paragraph);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary-grey);
+  font-size: 12px;
+  line-height: 140%;
+  padding: 8px 16px;
+  background: var(--color-background-labels);
+  border: 1px solid #FFFFFF;
+  display: inline-block;
+  border-radius: 30px;
+  margin-bottom: 10px;    
+  align-items: center;
+  
+  .labelDelete {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
+.label:not(:last-of-type) {
+  margin-right: 12px;
+}
