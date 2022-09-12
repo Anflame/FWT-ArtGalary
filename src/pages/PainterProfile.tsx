@@ -8,7 +8,7 @@ import Profile from '../components/Profile';
 const cx = cn.bind(styles);
 
 export const PainterProfile = () => {
-  const { painterId } = useParams();
+  // const { painterId } = useParams();
 
   return (
     <main className={cx('profile')}>
