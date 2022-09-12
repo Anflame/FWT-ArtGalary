@@ -73,7 +73,7 @@ export const LogIn: FC<LogInProps> = ({
                     type={'password'}
                     className={'validation'}
                   />
-                  <Button className={'logInBtn'} children={'log in'} />
+                  <Button className={'logInSigUpBtn'} children={'log in'} />
                   <p className={cx('signUp', 'signUpMobile')}>
                     If you don't have an account yet, please{' '}
                     <button className={cx('goToSignUp')} onClick={goToSignUp}>
