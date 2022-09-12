@@ -7,13 +7,7 @@ import { Arrow } from '../../assets/icons';
 
 const cx = cn.bind(styles);
 
-export const Card: FC<CardProps> = ({
-  title,
-  name,
-  img,
-  handleCLick,
-  ...args
-}) => (
+export const Card: FC<CardProps> = ({ title, handleCLick }) => (
   <figure className={cx('card')} onClick={handleCLick}>
     <img src={cardImg} alt={title} className={cx('cardImg')} />
     <figcaption className={cx('cardInfoWrapp')}>
