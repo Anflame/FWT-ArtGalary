@@ -1,18 +1,18 @@
-name: CI                            
+name: CI
 on:
-  watch:
-    pull_request:
-      branches: [ master ]      
-jobs:	                
-  build:              
+branch
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
     runs-on: ubuntu-latest
-    steps:                		
+    steps:
       - uses: actions/checkout@v2
       
-      - name: npm install       
-        run: npm i		
+      - name: npm install
+        run: npm i
 
       - name: Deploy to gh-pages
-        run: | 
-          git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git 
-          npm run deploy
+        run: |
+   		git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+           npm run deploy
