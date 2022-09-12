@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames/bind';
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 import styles from './styles.module.scss';
 import { biography, paintings } from '../constants';
 import Profile from '../components/Profile';
