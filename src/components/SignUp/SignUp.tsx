@@ -1,54 +1,54 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
+import { Context } from '../../hooks/Context';
+import signUpImg from '../../assets/images/signUpImg.jpg';
 import Input from '../Input';
 import Button from '../Button';
-import logInImg from '../../assets/images/logInImg.jpg';
-import { Context } from '../../hooks/Context';
 import { CloseIcon } from '../../assets/icons';
 
 const cx = cn.bind(styles);
 
-type LogInProps = {
-  isShowLogIn: boolean;
-  setIsShowLogIn: Dispatch<SetStateAction<boolean>>;
+type SignUpProps = {
+  isShowSignUp: boolean;
   setIsShowSignUp: Dispatch<SetStateAction<boolean>>;
-  handleLogIn: () => void;
+  setIsShowLogIn: Dispatch<SetStateAction<boolean>>;
+  handleSignUp: () => void;
 };
 
-export const LogIn: FC<LogInProps> = ({
-  isShowLogIn,
-  setIsShowLogIn,
+export const SignUp: FC<SignUpProps> = ({
+  isShowSignUp,
   setIsShowSignUp,
-  handleLogIn,
+  setIsShowLogIn,
+  handleSignUp,
 }) => {
   const { theme } = Context();
-  const goToSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const goToLogIn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    setIsShowSignUp(true);
-    setIsShowLogIn(false);
+    setIsShowSignUp(false);
+    setIsShowLogIn(true);
   };
 
   return (
     <>
-      {isShowLogIn && (
+      {isShowSignUp && (
         <>
-          <section className={cx('logIn')}>
-            <div className={cx('logInPopUpContent')}>
+          <section className={cx('signUp')}>
+            <div className={cx('signUpPopUpContent')}>
               <img
-                src={logInImg}
-                alt="logInBackground"
-                className={cx('logInBackgroundImg')}
+                src={signUpImg}
+                alt="signUpBackground"
+                className={cx('signUpBackgroundImg')}
               />
               <div className={cx('validationWrapp')}>
-                <h2 className={cx('validationHeading')}>Welcome Back</h2>
-                <p className={cx('signUp')}>
-                  If you don't have an account yet, please{' '}
-                  <button className={cx('goToSignUp')} onClick={goToSignUp}>
+                <h2 className={cx('validationHeading')}>Create your profile</h2>
+                <p className={cx('logIn')}>
+                  If you already have an account, please{' '}
+                  <button className={cx('goToLogIn')} onClick={goToLogIn}>
                     log in
                   </button>
                 </p>
-                <form className={cx('validationForm')} onSubmit={handleLogIn}>
+                <form className={cx('validationForm')} onSubmit={handleSignUp}>
                   <label
                     className={cx('validationLabel')}
                     htmlFor={'emailInput'}
@@ -73,16 +73,16 @@ export const LogIn: FC<LogInProps> = ({
                     type={'password'}
                     className={'validation'}
                   />
-                  <Button className={'logInBtn'} children={'log in'} />
-                  <p className={cx('signUp', 'signUpMobile')}>
-                    If you don't have an account yet, please{' '}
-                    <button className={cx('goToSignUp')} onClick={goToSignUp}>
+                  <Button className={'signUpBtn'} children={'sign up'} />
+                  <p className={cx('logIn', 'logInMobile')}>
+                    If you already have an account, please log in
+                    <button className={cx('goToLogIn')} onClick={goToLogIn}>
                       log in
                     </button>
                   </p>
                 </form>
                 <CloseIcon
-                  onClick={() => setIsShowLogIn(false)}
+                  onClick={() => setIsShowSignUp(false)}
                   width={16}
                   height={16}
                   fill={theme === 'dark' ? '#575757' : '#9C9C9C'}

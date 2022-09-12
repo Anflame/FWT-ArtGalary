@@ -1,12 +1,13 @@
 import { FC, useLayoutEffect, useState } from 'react';
 import cn from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import Menu from '../Menu';
 import Button from '../Button';
-import Links from '../Links';
 import { Context } from '../../hooks/Context';
 import { Logo, MenuIcon, ThemeIcon, ThemeIconLight } from '../../assets/icons';
 import LogIn from '../LogIn';
+import SignUp from '../SignUp';
 
 const cx = cn.bind(styles);
 
@@ -19,10 +20,15 @@ export const Header: FC = () => {
   const [isShowLogIn, setIsShowLogIn] = useState(false);
   const handleLogIn = () => {};
 
+  const [isShowSignUp, setIsShowSignUp] = useState(false);
+  const handleSignUp = () => {};
+
   const handleClickLogIn = () => {
     setIsShowLogIn(true);
   };
-  const handleClickSignUp = () => {};
+  const handleClickSignUp = () => {
+    setIsShowSignUp(true);
+  };
 
   const [isShow, setIsShow] = useState(false);
 
@@ -30,7 +36,7 @@ export const Header: FC = () => {
     <>
       <header className={cx('header')}>
         <div className={cx('container')}>
-          <Links
+          <Link
             children={
               <Logo
                 fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
@@ -38,7 +44,7 @@ export const Header: FC = () => {
                 height={15}
               />
             }
-            href={'/'}
+            to={'/'}
           />
 
           <div className={cx('authAndChangeThemeWrapp')}>
@@ -86,7 +92,14 @@ export const Header: FC = () => {
         <LogIn
           isShowLogIn={isShowLogIn}
           setIsShowLogIn={setIsShowLogIn}
+          setIsShowSignUp={setIsShowSignUp}
           handleLogIn={handleLogIn}
+        />
+        <SignUp
+          isShowSignUp={isShowSignUp}
+          setIsShowSignUp={setIsShowSignUp}
+          setIsShowLogIn={setIsShowLogIn}
+          handleSignUp={handleSignUp}
         />
       </header>
     </>

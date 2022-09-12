@@ -1,4 +1,4 @@
-.logIn {
+.signUp {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@
   z-index: 3;
 }
 
-.logInPopUpContent {
+.signUpPopUpContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@
     height: 100vh;
   }
 
-  .logInBackgroundImg {
+  .signUpBackgroundImg {
     height: inherit;
     
     @media (max-width: 850px) {
@@ -79,7 +79,7 @@
       }
     }
 
-    .signUp {
+    .logIn {
       font-family: var(--font-family-paragraph);
       color: var(--color-text-auth);
       font-weight: 300;
@@ -91,7 +91,7 @@
       }
     }
 
-    .signUpMobile {
+    .logInMobile {
       display: none;
 
       @media (max-width: 320px) {
@@ -100,8 +100,8 @@
         font-size: 12px;
       }
     }
-    
-    .goToSignUp {
+
+    .goToLogIn {
       background: none;
       border: none;
       text-decoration: underline;

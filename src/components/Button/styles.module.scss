@@ -4,7 +4,7 @@
 }
 
 .logInBtn {
-  background-color: var(--color-logIn-background-btn);  
+  background-color: var(--color-auth-background-btn);  
   font-family: var(--font-family-paragraph);
   color: var(--color-primary-white);
   text-align: center;
@@ -18,7 +18,7 @@
   margin: 0 auto;
   
   &:hover, &:focus {
-    box-shadow: var(--color-boxShadow-logIn-btn); 
+    box-shadow: var(--color-boxShadow-auth-btn); 
   }
 }
 
