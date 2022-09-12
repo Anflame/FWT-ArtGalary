@@ -1,6 +1,5 @@
 name: CI
 on:
-branch
   pull_request:
     branches: [ master ]
 jobs:
@@ -13,5 +12,5 @@ jobs:
         run: npm i
 
       - name: Deploy to gh-pages
-        run: |
-   		      git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+        run: 
+          git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
