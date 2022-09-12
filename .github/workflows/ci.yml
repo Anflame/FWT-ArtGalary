@@ -15,4 +15,3 @@ jobs:
       - name: Deploy to gh-pages
         run: |
    		      git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-            npm run deploy
