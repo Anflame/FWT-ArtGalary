@@ -1,13 +1,21 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Header from '../components/Header';
+import AppRouter from '../components/AppRouter';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {
-  title: 'Header',
-  component: Header,
-} as ComponentMeta<typeof Header>;
+  title: 'AppRouter',
+  component: AppRouter,
+  decorators: [withRouter],
+  parameters: {
+    reactRouter: {
+      routePath: '/profile/:painterId',
+      routeParams: {painterId: '1'},
+    }
+  }
+} as ComponentMeta<typeof AppRouter>;
 
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
+const Template: ComponentStory<typeof AppRouter> = (args) => <AppRouter {...args} />;
 
 export const Primary = Template.bind({});
