@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { AppRouter } from '../AppRouter/AppRouter';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
@@ -16,9 +16,9 @@ export const App: FC = () => {
         toggleTheme,
       }}
     >
-      <BrowserRouter>
+      <HashRouter>
         <AppRouter />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeContext.Provider>
   );
 };
