@@ -10,8 +10,8 @@ export default {
   decorators: [withRouter],
   parameters: {
     reactRouter: {
-      routePath: '/profile/:id',
-      routeParams: { id: '1' },
+      routePath: '/profile/:painterId',
+      routeParams: { painterId: '1' },
       routeState: { fromPage: '/' },
     }
   }

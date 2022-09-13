@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from '../components/Button';
@@ -10,11 +10,20 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const expandBtn = Template.bind({});
 
-Primary.args = {
+expandBtn.args = {
   isDisabled: false,
   children: '>',
   className: 'expandBtn',
   isOutlined: true,
 };
+
+export const authBtn = Template.bind({});
+
+authBtn.args = {
+  isDisabled: false,
+  children: 'Button',
+  className: 'logInSigUpBtn',
+};
+
