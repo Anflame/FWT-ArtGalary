@@ -10,5 +10,6 @@ export const AppRouter: FC = () => (
       <Route index element={<PaintersList />} />
       <Route path={'profile/:painterId'} element={<PainterProfile />} />
     </Route>
+    <Route path="*" element={<h2>404 page</h2>} />
   </Routes>
 );
