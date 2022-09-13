@@ -1,0 +1,80 @@
+@import '../../index.scss';
+.card {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+
+  .cardImg {
+    display: block;
+    width: 100%;
+  }
+
+  .cardInfoWrapp {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--color-primary);
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    box-sizing: border-box;
+    
+    .cardInfo {
+      padding: 32px 12px;
+    }
+    
+    .cardTitle {
+      font-weight: var(--font-weight-bold);
+      font-family: var(--font-family--heading);
+      color: var(--color-primary-heading);
+      font-size: 16px;
+      line-height: 19px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .cardAnotherInfo {
+      font-weight: var(--font-weight-bold);
+      font-family: var(--font-family-paragraph);
+      color: var(--color-accent);
+    }
+    .cardInfoAfter {
+      display: none;
+      
+      @media(max-width: 768px) {
+        background-color: var(--color-accent);
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } 
+    }
+  }
+
+  &:hover .cardInfoAfter {
+    background-color: var(--color-accent);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardInfoWrapp::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 2px;
+    height: 60%;
+    background-color: var(--color-accent);
+  }
+
+  &:hover .cardInfoWrapp::before {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .cardInfoWrapp::before {display: none;}
+  }
+
+}

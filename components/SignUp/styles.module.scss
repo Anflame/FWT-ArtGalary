@@ -1,0 +1,151 @@
+.signUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(3, 3, 3, 0.6);
+  text-align: center;
+  z-index: 3;
+}
+
+.signUpPopUpContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 700px;
+  
+  @media (max-width: 768px) {
+    width: inherit;
+    height: 100vh;
+  }
+
+  .signUpBackgroundImg {
+    height: inherit;
+    
+    @media (max-width: 850px) {
+      & {
+        display: none;
+      }
+    }
+  }
+
+  .validationWrapp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background-checkbox);
+    padding: 95px;
+    height: inherit;
+
+    @media(max-width: 1200px){
+      & {
+        padding: 45px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: inherit;
+      height: inherit;
+    }
+    
+    @media (max-width: 320px) {
+      padding: 30px;      
+    }
+
+    .validationHeading {
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-auth);
+      margin-bottom: 20px;
+      font-size: 48px;
+      line-height: 100%;
+
+      @media (max-width: 768px) {
+        font-size: 60px;
+        line-height: 73px;
+        margin-bottom: 40px;
+      }
+      
+      @media (max-width: 320px) {
+        font-size: 32px;
+        line-height: 100%;
+      }
+    }
+
+    .logIn {
+      font-family: var(--font-family-paragraph);
+      color: var(--color-text-auth);
+      font-weight: 300;
+      margin-bottom: 60px;
+      text-align: center;
+
+      @media (max-width: 320px) {
+        display: none;
+      }
+    }
+
+    .logInMobile {
+      display: none;
+
+      @media (max-width: 320px) {
+        display: block;
+        margin-top: 60px;
+        font-size: 12px;
+      }
+    }
+
+    .goToLogIn {
+      background: none;
+      border: none;
+      text-decoration: underline;
+      font-size: 16px;
+      line-height: 140%;
+      color: var(--color-text-auth);
+      font-family: var(--font-family-paragraph);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-text-auth);
+      }
+    }
+    
+    .validationForm {
+      justify-self: center;
+      text-align: left;
+
+      .validationLabel {  
+        align-self: flex-start;
+        display: block;
+        margin-bottom: 8px;
+        font-family: var(--font-family-paragraph);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-auth);
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+
+    .closeIcon {
+      position: absolute;
+      top: 36px;
+      right: 36px;
+      cursor: pointer;
+
+      @media(max-width: 768px) {
+        right: 24px;
+      }
+
+      @media(max-width: 320px) {
+        top: 24px;
+      }
+    }
+  }
+}
