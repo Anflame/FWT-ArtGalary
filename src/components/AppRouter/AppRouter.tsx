@@ -7,7 +7,7 @@ import Layout from '../Layout';
 export const AppRouter: FC = () => (
   <Routes>
     <Route path={'/'} element={<Layout />}>
-      <Route path={''} element={<PaintersList />} />
+      <Route index element={<PaintersList />} />
       <Route path={'profile/:painterId'} element={<PainterProfile />} />
     </Route>
   </Routes>
