@@ -6,15 +6,37 @@
   height: 200vh;
   top: 0;
   left: 0;
-  background: rgba(3, 3, 3, 0.6);
+  background: transparent;
   text-align: right;
+  animation: backgroundOpacity 0.5s forwards;
 }
 
+@keyframes backgroundOpacity {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(3, 3, 3, 0.6);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    display: none;
+    margin-right: -466px;
+  }
+  to {
+    display: block;
+    margin-right: 0;
+  }
+}
 .menuPopUpContent {
+  display: none;
   background-color: var(--color-primary);
   margin: 0 0 auto auto;
   height: 100vh;
   width: 466px;
+  animation: slideIn 0.5s;
 
   @media (max-width: 550px) {
       width: 252px;
