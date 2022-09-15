@@ -102,6 +102,8 @@ html[data-theme='dark'] {
 
 @mixin medium-viewport {
   @media (min-width: 768px) {
+    max-width: 1240px;
+    margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
     grid-gap: 24px;
