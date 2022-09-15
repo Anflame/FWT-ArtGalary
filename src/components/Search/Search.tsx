@@ -3,7 +3,9 @@ import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import type { InputsProps } from '../../comon-types';
 import { Context } from '../../hooks/Context';
-import { CleanSearchBtn, Error, SearchBtnImg } from '../../assets/icons';
+import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
+import { ReactComponent as Error } from '../../assets/images/error.svg';
+import { ReactComponent as SearchIcon } from '../../assets/images/searchIcon.svg';
 
 const cx = cn.bind(styles);
 
@@ -41,25 +43,21 @@ export const Search: FC<SearchProps> = ({ handleSubmitForm, isError }) => {
           onFocus={() => setIsBlurSearch(false)}
           onChange={handleChange}
         />
-        <SearchBtnImg
+        <SearchIcon
           className={cx('searchBtn')}
-          width={16}
-          height={16}
           fill={theme === 'dark' ? '#575757' : '#DEDEDE'}
         />
         {isblurSearch && (
-          <CleanSearchBtn
+          <CleanSearchIcon
             onClick={handeDelete}
             className={cx('cleanSearchBtn')}
-            width={8}
-            height={8}
             fill={theme === 'dark' ? '#575757' : '#DEDEDE'}
           />
         )}
         {isError && (
           <p className={cx('errorText')}>
-            {<Error width={16} height={16} className={cx('errorImg')} />}This is
-            an error message!
+            {<Error className={cx('errorImg')} fill={'#AE2917'} />}This is an
+            error message!
           </p>
         )}
       </>

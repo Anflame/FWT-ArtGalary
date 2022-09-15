@@ -4,11 +4,11 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-interface LinksProps {
+type LinksProps = {
   href: string;
   children: ReactNode;
   args?: HTMLAnchorElement;
-}
+};
 
 export const Links: FC<LinksProps> = ({ href, children, ...args }) => (
   <a className={cx('link')} href={href} {...args}>

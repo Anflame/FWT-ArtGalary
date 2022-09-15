@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
-import { PreLoaderIcon } from '../../assets/icons';
 
 const cx = cn.bind(styles);
 

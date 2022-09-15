@@ -30,6 +30,7 @@
     margin-right: 0;
   }
 }
+
 .menuPopUpContent {
   display: none;
   background-color: var(--color-primary);
@@ -53,6 +54,7 @@
     justify-self: start;
     align-items: center;
     padding-left: 94px;
+    cursor: pointer;
 
     @media (max-width: 550px) {
         padding-left: 47px;
@@ -65,6 +67,7 @@
         text-decoration: underline;
         font-size: 12px;
         line-height: 15px;
+        margin-left: 12px;
     }
   }
 }

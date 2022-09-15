@@ -1,6 +1,6 @@
 import cn from 'classnames/bind';
 import { FC } from 'react';
-import { Error } from '../../assets/icons';
+import { ReactComponent as Error } from '../../assets/images/error.svg';
 import type { InputsProps } from '../../comon-types';
 import styles from './styles.module.scss';
 
@@ -16,8 +16,8 @@ export const Input: FC<InputsProps> = ({ isError, id, type, className }) => (
     />
     {isError && (
       <p className={cx('errorText')}>
-        {<Error width={16} height={16} className={cx('errorImg')} />}This is an
-        error message!
+        {<Error className={cx('errorImg')} fill={'#AE2917'} />}This is an error
+        message!
       </p>
     )}
   </>

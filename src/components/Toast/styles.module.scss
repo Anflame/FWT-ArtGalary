@@ -1,4 +1,5 @@
 @import '../../index.scss';
+
 .toast {
   width: 441px;
   max-width: 90%;
@@ -53,6 +54,7 @@
     right: 16px;
     width: 16px;
     height: 16px;
+    cursor: pointer;
 
     @media (max-width: 320px) {
       top: 8px;

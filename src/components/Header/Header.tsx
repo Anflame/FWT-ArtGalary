@@ -5,7 +5,10 @@ import styles from './styles.module.scss';
 import Menu from '../Menu';
 import Button from '../Button';
 import { Context } from '../../hooks/Context';
-import { Logo, MenuIcon, ThemeIcon, ThemeIconLight } from '../../assets/icons';
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
+import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
+import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
 import LogIn from '../LogIn';
 import SignUp from '../SignUp';
 
@@ -37,13 +40,7 @@ export const Header: FC = () => {
       <header className={cx('header')}>
         <div className={cx('container')}>
           <Link
-            children={
-              <Logo
-                fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-                width={39}
-                height={15}
-              />
-            }
+            children={<Logo fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />}
             to={'/'}
           />
 
@@ -65,17 +62,15 @@ export const Header: FC = () => {
               className={'themeBtn'}
               children={
                 theme === 'dark' ? (
-                  <ThemeIcon width={20} height={20} fill="#DEDEDE" />
+                  <ThemeIcon fill="#DEDEDE" />
                 ) : (
-                  <ThemeIconLight width={18} height={21} fill="#575757" />
+                  <ThemeIconLight fill="#575757" />
                 )
               }
             />
           </div>
           {!isShow ? (
             <MenuIcon
-              width={24}
-              height={18}
               fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
               className={cx('menuIcon')}
               onClick={() => setIsShow(!isShow)}

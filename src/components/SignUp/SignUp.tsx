@@ -5,7 +5,7 @@ import { Context } from '../../hooks/Context';
 import signUpImg from '../../assets/images/signUpImg.jpg';
 import Input from '../Input';
 import Button from '../Button';
-import { CloseIcon } from '../../assets/icons';
+import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 
 const cx = cn.bind(styles);
 
@@ -83,8 +83,6 @@ export const SignUp: FC<SignUpProps> = ({
                 </form>
                 <CloseIcon
                   onClick={() => setIsShowSignUp(false)}
-                  width={16}
-                  height={16}
                   fill={theme === 'dark' ? '#575757' : '#9C9C9C'}
                   className={cx('closeIcon')}
                 />

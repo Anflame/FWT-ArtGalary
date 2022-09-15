@@ -3,7 +3,9 @@ import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import Button from '../Button';
 import { Context } from '../../hooks/Context';
-import { MenuIconClose, ThemeIcon, ThemeIconLight } from '../../assets/icons';
+import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
+import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
+import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
 
 const cx = cn.bind(styles);
 
@@ -27,8 +29,6 @@ export const Menu: FC<MenuProps> = ({
       <div className={cx('menuPopUpContent')}>
         {isShow && (
           <MenuIconClose
-            width={16}
-            height={16}
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             onClick={() => setIsShow(!isShow)}
             className={cx('menuIconClose')}
@@ -39,9 +39,9 @@ export const Menu: FC<MenuProps> = ({
             className={'themeBtn'}
             children={
               theme === 'dark' ? (
-                <ThemeIcon width={20} height={20} fill="#DEDEDE" />
+                <ThemeIcon fill="#DEDEDE" />
               ) : (
-                <ThemeIconLight width={18} height={21} fill="#575757" />
+                <ThemeIconLight fill="#575757" />
               )
             }
           />

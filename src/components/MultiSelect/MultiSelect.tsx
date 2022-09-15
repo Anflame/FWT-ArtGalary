@@ -5,7 +5,8 @@ import CheckBox from '../CheckBox';
 import Label from '../Label';
 import type { SelectListes } from '../../comon-types';
 import { Context } from '../../hooks/Context';
-import { MultiSelectIcon, MultiSelectIconShow } from '../../assets/icons';
+import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
+import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
 
 const cx = cn.bind(styles);
 
@@ -44,16 +45,12 @@ export const MultiSelect: FC<MultiSelectProps> = ({
         </div>
         <div className={cx('iconWrapp')} onClick={() => setIsShow(!isShow)}>
           {isShow ? (
-            <MultiSelectIconShow
-              width={12}
-              height={6}
+            <IconShow
               fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
               className={cx('selectIcon')}
             />
           ) : (
-            <MultiSelectIcon
-              width={12}
-              height={6}
+            <IconHide
               fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
               className={cx('selectIcon')}
             />

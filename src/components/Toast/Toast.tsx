@@ -2,7 +2,8 @@ import { FC } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
-import { Error, CloseIcon } from '../../assets/icons';
+import { ReactComponent as Error } from '../../assets/images/error.svg';
+import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 
 const cx = cn.bind(styles);
 
@@ -22,11 +23,11 @@ export const Toast: FC<ToastProps> = ({
   return (
     <div className={cx('toast', !isShowToast && 'showToast')}>
       <h3 className={cx('toastHeading')}>
-        {<Error width={16} height={16} className={cx('errorImg')} />}
+        {<Error className={cx('errorImg')} fill={'#AE2917'} />}
         Error!
       </h3>
       <p className={cx('toastText')}>
-        {<Error width={16} height={16} className={cx('errorImg')} />}
+        {<Error className={cx('errorImg')} fill={'#AE2917'} />}
         {message}
       </p>
       <CloseIcon

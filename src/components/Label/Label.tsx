@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
-import { LabelDelete } from '../../assets/icons';
+import { ReactComponent as LabelDelete } from '../../assets/images/labelDelete.svg';
 
 const cx = cn.bind(styles);
 
@@ -25,8 +25,6 @@ export const Label: FC<LabelsProps> = ({
         <button className={cx('label')}>
           {children}
           <LabelDelete
-            width={8}
-            height={9}
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             onClick={changeSelect}
             className={cx('labelDelete')}

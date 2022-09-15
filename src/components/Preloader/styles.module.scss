@@ -9,7 +9,22 @@
   position: absolute;
   top: calc(50% - 50px);
   left: calc(50% - 50px);
-  width: 50px;
-  height: 50px;
-  border: 1px solid   ;
+  & div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 8px;
+    border: 5px solid var(--color-primary-hover);
+  }
+}
+
+@keyframes preloader {
+  0% {
+    border: 5px solid var(--color-primary-hover);
+  }
+  100% {
+    border: none;
+  }
 }

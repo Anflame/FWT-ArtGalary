@@ -7,11 +7,9 @@ import CardList from '../CardList';
 import painterPhoto from '../../assets/images/painterImg.png';
 import type { Painters } from '../../comon-types';
 import { Context } from '../../hooks/Context';
-import {
-  ArrowBack,
-  MultiSelectIcon,
-  MultiSelectIconShow,
-} from '../../assets/icons';
+import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
+import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
+import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { painters } from '../../constants';
 
 const cx = cn.bind(styles);
@@ -38,11 +36,7 @@ export const Profile: FC<ProfileProps> = ({
     <section className={cx('profile')}>
       <div className={cx('container')}>
         <div className={cx('turnBack')}>
-          <ArrowBack
-            width={16}
-            height={10}
-            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-          />
+          <ArrowBack fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
           <Link to={'/'} className={cx('backLink')}>
             {'back'}
           </Link>
@@ -76,17 +70,9 @@ export const Profile: FC<ProfileProps> = ({
               >
                 <button className={cx('readMoreBtn')}>read more</button>
                 {isShowMoreInfo ? (
-                  <MultiSelectIconShow
-                    width={12}
-                    height={6}
-                    fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-                  />
+                  <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
                 ) : (
-                  <MultiSelectIcon
-                    width={12}
-                    height={6}
-                    fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-                  />
+                  <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
                 )}
               </div>
               <ul className={cx('paintingsList')}>

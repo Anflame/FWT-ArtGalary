@@ -5,7 +5,7 @@ import Input from '../Input';
 import Button from '../Button';
 import logInImg from '../../assets/images/logInImg.jpg';
 import { Context } from '../../hooks/Context';
-import { CloseIcon } from '../../assets/icons';
+import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 
 const cx = cn.bind(styles);
 
@@ -83,8 +83,6 @@ export const LogIn: FC<LogInProps> = ({
                 </form>
                 <CloseIcon
                   onClick={() => setIsShowLogIn(false)}
-                  width={16}
-                  height={16}
                   fill={theme === 'dark' ? '#575757' : '#9C9C9C'}
                   className={cx('closeIcon')}
                 />

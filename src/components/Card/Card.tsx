@@ -3,7 +3,7 @@ import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import cardImg from '../../assets/images/cardImg.jpg';
 import type { CardProps } from '../../comon-types';
-import { Arrow } from '../../assets/icons';
+import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
 
 const cx = cn.bind(styles);
 

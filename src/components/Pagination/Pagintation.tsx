@@ -3,7 +3,8 @@ import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
 import { pages } from '../../constants';
-import { ArrowLeft, ArrowRight } from '../../assets/icons';
+import { ReactComponent as ArrowLeft } from '../../assets/images/arrowLeft.svg';
+import { ReactComponent as ArrowRight } from '../../assets/images/arrowRight.svg';
 
 const cx = cn.bind(styles);
 
@@ -30,8 +31,6 @@ export const Pagination: FC<PaginationProps> = ({
   return (
     <ul className={cx('pages')}>
       <ArrowLeft
-        width={8}
-        height={12}
         fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
         onClick={() => setCurrentPage(currentPage - 1)}
         key={10}
@@ -83,8 +82,6 @@ export const Pagination: FC<PaginationProps> = ({
       <ArrowRight
         fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
         onClick={() => setCurrentPage(currentPage + 1)}
-        width={8}
-        height={12}
         key={12}
       />
     </ul>
