@@ -12,11 +12,12 @@
     display: flex;
     justify-content: space-between;
 
-    @include small-viewport{align-items: center;};
-    @include mini-viewport{align-items: center;};
-    @include medium-viewport{align-items: center;};
-    @include large-viewport{align-items: center;};
-    @include ultra-large-viewport{align-items: center;};
+    @include small-viewport;
+    @include mini-viewport;
+    @include medium-viewport;
+    @include large-viewport;
+    @include ultra-large-viewport;
+    align-items: center;
 
     .authWrapp {
         display: flex;

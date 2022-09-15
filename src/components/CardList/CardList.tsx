@@ -12,9 +12,9 @@ type CardListProps = {
 
 export const CardList: FC<CardListProps> = ({ painters }) => (
   <ul className={cx('cardList')}>
-    {painters.map(({ name, title, id, img }) => (
+    {painters.map(({ title, id, img }) => (
       <li className={cx('cardListes')} key={id}>
-        <Card title={title} name={name} img={img} id={id} />
+        <Card title={title} img={img} id={id} />
       </li>
     ))}
   </ul>

@@ -19,3 +19,4 @@ export { default as SearchBtnImg } from './SearchBtnImg';
 export { default as ThemeIcon } from './ThemeIcon';
 export { default as ThemeIconLight } from './ThemeIconLight';
 export { default as Vk } from './Vk';
+export { default as PreLoaderIcon } from './PreloaderIcon';
