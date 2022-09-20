@@ -39,6 +39,10 @@
         font-family: var(--font-family-paragraph);
         color: var(--color-primary-grey);
         font-weight: var(--font-weght-bold);
+
+        @media (max-width: 320px) {
+          display: none;
+        }
       }
     }
 
