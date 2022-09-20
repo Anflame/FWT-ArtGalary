@@ -36,6 +36,7 @@
   .menuIconClose {
     display: block;
     align-self: flex-start;
+    cursor: pointer;
   }
 
   .menuThemeWrapp {
@@ -44,6 +45,7 @@
     justify-self: start;
     align-items: center;
     padding-left: 94px;
+    cursor: pointer;
 
     @media (max-width: 550px) {
         padding-left: 47px;
