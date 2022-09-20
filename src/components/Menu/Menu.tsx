@@ -1,20 +1,14 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
-import Button from '../Button';
 import { Context } from '../../hooks/Context';
+import Button from '../Button';
+import type { MenuProps } from '../../comon-types';
 import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
 import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
-
-type MenuProps = {
-  isShow: boolean;
-  setIsShow: (isShow: boolean) => void;
-  handleClickLogIn: () => void;
-  handleClickSignUp: () => void;
-};
 
 export const Menu: FC<MenuProps> = ({
   isShow,
@@ -25,15 +19,13 @@ export const Menu: FC<MenuProps> = ({
   const { theme, toggleTheme } = Context();
 
   return (
-    <div className={cx('menu')}>
-      <div className={cx('menuPopUpContent')}>
-        {isShow && (
-          <MenuIconClose
-            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-            onClick={() => setIsShow(!isShow)}
-            className={cx('menuIconClose')}
-          />
-        )}
+    <div className={cx('menu', isShow && 'menuShow')}>
+      <div className={cx('menuPopUpContent', isShow && 'menuPopUpContentShow')}>
+        <MenuIconClose
+          fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
+          onClick={() => setIsShow(!isShow)}
+          className={cx('menuIconClose')}
+        />
         <div className={cx('menuThemeWrapp')} onClick={toggleTheme}>
           <Button
             className={'themeBtn'}

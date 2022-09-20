@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
-import { AppRouter } from '../AppRouter/AppRouter';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
+import { AppRouter } from '../AppRouter/AppRouter';
 
 export const App: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);

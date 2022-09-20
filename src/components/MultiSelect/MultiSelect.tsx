@@ -1,12 +1,12 @@
 import { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
+import { Context } from '../../hooks/Context';
 import CheckBox from '../CheckBox';
 import Label from '../Label';
 import type { SelectListes } from '../../comon-types';
-import { Context } from '../../hooks/Context';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 

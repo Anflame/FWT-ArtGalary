@@ -1,5 +1,5 @@
-import img from './assets/images/cardImg.jpg';
 import { Painters } from './comon-types';
+import img from './assets/images/cardImg.jpg';
 
 export const painters = [
   {

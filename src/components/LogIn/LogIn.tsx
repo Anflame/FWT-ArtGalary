@@ -1,22 +1,16 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
-import Input from '../Input';
-import Button from '../Button';
-import logInImg from '../../assets/images/logInImg.jpg';
 import { Context } from '../../hooks/Context';
+import Button from '../Button';
+import Input from '../Input';
+import type { AuthProps } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
+import logInImg from '../../assets/images/logInImg.jpg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-type LogInProps = {
-  isShowLogIn: boolean;
-  setIsShowLogIn: Dispatch<SetStateAction<boolean>>;
-  setIsShowSignUp: Dispatch<SetStateAction<boolean>>;
-  handleLogIn: () => void;
-};
-
-export const LogIn: FC<LogInProps> = ({
+export const LogIn: FC<AuthProps> = ({
   isShowLogIn,
   setIsShowLogIn,
   setIsShowSignUp,
@@ -45,7 +39,7 @@ export const LogIn: FC<LogInProps> = ({
                 <p className={cx('signUp')}>
                   If you don't have an account yet, please{' '}
                   <button className={cx('goToSignUp')} onClick={goToSignUp}>
-                    log in
+                    sign up
                   </button>
                 </p>
                 <form className={cx('validationForm')} onSubmit={handleLogIn}>
@@ -77,7 +71,7 @@ export const LogIn: FC<LogInProps> = ({
                   <p className={cx('signUp', 'signUpMobile')}>
                     If you don't have an account yet, please{' '}
                     <button className={cx('goToSignUp')} onClick={goToSignUp}>
-                      log in
+                      sign up
                     </button>
                   </p>
                 </form>

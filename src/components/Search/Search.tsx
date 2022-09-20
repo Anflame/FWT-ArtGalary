@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
-import type { InputsProps } from '../../comon-types';
 import { Context } from '../../hooks/Context';
+import type { InputsProps } from '../../comon-types';
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import { ReactComponent as SearchIcon } from '../../assets/images/searchIcon.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 

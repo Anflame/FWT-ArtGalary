@@ -1,39 +1,27 @@
-import { FC, useLayoutEffect, useState } from 'react';
-import cn from 'classnames/bind';
+import { FC, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './styles.module.scss';
-import Menu from '../Menu';
-import Button from '../Button';
+import cn from 'classnames/bind';
 import { Context } from '../../hooks/Context';
+import Button from '../Button';
+import { MenuProps } from '../../comon-types';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
 import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
-import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
-import LogIn from '../LogIn';
-import SignUp from '../SignUp';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Header: FC = () => {
+export const Header: FC<MenuProps> = ({
+  isShow,
+  setIsShow,
+  handleClickLogIn,
+  handleClickSignUp,
+}) => {
   const { theme, toggleTheme } = Context();
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-  const [isShowLogIn, setIsShowLogIn] = useState(false);
-  const handleLogIn = () => {};
-
-  const [isShowSignUp, setIsShowSignUp] = useState(false);
-  const handleSignUp = () => {};
-
-  const handleClickLogIn = () => {
-    setIsShowLogIn(true);
-  };
-  const handleClickSignUp = () => {
-    setIsShowSignUp(true);
-  };
-
-  const [isShow, setIsShow] = useState(false);
 
   return (
     <>
@@ -69,33 +57,12 @@ export const Header: FC = () => {
               }
             />
           </div>
-          {!isShow ? (
-            <MenuIcon
-              fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-              className={cx('menuIcon')}
-              onClick={() => setIsShow(!isShow)}
-            />
-          ) : (
-            <Menu
-              isShow={isShow}
-              setIsShow={setIsShow}
-              handleClickLogIn={handleClickLogIn}
-              handleClickSignUp={handleClickSignUp}
-            />
-          )}
+          <MenuIcon
+            fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
+            className={cx('menuIcon')}
+            onClick={() => setIsShow(!isShow)}
+          />
         </div>
-        <LogIn
-          isShowLogIn={isShowLogIn}
-          setIsShowLogIn={setIsShowLogIn}
-          setIsShowSignUp={setIsShowSignUp}
-          handleLogIn={handleLogIn}
-        />
-        <SignUp
-          isShowSignUp={isShowSignUp}
-          setIsShowSignUp={setIsShowSignUp}
-          setIsShowLogIn={setIsShowLogIn}
-          handleSignUp={handleSignUp}
-        />
       </header>
     </>
   );

@@ -1,5 +1,5 @@
-import cn from 'classnames/bind';
 import { FC } from 'react';
+import cn from 'classnames/bind';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import styles from './styles.module.scss';
 

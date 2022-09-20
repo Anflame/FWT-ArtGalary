@@ -1,7 +1,7 @@
-import cn from 'classnames/bind';
 import { FC } from 'react';
-import { ReactComponent as Error } from '../../assets/images/error.svg';
+import cn from 'classnames/bind';
 import type { InputsProps } from '../../comon-types';
+import { ReactComponent as Error } from '../../assets/images/error.svg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

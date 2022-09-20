@@ -1,16 +1,16 @@
 import React, { FC, useState } from 'react';
-import cn from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import styles from './styles.module.scss';
-import Label from '../Label';
-import CardList from '../CardList';
-import painterPhoto from '../../assets/images/painterImg.png';
-import type { Painters } from '../../comon-types';
+import cn from 'classnames/bind';
 import { Context } from '../../hooks/Context';
-import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
-import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
-import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
+import CardList from '../CardList';
+import Label from '../Label';
 import { painters } from '../../constants';
+import type { Painters } from '../../comon-types';
+import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
+import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
+import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
+import painterPhoto from '../../assets/images/painterImg.png';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 

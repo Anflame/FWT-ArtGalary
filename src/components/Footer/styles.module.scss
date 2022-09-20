@@ -3,6 +3,9 @@
   background-color: var(--color-primary);  
   padding-top: 40px;
   padding-bottom: 40px;
+  & * {
+    z-index: 1;
+  }
   
   .container {
     display: flex;

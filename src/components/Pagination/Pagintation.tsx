@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
 import { pages } from '../../constants';
 import { ReactComponent as ArrowLeft } from '../../assets/images/arrowLeft.svg';
 import { ReactComponent as ArrowRight } from '../../assets/images/arrowRight.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 

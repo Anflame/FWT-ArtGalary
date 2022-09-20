@@ -19,9 +19,10 @@ module.exports = {
     sourceType: 'module',
     project: 'tsconfig.json',
   },
-  plugins: ['import', 'react', '@typescript-eslint', 'prettier'],
+  plugins: ['import', 'react', '@typescript-eslint',"simple-import-sort", 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'import/prefer-default-export': 'off',
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -45,6 +46,22 @@ module.exports = {
     'react/display-name': 'off',
     'react/prop-types': 0,
     semi: ['warn', 'always'],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react",
+          "^@?\\w",
+          "[A-Z]{1}[a-zA-Z]+$",
+          "constants$",
+          "^\\./(?=.*/)(?!/?$)",
+          "^\\.(?!/?$)",
+          "comon-types$",
+          "(jpg|jpeg|png|svg)$",
+            "^.+\\.?(css)$"],
+        ]
+      }
+    ],
   },
   settings: {
       react: {

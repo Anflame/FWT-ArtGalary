@@ -3,41 +3,31 @@
   position: fixed;
   overflow: hidden;
   width: 100%;
-  height: 200vh;
+  height: 100vh;
   top: 0;
-  left: 0;
-  background: transparent;
   text-align: right;
-  animation: backgroundOpacity 0.5s forwards;
+  z-index: 0;
+  transition: background-color 1s, z-index 0.5s;
 }
-
-@keyframes backgroundOpacity {
-  from {
-    background: transparent;
-  }
-  to {
-    background: rgba(3, 3, 3, 0.6);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    display: none;
-    margin-right: -466px;
-  }
-  to {
-    display: block;
-    margin-right: 0;
-  }
+.menu.menuShow {
+  right: 0;
+  z-index: 2;
+  background-color: rgba(3,3,3,.6);
 }
 
 .menuPopUpContent {
   display: none;
   background-color: var(--color-primary);
   margin: 0 0 auto auto;
+  margin-right: -466px;
   height: 100vh;
   width: 466px;
-  animation: slideIn 0.5s;
+  z-index: 2;
+  transition: margin-right 0.5s;
+
+  &.menuPopUpContentShow {
+    margin-right: 0;
+  }
 
   @media (max-width: 550px) {
       width: 252px;
@@ -54,7 +44,6 @@
     justify-self: start;
     align-items: center;
     padding-left: 94px;
-    cursor: pointer;
 
     @media (max-width: 550px) {
         padding-left: 47px;
@@ -65,9 +54,10 @@
         color: var(--color-primary-grey);
         text-transform: uppercase;
         text-decoration: underline;
+        margin-left: 12px;
         font-size: 12px;
         line-height: 15px;
-        margin-left: 12px;
+        margin-right: 12px;
     }
   }
 }

@@ -1,22 +1,16 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
-import signUpImg from '../../assets/images/signUpImg.jpg';
-import Input from '../Input';
 import Button from '../Button';
+import Input from '../Input';
+import { AuthProps } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
+import signUpImg from '../../assets/images/signUpImg.jpg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-type SignUpProps = {
-  isShowSignUp: boolean;
-  setIsShowSignUp: Dispatch<SetStateAction<boolean>>;
-  setIsShowLogIn: Dispatch<SetStateAction<boolean>>;
-  handleSignUp: () => void;
-};
-
-export const SignUp: FC<SignUpProps> = ({
+export const SignUp: FC<AuthProps> = ({
   isShowSignUp,
   setIsShowSignUp,
   setIsShowLogIn,

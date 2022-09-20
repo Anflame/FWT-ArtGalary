@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
 import { ReactComponent as LabelDelete } from '../../assets/images/labelDelete.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 

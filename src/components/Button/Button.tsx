@@ -1,5 +1,5 @@
-import cn from 'classnames/bind';
 import { FC, ReactNode } from 'react';
+import cn from 'classnames/bind';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

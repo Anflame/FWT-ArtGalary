@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import styles from './styles.module.scss';
 import { Context } from '../../hooks/Context';
-import { ReactComponent as Error } from '../../assets/images/error.svg';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
+import { ReactComponent as Error } from '../../assets/images/error.svg';
+import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
