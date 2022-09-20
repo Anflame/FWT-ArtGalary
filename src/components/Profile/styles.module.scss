@@ -100,6 +100,10 @@
           'header header'
           'rightLabel rightLabel'
           ;
+          margin-top: 0;
+        }
+        @media (max-width: 320px) {
+          width: 100%;
         }
 
         .painterLabelList {
@@ -171,6 +175,7 @@
             line-height: 32px;
             margin-bottom: 8px;
           }
+
         }
       }
 
