@@ -55,8 +55,8 @@ module.exports = {
           "[A-Z]{1}[a-zA-Z]+$",
           "constants$",
           "^\\./(?=.*/)(?!/?$)",
-          "^\\.(?!/?$)",
-          "comon-types$",
+            "^\\.(?!/?$)",
+            "^(\\.\\.\\/)?(?=comon-types$)",
           "(jpg|jpeg|png|svg)$",
             "^.+\\.?(css)$"],
         ]

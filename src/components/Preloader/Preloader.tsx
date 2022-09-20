@@ -6,6 +6,6 @@ const cx = cn.bind(styles);
 
 export const Preloader: FC = () => (
   <div className={cx('preloaderWrapp')}>
-    <div className={cx('preloader')}></div>
+    <div className={cx('loader')}></div>
   </div>
 );
