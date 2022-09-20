@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/projectSettings/static/css/main.f826d21a.css",
+    "main.css": "/projectSettings/static/css/main.ad7a1a2f.css",
     "main.js": "/projectSettings/static/js/main.fe5d063f.js",
     "static/media/painterImg.png": "/projectSettings/static/media/painterImg.a9d8b78e5a4e3ea8d778.png",
     "static/media/cardImg.jpg": "/projectSettings/static/media/cardImg.0a5176e1f1b6db3d6ed1.jpg",
@@ -22,11 +22,11 @@
     "static/media/menuIcon.svg": "/projectSettings/static/media/menuIcon.dd613e385ec4b81ed9451659155cde25.svg",
     "static/media/iconShow.svg": "/projectSettings/static/media/iconShow.a3b9d04c3821035c0531087e6abffba4.svg",
     "static/media/iconHide.svg": "/projectSettings/static/media/iconHide.64042c1d9dd59e6b60658d780bb18c01.svg",
-    "main.f826d21a.css.map": "/projectSettings/static/css/main.f826d21a.css.map",
+    "main.ad7a1a2f.css.map": "/projectSettings/static/css/main.ad7a1a2f.css.map",
     "main.fe5d063f.js.map": "/projectSettings/static/js/main.fe5d063f.js.map"
   },
   "entrypoints": [
-    "static/css/main.f826d21a.css",
+    "static/css/main.ad7a1a2f.css",
     "static/js/main.fe5d063f.js"
   ]
 }
