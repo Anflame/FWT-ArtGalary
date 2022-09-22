@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import Button from '../Button';
 import Input from '../Input';
-import { AuthProps } from '../../comon-types';
+import type { AuthProps } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import signUpImg from '../../assets/images/signUpImg.jpg';
 import styles from './styles.module.scss';
@@ -16,7 +16,7 @@ export const SignUp: FC<AuthProps> = ({
   setIsShowLogIn,
   handleSignUp,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
   const goToLogIn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setIsShowSignUp(false);

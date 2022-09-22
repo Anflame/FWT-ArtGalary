@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import { pages } from '../../constants';
 import { ReactComponent as ArrowLeft } from '../../assets/images/arrowLeft.svg';
 import { ReactComponent as ArrowRight } from '../../assets/images/arrowRight.svg';
@@ -19,7 +19,7 @@ export const Pagination: FC<PaginationProps> = ({
   maxPages,
   setCurrentPage,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
 
   if (pages.length !== 0) {
     pages.splice(0);

@@ -45,6 +45,7 @@ module.exports = {
     quotes: ['warn', 'single'],
     'react/display-name': 'off',
     'react/prop-types': 0,
+    'no-param-reassign': ["error", { "props": false }],
     semi: ['warn', 'always'],
     "simple-import-sort/imports": [
       "error",
@@ -52,13 +53,11 @@ module.exports = {
         "groups": [
           ["^react",
           "^@?\\w",
-          "[A-Z]{1}[a-zA-Z]+$",
-          "constants$",
-          "^\\./(?=.*/)(?!/?$)",
+          "^(\\.\\.\\/)+[A-Z]{1}[a-zA-Z]+$",
             "^\\.(?!/?$)",
-            "^(\\.\\.\\/)?(?=comon-types$)",
+          "^(\\.\\.\\/)*\\w+(-)?types\\u0000$",
           "(jpg|jpeg|png|svg)$",
-            "^.+\\.?(css)$"],
+            "^.+\\.?(css)$"]
         ]
       }
     ],

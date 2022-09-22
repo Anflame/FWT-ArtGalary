@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Route, Routes } from 'react-router';
+import Layout from '../Layout';
 import { PainterProfile } from '../../pages/PainterProfile';
 import { PaintersList } from '../../pages/PaintersList';
-import Layout from '../Layout';
 
 export const AppRouter: FC = () => (
   <Routes>

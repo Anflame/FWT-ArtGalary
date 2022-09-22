@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import Links from '../Links';
 import { ReactComponent as Facebook } from '../../assets/images/facebook.svg';
 import { ReactComponent as Instagram } from '../../assets/images/instagram.svg';
@@ -10,7 +10,8 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const Footer: FC = () => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
+  const resultTheme = theme || 'dark';
 
   return (
     <footer className={cx('footer')}>
@@ -30,17 +31,21 @@ export const Footer: FC = () => {
         <div className={cx('socNetWorksList')}>
           <Links
             children={
-              <Facebook fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+              <Facebook fill={resultTheme === 'dark' ? '#DEDEDE' : '#575757'} />
             }
             href="https://facebook.com/frameworkteam"
           />
           <Links
-            children={<Vk fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />}
+            children={
+              <Vk fill={resultTheme === 'dark' ? '#DEDEDE' : '#575757'} />
+            }
             href="https://vk.com/frameworkteam"
           />
           <Links
             children={
-              <Instagram fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+              <Instagram
+                fill={resultTheme === 'dark' ? '#DEDEDE' : '#575757'}
+              />
             }
             href="https://instagram.com/frameworkteam"
           />

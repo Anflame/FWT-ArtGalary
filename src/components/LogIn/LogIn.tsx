@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import Button from '../Button';
 import Input from '../Input';
 import type { AuthProps } from '../../comon-types';
@@ -16,7 +16,7 @@ export const LogIn: FC<AuthProps> = ({
   setIsShowSignUp,
   handleLogIn,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
   const goToSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setIsShowSignUp(true);

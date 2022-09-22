@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import styles from './styles.module.scss';
@@ -18,7 +18,7 @@ export const Toast: FC<ToastProps> = ({
   handleCloseToast,
   isShowToast,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
 
   return (
     <div className={cx('toast', !isShowToast && 'showToast')}>

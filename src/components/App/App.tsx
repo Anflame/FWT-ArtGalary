@@ -1,24 +1,15 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
+import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
+import { setupStore } from '../../store';
 import { AppRouter } from '../AppRouter/AppRouter';
 
-export const App: FC = () => {
-  const [theme, setTheme] = useState(defaultContext.theme);
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+const store = setupStore();
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        toggleTheme,
-      }}
-    >
-      <HashRouter>
-        <AppRouter />
-      </HashRouter>
-    </ThemeContext.Provider>
-  );
-};
+export const App: FC = () => (
+  <Provider store={store}>
+    <HashRouter>
+      <AppRouter />
+    </HashRouter>
+  </Provider>
+);

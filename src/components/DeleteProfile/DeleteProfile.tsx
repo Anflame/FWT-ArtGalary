@@ -1,6 +1,6 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
+import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import Button from '../Button';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteProfileIcon.svg';
@@ -17,7 +17,7 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
   isShowDeleteProfile,
   setIsShowDeleteProfile,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
   const handleDeleteProfile = () => {};
   return (
     <>

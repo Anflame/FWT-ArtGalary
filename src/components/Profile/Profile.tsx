@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
 import CardList from '../CardList';
 import Label from '../Label';
-import { painters } from '../../constants';
+import { useAppSelector } from '../../hooks/Redux';
 import type { Painters } from '../../comon-types';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
@@ -29,8 +29,9 @@ export const Profile: FC<ProfileProps> = ({
   painterYearsOfLife,
   painterMotherland,
 }) => {
-  const { theme } = Context();
+  const [{ theme }] = useCookies();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
+  const { painters } = useAppSelector((state) => state.painters);
 
   return (
     <section className={cx('profile')}>
