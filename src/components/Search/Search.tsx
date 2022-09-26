@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
+import { Context } from '../../hooks/Context';
 import type { InputsProps } from '../../comon-types';
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -14,7 +14,7 @@ type SearchProps = {
 } & InputsProps;
 
 export const Search: FC<SearchProps> = ({ handleSubmitForm, isError }) => {
-  const [{ theme }] = useCookies();
+  const { theme } = Context();
   const [isblurSearch, setIsBlurSearch] = useState(false);
   const [value, setValue] = useState('');
 

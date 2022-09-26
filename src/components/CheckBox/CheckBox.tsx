@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
+import { Context } from '../../hooks/Context';
 import { ReactComponent as CheckedImg } from '../../assets/images/checkedImg.svg';
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ type CheckBoxProps = {
 };
 
 export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
-  const [{ theme }] = useCookies();
+  const { theme } = Context();
   return (
     <>
       <input

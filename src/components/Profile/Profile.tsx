@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
 import CardList from '../CardList';
 import Label from '../Label';
+import { Context } from '../../hooks/Context';
 import { useAppSelector } from '../../hooks/Redux';
 import type { Painters } from '../../comon-types';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
@@ -29,7 +29,7 @@ export const Profile: FC<ProfileProps> = ({
   painterYearsOfLife,
   painterMotherland,
 }) => {
-  const [{ theme }] = useCookies();
+  const { theme } = Context();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
   const { painters } = useAppSelector((state) => state.painters);
 

@@ -1,9 +1,7 @@
 import { FC } from 'react';
-import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
 import Button from '../Button';
-import { useAppDispatch } from '../../hooks/Redux';
-import { toggleTheme } from '../../store/theme/slice';
+import { Context } from '../../hooks/Context';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
@@ -18,13 +16,7 @@ export const Menu: FC<MenuProps> = ({
   handleClickLogIn,
   handleClickSignUp,
 }) => {
-  const [{ theme }, setCookie] = useCookies();
-  const toChangeTheme = theme === 'dark' ? 'light' : 'dark';
-  const dispatch = useAppDispatch();
-  const changeTheme = () => {
-    dispatch(toggleTheme(toChangeTheme));
-    setCookie('theme', toChangeTheme);
-  };
+  const { theme, toggleTheme } = Context();
 
   return (
     <div className={cx('menu', isShow && 'menuShow')}>
@@ -34,7 +26,7 @@ export const Menu: FC<MenuProps> = ({
           onClick={() => setIsShow(!isShow)}
           className={cx('menuIconClose')}
         />
-        <div className={cx('menuThemeWrapp')} onClick={changeTheme}>
+        <div className={cx('menuThemeWrapp')} onClick={toggleTheme}>
           <Button
             className={'themeBtn'}
             children={

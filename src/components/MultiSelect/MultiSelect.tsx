@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import cn from 'classnames/bind';
 import CheckBox from '../CheckBox';
 import Label from '../Label';
+import { Context } from '../../hooks/Context';
 import type { SelectListes } from '../../comon-types';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
@@ -20,7 +20,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({
   changeSelect,
 }) => {
   const [isShow, setIsShow] = useState(false);
-  const [{ theme }] = useCookies();
+  const { theme } = Context();
 
   return (
     <div className={cx('select')}>
