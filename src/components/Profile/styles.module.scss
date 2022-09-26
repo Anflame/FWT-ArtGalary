@@ -25,25 +25,31 @@
     @include large-viewport;
     @include ultra-large-viewport;
 
-    .turnBack {
+    .actionWrapp {
       margin-bottom: 32px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
+        .backLink  {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          font-size: 12px;
+          text-transform: uppercase;
+          line-height: 14.52px;
+          font-family: var(--font-family-paragraph);
+          color: var(--color-primary-grey);
+          font-weight: var(--font-weght-bold);
+  
+          @media (max-width: 320px) {
+            display: none;
+          }
 
-      .backLink  {
-        font-size: 12px;
-        text-transform: uppercase;
-        line-height: 14.52px;
-        margin-left: 10px;
-        font-family: var(--font-family-paragraph);
-        color: var(--color-primary-grey);
-        font-weight: var(--font-weght-bold);
-
-        @media (max-width: 320px) {
-          display: none;
+          .backIcon {
+            margin-right: 16px;
+          }
         }
-      }
     }
 
     .painter {

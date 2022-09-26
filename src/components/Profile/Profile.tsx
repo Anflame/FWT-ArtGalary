@@ -36,9 +36,12 @@ export const Profile: FC<ProfileProps> = ({
   return (
     <section className={cx('profile')}>
       <div className={cx('container')}>
-        <div className={cx('turnBack')}>
-          <ArrowBack fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+        <div className={cx('actionWrapp')}>
           <Link to={'/'} className={cx('backLink')}>
+            <ArrowBack
+              fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
+              className={cx('backIcon')}
+            />
             {'back'}
           </Link>
         </div>
