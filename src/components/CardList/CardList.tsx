@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import React, { FC, FC } from 'react';
 import cn from 'classnames/bind';
 import Card from '../Card';
 import type { CardProps } from '../../comon-types';
+import styles from '../styles.module.scss';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -19,3 +20,9 @@ export const CardList: FC<CardListProps> = ({ painters }) => (
     ))}
   </ul>
 );
+
+const cx = cn.bind(styles);
+
+export const Component: FC = () => {
+  return <div className={cx('')}></div>;
+};

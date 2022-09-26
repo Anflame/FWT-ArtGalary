@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import img from '../assets/images/cardImg.jpg';
 import Card from '../components/Card';
+import '../index.scss';
 
 export default {
   title: 'authorCard',

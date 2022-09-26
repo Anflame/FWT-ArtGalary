@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from '../components/Input';
+import '../index.scss';
 
 export default {
   title: 'Input',
