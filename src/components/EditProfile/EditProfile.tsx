@@ -1,4 +1,4 @@
-import React, { EffectCallback, FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 // import { useParams } from 'react-router';
 import cn from 'classnames/bind';
 import Button from '../Button';
