@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+export type SetIsShow = (isShow: boolean) => void;
 
 export type CardProps = {
   id: number;
@@ -38,8 +38,8 @@ export type Painters = {
 export type AuthProps = {
   isShowLogIn?: boolean;
   isShowSignUp?: boolean;
-  setIsShowLogIn: Dispatch<SetStateAction<boolean>>;
-  setIsShowSignUp: Dispatch<SetStateAction<boolean>>;
+  setIsShowLogIn: SetIsShow;
+  setIsShowSignUp: SetIsShow;
   handleLogIn?: () => void;
   handleSignUp?: () => void;
 };

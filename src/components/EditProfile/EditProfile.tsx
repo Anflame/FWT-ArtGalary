@@ -8,6 +8,7 @@ import TextArea from '../TextArea';
 import { selectListArray } from '../../constants';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -16,7 +17,7 @@ const cx = cn.bind(styles);
 
 type EditProfileProps = {
   isShowEditProfile: boolean;
-  setIsShowEditProfile: (isShowEditProfile: boolean) => void;
+  setIsShowEditProfile: SetIsShow;
   handleEditProfile: (profileId: number) => void;
 };
 

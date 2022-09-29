@@ -3,6 +3,7 @@ import cn from 'classnames/bind';
 import Button from '../Button';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteProfileIcon.svg';
 import styles from './styles.module.scss';
@@ -11,7 +12,7 @@ const cx = cn.bind(styles);
 
 type DeleteProfileProps = {
   isShowDeleteProfile: boolean;
-  setIsShowDeleteProfile: (isShowDeleteProfile: boolean) => void;
+  setIsShowDeleteProfile: SetIsShow;
 };
 
 export const DeleteProfile: FC<DeleteProfileProps> = ({

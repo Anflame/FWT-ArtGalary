@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
 import { Context } from '../../hooks/Context';
+import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import styles from './styles.module.scss';
@@ -9,7 +10,7 @@ const cx = cn.bind(styles);
 
 type ToastProps = {
   message: string;
-  handleCloseToast: (isShowToast: boolean) => void;
+  handleCloseToast: SetIsShow;
   isShowToast: boolean;
 };
 
