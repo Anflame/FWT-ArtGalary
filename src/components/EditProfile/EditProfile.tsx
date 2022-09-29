@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { EffectCallback, FC, useEffect, useState } from 'react';
 // import { useParams } from 'react-router';
 import cn from 'classnames/bind';
 import Button from '../Button';
@@ -36,9 +36,14 @@ export const EditProfile: FC<EditProfileProps> = ({
   useEffect(() => {
     handleClickEscape();
     window.addEventListener('resize', () => setHeight(window.innerWidth));
-    return document.removeEventListener('keydown', () =>
-      setIsShowEditProfile(false),
-    );
+    return () => {
+      document.removeEventListener('keydown', () =>
+        setIsShowEditProfile(false),
+      );
+      document.removeEventListener('resize', () =>
+        setHeight(window.innerWidth),
+      );
+    };
   }, [window.innerWidth]);
 
   const changeSelect = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -55,7 +60,7 @@ export const EditProfile: FC<EditProfileProps> = ({
   const handleEditProfile = () => {};
 
   const handleDropPhoto = () => {
-    if (height && height >= 1024) setIsShowBrowsePhoto(true);
+    if (height && height > 1024) setIsShowBrowsePhoto(true);
   };
 
   return (

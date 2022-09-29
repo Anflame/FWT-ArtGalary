@@ -34,7 +34,7 @@ module.exports = {
       }
     ],
     'import/prefer-default-export': 'off',
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': ['error', 'windows'],
     'prettier/prettier': [
       'error',
       {
