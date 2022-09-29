@@ -14,7 +14,7 @@ export const Input: FC<InputsProps> = ({
   label,
   ...args
 }) => {
-  const [isError, setIsError] = useState(false);
+  const [isError] = useState(false);
   const [value, setValue] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

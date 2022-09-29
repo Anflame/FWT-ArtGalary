@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import { Context } from '../../hooks/Context';
-import type { InputsProps } from '../../comon-types';
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import { ReactComponent as SearchIcon } from '../../assets/images/searchIcon.svg';
@@ -17,7 +16,7 @@ export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
   const { theme } = Context();
   const [isblurSearch, setIsBlurSearch] = useState(false);
   const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [isError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

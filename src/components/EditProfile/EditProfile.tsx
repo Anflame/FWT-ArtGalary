@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { FC, useEffect, useState } from 'react';
+// import { useParams } from 'react-router';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
@@ -25,11 +25,11 @@ export const EditProfile: FC<EditProfileProps> = ({
   setIsShowEditProfile,
 }) => {
   const { theme } = Context();
-  const { profileId } = useParams();
+  // const { profileId } = useParams();
   const [isShowBrowsePhoto, setIsShowBrowsePhoto] = useState(false);
   const [selectList, setSelectList] = useState(selectListArray);
   const [height, setHeight] = useState<number>(window.innerWidth);
-  const [file, setFile] = useState('image.png');
+  const [file] = useState('image.png');
   const handleClickEscape = ClickEscape(setIsShowEditProfile);
 
   useEffect(() => {
