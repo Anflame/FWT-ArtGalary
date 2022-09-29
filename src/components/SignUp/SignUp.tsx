@@ -23,7 +23,7 @@ export const SignUp: FC<AuthProps> = ({
     setIsShowSignUp(false);
     setIsShowLogIn(true);
   };
-  const handleClickEscape = ClickEscape(setIsShowLogIn);
+  const handleClickEscape = ClickEscape(setIsShowSignUp);
 
   useEffect(() => {
     handleClickEscape();
