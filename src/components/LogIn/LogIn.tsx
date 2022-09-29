@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
+import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
 import type { AuthProps } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
@@ -22,13 +23,25 @@ export const LogIn: FC<AuthProps> = ({
     setIsShowSignUp(true);
     setIsShowLogIn(false);
   };
+  const handleClickEscape = ClickEscape(setIsShowLogIn);
+
+  useEffect(() => {
+    handleClickEscape();
+    return document.removeEventListener('keydown', () => setIsShowLogIn(false));
+  }, []);
 
   return (
     <>
       {isShowLogIn && (
         <>
-          <section className={cx('logIn')}>
-            <div className={cx('logInPopUpContent')}>
+          <section
+            className={cx('logIn')}
+            onClick={() => setIsShowLogIn(false)}
+          >
+            <div
+              className={cx('logInPopUpContent')}
+              onClick={(e) => e.stopPropagation()}
+            >
               <img
                 src={logInImg}
                 alt="logInBackground"
@@ -43,31 +56,19 @@ export const LogIn: FC<AuthProps> = ({
                   </button>
                 </p>
                 <form className={cx('validationForm')} onSubmit={handleLogIn}>
-                  <label
-                    className={cx('validationLabel')}
-                    htmlFor={'emailInput'}
-                  >
-                    Email
-                  </label>
                   <Input
-                    isError={false}
                     id={'emailInput'}
                     type={'email'}
                     className={'validation'}
+                    label={'Email'}
                   />
-                  <label
-                    className={cx('validationLabel')}
-                    htmlFor={'passwordInput'}
-                  >
-                    Password
-                  </label>
                   <Input
-                    isError={false}
                     id={'passwordInput'}
                     type={'password'}
                     className={'validation'}
+                    label={'Password'}
                   />
-                  <Button className={'logInSigUpBtn'} children={'log in'} />
+                  <Button className={'defaultBtn'} children={'log in'} />
                   <p className={cx('signUp', 'signUpMobile')}>
                     If you don't have an account yet, please{' '}
                     <button className={cx('goToSignUp')} onClick={goToSignUp}>

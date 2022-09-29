@@ -53,10 +53,11 @@ html[data-theme='light'] {
   --color-background-currentPage: rgba(18, 18, 18, 0.05);
   --color-background-multiSelect-list: #fff;
   --color-text-auth: #575757;
-  --color-auth-background-btn: #121212; 
-  --color-boxShadow-auth-btn: 0px 4px 10px rgba(171, 137, 86, 0.25);
+  --color-default-background-btn: #121212; 
+  --color-boxShadow-default-btn: 0px 4px 10px rgba(0, 0, 0, 0.25);
   --color-profile-label: #575757;
   --color-background-popup: rgba(3, 3, 3, .3);
+  --color-background-dropFile: #DEDEDE;
 }
 
 html[data-theme='dark'] {
@@ -75,10 +76,11 @@ html[data-theme='dark'] {
   --color-background-currentPage:#1A1818;
   --color-background-multiSelect-list:#1A1818;
   --color-text-auth: #fff;
-  --color-auth-background-btn: #AB8956;
-  --color-boxShadow-auth-btn: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  --color-default-background-btn: #AB8956;
+  --color-boxShadow-default-btn: 0px 4px 10px rgba(171, 137, 86, 0.25);
   --color-profile-label: #9C9C9C;
   --color-background-popup: rgba(3, 3, 3, .6);
+  --color-background-dropFile: rgba(255, 255, 255, 0.4);
 }
 
 @mixin mini-viewport {

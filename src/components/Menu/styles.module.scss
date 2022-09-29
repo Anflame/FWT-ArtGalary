@@ -5,24 +5,23 @@
   width: 100%;
   height: 100vh;
   top: 0;
+  right: 0;
+  z-index: 3;
+  pointer-events: none;
   text-align: right;
-  z-index: 0;
-  transition: background-color 1s, z-index 0.5s;
+  transition: background-color 1s ease-out;
 }
 .menu.menuShow {
-  right: 0;
-  z-index: 2;
-  background-color: var(--color-background-popup);
+  background-color: rgba(3,3,3,.6);
+  pointer-events: all;
 }
 
 .menuPopUpContent {
-  display: none;
   background-color: var(--color-primary);
   margin: 0 0 auto auto;
   margin-right: -466px;
   height: 100vh;
   width: 466px;
-  z-index: 2;
   transition: margin-right 0.5s;
 
   &.menuPopUpContentShow {
@@ -36,7 +35,6 @@
   .menuIconClose {
     display: block;
     align-self: flex-start;
-    cursor: pointer;
   }
 
   .menuThemeWrapp {
@@ -45,7 +43,6 @@
     justify-self: start;
     align-items: center;
     padding-left: 94px;
-    cursor: pointer;
 
     @media (max-width: 550px) {
         padding-left: 47px;
@@ -59,7 +56,7 @@
         margin-left: 12px;
         font-size: 12px;
         line-height: 15px;
-        margin-right: 12px;
+        cursor: pointer;
     }
   }
 }

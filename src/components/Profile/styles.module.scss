@@ -4,9 +4,7 @@
   background-color: var(--color-primary);
   padding-top: 136px;
   padding-bottom: 100px;
-  & * {
-    z-index: 1;
-  }
+  z-index: 1;
   
   @media (max-width: 768px) {
     padding-top: 120px;
@@ -30,6 +28,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+
         .backLink  {
           display: flex;
           justify-content: center;

@@ -12,11 +12,13 @@ const cx = cn.bind(styles);
 
 type MultiSelectProps = {
   selectList: SelectListes[];
-  changeSelect: () => void;
+  changeSelect: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  label: string;
 };
 
 export const MultiSelect: FC<MultiSelectProps> = ({
   selectList,
+  label,
   changeSelect,
 }) => {
   const [isShow, setIsShow] = useState(false);
@@ -25,7 +27,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({
   return (
     <div className={cx('select')}>
       <label htmlFor="selectInput" className={cx('selectTite')}>
-        Field name
+        {label}
       </label>
       <div id="selectInput" className={cx('selectInput')}>
         <div className={cx('checkedSelect')}>
@@ -36,7 +38,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({
                   isDelAllowed={true}
                   children={title}
                   key={id}
-                  changeSelect={() => changeSelect}
+                  changeSelect={changeSelect}
                 />
               );
             }
@@ -60,7 +62,12 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       {isShow && (
         <ul className={cx('selectList')}>
           {selectList.map(({ id, title, isChecked }) => (
-            <li key={id} className={cx('selectListes')} onClick={changeSelect}>
+            <li
+              key={id}
+              className={cx('selectListes')}
+              onClick={changeSelect}
+              title={title}
+            >
               <CheckBox isChecked={isChecked} />
               <p className={cx('selectListesTitle')}>{title}</p>
             </li>

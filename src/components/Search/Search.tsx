@@ -11,12 +11,13 @@ const cx = cn.bind(styles);
 
 type SearchProps = {
   handleSubmitForm: () => void;
-} & InputsProps;
+};
 
-export const Search: FC<SearchProps> = ({ handleSubmitForm, isError }) => {
+export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
   const { theme } = Context();
   const [isblurSearch, setIsBlurSearch] = useState(false);
   const [value, setValue] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

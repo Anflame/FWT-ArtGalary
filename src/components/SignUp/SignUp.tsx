@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
+import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
 import type { AuthProps } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
@@ -22,6 +23,14 @@ export const SignUp: FC<AuthProps> = ({
     setIsShowSignUp(false);
     setIsShowLogIn(true);
   };
+  const handleClickEscape = ClickEscape(setIsShowLogIn);
+
+  useEffect(() => {
+    handleClickEscape();
+    return document.removeEventListener('keydown', () =>
+      setIsShowSignUp(false),
+    );
+  }, []);
 
   return (
     <>
@@ -43,31 +52,19 @@ export const SignUp: FC<AuthProps> = ({
                   </button>
                 </p>
                 <form className={cx('validationForm')} onSubmit={handleSignUp}>
-                  <label
-                    className={cx('validationLabel')}
-                    htmlFor={'emailInput'}
-                  >
-                    Email
-                  </label>
                   <Input
-                    isError={false}
                     id={'emailInput'}
                     type={'email'}
                     className={'validation'}
+                    label={'Email'}
                   />
-                  <label
-                    className={cx('validationLabel')}
-                    htmlFor={'passwordInput'}
-                  >
-                    Password
-                  </label>
                   <Input
-                    isError={false}
                     id={'passwordInput'}
                     type={'password'}
                     className={'validation'}
+                    label={'Password'}
                   />
-                  <Button className={'logInSigUpBtn'}>sign up</Button>
+                  <Button className={'defaultBtn'}>sign up</Button>
                   <p className={cx('logIn', 'logInMobile')}>
                     If you already have an account, please log in
                     <button className={cx('goToLogIn')} onClick={goToLogIn}>

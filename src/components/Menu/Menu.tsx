@@ -19,8 +19,14 @@ export const Menu: FC<MenuProps> = ({
   const { theme, toggleTheme } = Context();
 
   return (
-    <div className={cx('menu', isShow && 'menuShow')}>
-      <div className={cx('menuPopUpContent', isShow && 'menuPopUpContentShow')}>
+    <div
+      className={cx('menu', isShow && 'menuShow')}
+      onClick={() => setIsShow(false)}
+    >
+      <div
+        className={cx('menuPopUpContent', isShow && 'menuPopUpContentShow')}
+        onClick={(e) => e.stopPropagation()}
+      >
         <MenuIconClose
           fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
           onClick={() => setIsShow(!isShow)}

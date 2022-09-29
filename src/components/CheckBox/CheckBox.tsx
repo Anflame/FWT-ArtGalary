@@ -19,6 +19,7 @@ export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
         checked={isChecked}
         className={cx('checkbox')}
         id="checkBox"
+        readOnly
       />
       <label htmlFor="checkBox" className={cx('checkBoxLabel')}>
         {isChecked && (

@@ -16,10 +16,12 @@ export type MenuProps = {
 };
 
 export type InputsProps = {
-  isError: boolean;
   id?: string;
   type?: string;
   className?: string;
+  placeholder?: string;
+  label: string;
+  args?: HTMLInputElement;
 };
 
 export type SelectListes = {

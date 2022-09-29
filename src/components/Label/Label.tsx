@@ -9,7 +9,7 @@ const cx = cn.bind(styles);
 type LabelsProps = {
   isDelAllowed: boolean;
   children: string;
-  changeSelect?: () => void;
+  changeSelect?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 };
 
 export const Label: FC<LabelsProps> = ({
@@ -22,14 +22,15 @@ export const Label: FC<LabelsProps> = ({
     <>
       {!isDelAllowed && <div className={cx('label')}>{children}</div>}
       {isDelAllowed && (
-        <button className={cx('label')}>
+        <div className={cx('label')}>
           {children}
           <LabelDelete
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             onClick={changeSelect}
+            title={children}
             className={cx('labelDelete')}
           />
-        </button>
+        </div>
       )}
     </>
   );

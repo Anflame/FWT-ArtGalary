@@ -39,14 +39,14 @@ export const Layout: FC = () => {
         handleClickLogIn={handleClickLogIn}
         handleClickSignUp={handleClickSignUp}
       />
-      <Outlet />
-      <Footer />
       <Menu
         isShow={isShow}
         setIsShow={setIsShow}
         handleClickLogIn={handleClickLogIn}
         handleClickSignUp={handleClickSignUp}
       />
+      <Outlet />
+      <Footer />
       <LogIn
         isShowLogIn={isShowLogIn}
         setIsShowLogIn={setIsShowLogIn}

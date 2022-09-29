@@ -1,6 +1,7 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Button from '../Button';
+import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteProfileIcon.svg';
@@ -10,7 +11,7 @@ const cx = cn.bind(styles);
 
 type DeleteProfileProps = {
   isShowDeleteProfile: boolean;
-  setIsShowDeleteProfile: Dispatch<SetStateAction<boolean>>;
+  setIsShowDeleteProfile: (isShowDeleteProfile: boolean) => void;
 };
 
 export const DeleteProfile: FC<DeleteProfileProps> = ({
@@ -18,12 +19,28 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
   setIsShowDeleteProfile,
 }) => {
   const { theme } = Context();
+  const handleClickEscape = ClickEscape(setIsShowDeleteProfile);
+
   const handleDeleteProfile = () => {};
+
+  useEffect(() => {
+    handleClickEscape();
+    return document.removeEventListener('keydown', () =>
+      setIsShowDeleteProfile(false),
+    );
+  }, []);
+
   return (
     <>
       {isShowDeleteProfile && (
-        <section className={cx('deleteProfile')}>
-          <div className={cx('deleteProfileContent')}>
+        <section
+          className={cx('deleteProfile')}
+          onClick={() => setIsShowDeleteProfile(false)}
+        >
+          <div
+            className={cx('deleteProfileContent')}
+            onClick={(e) => e.stopPropagation()}
+          >
             <DeleteIcon className={cx('deleteProfileIcon')} />
             <h3 className={cx('deleteProfileHeading')}>
               Do you want to delete this artist profile?
@@ -31,10 +48,7 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
             <p className={cx('deleteProfileText')}>
               You will not be able to recover this profile afterwards.
             </p>
-            <Button
-              handleClick={handleDeleteProfile}
-              className={'logInSigUpBtn'}
-            >
+            <Button handleClick={handleDeleteProfile} className={'defaultBtn'}>
               delete
             </Button>
             <p

@@ -120,17 +120,6 @@
     .validationForm {
       justify-self: center;
       text-align: left;
-
-      .validationLabel {  
-        align-self: flex-start;
-        display: block;
-        margin-bottom: 8px;
-        font-family: var(--font-family-paragraph);
-        font-weight: var(--font-weight-bold);
-        color: var(--color-text-auth);
-        font-size: 12px;
-        line-height: 15px;
-      }
     }
 
     .closeIcon {
