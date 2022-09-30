@@ -1,11 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Outlet } from 'react-router';
 import Cookies from 'js-cookie';
+import Auth from '../Auth';
 import Footer from '../Footer';
 import Header from '../Header';
-import LogIn from '../LogIn';
 import Menu from '../Menu';
-import SignUp from '../SignUp';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 export const Layout: FC = () => {
@@ -16,18 +15,31 @@ export const Layout: FC = () => {
     Cookies.set('theme', resultTheme, { expires: 7 });
   };
 
-  const [isShowLogIn, setIsShowLogIn] = useState(false);
-  const [isShowSignUp, setIsShowSignUp] = useState(false);
-  const handleClickLogIn = () => {
-    setIsShowLogIn(true);
-  };
-  const handleClickSignUp = () => {
-    setIsShowSignUp(true);
+  const [isShowAuth, setIsShowAuth] = useState({
+    logIn: false,
+    signUp: false,
+  });
+
+  const handleShowAuth = (type?: string | boolean) => {
+    if (!type) {
+      setIsShowAuth({
+        logIn: false,
+        signUp: false,
+      });
+    }
+    if (type === 'logIn')
+      setIsShowAuth({
+        logIn: true,
+        signUp: false,
+      });
+    if (type === 'signUp')
+      setIsShowAuth({
+        logIn: false,
+        signUp: true,
+      });
   };
 
-  const handleLogIn = () => {};
-
-  const handleSignUp = () => {};
+  const handleClickAuth = () => {};
 
   const [isShow, setIsShow] = useState(false);
 
@@ -36,28 +48,19 @@ export const Layout: FC = () => {
       <Header
         isShow={isShow}
         setIsShow={setIsShow}
-        handleClickLogIn={handleClickLogIn}
-        handleClickSignUp={handleClickSignUp}
+        handleShowAuth={handleShowAuth}
       />
       <Menu
         isShow={isShow}
         setIsShow={setIsShow}
-        handleClickLogIn={handleClickLogIn}
-        handleClickSignUp={handleClickSignUp}
+        handleShowAuth={handleShowAuth}
       />
       <Outlet />
       <Footer />
-      <LogIn
-        isShowLogIn={isShowLogIn}
-        setIsShowLogIn={setIsShowLogIn}
-        setIsShowSignUp={setIsShowSignUp}
-        handleLogIn={handleLogIn}
-      />
-      <SignUp
-        isShowSignUp={isShowSignUp}
-        setIsShowSignUp={setIsShowSignUp}
-        setIsShowLogIn={setIsShowLogIn}
-        handleSignUp={handleSignUp}
+      <Auth
+        isShowAuth={isShowAuth}
+        handleShowAuth={handleShowAuth}
+        handleClickAuth={handleClickAuth}
       />
     </ThemeContext.Provider>
   );

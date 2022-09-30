@@ -1,4 +1,4 @@
-export type SetIsShow = (isShow: boolean) => void;
+export type SetIsShow = (isShow: boolean | undefined) => void;
 
 export type CardProps = {
   id: number;
@@ -11,8 +11,7 @@ export type CardProps = {
 export type MenuProps = {
   isShow: boolean;
   setIsShow: (isShow: boolean) => void;
-  handleClickLogIn: () => void;
-  handleClickSignUp: () => void;
+  handleShowAuth: (type?: string | boolean) => void;
 };
 
 export type InputsProps = {
@@ -33,13 +32,4 @@ export type SelectListes = {
 export type Painters = {
   id: number;
   title: string;
-};
-
-export type AuthProps = {
-  isShowLogIn?: boolean;
-  isShowSignUp?: boolean;
-  setIsShowLogIn: SetIsShow;
-  setIsShowSignUp: SetIsShow;
-  handleLogIn?: () => void;
-  handleSignUp?: () => void;
 };

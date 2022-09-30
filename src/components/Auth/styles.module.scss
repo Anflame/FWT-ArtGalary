@@ -1,4 +1,4 @@
-.signUp {
+.auth {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@
   z-index: 4;
 }
 
-.signUpPopUpContent {
+.authContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@
       }
     }
 
-    .logIn {
+    .link {
       font-family: var(--font-family-paragraph);
       color: var(--color-text-auth);
       font-weight: 300;
@@ -91,7 +91,7 @@
       }
     }
 
-    .logInMobile {
+    .linkMobile {
       display: none;
 
       @media (max-width: 320px) {
@@ -101,7 +101,7 @@
       }
     }
 
-    .goToLogIn {
+    .goTo {
       background: none;
       border: none;
       text-decoration: underline;

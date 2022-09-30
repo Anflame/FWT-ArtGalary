@@ -46,7 +46,7 @@ export const EditProfile: FC<EditProfileProps> = ({
     };
   }, [window.innerWidth]);
 
-  const changeSelect = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  const changeSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
     setSelectList(
       selectList.map((el) => {

@@ -15,8 +15,7 @@ const cx = cn.bind(styles);
 export const Header: FC<MenuProps> = ({
   isShow,
   setIsShow,
-  handleClickLogIn,
-  handleClickSignUp,
+  handleShowAuth,
 }) => {
   const { theme, toggleTheme } = Context();
   useLayoutEffect(() => {
@@ -35,12 +34,12 @@ export const Header: FC<MenuProps> = ({
           <div className={cx('authAndChangeThemeWrapp')}>
             <div className={cx('authWrapp')}>
               <Button
-                handleClick={handleClickLogIn}
+                handleClick={() => handleShowAuth('logIn')}
                 className={'authBtn'}
                 children={'login'}
               ></Button>
               <Button
-                handleClick={handleClickSignUp}
+                handleClick={() => handleShowAuth('signUp')}
                 className={'authBtn'}
                 children={'signUp'}
               ></Button>

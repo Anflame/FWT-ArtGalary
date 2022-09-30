@@ -10,12 +10,7 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Menu: FC<MenuProps> = ({
-  isShow,
-  setIsShow,
-  handleClickLogIn,
-  handleClickSignUp,
-}) => {
+export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
   const { theme, toggleTheme } = Context();
 
   return (
@@ -49,12 +44,12 @@ export const Menu: FC<MenuProps> = ({
         </div>
 
         <Button
-          handleClick={handleClickLogIn}
+          handleClick={() => handleShowAuth('logIn')}
           className={'authBtnMobile'}
           children={'login'}
         ></Button>
         <Button
-          handleClick={handleClickSignUp}
+          handleClick={() => handleShowAuth('signUp')}
           className={'authBtnMobile'}
           children={'signUp'}
         ></Button>
