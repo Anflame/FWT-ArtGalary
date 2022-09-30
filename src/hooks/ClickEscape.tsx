@@ -1,4 +1,4 @@
-export const ClickEscape = <T,>(
+export const ClickEscape = (
   setIsShow: (isShow?: boolean | undefined) => void,
 ) => {
   return () => {
