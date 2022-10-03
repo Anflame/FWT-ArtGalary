@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect } from 'react';
+import { FC, useEffect, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Button from '../Button';

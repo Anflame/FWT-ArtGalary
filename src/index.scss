@@ -8,6 +8,9 @@
   vertical-align: baseline;
   outline: none;
 }
+.overflowHidden {
+  overflow: hidden;
+}
 
 :root {
   --font-family-heading: 'Cormorant SC', serif;

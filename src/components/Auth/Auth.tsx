@@ -4,6 +4,7 @@ import Button from '../Button';
 import Input from '../Input';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import { overflowHidden } from '../../hooks/OverFlowHidden';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import logInImg from '../../assets/images/logInImg.jpg';
 import signUpImg from '../../assets/images/signUpImg.jpg';
@@ -31,11 +32,13 @@ export const Auth: FC<AuthProps> = ({
     handleShowAuth(type);
   };
   const handleClickEscape = ClickEscape(() => handleShowAuth(false));
+  const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
 
   useEffect(() => {
     handleClickEscape();
+    overflowHidden(isShow);
     return document.removeEventListener('keydown', () => handleShowAuth);
-  }, []);
+  }, [isShow]);
 
   return (
     <>

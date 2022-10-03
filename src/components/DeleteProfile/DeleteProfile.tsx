@@ -3,6 +3,7 @@ import cn from 'classnames/bind';
 import Button from '../Button';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import { overflowHidden } from '../../hooks/OverFlowHidden';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteProfileIcon.svg';
@@ -26,10 +27,11 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
 
   useEffect(() => {
     handleClickEscape();
+    overflowHidden(isShowDeleteProfile);
     return document.removeEventListener('keydown', () =>
       setIsShowDeleteProfile(false),
     );
-  }, []);
+  }, [isShowDeleteProfile]);
 
   return (
     <>

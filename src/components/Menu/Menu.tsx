@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import { Context } from '../../hooks/Context';
+import { overflowHidden } from '../../hooks/OverFlowHidden';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
@@ -12,6 +13,10 @@ const cx = cn.bind(styles);
 
 export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
   const { theme, toggleTheme } = Context();
+
+  useEffect(() => {
+    overflowHidden(isShow);
+  }, [isShow]);
 
   return (
     <div

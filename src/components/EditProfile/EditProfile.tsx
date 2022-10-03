@@ -8,6 +8,7 @@ import TextArea from '../TextArea';
 import { selectListArray } from '../../constants';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import { overflowHidden } from '../../hooks/OverFlowHidden';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
@@ -35,6 +36,7 @@ export const EditProfile: FC<EditProfileProps> = ({
 
   useEffect(() => {
     handleClickEscape();
+    overflowHidden(isShowEditProfile);
     window.addEventListener('resize', () => setHeight(window.innerWidth));
     return () => {
       document.removeEventListener('keydown', () =>
@@ -44,7 +46,7 @@ export const EditProfile: FC<EditProfileProps> = ({
         setHeight(window.innerWidth),
       );
     };
-  }, [window.innerWidth]);
+  }, [window.innerWidth, isShowEditProfile]);
 
   const changeSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
