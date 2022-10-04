@@ -22,14 +22,14 @@ export const Input: FC<InputsProps> = ({
   };
 
   return (
-    <>
+    <div>
       <label htmlFor={id} className={cx('inputLabel')}>
         {label}
       </label>
       <input
         className={cx('input', isError && 'inputError', className)}
         id={id}
-        type={type}
+        type={type || 'text'}
         {...args}
         placeholder={isError ? 'Wrong Text' : placeholder || ''}
         value={value}
@@ -41,6 +41,6 @@ export const Input: FC<InputsProps> = ({
           error message!
         </p>
       )}
-    </>
+    </div>
   );
 };

@@ -5,11 +5,10 @@ import Button from '../Button';
 import Input from '../Input';
 import MultiSelect from '../MultiSelect';
 import TextArea from '../TextArea';
+import { SetIsShow } from '../../comon-types';
 import { selectListArray } from '../../constants';
 import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
-import { overflowHidden } from '../../hooks/OverFlowHidden';
-import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -31,12 +30,10 @@ export const EditProfile: FC<EditProfileProps> = ({
   const [isShowBrowsePhoto, setIsShowBrowsePhoto] = useState(false);
   const [selectList, setSelectList] = useState(selectListArray);
   const [height, setHeight] = useState<number>(window.innerWidth);
-  const [file] = useState('image.png');
   const handleClickEscape = ClickEscape(setIsShowEditProfile);
 
   useEffect(() => {
     handleClickEscape();
-    overflowHidden(isShowEditProfile);
     window.addEventListener('resize', () => setHeight(window.innerWidth));
     return () => {
       document.removeEventListener('keydown', () =>
@@ -128,10 +125,6 @@ export const EditProfile: FC<EditProfileProps> = ({
                 <p className={cx('anotherInfo')}>
                   Upload only .jpg or .png format less than 3 MB{' '}
                 </p>
-                <div className={cx('fileWrapp')}>
-                  <label htmlFor="file" className={cx('fileDrop')}></label>
-                  <p className={cx('fileLabel')}>{file}</p>
-                </div>
               </div>
             )}
           </div>

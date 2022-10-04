@@ -33,7 +33,7 @@ export const Pagination: FC<PaginationProps> = ({
       <ArrowLeft
         fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
         onClick={() => setCurrentPage(currentPage - 1)}
-        key={10}
+        key={pages.length + 1}
       />
       {pages.map((page, id) =>
         pages.length <= 4 ? (
@@ -82,7 +82,7 @@ export const Pagination: FC<PaginationProps> = ({
       <ArrowRight
         fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
         onClick={() => setCurrentPage(currentPage + 1)}
-        key={12}
+        key={pages.length + 3}
       />
     </ul>
   );

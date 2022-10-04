@@ -36,8 +36,11 @@
 
   &:before {
     content: '+';
+    font-size: 20px;
+    font-weight: 300;
     display: block;
     margin-right: 12px;
+    color: var(--color-primary-grey);
     float: left;
   }
 

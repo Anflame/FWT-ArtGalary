@@ -9,7 +9,6 @@
 
   @media (min-width: 1024px) {
     min-height: 100vh;
-    overflow: hidden;
   }
   
   .editProfileContent {
@@ -43,6 +42,8 @@
       &::before{
         content: url(../../assets/images/photoBorder.png);
         position: absolute;
+        width: inherit;
+        height: inherit;
       }
     }
     
@@ -135,26 +136,6 @@
         font-size: 12px;
         line-height: 140%;
         color: var(--color-inputs-border-hover);
-      }
-      .fileWrapp {
-        align-self: flex-end;
-        margin-right: 116px;
-        text-align: center;
-
-        .fileDrop {
-          display: block;
-          width: 40px;
-          height: 25px;
-          background-color: var(--color-background-dropFile);
-        }
-        .fileLabel {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 7px;
-          line-height: 20px;
-          color: var(--color-dropFile-text);
-        }
       }
     }
   }

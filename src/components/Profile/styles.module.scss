@@ -65,18 +65,53 @@
         justify-content: flex-end;
         position: relative;
 
-        @media (max-width: 768px) {
-          flex-direction: column;
-        }
-      }
+          @media (max-width: 768px) {
+            flex-direction: column;
+          }
 
-      .painterImg {
-        width: 80%;
+          .painterImg {
+            width: 80%;
+    
+            @media (max-width: 768px) {
+              width: 100%;
+            }
+          }
+          
+          .withoutPainterPhotoWrapp {
+            height: 500px;
+            background-color: var(--color-secondary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-        @media (max-width: 768px) {
-          width: 100%;
+            @media (min-width: 769px) {
+              height: 1000px;
+            }
+             
+            .withoutPainterPhotoIcon {
+              margin-bottom: 33px;
+              width: 254px;
+              height: 228px;
+
+              @media(max-width: 320px) {
+                viewbox: 0 0 168px 152px; 
+                width: 168px;
+                height: 152px;
+              }
+            }
+
+            .withoutPainterPhotoText {
+              font-family: var(--font-family-paragraph);
+              color: #9C9C9C;
+              font-weight: 900;
+              font-size: 20px;
+              line-height: 24px;
+              text-align: center;
+              text-transform: uppercase;
+            }
+          }
         }
-      }
       
       .painterInfoHeader {
         position: absolute;
@@ -263,43 +298,111 @@
 
   .artWorks {
 
-    .artWorksHeader { 
-      font-size: 60px;
-      line-height: 73px;
+    .artWorksHeaderWrapp { 
       text-align: left;
-      text-transform: uppercase;
       color: var(--color-accent);
       font-family: var(--font-family-heading);
+      position: relative;
 
-      @include small-viewport {
-        margin-bottom: 60px;
-      };
+      .artWorksHeader {
+        font-size: 60px;
+        line-height: 73px;
+        text-transform: uppercase;
 
-      @include mini-viewport {
-        margin-bottom: 60px;
-      };
-
-      @include medium-viewport {
-        margin-bottom: 60px;
-      };
-      
-      @include large-viewport {
-        margin-bottom: 60px;
-        padding-left: 80px;
-      };
-
-      @include ultra-large-viewport {
-        margin-bottom: 60px;
-        padding-left: 80px;
-      };
-      
-      @media (max-width:768px) {  
-        margin-left: 20px;
+        @include small-viewport {
+          margin-bottom: 60px;
+        };
+  
+        @include mini-viewport {
+          margin-bottom: 60px;
+        };
+  
+        @include medium-viewport {
+          margin-bottom: 60px;
+        };
+        
+        @include large-viewport {
+          margin-bottom: 60px;
+          padding-left: 80px;
+        };
+        
+        @media (max-width:768px) {  
+          margin-left: 20px;
+        }
+  
+        @media (max-width: 600px) {
+          font-size: 32px;
+          line-height: 32px;
+        }
       }
 
-      @media (max-width: 600px) {
-        font-size: 32px;
-        line-height: 32px;
+      button {
+        position: absolute;
+        bottom: -15px;
+        right: 20px;
+      }
+    }
+
+    .withoutPaintingsWrapp {
+
+      .addPainting {
+        margin-bottom: 110px;
+        padding: 35px;
+        position: relative;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        max-width: 392px;
+        height: 260px;
+        border: 1px solid transparent;
+        background-color: var(--color-secondary);
+        border-image: url(../../assets/images/photoBorder.png) 30 fill/ 30px round;
+
+        @media (max-width: 320px) {
+          margin-bottom: 64px;
+          width: 100%;
+        }
+
+        .addPhotoIcon {
+          width: 168px;
+          height: 152px;
+        }
+        
+        .addPaintingBtn {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          bottom: -24px;
+          left: calc(50% - 24px);
+          border: none;
+          cursor: pointer;
+          background-color: var(--color-accent);
+        }
+      }
+
+      .withOutPainingsText {
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        padding-top: 20px;
+        font-family: var(--font-family-heading);
+        font-weight: var(--font-weght-medium);
+        color: var(--color-primary-darkGrey);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: calc(50% - 80px);
+          width: 160px;
+          border: 2px solid var(--color-accent);
+        }
       }
     }
   }

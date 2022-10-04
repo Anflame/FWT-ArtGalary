@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
+import AddPainting from '../AddPainting';
+import Button from '../Button';
 import CardList from '../CardList';
 import Label from '../Label';
 import { Context } from '../../hooks/Context';
@@ -9,20 +11,23 @@ import type { Painters } from '../../comon-types';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
-import painterPhoto from '../../assets/images/painterImg.png';
+import { ReactComponent as PlusIcon } from '../../assets/images/plus.svg';
+import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
 type ProfileProps = {
+  painterImage: string | boolean;
   biography: string;
-  paintings: Painters[];
+  paintings: Painters[] | boolean;
   painterTitle: string;
   painterYearsOfLife: string;
   painterMotherland: string;
 };
 
 export const Profile: FC<ProfileProps> = ({
+  painterImage,
   biography,
   paintings,
   painterTitle,
@@ -32,6 +37,7 @@ export const Profile: FC<ProfileProps> = ({
   const { theme } = Context();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
   const { painters } = useAppSelector((state) => state.painters);
+  const [isShowAddPhoto, setIsShowAddPhoto] = useState<boolean>();
 
   return (
     <section className={cx('profile')}>
@@ -47,11 +53,23 @@ export const Profile: FC<ProfileProps> = ({
         </div>
         <div className={cx('painter')}>
           <div className={cx('painterInfo')}>
-            <img
-              src={cx(painterPhoto)}
-              alt="painterPhoto"
-              className={cx('painterImg')}
-            />
+            {painterImage ? (
+              <img
+                src={cx(painterImage)}
+                alt="painterPhoto"
+                className={cx('painterImg')}
+              />
+            ) : (
+              <div className={cx('painterImg', 'withoutPainterPhotoWrapp')}>
+                <WithoutPainterPhotoIcon
+                  fill="#DEDEDE"
+                  className={cx('withoutPainterPhotoIcon')}
+                />
+                <p className={cx('withoutPainterPhotoText')}>
+                  No Image uploaded
+                </p>
+              </div>
+            )}
             <div className={cx('painterInfoHeader')}>
               <p className={cx('painterLabelList', 'painterLabelLeft')}>
                 {painterYearsOfLife}
@@ -80,20 +98,60 @@ export const Profile: FC<ProfileProps> = ({
                 )}
               </div>
               <ul className={cx('paintingsList')}>
-                {paintings.map(({ id, title }) => (
-                  <li key={id} className={cx('paintingsListes')}>
-                    <Label children={title} isDelAllowed={false} />
-                  </li>
-                ))}
+                {paintings &&
+                  typeof paintings !== 'boolean' &&
+                  paintings.map(({ id, title }) => (
+                    <li key={id} className={cx('paintingsListes')}>
+                      <Label children={title} isDelAllowed={false} />
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
         </div>
       </div>
       <div className={cx('artWorks')}>
-        <h2 className={cx('artWorksHeader')}>Artworks</h2>
-        <CardList painters={painters} />
+        <div className={cx('artWorksHeaderWrapp')}>
+          <h2 className={cx('artWorksHeader')}>Artworks</h2>
+          {paintings && (
+            <Button
+              className="linkBtn"
+              handleClick={() => setIsShowAddPhoto(true)}
+            >
+              add picture
+            </Button>
+          )}
+        </div>
+        {paintings ? (
+          <CardList painters={painters} />
+        ) : (
+          <div className={cx('withoutPaintingsWrapp')}>
+            <div className={cx('container')}>
+              <div className={cx('addPainting')}>
+                <WithoutPainterPhotoIcon
+                  fill="#DEDEDE"
+                  className={cx('addPhotoIcon')}
+                />
+                <button
+                  className={cx('addPaintingBtn')}
+                  onClick={() => setIsShowAddPhoto(true)}
+                >
+                  <PlusIcon fill="#DEDEDE" />
+                </button>
+              </div>
+              <h3 className={cx('withOutPainingsText')}>
+                The paintings of this artist have not been uploaded yet.
+              </h3>
+            </div>
+          </div>
+        )}
       </div>
+      {isShowAddPhoto && (
+        <AddPainting
+          isShowAddPhoto={isShowAddPhoto}
+          setIsShowAddPhoto={setIsShowAddPhoto}
+        />
+      )}
     </section>
   );
 };
