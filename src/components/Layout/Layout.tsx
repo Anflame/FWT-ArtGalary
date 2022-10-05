@@ -5,7 +5,7 @@ import Auth from '../Auth';
 import Footer from '../Footer';
 import Header from '../Header';
 import Menu from '../Menu';
-import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { useAppDispatch } from '../../hooks/Redux';
 import { fetchPainters } from '../../store/API/painters';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
@@ -48,8 +48,6 @@ export const Layout: FC = () => {
   useEffect(() => {
     dispatch(fetchPainters());
   }, [fetchPainters]);
-
-  const { painters } = useAppSelector((state) => state.painters);
 
   const [isShow, setIsShow] = useState(false);
 
