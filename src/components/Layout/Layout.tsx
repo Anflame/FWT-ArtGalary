@@ -1,10 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Cookies from 'js-cookie';
 import Auth from '../Auth';
 import Footer from '../Footer';
 import Header from '../Header';
 import Menu from '../Menu';
+import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { fetchPainters } from '../../store/API/painters';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 export const Layout: FC = () => {
@@ -19,6 +21,8 @@ export const Layout: FC = () => {
     logIn: false,
     signUp: false,
   });
+
+  const dispatch = useAppDispatch();
 
   const handleShowAuth = (type?: string | boolean) => {
     if (!type) {
@@ -40,6 +44,12 @@ export const Layout: FC = () => {
   };
 
   const handleClickAuth = () => {};
+
+  useEffect(() => {
+    dispatch(fetchPainters());
+  }, [fetchPainters]);
+
+  const { painters } = useAppSelector((state) => state.painters);
 
   const [isShow, setIsShow] = useState(false);
 

@@ -7,7 +7,7 @@ import CardList from '../CardList';
 import Label from '../Label';
 import { Context } from '../../hooks/Context';
 import { useAppSelector } from '../../hooks/Redux';
-import type { Painters } from '../../comon-types';
+import type { TPainters } from '../../comon-types';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
@@ -18,9 +18,9 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 type ProfileProps = {
-  painterImage: string | boolean;
+  painterImage: string;
   biography: string;
-  paintings: Painters[] | boolean;
+  paintings: TPainters[] | boolean;
   painterTitle: string;
   painterYearsOfLife: string;
   painterMotherland: string;
@@ -55,7 +55,7 @@ export const Profile: FC<ProfileProps> = ({
           <div className={cx('painterInfo')}>
             {painterImage ? (
               <img
-                src={cx(painterImage)}
+                src={painterImage}
                 alt="painterPhoto"
                 className={cx('painterImg')}
               />
@@ -100,9 +100,9 @@ export const Profile: FC<ProfileProps> = ({
               <ul className={cx('paintingsList')}>
                 {paintings &&
                   typeof paintings !== 'boolean' &&
-                  paintings.map(({ id, title }) => (
-                    <li key={id} className={cx('paintingsListes')}>
-                      <Label children={title} isDelAllowed={false} />
+                  paintings.map(({ mainPainting: { _id, name } }) => (
+                    <li key={_id} className={cx('paintingsListes')}>
+                      <Label children={name} isDelAllowed={false} />
                     </li>
                   ))}
               </ul>

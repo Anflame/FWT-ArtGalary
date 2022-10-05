@@ -1,21 +1,35 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Card from '../Card';
-import type { CardProps } from '../../comon-types';
+import type { TPainters } from '../../comon-types';
+import img from '../../assets/images/cardImg.jpg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
 type CardListProps = {
-  painters: CardProps[];
+  painters: TPainters[];
 };
 
-export const CardList: FC<CardListProps> = ({ painters }) => (
-  <ul className={cx('cardList')}>
-    {painters.map(({ title, id, img }) => (
-      <li className={cx('cardListes')} key={id}>
-        <Card title={title} img={img} id={id} />
-      </li>
-    ))}
-  </ul>
-);
+export const CardList: FC<CardListProps> = ({ painters }) => {
+  return (
+    <ul className={cx('cardList')}>
+      {painters.map(
+        ({
+          name,
+          _id,
+          mainPainting: {
+            image: { src },
+          },
+        }) => (
+          <li className={cx('cardListes')} key={_id}>
+            <Link to={`/profile/${_id}`}>
+              <Card title={name} img={src || img} id={_id} />
+            </Link>
+          </li>
+        ),
+      )}
+    </ul>
+  );
+};

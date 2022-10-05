@@ -22,7 +22,7 @@ export const Toast: FC<ToastProps> = ({
   const { theme } = Context();
 
   return (
-    <div className={cx('toast', !isShowToast && 'showToast')}>
+    <div className={cx('toast', isShowToast && 'showToast')}>
       <h3 className={cx('toastHeading')}>
         {<Error className={cx('errorImg')} fill={'#AE2917'} />}
         Error!

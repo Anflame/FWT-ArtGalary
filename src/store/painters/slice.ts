@@ -1,66 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { CardProps } from '../../comon-types';
-import img from '../../assets/images/cardImg.jpg';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TPainters } from '../../comon-types';
+import { fetchPainters } from '../API/painters';
 
 type PaintersState = {
-  painters: CardProps[];
+  painters: TPainters[];
+  error: string;
+  isLoading: boolean;
 };
 
 const initialState: PaintersState = {
-  painters: [
-    {
-      id: 1,
-      title: 'Ludovico Anaudi',
-      img,
-    },
-    {
-      id: 2,
-      title: 'Larry Minuti',
-      img,
-    },
-    {
-      id: 3,
-      title: 'Marcus Aurelius',
-      img,
-    },
-    {
-      id: 4,
-      title: 'Hans Zimmer',
-      img,
-    },
-    {
-      id: 5,
-      title: 'Frodo Baggins',
-      img,
-    },
-    {
-      id: 6,
-      title: 'Oswaldo Mobray',
-      img,
-    },
-    {
-      id: 7,
-      title: 'Marty Mcfly',
-      img,
-    },
-    {
-      id: 8,
-      title: 'Luke Skywalker',
-      img,
-    },
-    {
-      id: 9,
-      title: 'Tomas Shelbi',
-      img,
-    },
-  ],
+  painters: [],
+  error: '',
+  isLoading: false,
 };
 
 const themeSlice = createSlice({
   name: 'slice',
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [fetchPainters.fulfilled.type]: (
+      state,
+      action: PayloadAction<TPainters[]>,
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.painters = action.payload;
+    },
+    [fetchPainters.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchPainters.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
 export const paintersReducer = themeSlice.reducer;
