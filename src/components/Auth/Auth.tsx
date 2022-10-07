@@ -40,16 +40,11 @@ export const Auth: FC<AuthProps> = ({
   const handlePressEscape = PressEscape(() => handleShowAuth(false));
   const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
   const [isErrorAuth, setIsErrorAuth] = useState(false);
-  const [errorAuthText, setErrorAuthText] = useState('');
   const [isErrorEmail, setErrorEmail] = useState<boolean>(true);
   const [errorEmailText, setIsErrorEmailText] = useState('Заполните поле');
   const [isErrorPassword, setIsErrorPassword] = useState<boolean>(true);
   const [errorPasswordText, setErrorPasswordText] = useState('Заполните поле');
-  const {
-    error,
-    isAuth,
-    tokens: { accessToken },
-  } = useAppSelector((state) => state.auth);
+  const { error } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const goTo = (e: React.MouseEvent<HTMLButtonElement>, type: string) => {
@@ -76,9 +71,6 @@ export const Auth: FC<AuthProps> = ({
         if (data.meta.requestStatus === 'fulfilled') {
           dispatch(changeAuth(true));
           handleShowAuth(false);
-        } else {
-          setIsErrorAuth(true);
-          setErrorAuthText('Ошибка Регистрации');
         }
       });
     } else {
@@ -95,9 +87,6 @@ export const Auth: FC<AuthProps> = ({
         if (data.meta.requestStatus === 'fulfilled') {
           dispatch(changeAuth(true));
           handleShowAuth(false);
-        } else {
-          setIsErrorAuth(true);
-          setErrorAuthText('Ошибка Регистрации');
         }
       });
     }
@@ -192,7 +181,7 @@ export const Auth: FC<AuthProps> = ({
                     label={'Password'}
                     value={userPassword}
                     onChange={(e) => setUserPassword(e.target.value)}
-                    isError={isErrorEmail}
+                    isError={isErrorPassword}
                     errorMessage={errorPasswordText}
                   />
                   <Button

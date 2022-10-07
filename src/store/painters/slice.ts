@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TPainters } from '../../comon-types';
 import { fetchPainters } from '../API/painters';
+import { TPainters } from '../types';
 
 type PaintersState = {
   painters: TPainters[];

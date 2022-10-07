@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TAuth } from '../../comon-types';
 import { fetchAuth } from '../API/auth';
+import { TAuth } from '../types';
 
 type AuthState = {
   tokens: {

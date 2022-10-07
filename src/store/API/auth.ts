@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { AuthParams, TAuth } from '../../comon-types';
+import { AuthParams } from '../../comon-types';
+import { TAuth } from '../types';
 
 export const fetchAuth = createAsyncThunk(
   'auth/fetchAuth',

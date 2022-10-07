@@ -1,13 +1,15 @@
-import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import AddPainting from '../AddPainting';
 import Button from '../Button';
 import CardList from '../CardList';
 import Label from '../Label';
+import { API } from '../../constants';
 import { Context } from '../../hooks/Context';
-import { useAppSelector } from '../../hooks/Redux';
-import type { TPainters } from '../../comon-types';
+import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { fetchPainterProfle } from '../../store/API/painterProfile';
+import { TPainterProfile } from '../../store/types';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
@@ -20,24 +22,30 @@ const cx = cn.bind(styles);
 type ProfileProps = {
   painterImage: string;
   biography: string;
-  paintings: TPainters[] | boolean;
+  paintings: TPainterProfile[];
   painterTitle: string;
   painterYearsOfLife: string;
   painterMotherland: string;
 };
 
-export const Profile: FC<ProfileProps> = ({
-  painterImage,
-  biography,
-  paintings,
-  painterTitle,
-  painterYearsOfLife,
-  painterMotherland,
-}) => {
+export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { theme } = Context();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
-  const { painters } = useAppSelector((state) => state.painters);
   const [isShowAddPhoto, setIsShowAddPhoto] = useState<boolean>();
+  const { description, avatar, name, yearsOfLife, paintings } = useAppSelector(
+    (state) => state.painterProfile.painterProfile,
+  );
+  const { accessToken } = useAppSelector((state) => state.auth.tokens);
+  const dispatch = useAppDispatch();
+  const { painterId } = useParams();
+  useEffect(() => {
+    dispatch(
+      fetchPainterProfle({
+        url: painterId,
+        accessToken,
+      }),
+    );
+  }, []);
 
   return (
     <section className={cx('profile')}>
@@ -53,9 +61,9 @@ export const Profile: FC<ProfileProps> = ({
         </div>
         <div className={cx('painter')}>
           <div className={cx('painterInfo')}>
-            {painterImage ? (
+            {avatar.src ? (
               <img
-                src={painterImage}
+                src={API + avatar.src}
                 alt="painterPhoto"
                 className={cx('painterImg')}
               />
@@ -72,41 +80,75 @@ export const Profile: FC<ProfileProps> = ({
             )}
             <div className={cx('painterInfoHeader')}>
               <p className={cx('painterLabelList', 'painterLabelLeft')}>
-                {painterYearsOfLife}
+                {yearsOfLife}
               </p>
               <p className={cx('painterLabelList', 'painterLabelRight')}>
                 {painterMotherland}
               </p>
-              <h2 className={cx('painterHeading')}>{painterTitle}</h2>
-            </div>
-            <div className={cx('painterInfoFooter')}>
-              <div className={cx('painterBiography')}>
-                {!isShowMoreInfo && biography.length < 265
-                  ? biography
-                  : `${biography.substring(0, 265)}...`}
-                {isShowMoreInfo && biography}
-              </div>
+              <h2 className={cx('painterHeading')}>{name}</h2>
+
               <div
-                className={cx('readMoreWrapp')}
-                onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
-              >
-                <button className={cx('readMoreBtn')}>read more</button>
-                {isShowMoreInfo ? (
-                  <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
-                ) : (
-                  <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+                className={cx(
+                  'painterInfoFooter',
+                  'paintingInfoFooterFullSize',
                 )}
+              >
+                <div className={cx('painterBiography')}>
+                  {!isShowMoreInfo && description.length < 265
+                    ? description
+                    : `${description.substring(0, 265)}...`}
+                  {isShowMoreInfo && description}
+                </div>
+                <div
+                  className={cx('readMoreWrapp')}
+                  onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
+                >
+                  <button className={cx('readMoreBtn')}>read more</button>
+                  {isShowMoreInfo ? (
+                    <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+                  ) : (
+                    <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+                  )}
+                </div>
+                <ul className={cx('paintingsList')}>
+                  {paintings &&
+                    typeof paintings !== 'boolean' &&
+                    paintings.map(({ _id, name: painingName }) => (
+                      <li key={_id} className={cx('paintingsListes')}>
+                        <Label children={painingName} isDelAllowed={false} />
+                      </li>
+                    ))}
+                </ul>
               </div>
-              <ul className={cx('paintingsList')}>
-                {paintings &&
-                  typeof paintings !== 'boolean' &&
-                  paintings.map(({ mainPainting: { _id, name } }) => (
-                    <li key={_id} className={cx('paintingsListes')}>
-                      <Label children={name} isDelAllowed={false} />
-                    </li>
-                  ))}
-              </ul>
             </div>
+          </div>
+          <div className={cx('painterInfoFooter')}>
+            <div className={cx('painterBiography')}>
+              {!isShowMoreInfo && description.length < 265
+                ? description
+                : `${description.substring(0, 265)}...`}
+              {isShowMoreInfo && description}
+            </div>
+            <div
+              className={cx('readMoreWrapp')}
+              onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
+            >
+              <button className={cx('readMoreBtn')}>read more</button>
+              {isShowMoreInfo ? (
+                <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+              ) : (
+                <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+              )}
+            </div>
+            <ul className={cx('paintingsList')}>
+              {paintings &&
+                typeof paintings !== 'boolean' &&
+                paintings.map(({ _id, name: painingName }) => (
+                  <li key={_id} className={cx('paintingsListes')}>
+                    <Label children={painingName} isDelAllowed={false} />
+                  </li>
+                ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -123,7 +165,7 @@ export const Profile: FC<ProfileProps> = ({
           )}
         </div>
         {paintings ? (
-          <CardList painters={painters} />
+          <CardList painters={paintings} />
         ) : (
           <div className={cx('withoutPaintingsWrapp')}>
             <div className={cx('container')}>

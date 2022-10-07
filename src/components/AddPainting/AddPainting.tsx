@@ -120,20 +120,22 @@ export const AddPainting: FC<AddPaintingProps> = ({
             onClick={(e) => e.stopPropagation()}
             onSubmit={handelSubmit}
           >
-            <Input
-              label="The name of the picture"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              isError={isErrorName}
-              errorMessage={nameErrorMessage}
-            />
-            <Input
-              label="Year of creation"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              isError={isErrorYear}
-              errorMessage={yearErrorMessage}
-            />
+            <div className={cx('inputsWrapp')}>
+              <Input
+                label="The name of the picture"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                isError={isErrorName}
+                errorMessage={nameErrorMessage}
+              />
+              <Input
+                label="Year of creation"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                isError={isErrorYear}
+                errorMessage={yearErrorMessage}
+              />
+            </div>
             {!image ? (
               <div
                 className={cx('dragAndDropWrapp')}
@@ -172,7 +174,10 @@ export const AddPainting: FC<AddPaintingProps> = ({
                 />
               </div>
             )}
-            <Button className="defaultBtn" isDisabled={isError}>
+            <Button
+              className="defaultBtn"
+              isDisabled={isErrorName || isErrorName || !image}
+            >
               Save
             </Button>
             <CloseIcon
@@ -180,12 +185,12 @@ export const AddPainting: FC<AddPaintingProps> = ({
               fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
               onClick={() => setIsShowAddPhoto(false)}
             />
+            <Toast
+              message={errorText}
+              isShowToast={isError}
+              handleCloseToast={() => setIsError(false)}
+            />
           </form>
-          <Toast
-            message={errorText}
-            isShowToast={isError}
-            handleCloseToast={() => setIsError(false)}
-          />
         </div>
       )}
     </>

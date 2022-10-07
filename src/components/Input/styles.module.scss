@@ -1,13 +1,6 @@
 .inputWrapp {
   width: inherit;
   max-width: 340px;
-  
-  &:first-of-type {
-    margin-bottom: 40px;
-  }
-  &:last-of-type {
-    margin-bottom: 60px;
-  }
 
   .inputLabel {
     font-size: 12px;

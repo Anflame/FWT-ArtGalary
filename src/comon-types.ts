@@ -5,30 +5,8 @@ export type CardProps = {
   title: string;
   handleCLick?: () => void;
   img: string;
+  year: string;
   isPrimary?: boolean;
-};
-
-export type TPainters = {
-  genres: string[];
-  _id: string;
-  name: string;
-  description: string;
-  yearsOfLife: string;
-  __v: number;
-  mainPainting: {
-    _id: string;
-    name: string;
-    yearOfCreation: string;
-    image: {
-      _id: string;
-      src: string;
-      webp: string;
-      src2x: string;
-      webp2x: string;
-      original: string;
-    };
-    artist: string;
-  };
 };
 
 export type AuthParams = {
@@ -38,13 +16,6 @@ export type AuthParams = {
     password: string;
     fingerprint: string;
   };
-};
-
-export type TAuth = {
-  isAuth?: boolean;
-  accessToken: string;
-  refreshToken: string;
-  fingerprint?: string;
 };
 
 export type MenuProps = {

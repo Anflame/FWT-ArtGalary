@@ -15,54 +15,34 @@
     padding: 80px 30px;
     height: 100vh;
     width: 100%;
-    display: grid;
-    align-content: center;
-    justify-items: center;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    grid-template-areas: 
-    'firstInput firstInput'
-    'secondInput secondInput'
-    'dragAndDrop dragAndDrop'
-    'dragAndDrop dragAndDrop'
-    'button button'
-    ;
-
 
     @media (min-width: 768px) {
       padding: 80px 100px;
-      width: 693px;
+      max-width: 693px;
       height: auto;
-      grid-template-columns: 340px 1fr;
-      grid-template-areas: 
-      'firstInput secondInput'
-      'dragAndDrop dragAndDrop'
-      'dragAndDrop dragAndDrop'
-      'button button'
-      '. .'
-      ;
     }
 
-    & div:first-of-type {
-      grid-area: firstInput;
-      margin-bottom: 32px;
-
-      @media (min-width: 768px) {
-        justify-self: flex-start;
-      }
-    }
-
-    & div:nth-of-type(2) {
-      grid-area: secondInput;
+    .inputsWrapp {
+      width: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       margin-bottom: 40px;
       
-      @media (min-width: 768px) {
-        margin-bottom: 60px;
+      & div:first-of-type {
+        margin-bottom: 32px;
       }
     }
 
     .dragAndDropWrapp {
-      grid-area: dragAndDrop;
+      width: 100%;
+      max-width: 340px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -74,6 +54,7 @@
 
       @media (min-width: 768px) {
         padding: 50px 116px;
+        max-width: 100%;
       }
 
       @media (min-width: 320px){}

@@ -18,6 +18,8 @@ export const socNetworks = [
   },
 ];
 
+export const API = 'https://internship-front.framework.team';
+
 export const pages: Array<number> = [];
 
 export const paintings: Painters[] = [
