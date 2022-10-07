@@ -11,6 +11,10 @@ import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 export const Layout: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const dispatch = useAppDispatch();
+
   const toggleTheme = () => {
     const resultTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(resultTheme);
@@ -21,8 +25,6 @@ export const Layout: FC = () => {
     logIn: false,
     signUp: false,
   });
-
-  const dispatch = useAppDispatch();
 
   const handleShowAuth = (type?: string | boolean) => {
     if (!type) {
@@ -42,8 +44,6 @@ export const Layout: FC = () => {
         signUp: true,
       });
   };
-
-  const handleClickAuth = () => {};
 
   useEffect(() => {
     dispatch(fetchPainters());
@@ -68,7 +68,10 @@ export const Layout: FC = () => {
       <Auth
         isShowAuth={isShowAuth}
         handleShowAuth={handleShowAuth}
-        handleClickAuth={handleClickAuth}
+        userEmail={userEmail}
+        userPassword={userPassword}
+        setUserEmail={setUserEmail}
+        setUserPassword={setUserPassword}
       />
     </ThemeContext.Provider>
   );

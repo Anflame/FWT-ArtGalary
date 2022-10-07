@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import { Context } from '../../hooks/Context';
+import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { changeAuth } from '../../store/auth/slice';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
@@ -18,9 +20,16 @@ export const Header: FC<MenuProps> = ({
   handleShowAuth,
 }) => {
   const { theme, toggleTheme } = Context();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  const logOut = () => {
+    dispatch(changeAuth(false));
+  };
 
   return (
     <>
@@ -33,16 +42,26 @@ export const Header: FC<MenuProps> = ({
 
           <div className={cx('authAndChangeThemeWrapp')}>
             <div className={cx('authWrapp')}>
-              <Button
-                handleClick={() => handleShowAuth('logIn')}
-                className={'authBtn'}
-                children={'login'}
-              ></Button>
-              <Button
-                handleClick={() => handleShowAuth('signUp')}
-                className={'authBtn'}
-                children={'signUp'}
-              ></Button>
+              {!isAuth ? (
+                <>
+                  <Button
+                    handleClick={() => handleShowAuth('logIn')}
+                    className={'authBtn'}
+                  >
+                    {'login'}
+                  </Button>
+                  <Button
+                    handleClick={() => handleShowAuth('signUp')}
+                    className={'authBtn'}
+                  >
+                    {'signUp'}
+                  </Button>
+                </>
+              ) : (
+                <Button handleClick={logOut} className={'authBtn'}>
+                  {'logout'}
+                </Button>
+              )}
             </div>
             <Button
               handleClick={toggleTheme}

@@ -1,10 +1,14 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
-import { ClickEscape } from '../../hooks/ClickEscape';
+import Toast from '../Toast';
 import { Context } from '../../hooks/Context';
 import { overflowHidden } from '../../hooks/OverFlowHidden';
+import { PressEscape } from '../../hooks/PressEscape';
+import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { fetchAuth } from '../../store/API/auth';
+import { changeAuth } from '../../store/auth/slice';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import logInImg from '../../assets/images/logInImg.jpg';
 import signUpImg from '../../assets/images/signUpImg.jpg';
@@ -18,27 +22,117 @@ export type AuthProps = {
     signUp: boolean;
   };
   handleShowAuth: (type?: string | boolean) => void;
-  handleClickAuth: () => void;
+  userEmail: string;
+  userPassword: string;
+  setUserEmail: (userEmail: string) => void;
+  setUserPassword: (userPassword: string) => void;
 };
 
 export const Auth: FC<AuthProps> = ({
   isShowAuth,
   handleShowAuth,
-  handleClickAuth,
+  userEmail,
+  userPassword,
+  setUserEmail,
+  setUserPassword,
 }) => {
   const { theme } = Context();
+  const handlePressEscape = PressEscape(() => handleShowAuth(false));
+  const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
+  const [isErrorAuth, setIsErrorAuth] = useState(false);
+  const [errorAuthText, setErrorAuthText] = useState('');
+  const [isErrorEmail, setErrorEmail] = useState<boolean>(true);
+  const [errorEmailText, setIsErrorEmailText] = useState('Заполните поле');
+  const [isErrorPassword, setIsErrorPassword] = useState<boolean>(true);
+  const [errorPasswordText, setErrorPasswordText] = useState('Заполните поле');
+  const {
+    error,
+    isAuth,
+    tokens: { accessToken },
+  } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
   const goTo = (e: React.MouseEvent<HTMLButtonElement>, type: string) => {
     e.preventDefault();
     handleShowAuth(type);
   };
-  const handleClickEscape = ClickEscape(() => handleShowAuth(false));
-  const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
+
+  const handleClickAuth = (
+    type: string,
+    e: React.FormEvent<HTMLFormElement>,
+  ) => {
+    e.preventDefault();
+    if (type === 'logIn') {
+      dispatch(
+        fetchAuth({
+          type: 'login',
+          auth: {
+            fingerprint: 'string',
+            username: userEmail,
+            password: userPassword,
+          },
+        }),
+      ).then((data) => {
+        if (data.meta.requestStatus === 'fulfilled') {
+          dispatch(changeAuth(true));
+          handleShowAuth(false);
+        } else {
+          setIsErrorAuth(true);
+          setErrorAuthText('Ошибка Регистрации');
+        }
+      });
+    } else {
+      dispatch(
+        fetchAuth({
+          type: 'register',
+          auth: {
+            fingerprint: 'string',
+            username: userEmail,
+            password: userPassword,
+          },
+        }),
+      ).then((data) => {
+        if (data.meta.requestStatus === 'fulfilled') {
+          dispatch(changeAuth(true));
+          handleShowAuth(false);
+        } else {
+          setIsErrorAuth(true);
+          setErrorAuthText('Ошибка Регистрации');
+        }
+      });
+    }
+  };
 
   useEffect(() => {
-    handleClickEscape();
+    handlePressEscape();
     overflowHidden(isShow);
+
+    if (!userEmail || !/^.+@.+\..+$/i.test(userEmail)) {
+      setErrorEmail(true);
+      setIsErrorEmailText('Не корректный email');
+    } else {
+      setErrorEmail(false);
+    }
+
+    if (!userPassword) {
+      setIsErrorPassword(true);
+      setErrorPasswordText('Заполните поле');
+    } else if (userPassword.length > 25) {
+      setIsErrorPassword(true);
+      setErrorPasswordText('Пароль не должен привышать 25 симоволов');
+    } else if (
+      !/(?=.*[0-9])(?=.*[\W])(?=.*[a-z])(?=.*[A-Z]){8,}/g.test(userPassword)
+    ) {
+      setIsErrorPassword(true);
+      setErrorPasswordText(
+        'Пароль должен иметь больше 8 символов, заглавную букву, цифру и спец. символ',
+      );
+    } else {
+      setIsErrorPassword(false);
+    }
+
     return document.removeEventListener('keydown', () => handleShowAuth);
-  }, [isShow]);
+  }, [isShow, userEmail, userPassword]);
 
   return (
     <>
@@ -75,21 +169,36 @@ export const Auth: FC<AuthProps> = ({
                 </p>
                 <form
                   className={cx('validationForm')}
-                  onSubmit={handleClickAuth}
+                  onSubmit={
+                    isShowAuth.signUp
+                      ? (e) => handleClickAuth('signUp', e)
+                      : (e) => handleClickAuth('logIn', e)
+                  }
                 >
                   <Input
                     id={'emailInput'}
                     type={'email'}
                     className={'validation'}
                     label={'Email'}
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    isError={isErrorEmail}
+                    errorMessage={errorEmailText}
                   />
                   <Input
                     id={'passwordInput'}
                     type={'password'}
                     className={'validation'}
                     label={'Password'}
+                    value={userPassword}
+                    onChange={(e) => setUserPassword(e.target.value)}
+                    isError={isErrorEmail}
+                    errorMessage={errorPasswordText}
                   />
-                  <Button className={'defaultBtn'} isDisabled>
+                  <Button
+                    className={'defaultBtn'}
+                    isDisabled={isErrorEmail || isErrorPassword}
+                  >
                     {isShowAuth.signUp ? 'sign up' : 'log in'}
                   </Button>
                   <p className={cx('link', 'linkMobile')}>
@@ -115,6 +224,11 @@ export const Auth: FC<AuthProps> = ({
                 />
               </div>
             </div>
+            <Toast
+              isShowToast={isErrorAuth}
+              handleCloseToast={() => setIsErrorAuth(false)}
+              message={error}
+            />
           </section>
         </>
       )}

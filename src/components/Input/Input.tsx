@@ -18,12 +18,12 @@ export const Input: FC<InputsProps> = ({
   errorMessage,
   ...args
 }) => (
-  <div>
+  <div className={cx('inputWrapp', className)}>
     <label htmlFor={id} className={cx('inputLabel')}>
       {label}
     </label>
     <input
-      className={cx('input', isError && 'inputError', className)}
+      className={cx('input', isError && 'inputError')}
       id={id}
       type={type || 'text'}
       {...args}
@@ -32,9 +32,10 @@ export const Input: FC<InputsProps> = ({
       onChange={onChange}
     />
     {isError && (
-      <p className={cx('errorText')}>
-        {<Error className={cx('errorImg')} fill={'#AE2917'} />} {errorMessage}
-      </p>
+      <div className={cx('errorText')}>
+        {<Error className={cx('errorImg')} fill={'#AE2917'} />}
+        <p>{errorMessage}</p>
+      </div>
     )}
   </div>
 );

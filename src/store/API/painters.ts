@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TPainters } from '../../comon-types';
 
 export const fetchPainters = createAsyncThunk(
-  'user/fetchAll',
+  'painters/fetchPainter',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get<TPainters[]>(

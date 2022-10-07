@@ -5,6 +5,7 @@ import Input from '../Input';
 import Toast from '../Toast';
 import { SetIsShow } from '../../comon-types';
 import { Context } from '../../hooks/Context';
+import { PressEscape } from '../../hooks/PressEscape';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DragAndDropIcon } from '../../assets/images/dragAndDropIcon.svg';
 import styles from './styles.module.scss';
@@ -31,17 +32,22 @@ export const AddPainting: FC<AddPaintingProps> = ({
   const [isErrorYear, setIsErrorYear] = useState(true);
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
-
-  const handeChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-  const handeChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setYear(e.target.value);
-  };
+  const handlePressEscape = PressEscape(setIsShowAddPhoto);
 
   const handleFile = (file: File) => {
-    setImage(file);
-    setPreviewUrl(URL.createObjectURL(file));
+    if (
+      (file.type === 'image/png' || file.type === 'image/jpeg') &&
+      file.size <= 3145728
+    ) {
+      setImage(file);
+      setPreviewUrl(URL.createObjectURL(file));
+      if (isError && /(Некорректное изображение)+/iu.test(errorText)) {
+        setIsError(false);
+      }
+    } else {
+      setIsError(true);
+      setErrorText('Некорректное изображение');
+    }
     return URL.revokeObjectURL(previewUrl);
   };
 
@@ -49,6 +55,19 @@ export const AddPainting: FC<AddPaintingProps> = ({
     e.preventDefault();
     if (e.dataTransfer.files.length === 1) {
       handleFile(e.dataTransfer.files[0]);
+    } else {
+      setIsError(true);
+      setErrorText('Некорректное изображение');
+    }
+  };
+
+  const handleAddFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (e.target.files?.length === 1) {
+      handleFile(e.target.files[0]);
+    } else {
+      setIsError(true);
+      setErrorText('Некорректное изображение');
     }
   };
 
@@ -57,6 +76,8 @@ export const AddPainting: FC<AddPaintingProps> = ({
   };
 
   useEffect(() => {
+    handlePressEscape();
+
     if (!name) {
       setIsErrorName(true);
       setNameMessage('Заполните все поля');
@@ -83,27 +104,33 @@ export const AddPainting: FC<AddPaintingProps> = ({
       setErrorText('Выбирете изображение');
       setIsError(true);
     } else setIsError(false);
+
+    return document.removeEventListener('keydown', () => setIsShowAddPhoto);
   }, [name, year, image]);
 
   return (
     <>
       {isShowAddPhoto && (
-        <div className={cx('addPaintingWrapp')}>
+        <div
+          className={cx('addPaintingWrapp')}
+          onClick={() => setIsShowAddPhoto(false)}
+        >
           <form
             className={cx('addPaintingWrappContent')}
+            onClick={(e) => e.stopPropagation()}
             onSubmit={handelSubmit}
           >
             <Input
               label="The name of the picture"
               value={name}
-              onChange={handeChangeName}
+              onChange={(e) => setName(e.target.value)}
               isError={isErrorName}
               errorMessage={nameErrorMessage}
             />
             <Input
               label="Year of creation"
               value={year}
-              onChange={handeChangeYear}
+              onChange={(e) => setYear(e.target.value)}
               isError={isErrorYear}
               errorMessage={yearErrorMessage}
             />
@@ -130,6 +157,7 @@ export const AddPainting: FC<AddPaintingProps> = ({
                   type="file"
                   id="browseImage"
                   className={cx('browseImage')}
+                  onChange={handleAddFile}
                 />
                 <p className={cx('dragAndDropText')}>
                   Upload only .jpg or .png format less than 3 MB

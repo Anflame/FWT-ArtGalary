@@ -3,6 +3,8 @@ import cn from 'classnames/bind';
 import Button from '../Button';
 import { Context } from '../../hooks/Context';
 import { overflowHidden } from '../../hooks/OverFlowHidden';
+import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { changeAuth } from '../../store/auth/slice';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
@@ -13,6 +15,12 @@ const cx = cn.bind(styles);
 
 export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
   const { theme, toggleTheme } = Context();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  const logOut = () => {
+    dispatch(changeAuth(false));
+  };
 
   useEffect(() => {
     overflowHidden(isShow);
@@ -47,17 +55,26 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
             {theme === 'dark' ? 'light mode' : 'dark mode'}
           </p>
         </div>
-
-        <Button
-          handleClick={() => handleShowAuth('logIn')}
-          className={'authBtnMobile'}
-          children={'login'}
-        ></Button>
-        <Button
-          handleClick={() => handleShowAuth('signUp')}
-          className={'authBtnMobile'}
-          children={'signUp'}
-        ></Button>
+        {!isAuth ? (
+          <>
+            <Button
+              handleClick={() => handleShowAuth('logIn')}
+              className={'authBtnMobile'}
+            >
+              {'login'}
+            </Button>
+            <Button
+              handleClick={() => handleShowAuth('signUp')}
+              className={'authBtnMobile'}
+            >
+              {'signUp'}
+            </Button>
+          </>
+        ) : (
+          <Button className={'authBtnMobile'} handleClick={logOut}>
+            {'logout'}
+          </Button>
+        )}
       </div>
     </div>
   );

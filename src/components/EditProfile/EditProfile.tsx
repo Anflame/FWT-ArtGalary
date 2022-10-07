@@ -7,8 +7,8 @@ import MultiSelect from '../MultiSelect';
 import TextArea from '../TextArea';
 import { SetIsShow } from '../../comon-types';
 import { selectListArray } from '../../constants';
-import { ClickEscape } from '../../hooks/ClickEscape';
 import { Context } from '../../hooks/Context';
+import { PressEscape } from '../../hooks/PressEscape';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -30,10 +30,10 @@ export const EditProfile: FC<EditProfileProps> = ({
   const [isShowBrowsePhoto, setIsShowBrowsePhoto] = useState(false);
   const [selectList, setSelectList] = useState(selectListArray);
   const [height, setHeight] = useState<number>(window.innerWidth);
-  const handleClickEscape = ClickEscape(setIsShowEditProfile);
+  const handlePressEscape = PressEscape(setIsShowEditProfile);
 
   useEffect(() => {
-    handleClickEscape();
+    handlePressEscape();
     window.addEventListener('resize', () => setHeight(window.innerWidth));
     return () => {
       document.removeEventListener('keydown', () =>

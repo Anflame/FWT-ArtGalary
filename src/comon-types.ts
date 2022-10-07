@@ -31,6 +31,22 @@ export type TPainters = {
   };
 };
 
+export type AuthParams = {
+  type: string;
+  auth: {
+    username: string;
+    password: string;
+    fingerprint: string;
+  };
+};
+
+export type TAuth = {
+  isAuth?: boolean;
+  accessToken: string;
+  refreshToken: string;
+  fingerprint?: string;
+};
+
 export type MenuProps = {
   isShow: boolean;
   setIsShow: (isShow: boolean) => void;

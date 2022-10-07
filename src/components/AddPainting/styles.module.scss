@@ -14,27 +14,46 @@
     background-color: var(--color-primary);
     padding: 80px 30px;
     height: 100vh;
+    width: 100%;
     display: grid;
     align-content: center;
+    justify-items: center;
     grid-template-columns: 1fr;
     position: relative;
+    grid-template-areas: 
+    'firstInput firstInput'
+    'secondInput secondInput'
+    'dragAndDrop dragAndDrop'
+    'dragAndDrop dragAndDrop'
+    'button button'
+    ;
+
 
     @media (min-width: 768px) {
       padding: 80px 100px;
       width: 693px;
       height: auto;
       grid-template-columns: 340px 1fr;
-
-      & div:first-of-type {
-        margin-right: 48px;
-      }
+      grid-template-areas: 
+      'firstInput secondInput'
+      'dragAndDrop dragAndDrop'
+      'dragAndDrop dragAndDrop'
+      'button button'
+      '. .'
+      ;
     }
 
     & div:first-of-type {
+      grid-area: firstInput;
       margin-bottom: 32px;
+
+      @media (min-width: 768px) {
+        justify-self: flex-start;
+      }
     }
 
-    & div:last-of-type {
+    & div:nth-of-type(2) {
+      grid-area: secondInput;
       margin-bottom: 40px;
       
       @media (min-width: 768px) {
@@ -43,6 +62,7 @@
     }
 
     .dragAndDropWrapp {
+      grid-area: dragAndDrop;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,12 +71,12 @@
       margin-bottom: 60px;
       font-family: var(--font-family-paragraph);
       border-image: url(../../assets/images/photoBorder.png) 30 fill/ 20px round;
-      grid-column:  1 / 3;
-      grid-row: 2 / 3;
 
       @media (min-width: 768px) {
         padding: 50px 116px;
       }
+
+      @media (min-width: 320px){}
       
       .dragAndDropIcon {
         width: 60px;
@@ -122,6 +142,8 @@
     
     .previewImageWrapp {
       width: 493px;
+      min-height: 327px;
+      margin: 0 auto;
       margin-bottom: 60px;
       display: flex;
       justify-content: center;
@@ -134,8 +156,7 @@
     }
 
     & button {
-      grid-column:  1 / 3;
-      grid-row: 3 / 4;
+      grid-area: button;
     }
 
     .closeIcon {

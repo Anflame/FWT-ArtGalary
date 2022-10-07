@@ -1,61 +1,68 @@
-.inputLabel {
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: 0em;
-  text-align: left;
-  font-family: var(--font-family-paragraph);
-  font-weight: var(--font-weight-bold);
-  color:  var(--color-primary-hover);
-  display: block;
-  margin-bottom: 8px;
-}
-
-.input {
-  padding: 12px 16px;
-  font-size: 16px;
-  line-height: 22.4px;
-  font-family: var(--font-family-paragraph);
-  color: var(--color-primary-grey);
-  background-color: var(--color-secondary);
-  border: 1px solid var(--color-inputs-border);
-  border-radius: 4px;
-  width: 100%;
+.inputWrapp {
+  width: inherit;
   max-width: 340px;
-
-  &:hover {
-    border: 1px solid var(--color-inputs-border-hover);
-  }
-
-  &:focus {
-    border: 1px solid var(--color-primary-grey);
-  }
-}
-
-.inputError {
-  border: 1px solid var(--color-accent-error);
-
-  &:hover, &:focus{
-    border: 1px solid var(--color-accent-error);
-  };
-}
-
-.errorText {
-  color: var(--color-accent-error);
-  font-size: 12px;
-  font-family: var(--font-family-paragraph);
-  line-height: 140%;
-  margin-top: 7px;
-  display: flex;
   
-  .errorImg {
-    display: block;
-    margin-right: 8px;
+  &:first-of-type {
+    margin-bottom: 40px;
   }
-}
+  &:last-of-type {
+    margin-bottom: 60px;
+  }
 
-.validation:first-of-type {
-  margin-bottom: 40px;
-}
-.validation:last-of-type {
-  margin-bottom: 60px;
+  .inputLabel {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: var(--font-family-paragraph);
+    font-weight: var(--font-weight-bold);
+    color:  var(--color-primary-hover);
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .input {
+    padding: 12px 16px;
+    font-size: 16px;
+    line-height: 22.4px;
+    font-family: var(--font-family-paragraph);
+    color: var(--color-primary-grey);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-inputs-border);
+    border-radius: 4px;
+    width: inherit;
+  
+    &:hover {
+      border: 1px solid var(--color-inputs-border-hover);
+    }
+  
+    &:focus {
+      border: 1px solid var(--color-primary-grey);
+    }
+  }
+  
+  .inputError {
+    border: 1px solid var(--color-accent-error);
+  
+    &:hover, &:focus{
+      border: 1px solid var(--color-accent-error);
+    };
+  }
+  
+  .errorText {
+    color: var(--color-accent-error);
+    font-size: 12px;
+    font-family: var(--font-family-paragraph);
+    line-height: 140%;
+    margin-top: 7px;
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    grid-gap: 12px;
+    
+    .errorImg {
+      display: block;
+      margin-right: 8px;
+    }
+  }
+
 }
