@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice';
-import { painterProfileReducer } from './painterProfile/slice.';
+import { painterProfileReducer } from './painterProfile/slice';
 import { paintersReducer } from './painters/slice';
 
 const rootReducer = combineReducers({

@@ -44,6 +44,7 @@ export const Auth: FC<AuthProps> = ({
   const [errorEmailText, setIsErrorEmailText] = useState('Заполните поле');
   const [isErrorPassword, setIsErrorPassword] = useState<boolean>(true);
   const [errorPasswordText, setErrorPasswordText] = useState('Заполните поле');
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const { error } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -176,7 +177,7 @@ export const Auth: FC<AuthProps> = ({
                   />
                   <Input
                     id={'passwordInput'}
-                    type={'password'}
+                    type={isShowPassword ? 'text' : 'password'}
                     className={'validation'}
                     label={'Password'}
                     value={userPassword}

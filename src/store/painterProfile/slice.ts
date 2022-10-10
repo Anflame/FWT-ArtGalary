@@ -45,7 +45,7 @@ const initialState: PainterProfileState = {
 };
 
 const painterProfileSlice = createSlice({
-  name: '',
+  name: 'painterProfile',
   initialState,
   reducers: {},
   extraReducers: {

@@ -1,6 +1,7 @@
 .inputWrapp {
   width: inherit;
   max-width: 340px;
+  position: relative;
 
   .inputLabel {
     font-size: 12px;
@@ -32,6 +33,13 @@
     &:focus {
       border: 1px solid var(--color-primary-grey);
     }
+  }
+
+  .passwordShowIcon {
+    position: absolute;
+    bottom: 18px;
+    right: 20px;
+    cursor: pointer;
   }
   
   .inputError {

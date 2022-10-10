@@ -3,13 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import AddPainting from '../AddPainting';
 import Button from '../Button';
-import CardList from '../CardList';
 import Label from '../Label';
+import List from '../List';
 import { API } from '../../constants';
 import { Context } from '../../hooks/Context';
 import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
 import { fetchPainterProfle } from '../../store/API/painterProfile';
-import { TPainterProfile } from '../../store/types';
+import { Paintings } from '../../store/types';
+import { PaintingItem } from '../PaintingItem/PaintingItem';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
@@ -22,7 +23,7 @@ const cx = cn.bind(styles);
 type ProfileProps = {
   painterImage: string;
   biography: string;
-  paintings: TPainterProfile[];
+  paintings: Paintings | boolean;
   painterTitle: string;
   painterYearsOfLife: string;
   painterMotherland: string;
@@ -165,7 +166,12 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
           )}
         </div>
         {paintings ? (
-          <CardList painters={paintings} />
+          <List
+            items={paintings}
+            renderItem={(painting: Paintings) => (
+              <PaintingItem painting={painting} key={painting._id} />
+            )}
+          />
         ) : (
           <div className={cx('withoutPaintingsWrapp')}>
             <div className={cx('container')}>
