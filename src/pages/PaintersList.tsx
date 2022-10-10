@@ -30,12 +30,14 @@ export const PaintersList: FC = () => {
           isShowToast={isShow}
         />
       )}
-      <List
-        items={painters}
-        renderItem={(painter: TPainters) => (
-          <PainterItem painter={painter} key={painter._id} />
-        )}
-      />
+      {painters && (
+        <List
+          items={painters}
+          renderItem={(painter: TPainters) => (
+            <PainterItem painter={painter} key={painter._id} />
+          )}
+        />
+      )}
     </main>
   );
 };
