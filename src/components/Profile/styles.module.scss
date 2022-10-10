@@ -5,7 +5,16 @@
   padding-top: 136px;
   padding-bottom: 100px;
   z-index: 1;
-  
+
+  .container {
+    @include small-viewport;
+    @include mini-viewport;
+    @include medium-viewport;
+    @include large-viewport;
+    @include ultra-large-viewport;
+    position: relative;
+  }
+
   @media (max-width: 768px) {
     padding-top: 120px;
   }
@@ -14,14 +23,6 @@
     padding-bottom: 80px;
     padding-top: 103px;
   }
-  
-
-  .container {
-    @include small-viewport;
-    @include mini-viewport;
-    @include medium-viewport;
-    @include large-viewport;
-    @include ultra-large-viewport;
 
     .actionWrapp {
       margin-bottom: 32px;
@@ -30,26 +31,38 @@
       align-items: center;
       position: relative;
 
-        .backLink  {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          font-size: 12px;
-          text-transform: uppercase;
-          line-height: 14.52px;
-          font-family: var(--font-family-paragraph);
-          color: var(--color-primary-grey);
-          font-weight: var(--font-weght-bold);
-  
-          @media (max-width: 320px) {
-            display: none;
-          }
+      .actionEditWrapp > button:first-of-type {
+        margin-right: 20px;
+      }
 
-          .backIcon {
-            margin-right: 16px;
-          }
+      .backLink  {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 14.52px;
+        font-family: var(--font-family-paragraph);
+        color: var(--color-primary-grey);
+        font-weight: var(--font-weght-bold);
+
+        @media (max-width: 320px) {
+          display: none;
         }
+
+        .backIcon {
+          margin-right: 16px;
+        }
+      }
+
+      .backLinkMini {
+        display: block;
+
+        @media (min-width: 320px) {
+          display: none;
+        }
+      }
     }
 
     .painter {
@@ -310,8 +323,6 @@
         }
       }
     }
-  }
-
   .artWorks {
 
     .artWorksHeaderWrapp { 
@@ -324,38 +335,44 @@
         font-size: 60px;
         line-height: 73px;
         text-transform: uppercase;
+        margin-bottom: 60px;
 
-        @include small-viewport {
-          margin-bottom: 60px;
-        };
-  
-        @include mini-viewport {
-          margin-bottom: 60px;
-        };
-  
-        @include medium-viewport {
-          margin-bottom: 60px;
-        };
-        
-        @include large-viewport {
-          margin-bottom: 60px;
-          padding-left: 80px;
-        };
-        
-        @media (max-width:768px) {  
-          margin-left: 20px;
+        @media (min-width: 1024px) {
+          margin-left: 80px;
         }
-  
+
         @media (max-width: 600px) {
           font-size: 32px;
           line-height: 32px;
         }
-      }
 
-      button {
+        // @include small-viewport {
+        //   margin-bottom: 60px;
+        // };
+  
+        // @include mini-viewport {
+        //   margin-bottom: 60px;
+        // };
+  
+        // @include medium-viewport {
+        //   margin-bottom: 60px;
+        // };
+        
+        // @include large-viewport {
+        //   margin-bottom: 60px;
+        //   padding-left: 80px;
+        // };
+        
+        // @media (max-width:768px) {  
+        //   margin-left: 20px;
+        // }
+  
+        
+      }
+      &  button {
         position: absolute;
-        bottom: -15px;
-        right: 20px;
+        right: 0;
+        bottom: 0;
       }
     }
 

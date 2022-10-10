@@ -3,13 +3,13 @@ import { fetchPainterProfle } from '../API/painterProfile';
 import { TPainterProfile } from '../types';
 
 type PainterProfileState = {
-  painterProfile: TPainterProfile;
+  painterProfileInfo: TPainterProfile;
   isLoading: boolean;
   error: string;
 };
 
 const initialState: PainterProfileState = {
-  painterProfile: {
+  painterProfileInfo: {
     paintings: [],
     genres: [],
     _id: '',
@@ -55,7 +55,7 @@ const painterProfileSlice = createSlice({
     ) => {
       state.isLoading = false;
       state.error = '';
-      state.painterProfile = action.payload;
+      state.painterProfileInfo = action.payload;
     },
     [fetchPainterProfle.pending.type]: (state) => {
       state.isLoading = true;

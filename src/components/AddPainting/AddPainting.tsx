@@ -6,6 +6,7 @@ import Toast from '../Toast';
 import { SetIsShow } from '../../comon-types';
 import { Context } from '../../hooks/Context';
 import { PressEscape } from '../../hooks/PressEscape';
+import { Validation } from '../../hooks/Validation';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DragAndDropIcon } from '../../assets/images/dragAndDropIcon.svg';
 import styles from './styles.module.scss';
@@ -78,24 +79,8 @@ export const AddPainting: FC<AddPaintingProps> = ({
   useEffect(() => {
     handlePressEscape();
 
-    if (!name) {
-      setIsErrorName(true);
-      setNameMessage('Заполните все поля');
-    } else if (name.length > 25) {
-      setIsErrorName(true);
-      setNameMessage('Длина поля Имя должно быть меньше 25');
-    } else {
-      setIsErrorName(false);
-    }
-    if (!year) {
-      setIsErrorYear(true);
-      setYearMessage('Заполните все поля');
-    } else if (!/^(\d)+(-)?$/.test(String(year))) {
-      setIsErrorYear(true);
-      setYearMessage('Не корректная дата');
-    } else {
-      setIsErrorYear(false);
-    }
+    Validation('name', name, setIsErrorName, setNameMessage);
+    Validation('year', year, setIsErrorYear, setYearMessage);
 
     if (isErrorName || isErrorYear) {
       setErrorText('Исправьте ошибки');

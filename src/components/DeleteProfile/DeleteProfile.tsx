@@ -6,7 +6,7 @@ import { overflowHidden } from '../../hooks/OverFlowHidden';
 import { PressEscape } from '../../hooks/PressEscape';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
-import { ReactComponent as DeleteIcon } from '../../assets/images/deleteProfileIcon.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -44,7 +44,12 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
             className={cx('deleteProfileContent')}
             onClick={(e) => e.stopPropagation()}
           >
-            <DeleteIcon className={cx('deleteProfileIcon')} />
+            <DeleteIcon
+              className={cx('deleteProfileIcon')}
+              fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
+              width="40px"
+              height="40px"
+            />
             <h3 className={cx('deleteProfileHeading')}>
               Do you want to delete this artist profile?
             </h3>

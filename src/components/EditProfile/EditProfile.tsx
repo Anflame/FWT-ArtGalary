@@ -5,10 +5,13 @@ import Button from '../Button';
 import Input from '../Input';
 import MultiSelect from '../MultiSelect';
 import TextArea from '../TextArea';
+import Toast from '../Toast';
 import { SetIsShow } from '../../comon-types';
 import { selectListArray } from '../../constants';
 import { Context } from '../../hooks/Context';
+import { overflowHidden } from '../../hooks/OverFlowHidden';
 import { PressEscape } from '../../hooks/PressEscape';
+import { Validation } from '../../hooks/Validation';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -18,7 +21,6 @@ const cx = cn.bind(styles);
 type EditProfileProps = {
   isShowEditProfile: boolean;
   setIsShowEditProfile: SetIsShow;
-  handleEditProfile: (profileId: number) => void;
 };
 
 export const EditProfile: FC<EditProfileProps> = ({
@@ -30,20 +32,17 @@ export const EditProfile: FC<EditProfileProps> = ({
   const [isShowBrowsePhoto, setIsShowBrowsePhoto] = useState(false);
   const [selectList, setSelectList] = useState(selectListArray);
   const [height, setHeight] = useState<number>(window.innerWidth);
+  const [name, setName] = useState('');
+  const [isErrorName, setErrorName] = useState(true);
+  const [errorNameMessage, setErrorNameMessage] = useState('Заполните поле');
+  const [isErrorGender, setIsErrorGender] = useState(true);
+  const [errorGenresMessage, setErrorGenresMessage] = useState(
+    'Выбирете минимум один жанр',
+  );
+  // const [year, setYear] = useState();
+  // const [location, setLocation] = useState();
+  // const [description, setDescription] = useState();
   const handlePressEscape = PressEscape(setIsShowEditProfile);
-
-  useEffect(() => {
-    handlePressEscape();
-    window.addEventListener('resize', () => setHeight(window.innerWidth));
-    return () => {
-      document.removeEventListener('keydown', () =>
-        setIsShowEditProfile(false),
-      );
-      document.removeEventListener('resize', () =>
-        setHeight(window.innerWidth),
-      );
-    };
-  }, [window.innerWidth, isShowEditProfile]);
 
   const changeSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
@@ -55,6 +54,27 @@ export const EditProfile: FC<EditProfileProps> = ({
       }),
     );
   };
+
+  useEffect(() => {
+    handlePressEscape();
+    overflowHidden(isShowEditProfile);
+    window.addEventListener('resize', () => setHeight(window.innerWidth));
+
+    Validation('name', name, setErrorName, setErrorNameMessage);
+    if (selectListArray.filter((el) => el.isChecked).length === 0) {
+      setIsErrorGender(true);
+      setErrorGenresMessage('Выбирете минимум один жанр');
+    } else setIsErrorGender(false);
+
+    // return () => {
+    //   document.removeEventListener('keydown', () =>
+    //     setIsShowEditProfile(false),
+    //   );
+    //   document.removeEventListener('resize', () =>
+    //     setHeight(window.innerWidth),
+    //   );
+    // };
+  }, [window.innerWidth, name, changeSelect]);
 
   const handleEditProfile = () => {};
 
@@ -97,6 +117,10 @@ export const EditProfile: FC<EditProfileProps> = ({
                 id={'name'}
                 placeholder={'Ivan Aivazovky'}
                 label={'Name*'}
+                errorMessage={errorNameMessage}
+                isError={isErrorName}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <Input id={'yearsOfLife'} label={'Years of life'} />
               <Input id={'location'} label={'Location'} />
@@ -106,7 +130,10 @@ export const EditProfile: FC<EditProfileProps> = ({
                 selectList={selectList}
                 changeSelect={changeSelect}
               />
-              <Button className={'defaultBtn'} isDisabled>
+              <Button
+                className={'defaultBtn'}
+                isDisabled={isErrorGender || isErrorName}
+              >
                 save
               </Button>
             </form>
@@ -127,6 +154,11 @@ export const EditProfile: FC<EditProfileProps> = ({
                 </p>
               </div>
             )}
+            <Toast
+              isShowToast={isErrorGender}
+              handleCloseToast={() => setIsErrorGender(false)}
+              message={errorGenresMessage}
+            />
           </div>
         </section>
       )}

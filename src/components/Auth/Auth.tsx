@@ -7,6 +7,7 @@ import { Context } from '../../hooks/Context';
 import { overflowHidden } from '../../hooks/OverFlowHidden';
 import { PressEscape } from '../../hooks/PressEscape';
 import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { Validation } from '../../hooks/Validation';
 import { fetchAuth } from '../../store/API/auth';
 import { changeAuth } from '../../store/auth/slice';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
@@ -41,10 +42,11 @@ export const Auth: FC<AuthProps> = ({
   const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
   const [isErrorAuth, setIsErrorAuth] = useState(false);
   const [isErrorEmail, setErrorEmail] = useState<boolean>(true);
-  const [errorEmailText, setIsErrorEmailText] = useState('Заполните поле');
+  const [errorEmailMessage, setIsErrorEmailMessage] =
+    useState('Заполните поле');
   const [isErrorPassword, setIsErrorPassword] = useState<boolean>(true);
-  const [errorPasswordText, setErrorPasswordText] = useState('Заполните поле');
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [errorPasswordMessage, setErrorPasswordMessage] =
+    useState('Заполните поле');
   const { error } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -97,29 +99,13 @@ export const Auth: FC<AuthProps> = ({
     handlePressEscape();
     overflowHidden(isShow);
 
-    if (!userEmail || !/^.+@.+\..+$/i.test(userEmail)) {
-      setErrorEmail(true);
-      setIsErrorEmailText('Не корректный email');
-    } else {
-      setErrorEmail(false);
-    }
-
-    if (!userPassword) {
-      setIsErrorPassword(true);
-      setErrorPasswordText('Заполните поле');
-    } else if (userPassword.length > 25) {
-      setIsErrorPassword(true);
-      setErrorPasswordText('Пароль не должен привышать 25 симоволов');
-    } else if (
-      !/(?=.*[0-9])(?=.*[\W])(?=.*[a-z])(?=.*[A-Z]){8,}/g.test(userPassword)
-    ) {
-      setIsErrorPassword(true);
-      setErrorPasswordText(
-        'Пароль должен иметь больше 8 символов, заглавную букву, цифру и спец. символ',
-      );
-    } else {
-      setIsErrorPassword(false);
-    }
+    Validation('email', userEmail, setErrorEmail, setIsErrorEmailMessage);
+    Validation(
+      'password',
+      userPassword,
+      setIsErrorPassword,
+      setErrorPasswordMessage,
+    );
 
     return document.removeEventListener('keydown', () => handleShowAuth);
   }, [isShow, userEmail, userPassword]);
@@ -173,17 +159,17 @@ export const Auth: FC<AuthProps> = ({
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
                     isError={isErrorEmail}
-                    errorMessage={errorEmailText}
+                    errorMessage={errorEmailMessage}
                   />
                   <Input
                     id={'passwordInput'}
-                    type={isShowPassword ? 'text' : 'password'}
+                    type={'password'}
                     className={'validation'}
                     label={'Password'}
                     value={userPassword}
                     onChange={(e) => setUserPassword(e.target.value)}
                     isError={isErrorPassword}
-                    errorMessage={errorPasswordText}
+                    errorMessage={errorPasswordMessage}
                   />
                   <Button
                     className={'defaultBtn'}

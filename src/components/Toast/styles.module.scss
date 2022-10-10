@@ -8,6 +8,7 @@
   border: 1px solid var(--color-inputs-border);
   border-left: 8px solid var(--color-accent-error);
   position: fixed;
+  z-index: 5;
   bottom: 0;
   right: -450px;
   font-family: var(--font-family-paragraph);
