@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/projectSettings/static/css/main.9c1f9909.css",
-    "main.js": "/projectSettings/static/js/main.17f3ba3b.js",
+    "main.js": "/projectSettings/static/js/main.c86dc949.js",
     "static/media/painterImg.png": "/projectSettings/static/media/painterImg.a9d8b78e5a4e3ea8d778.png",
     "static/media/signUpImg.jpg": "/projectSettings/static/media/signUpImg.47e2484839c204499d5c.jpg",
     "static/media/logInImg.jpg": "/projectSettings/static/media/logInImg.8af190a2b12b96064383.jpg",
@@ -11,8 +11,8 @@
     "static/media/preloader.svg": "/projectSettings/static/media/preloader.e17c0d63956b48685c68718da9301a45.svg",
     "static/media/themeIcon.svg": "/projectSettings/static/media/themeIcon.d63778a3ddd90046514b54df49a479d6.svg",
     "static/media/withoutPhotoIcon.svg": "/projectSettings/static/media/withoutPhotoIcon.b1eff7041a659868a66320c289c679d8.svg",
-    "static/media/editIcon.svg": "/projectSettings/static/media/editIcon.0ea74fb902d38b6b61c5f42f7791ac4f.svg",
     "static/media/dragAndDropIcon.svg": "/projectSettings/static/media/dragAndDropIcon.c874c70909efc5ea406b16fa7c93b983.svg",
+    "static/media/editIcon.svg": "/projectSettings/static/media/editIcon.ee28ecc187e61a1a0ae53d948bc21402.svg",
     "static/media/deleteIcon.svg": "/projectSettings/static/media/deleteIcon.3c63416c42e9ac49b05d37046207d417.svg",
     "static/media/showPasswordIcon.svg": "/projectSettings/static/media/showPasswordIcon.af68bb698ddf8bed7501eb9a4e6b140b.svg",
     "static/media/facebook.svg": "/projectSettings/static/media/facebook.c897aaae7073f879cf20af575cdab521.svg",
@@ -31,10 +31,10 @@
     "static/media/iconShow.svg": "/projectSettings/static/media/iconShow.a3b9d04c3821035c0531087e6abffba4.svg",
     "static/media/iconHide.svg": "/projectSettings/static/media/iconHide.64042c1d9dd59e6b60658d780bb18c01.svg",
     "main.9c1f9909.css.map": "/projectSettings/static/css/main.9c1f9909.css.map",
-    "main.17f3ba3b.js.map": "/projectSettings/static/js/main.17f3ba3b.js.map"
+    "main.c86dc949.js.map": "/projectSettings/static/js/main.c86dc949.js.map"
   },
   "entrypoints": [
     "static/css/main.9c1f9909.css",
-    "static/js/main.17f3ba3b.js"
+    "static/js/main.c86dc949.js"
   ]
 }
