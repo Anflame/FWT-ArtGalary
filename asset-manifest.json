@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/projectSettings/static/css/main.11cc2174.css",
-    "main.js": "/projectSettings/static/js/main.e6787869.js",
+    "main.css": "/projectSettings/static/css/main.9c1f9909.css",
+    "main.js": "/projectSettings/static/js/main.842c15e9.js",
     "static/media/painterImg.png": "/projectSettings/static/media/painterImg.a9d8b78e5a4e3ea8d778.png",
-    "static/media/cardImg.jpg": "/projectSettings/static/media/cardImg.0a5176e1f1b6db3d6ed1.jpg",
     "static/media/signUpImg.jpg": "/projectSettings/static/media/signUpImg.47e2484839c204499d5c.jpg",
     "static/media/logInImg.jpg": "/projectSettings/static/media/logInImg.8af190a2b12b96064383.jpg",
     "static/media/instagram.svg": "/projectSettings/static/media/instagram.8de9cb1892f641d4449d363171998c09.svg",
@@ -11,7 +10,11 @@
     "static/media/withoutPainterPhoto.svg": "/projectSettings/static/media/withoutPainterPhoto.9ce708f4b0162d86e14402b4ebb0e1dd.svg",
     "static/media/preloader.svg": "/projectSettings/static/media/preloader.e17c0d63956b48685c68718da9301a45.svg",
     "static/media/themeIcon.svg": "/projectSettings/static/media/themeIcon.d63778a3ddd90046514b54df49a479d6.svg",
+    "static/media/withoutPhotoIcon.svg": "/projectSettings/static/media/withoutPhotoIcon.b1eff7041a659868a66320c289c679d8.svg",
+    "static/media/editIcon.svg": "/projectSettings/static/media/editIcon.0ea74fb902d38b6b61c5f42f7791ac4f.svg",
     "static/media/dragAndDropIcon.svg": "/projectSettings/static/media/dragAndDropIcon.c874c70909efc5ea406b16fa7c93b983.svg",
+    "static/media/deleteIcon.svg": "/projectSettings/static/media/deleteIcon.3c63416c42e9ac49b05d37046207d417.svg",
+    "static/media/showPasswordIcon.svg": "/projectSettings/static/media/showPasswordIcon.af68bb698ddf8bed7501eb9a4e6b140b.svg",
     "static/media/facebook.svg": "/projectSettings/static/media/facebook.c897aaae7073f879cf20af575cdab521.svg",
     "static/media/themeIconLight.svg": "/projectSettings/static/media/themeIconLight.4fb89a50495a0a64dd4d65148e874201.svg",
     "index.html": "/projectSettings/index.html",
@@ -19,18 +22,19 @@
     "static/media/arrowBack.svg": "/projectSettings/static/media/arrowBack.1320a8a8e9cbef522b7bb942fa63c3d4.svg",
     "static/media/closeIcon.svg": "/projectSettings/static/media/closeIcon.dd7dc648aa797908deee0c4f4fb0154a.svg",
     "static/media/menuIconClose.svg": "/projectSettings/static/media/menuIconClose.dd7dc648aa797908deee0c4f4fb0154a.svg",
+    "static/media/error.svg": "/projectSettings/static/media/error.41cbbd42e50a6e12acd89e41e297e074.svg",
     "static/media/logo.svg": "/projectSettings/static/media/logo.529e11a2ede1626abec6b8810ed7bfcb.svg",
-    "static/media/error.svg": "/projectSettings/static/media/error.33917058459739d3b97a4890385aaf98.svg",
     "static/media/labelDelete.svg": "/projectSettings/static/media/labelDelete.da3bd7b78ff60df00ba52954af026ded.svg",
+    "static/media/checkedImg.svg": "/projectSettings/static/media/checkedImg.ce34fc3599f228bea2b688baa2afc9b7.svg",
     "static/media/menuIcon.svg": "/projectSettings/static/media/menuIcon.dd613e385ec4b81ed9451659155cde25.svg",
     "static/media/plus.svg": "/projectSettings/static/media/plus.c13068a79d09dc718424f9236e8a0029.svg",
     "static/media/iconShow.svg": "/projectSettings/static/media/iconShow.a3b9d04c3821035c0531087e6abffba4.svg",
     "static/media/iconHide.svg": "/projectSettings/static/media/iconHide.64042c1d9dd59e6b60658d780bb18c01.svg",
-    "main.11cc2174.css.map": "/projectSettings/static/css/main.11cc2174.css.map",
-    "main.e6787869.js.map": "/projectSettings/static/js/main.e6787869.js.map"
+    "main.9c1f9909.css.map": "/projectSettings/static/css/main.9c1f9909.css.map",
+    "main.842c15e9.js.map": "/projectSettings/static/js/main.842c15e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.11cc2174.css",
-    "static/js/main.e6787869.js"
+    "static/css/main.9c1f9909.css",
+    "static/js/main.842c15e9.js"
   ]
 }
