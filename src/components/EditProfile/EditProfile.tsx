@@ -66,14 +66,14 @@ export const EditProfile: FC<EditProfileProps> = ({
       setErrorGenresMessage('Выбирете минимум один жанр');
     } else setIsErrorGender(false);
 
-    // return () => {
-    //   document.removeEventListener('keydown', () =>
-    //     setIsShowEditProfile(false),
-    //   );
-    //   document.removeEventListener('resize', () =>
-    //     setHeight(window.innerWidth),
-    //   );
-    // };
+    return () => {
+      document.removeEventListener('keydown', () =>
+        setIsShowEditProfile(false),
+      );
+      document.removeEventListener('resize', () =>
+        setHeight(window.innerWidth),
+      );
+    };
   }, [window.innerWidth, name, changeSelect]);
 
   const handleEditProfile = () => {};
