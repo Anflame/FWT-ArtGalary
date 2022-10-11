@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  
+
   .page {
     font-family: var(--font-family-paragraph);
     font-weight: 300;
@@ -26,11 +26,10 @@
   .page:last-of-type {
     margin-right: 36.2px;
   }
-  
+
   .page:first-of-type {
     margin-left: 36.2px;
   }
-
 
   .currentPage {
     background: var(--color-background-currentPage);
@@ -40,7 +39,7 @@
 
   .ellipsis {
     cursor: default;
-    
+
     &:hover {
       font-weight: 300;
     }

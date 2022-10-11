@@ -11,8 +11,8 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const PaintersList: FC = () => {
-  const { painters, isLoading, error } = useAppSelector(
-    (state) => state.painters,
+  const { painterList, isLoading, error } = useAppSelector(
+    ({ painters }) => painters,
   );
   const [isShow, setIsShow] = useState(!error);
 
@@ -30,9 +30,9 @@ export const PaintersList: FC = () => {
           isShowToast={isShow}
         />
       )}
-      {painters && (
+      {painterList && (
         <List
-          items={painters}
+          items={painterList}
           renderItem={(painter: TPainters) => (
             <PainterItem painter={painter} key={painter._id} />
           )}

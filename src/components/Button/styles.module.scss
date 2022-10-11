@@ -4,7 +4,7 @@
 }
 
 .defaultBtn {
-  background-color: var(--color-default-background-btn);  
+  background-color: var(--color-default-background-btn);
   font-family: var(--font-family-paragraph);
   color: var(--color-primary-white);
   text-align: center;
@@ -16,9 +16,10 @@
   cursor: pointer;
   display: block;
   margin: 0 auto;
-  
-  &:hover:not(.btn_disabled), &:focus:not(.btn_disabled) {
-    box-shadow: var(--color-boxShadow-default-btn); 
+
+  &:hover:not(.btn_disabled),
+  &:focus:not(.btn_disabled) {
+    box-shadow: var(--color-boxShadow-default-btn);
   }
 }
 
@@ -31,7 +32,7 @@
   background: none;
   cursor: pointer;
   line-height: 15px;
-  color: var(--color-primary-grey); 
+  color: var(--color-primary-grey);
   text-decoration: underline;
 
   &:before {
@@ -48,8 +49,9 @@
     text-decoration: underline;
   }
 
-  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus {
-    color: var(--color-primary-hover); 
+  &:not(.btn_disabled):hover,
+  &:not(.btn_disabled):focus {
+    color: var(--color-primary-hover);
   }
 }
 
@@ -58,17 +60,19 @@
   border: none;
   cursor: pointer;
 
-  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus  path {
-      fill: var(--color-primary-grey);  
+  &:not(.btn_disabled):hover,
+  &:not(.btn_disabled):focus path {
+    fill: var(--color-primary-grey);
   }
 
-  &:not(.btn_disabled):hover,&:not(.btn_disabled):focus path {
-      fill: var(--color-primary-hover);  
+  &:not(.btn_disabled):hover,
+  &:not(.btn_disabled):focus path {
+    fill: var(--color-primary-hover);
   }
 }
 
 .themeBtn {
-  background-color: var(--color-secondary); 
+  background-color: var(--color-secondary);
   cursor: pointer;
   border: none;
   padding: 10px;
@@ -84,7 +88,7 @@
   transform: rotate(-90deg);
   padding: 25px 26px;
   border-radius: 50%;
-  background-color: var(--color-secondary); 
+  background-color: var(--color-secondary);
   border: 1px solid var(--color-inputs-border);
   color: var(--color-primary-grey);
   cursor: pointer;
@@ -97,13 +101,13 @@
   font-size: 16px;
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  color: var(--color-primary-grey); 
+  color: var(--color-primary-grey);
 
   &:hover {
-    color: var(--color-primary-hover); 
+    color: var(--color-primary-hover);
   }
 
-  &:nth-child(2){
+  &:nth-child(2) {
     margin-left: 20px;
   }
 }
@@ -113,12 +117,12 @@
   font-size: 80px;
   line-height: 72.66px;
   background: none;
-  color: var(--color-primary-grey); 
+  color: var(--color-primary-grey);
   border: none;
   justify-self: left;
   padding-left: 94px;
-  
-  @media(max-width: 550px){
+
+  @media (max-width: 550px) {
     font-size: 32px;
     line-height: 100%;
     padding-left: 47px;

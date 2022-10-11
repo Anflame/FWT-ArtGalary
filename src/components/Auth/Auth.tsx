@@ -47,7 +47,7 @@ export const Auth: FC<AuthProps> = ({
   const [isErrorPassword, setIsErrorPassword] = useState<boolean>(true);
   const [errorPasswordMessage, setErrorPasswordMessage] =
     useState('Заполните поле');
-  const { error } = useAppSelector((state) => state.auth);
+  const { error } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 
   const goTo = (e: React.MouseEvent<HTMLButtonElement>, type: string) => {

@@ -29,9 +29,10 @@
 
 .searchError {
   border: 1px solid var(--color-accent-error);
-  &:hover, &:focus{
+  &:hover,
+  &:focus {
     border: 1px solid var(--color-accent-error);
-  };
+  }
 }
 
 .errorText {
@@ -42,7 +43,7 @@
   margin-top: 7px;
   display: flex;
   align-items: center;
-  
+
   .errorImg {
     margin-right: 8px;
     display: block;
@@ -60,7 +61,7 @@
 
 .cleanSearchBtn {
   display: block;
-  position: absolute; 
+  position: absolute;
   top: 12px;
   right: 12px;
   cursor: pointer;

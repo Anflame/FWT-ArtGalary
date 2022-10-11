@@ -27,11 +27,6 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 type ProfileProps = {
-  painterImage: string;
-  biography: string;
-  paintings: Paintings | boolean;
-  painterTitle: string;
-  painterYearsOfLife: string;
   painterMotherland: string;
 };
 
@@ -46,8 +41,8 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
     error,
     isLoading,
     painterProfileInfo: { description, avatar, name, yearsOfLife, paintings },
-  } = useAppSelector((state) => state.painterProfile);
-  const { accessToken } = useAppSelector((state) => state.auth.tokens);
+  } = useAppSelector(({ painterProfile }) => painterProfile);
+  const { accessToken } = useAppSelector(({ auth: { tokens } }) => tokens);
   const dispatch = useAppDispatch();
   const { painterId } = useParams();
 

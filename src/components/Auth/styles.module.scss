@@ -19,7 +19,7 @@
   align-items: center;
   position: relative;
   height: 700px;
-  
+
   @media (max-width: 768px) {
     width: inherit;
     height: 100vh;
@@ -27,7 +27,7 @@
 
   .signUpBackgroundImg {
     height: inherit;
-    
+
     @media (max-width: 850px) {
       & {
         display: none;
@@ -44,7 +44,7 @@
     padding: 95px;
     height: inherit;
 
-    @media(max-width: 1200px){
+    @media (max-width: 1200px) {
       & {
         padding: 45px;
       }
@@ -54,9 +54,9 @@
       width: inherit;
       height: inherit;
     }
-    
+
     @media (max-width: 320px) {
-      padding: 30px;      
+      padding: 30px;
     }
 
     .validationHeading {
@@ -72,7 +72,7 @@
         line-height: 73px;
         margin-bottom: 40px;
       }
-      
+
       @media (max-width: 320px) {
         font-size: 32px;
         line-height: 100%;
@@ -116,7 +116,7 @@
         color: var(--color-text-auth);
       }
     }
-    
+
     .validationForm {
       width: 100%;
       display: flex;
@@ -125,7 +125,7 @@
       flex-direction: column;
       justify-self: center;
       text-align: left;
-      
+
       & > div:not(:last-of-type) {
         margin-bottom: 32px;
 
@@ -149,11 +149,11 @@
       right: 36px;
       cursor: pointer;
 
-      @media(max-width: 768px) {
+      @media (max-width: 768px) {
         right: 24px;
       }
 
-      @media(max-width: 320px) {
+      @media (max-width: 320px) {
         top: 24px;
       }
     }

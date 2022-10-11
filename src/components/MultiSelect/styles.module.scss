@@ -32,7 +32,7 @@
     .selectIcon {
       margin-right: 20px;
     }
-    
+
     .iconWrapp {
       cursor: pointer;
       position: absolute;
@@ -46,17 +46,17 @@
       align-items: center;
       justify-content: flex-end;
       border: 1px solid var(--color-inputs-border);
-      
+
       &:hover {
         border: 1px solid var(--color-inputs-border-hover);
       }
-    
+
       &:focus {
         border: 1px solid var(--color-primary-grey);
       }
     }
   }
-  
+
   .selectTite {
     display: block;
     margin-bottom: 8px;
@@ -66,7 +66,7 @@
     font-weight: var(--font-weight-bold);
     color: var(--color-primary-hover);
   }
-  
+
   .selectList {
     width: inherit;
     padding: 20px 16px;
@@ -81,11 +81,11 @@
       align-items: center;
       cursor: pointer;
     }
-  
+
     .selectListes:not(:last-of-type) {
       margin-bottom: 22px;
     }
-  
+
     .selectListesTitle {
       color: var(--color-primary-grey);
       font-size: 16px;

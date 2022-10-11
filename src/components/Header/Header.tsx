@@ -20,7 +20,7 @@ export const Header: FC<MenuProps> = ({
   handleShowAuth,
 }) => {
   const { theme, toggleTheme } = Context();
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {

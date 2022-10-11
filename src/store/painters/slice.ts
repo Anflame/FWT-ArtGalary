@@ -3,13 +3,13 @@ import { fetchPainters } from '../API/painters';
 import { TPainters } from '../types';
 
 type PaintersState = {
-  painters: TPainters[];
+  painterList: TPainters[];
   error: string;
   isLoading: boolean;
 };
 
 const initialState: PaintersState = {
-  painters: [],
+  painterList: [],
   error: '',
   isLoading: false,
 };
@@ -25,7 +25,7 @@ const themeSlice = createSlice({
     ) => {
       state.isLoading = false;
       state.error = '';
-      state.painters = action.payload;
+      state.painterList = action.payload;
     },
     [fetchPainters.pending.type]: (state) => {
       state.isLoading = true;

@@ -42,8 +42,3 @@ export type SelectListes = {
   title: string;
   isChecked: boolean;
 };
-
-export type Painters = {
-  id: number;
-  title: string;
-};

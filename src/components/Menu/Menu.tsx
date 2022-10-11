@@ -15,7 +15,7 @@ const cx = cn.bind(styles);
 
 export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
   const { theme, toggleTheme } = Context();
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 
   const logOut = () => {

@@ -1,11 +1,11 @@
 .link {
-  color: var(--color-primary-grey);  
+  color: var(--color-primary-grey);
   font-weight: var(--font-weight-medium);
-  line-height: 22.4px; 
+  line-height: 22.4px;
   font-family: var(--font-family-paragraph);
   cursor: pointer;
-  
+
   &:hover {
-      color: var(--color-primary-hover); 
+    color: var(--color-primary-hover);
   }
 }

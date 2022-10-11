@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   .addPaintingWrappContent {
     background-color: var(--color-primary);
     padding: 80px 30px;
@@ -34,7 +34,7 @@
       align-items: center;
       flex-direction: column;
       margin-bottom: 40px;
-      
+
       & > div:first-of-type {
         margin-bottom: 32px;
       }
@@ -57,19 +57,19 @@
         max-width: 100%;
       }
 
-      @media (min-width: 320px){}
-      
+      @media (min-width: 320px) {
+      }
+
       .dragAndDropIcon {
         width: 60px;
         height: 60px;
         margin-bottom: 20px;
 
-        @media (min-width:768px) {
+        @media (min-width: 768px) {
           width: 130px;
           height: 130px;
         }
       }
-      
 
       .browseImageLabel {
         text-align: center;
@@ -95,7 +95,7 @@
         color: var(--color-primary-darkGrey);
         font-weight: 300;
 
-        @media (min-width:768px) {
+        @media (min-width: 768px) {
           display: block;
         }
 
@@ -112,7 +112,7 @@
         display: none;
       }
 
-      .dragAndDropText  {
+      .dragAndDropText {
         font-size: 12px;
         line-height: 140%;
         text-align: center;
@@ -120,7 +120,7 @@
         color: var(--color-inputs-border-hover);
       }
     }
-    
+
     .previewImageWrapp {
       width: 493px;
       min-height: 327px;

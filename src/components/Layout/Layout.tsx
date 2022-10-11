@@ -18,7 +18,7 @@ export const Layout: FC = () => {
   const toggleTheme = () => {
     const resultTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(resultTheme);
-    Cookies.set('theme', resultTheme, { expires: 7 });
+    Cookies.set('theme', resultTheme);
   };
 
   const [isShowAuth, setIsShowAuth] = useState({

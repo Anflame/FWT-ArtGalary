@@ -20,28 +20,28 @@
     align-items: center;
 
     .authWrapp {
-        display: flex;
-        justify-content: center;
-        margin-right: 80px;
+      display: flex;
+      justify-content: center;
+      margin-right: 80px;
     }
 
     .authAndChangeThemeWrapp {
-        display: flex;
-        justify-content: center;
+      display: flex;
+      justify-content: center;
     }
 
-    .menu, .menuIcon {
-        display: none;
+    .menu,
+    .menuIcon {
+      display: none;
     }
 
-    @media(max-width:768px) {
-       
+    @media (max-width: 768px) {
       .authAndChangeThemeWrapp {
-          display: none;
+        display: none;
       }
 
       .menuIcon {
-          display: block;
+        display: block;
       }
     }
   }

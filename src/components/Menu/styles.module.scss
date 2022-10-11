@@ -12,7 +12,7 @@
   transition: background-color 1s ease-out;
 }
 .menu.menuShow {
-  background-color: rgba(3,3,3,.6);
+  background-color: rgba(3, 3, 3, 0.6);
   pointer-events: all;
 }
 
@@ -29,7 +29,7 @@
   }
 
   @media (max-width: 550px) {
-      width: 252px;
+    width: 252px;
   }
 
   .menuIconClose {
@@ -45,18 +45,18 @@
     padding-left: 94px;
 
     @media (max-width: 550px) {
-        padding-left: 47px;
+      padding-left: 47px;
     }
 
     .menuThemeMode {
-        font-family: var(--font-family-paragraph);
-        color: var(--color-primary-grey);
-        text-transform: uppercase;
-        text-decoration: underline;
-        margin-left: 12px;
-        font-size: 12px;
-        line-height: 15px;
-        cursor: pointer;
+      font-family: var(--font-family-paragraph);
+      color: var(--color-primary-grey);
+      text-transform: uppercase;
+      text-decoration: underline;
+      margin-left: 12px;
+      font-size: 12px;
+      line-height: 15px;
+      cursor: pointer;
     }
   }
 }
@@ -64,17 +64,17 @@
 .menu .menuPopUpContent {
   padding-top: 34px;
   padding-right: 28px;
-  display: grid; 
+  display: grid;
   justify-items: flex-end;
   align-items: flex-end;
   grid-template-rows: 52px 204px 132px 100px;
 
   @media (max-width: 320px) {
-      padding-right: 24px;
-      padding-top: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
   }
 
-  @media (max-width:550px) {
-      grid-template-rows: 52px 204px 72px 64px;
+  @media (max-width: 550px) {
+    grid-template-rows: 52px 204px 72px 64px;
   }
 }
