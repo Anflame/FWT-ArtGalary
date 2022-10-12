@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import MultiSelect from '../components/MultiSelect';
+import MultiSelect from '../ui/MultiSelect';
 
 export default {
   title: 'MultiSelect',

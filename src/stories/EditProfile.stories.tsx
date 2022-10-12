@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import EditProfile from '../components/EditProfile';
+import EditProfile from '../ui/EditProfile';
 
 export default {
   title: 'EditProfile',

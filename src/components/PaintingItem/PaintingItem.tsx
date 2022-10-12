@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import Card from '../Card';
 import { API } from '../../constants';
 import type { Paintings } from '../../store/types';
+import Card from '../../ui/Card';
 
 type PaintingItemProps = {
   painting: Paintings;

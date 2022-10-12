@@ -1,4 +1,4 @@
-export const Validation = (
+export const validation = (
   inputType: string,
   inputValue: string,
   setError: (isError: boolean) => void,

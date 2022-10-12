@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import Links from '../Links';
-import { Context } from '../../hooks/Context';
+import { themeContext } from '../../hooks/themeContext';
+import Links from '../../ui/Links';
 import { ReactComponent as Facebook } from '../../assets/images/facebook.svg';
 import { ReactComponent as Instagram } from '../../assets/images/instagram.svg';
 import { ReactComponent as Vk } from '../../assets/images/vk.svg';
@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const Footer: FC = () => {
-  const { theme } = Context();
+  const { theme } = themeContext();
 
   return (
     <footer className={cx('footer')}>

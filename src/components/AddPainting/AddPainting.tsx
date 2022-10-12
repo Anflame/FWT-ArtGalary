@@ -1,13 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import Input from '../Input';
-import Toast from '../Toast';
 import { SetIsShow } from '../../comon-types';
-import { Context } from '../../hooks/Context';
-import { PressEscape } from '../../hooks/PressEscape';
-import { Validation } from '../../hooks/Validation';
+import { addFile } from '../../hooks/addFIle';
+import { dragAndDrop } from '../../hooks/dragAndDrop';
+import { pressEscape } from '../../hooks/pressEscape';
+import { themeContext } from '../../hooks/themeContext';
+import { validation } from '../../hooks/validation';
+import Button from '../../ui/Button';
+import Input from '../../ui/Input';
+import Toast from '../../ui/Toast';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import { ReactComponent as DragAndDropIcon } from '../../assets/images/dragAndDropIcon.svg';
 import styles from './styles.module.scss';
 
@@ -22,7 +25,7 @@ export const AddPainting: FC<AddPaintingProps> = ({
   isShowAddPhoto,
   setIsShowAddPhoto,
 }) => {
-  const { theme } = Context();
+  const { theme } = themeContext();
   const [image, setImage] = useState<File>();
   const [previewUrl, setPreviewUrl] = useState('');
   const [isError, setIsError] = useState(true);
@@ -33,43 +36,21 @@ export const AddPainting: FC<AddPaintingProps> = ({
   const [isErrorYear, setIsErrorYear] = useState(true);
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
-  const handlePressEscape = PressEscape(setIsShowAddPhoto);
+  const [drag, setDrag] = useState(false);
 
-  const handleFile = (file: File) => {
-    if (
-      (file.type === 'image/png' || file.type === 'image/jpeg') &&
-      file.size <= 3145728
-    ) {
+  const handleAddFile = (
+    e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>,
+  ) => {
+    const file = addFile(e);
+    if (file) {
       setImage(file);
       setPreviewUrl(URL.createObjectURL(file));
-      if (isError && /(Некорректное изображение)+/iu.test(errorText)) {
-        setIsError(false);
-      }
     } else {
       setIsError(true);
+      setDrag(false);
       setErrorText('Некорректное изображение');
     }
     return URL.revokeObjectURL(previewUrl);
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (e.dataTransfer.files.length === 1) {
-      handleFile(e.dataTransfer.files[0]);
-    } else {
-      setIsError(true);
-      setErrorText('Некорректное изображение');
-    }
-  };
-
-  const handleAddFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    if (e.target.files?.length === 1) {
-      handleFile(e.target.files[0]);
-    } else {
-      setIsError(true);
-      setErrorText('Некорректное изображение');
-    }
   };
 
   const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,21 +58,20 @@ export const AddPainting: FC<AddPaintingProps> = ({
   };
 
   useEffect(() => {
-    handlePressEscape();
-
-    Validation('name', name, setIsErrorName, setNameMessage);
-    Validation('year', year, setIsErrorYear, setYearMessage);
+    pressEscape(setIsShowAddPhoto);
+    validation('name', name, setIsErrorName, setNameMessage);
+    validation('year', year, setIsErrorYear, setYearMessage);
 
     if (isErrorName || isErrorYear) {
       setErrorText('Исправьте ошибки');
       setIsError(true);
     } else if (!image) {
-      setErrorText('Выбирете изображение');
+      setErrorText('Выберите изображение');
       setIsError(true);
     } else setIsError(false);
 
     return document.removeEventListener('keydown', () => setIsShowAddPhoto);
-  }, [name, year, image]);
+  }, [name, year, image, drag]);
 
   return (
     <>
@@ -123,9 +103,11 @@ export const AddPainting: FC<AddPaintingProps> = ({
             </div>
             {!image ? (
               <div
-                className={cx('dragAndDropWrapp')}
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
+                className={cx('dragAndDropWrapp', drag && 'drag')}
+                onDrop={(e) => handleAddFile(e)}
+                onDragStart={(e) => dragAndDrop(e, 'over', setDrag)}
+                onDragLeave={(e) => dragAndDrop(e, 'leave', setDrag)}
+                onDragOver={(e) => dragAndDrop(e, 'over', setDrag)}
               >
                 <DragAndDropIcon className={cx('dragAndDropIcon')} />
                 <label htmlFor="browseImage" className={cx('browseImageLabel')}>
@@ -157,11 +139,18 @@ export const AddPainting: FC<AddPaintingProps> = ({
                   alt="preview"
                   className={cx('previewImage')}
                 />
+                <DeleteIcon
+                  width="16px"
+                  height="16px"
+                  fill="#DEDEDE"
+                  className={cx('deleteIcon')}
+                  onClick={() => setImage(undefined)}
+                />
               </div>
             )}
             <Button
               className="defaultBtn"
-              isDisabled={isErrorName || isErrorName || !image}
+              disabled={isErrorName || isErrorName || !image}
             >
               Save
             </Button>

@@ -15,4 +15,21 @@
     padding-bottom: 80px;
     padding-top: 80px;
   }
+
+  .editWrapp {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px !important;
+    @include mini-viewport;
+    @include small-viewport;
+    @include medium-viewport;
+    @include large-viewport;
+    @include ultra-large-viewport;
+
+    .searchWrapp {
+      & > form {
+        margin-right: 26px;
+      }
+    }
+  }
 }

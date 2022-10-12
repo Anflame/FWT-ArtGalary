@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import Card from '../Card';
 import { API } from '../../constants';
 import type { TPainters } from '../../store/types';
+import Card from '../../ui/Card';
 
 type PainterItemProps = {
   painter: TPainters;

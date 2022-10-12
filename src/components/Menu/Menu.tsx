@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import { Context } from '../../hooks/Context';
-import { overflowHidden } from '../../hooks/OverFlowHidden';
-import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { overflowHidden } from '../../hooks/overFlowHidden';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { themeContext } from '../../hooks/themeContext';
 import { changeAuth } from '../../store/auth/slice';
+import Button from '../../ui/Button';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
-  const { theme, toggleTheme } = Context();
+  const { theme, toggleTheme } = themeContext();
   const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 

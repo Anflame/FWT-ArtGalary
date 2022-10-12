@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
+import { themeContext } from '../../hooks/themeContext';
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import { ReactComponent as SearchIcon } from '../../assets/images/searchIcon.svg';
@@ -13,7 +13,7 @@ type SearchProps = {
 };
 
 export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
-  const { theme } = Context();
+  const { theme } = themeContext();
   const [isblurSearch, setIsBlurSearch] = useState(false);
   const [value, setValue] = useState('');
   const [isError] = useState(false);

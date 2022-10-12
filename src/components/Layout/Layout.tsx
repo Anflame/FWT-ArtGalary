@@ -5,14 +5,12 @@ import Auth from '../Auth';
 import Footer from '../Footer';
 import Header from '../Header';
 import Menu from '../Menu';
-import { useAppDispatch } from '../../hooks/Redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { fetchPainters } from '../../store/API/painters';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 export const Layout: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const toggleTheme = () => {
@@ -65,14 +63,7 @@ export const Layout: FC = () => {
       />
       <Outlet />
       <Footer />
-      <Auth
-        isShowAuth={isShowAuth}
-        handleShowAuth={handleShowAuth}
-        userEmail={userEmail}
-        userPassword={userPassword}
-        setUserEmail={setUserEmail}
-        setUserPassword={setUserPassword}
-      />
+      <Auth isShowAuth={isShowAuth} handleShowAuth={handleShowAuth} />
     </ThemeContext.Provider>
   );
 };

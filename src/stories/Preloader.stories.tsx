@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import img from '../assets/images/PreloaderImg.jpg';
-import Preloader from '../components/Preloader';
+import Preloader from '../ui/Preloader';
 
 export default {
   title: 'Preloader',

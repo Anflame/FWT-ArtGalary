@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Button from '../components/Button';
+import Button from '../ui/Button';
 
 export default {
   title: 'Button',
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const expandBtn = Template.bind({});
 
 expandBtn.args = {
-  isDisabled: false,
+  disabled: false,
   children: '>',
   className: 'expandBtn',
   isOutlined: true,
@@ -22,7 +22,7 @@ expandBtn.args = {
 export const authBtn = Template.bind({});
 
 authBtn.args = {
-  isDisabled: false,
+  disabled: false,
   children: 'Button',
   className: 'logInSigUpBtn',
 };

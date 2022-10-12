@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import { Context } from '../../hooks/Context';
+import { themeContext } from '../../hooks/themeContext';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -19,7 +19,7 @@ export const Toast: FC<ToastProps> = ({
   handleCloseToast,
   isShowToast,
 }) => {
-  const { theme } = Context();
+  const { theme } = themeContext();
 
   return (
     <div className={cx('toast', isShowToast && 'showToast')}>

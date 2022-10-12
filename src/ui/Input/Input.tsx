@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, InputHTMLAttributes, useState } from 'react';
 import cn from 'classnames/bind';
 import type { InputsProps } from '../../comon-types';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -7,19 +7,17 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Input: FC<InputsProps> = ({
-  id,
-  type,
+export const Input: FC<InputsProps & InputHTMLAttributes<HTMLInputElement>> = ({
   className,
-  placeholder,
   onChange,
-  value,
   label,
   isError,
   errorMessage,
   ...args
 }) => {
+  const { placeholder, value, id, type } = args;
   const [isShowPassword, setIsShowPassword] = useState(false);
+
   return (
     <div className={cx('inputWrapp', className)}>
       <label htmlFor={id} className={cx('inputLabel')}>
@@ -28,7 +26,6 @@ export const Input: FC<InputsProps> = ({
       <div className={cx('inputWrapp')}>
         <input
           className={cx('input', isError && 'inputError')}
-          id={id}
           type={type === 'password' && isShowPassword ? 'text' : type}
           {...args}
           placeholder={isError ? 'Wrong Text' : placeholder || ''}

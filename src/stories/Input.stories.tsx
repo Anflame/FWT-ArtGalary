@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Input from '../components/Input';
+import Input from '../ui/Input';
 import '../index.scss';
 
 export default {

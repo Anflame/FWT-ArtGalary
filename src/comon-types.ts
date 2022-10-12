@@ -25,16 +25,11 @@ export type MenuProps = {
 };
 
 export type InputsProps = {
-  id?: string;
-  type?: string;
   className?: string;
-  placeholder?: string;
   isError?: boolean;
   errorMessage?: string;
   label: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
-  args?: HTMLInputElement;
 };
 
 export type SelectListes = {

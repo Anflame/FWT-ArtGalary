@@ -1,15 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import Input from '../Input';
-import Toast from '../Toast';
-import { Context } from '../../hooks/Context';
-import { overflowHidden } from '../../hooks/OverFlowHidden';
-import { PressEscape } from '../../hooks/PressEscape';
-import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
-import { Validation } from '../../hooks/Validation';
+import { overflowHidden } from '../../hooks/overFlowHidden';
+import { pressEscape } from '../../hooks/pressEscape';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { themeContext } from '../../hooks/themeContext';
+import { validation } from '../../hooks/validation';
 import { fetchAuth } from '../../store/API/auth';
 import { changeAuth } from '../../store/auth/slice';
+import Button from '../../ui/Button';
+import Input from '../../ui/Input';
+import Toast from '../../ui/Toast';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import logInImg from '../../assets/images/logInImg.jpg';
 import signUpImg from '../../assets/images/signUpImg.jpg';
@@ -23,23 +23,13 @@ export type AuthProps = {
     signUp: boolean;
   };
   handleShowAuth: (type?: string | boolean) => void;
-  userEmail: string;
-  userPassword: string;
-  setUserEmail: (userEmail: string) => void;
-  setUserPassword: (userPassword: string) => void;
 };
 
-export const Auth: FC<AuthProps> = ({
-  isShowAuth,
-  handleShowAuth,
-  userEmail,
-  userPassword,
-  setUserEmail,
-  setUserPassword,
-}) => {
-  const { theme } = Context();
-  const handlePressEscape = PressEscape(() => handleShowAuth(false));
+export const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
+  const { theme } = themeContext();
   const isShow = isShowAuth.logIn || isShowAuth.signUp || false;
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
   const [isErrorAuth, setIsErrorAuth] = useState(false);
   const [isErrorEmail, setErrorEmail] = useState<boolean>(true);
   const [errorEmailMessage, setIsErrorEmailMessage] =
@@ -60,47 +50,31 @@ export const Auth: FC<AuthProps> = ({
     e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault();
-    if (type === 'logIn') {
-      dispatch(
-        fetchAuth({
-          type: 'login',
-          auth: {
-            fingerprint: 'string',
-            username: userEmail,
-            password: userPassword,
-          },
-        }),
-      ).then((data) => {
-        if (data.meta.requestStatus === 'fulfilled') {
-          dispatch(changeAuth(true));
-          handleShowAuth(false);
-        }
-      });
-    } else {
-      dispatch(
-        fetchAuth({
-          type: 'register',
-          auth: {
-            fingerprint: 'string',
-            username: userEmail,
-            password: userPassword,
-          },
-        }),
-      ).then((data) => {
-        if (data.meta.requestStatus === 'fulfilled') {
-          dispatch(changeAuth(true));
-          handleShowAuth(false);
-        }
-      });
-    }
+    dispatch(
+      fetchAuth({
+        type,
+        auth: {
+          fingerprint: 'string',
+          username: userEmail,
+          password: userPassword,
+        },
+      }),
+    ).then((data) => {
+      if (data.meta.requestStatus === 'fulfilled') {
+        dispatch(changeAuth(true));
+        handleShowAuth(false);
+      } else {
+        setIsErrorAuth(true);
+      }
+    });
   };
 
   useEffect(() => {
-    handlePressEscape();
+    pressEscape(() => handleShowAuth(false));
     overflowHidden(isShow);
 
-    Validation('email', userEmail, setErrorEmail, setIsErrorEmailMessage);
-    Validation(
+    validation('email', userEmail, setErrorEmail, setIsErrorEmailMessage);
+    validation(
       'password',
       userPassword,
       setIsErrorPassword,
@@ -147,8 +121,8 @@ export const Auth: FC<AuthProps> = ({
                   className={cx('validationForm')}
                   onSubmit={
                     isShowAuth.signUp
-                      ? (e) => handleClickAuth('signUp', e)
-                      : (e) => handleClickAuth('logIn', e)
+                      ? (e) => handleClickAuth('register', e)
+                      : (e) => handleClickAuth('login', e)
                   }
                 >
                   <Input
@@ -173,7 +147,7 @@ export const Auth: FC<AuthProps> = ({
                   />
                   <Button
                     className={'defaultBtn'}
-                    isDisabled={isErrorEmail || isErrorPassword}
+                    disabled={isErrorEmail || isErrorPassword}
                   >
                     {isShowAuth.signUp ? 'sign up' : 'log in'}
                   </Button>
@@ -199,12 +173,12 @@ export const Auth: FC<AuthProps> = ({
                   className={cx('closeIcon')}
                 />
               </div>
+              <Toast
+                isShowToast={isErrorAuth}
+                handleCloseToast={() => setIsErrorAuth(false)}
+                message={error}
+              />
             </div>
-            <Toast
-              isShowToast={isErrorAuth}
-              handleCloseToast={() => setIsErrorAuth(false)}
-              message={error}
-            />
           </section>
         </>
       )}

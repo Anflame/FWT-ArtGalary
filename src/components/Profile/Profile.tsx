@@ -2,18 +2,18 @@ import React, { FC, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import AddPainting from '../AddPainting';
-import Button from '../Button';
-import DeleteProfile from '../DeleteProfile';
-import EditProfile from '../EditProfile';
-import Label from '../Label';
-import List from '../List';
-import Preloader from '../Preloader';
-import Toast from '../Toast';
 import { API } from '../../constants';
-import { Context } from '../../hooks/Context';
-import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { themeContext } from '../../hooks/themeContext';
 import { fetchPainterProfle } from '../../store/API/painterProfile';
 import { Paintings } from '../../store/types';
+import Button from '../../ui/Button';
+import DeleteProfile from '../../ui/DeleteProfile';
+import EditProfile from '../../ui/EditProfile';
+import Label from '../../ui/Label';
+import List from '../../ui/List';
+import Preloader from '../../ui/Preloader';
+import Toast from '../../ui/Toast';
 import { PaintingItem } from '../PaintingItem/PaintingItem';
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -31,7 +31,7 @@ type ProfileProps = {
 };
 
 export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
-  const { theme } = Context();
+  const { theme } = themeContext();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
   const [isShowAddPhoto, setIsShowAddPhoto] = useState<boolean>();
   const [isShowEditProfile, setIsShowEditProfile] = useState(false);

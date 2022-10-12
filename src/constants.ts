@@ -1,5 +1,3 @@
-import { Painters } from './comon-types';
-
 export const socNetworks = [
   {
     id: 1,
@@ -22,7 +20,7 @@ export const API = 'https://internship-front.framework.team';
 
 export const pages: Array<number> = [];
 
-export const paintings: Painters[] = [
+export const paintings = [
   {
     id: 1,
     title: 'Romanticism',

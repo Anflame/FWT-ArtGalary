@@ -1,10 +1,10 @@
 import { FC, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import { Context } from '../../hooks/Context';
-import { useAppDispatch, useAppSelector } from '../../hooks/Redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { themeContext } from '../../hooks/themeContext';
 import { changeAuth } from '../../store/auth/slice';
+import Button from '../../ui/Button';
 import type { MenuProps } from '../../comon-types';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
@@ -19,7 +19,7 @@ export const Header: FC<MenuProps> = ({
   setIsShow,
   handleShowAuth,
 }) => {
-  const { theme, toggleTheme } = Context();
+  const { theme, toggleTheme } = themeContext();
   const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 
