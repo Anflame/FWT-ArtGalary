@@ -6,11 +6,12 @@ import { useThemeContext } from '../hooks/useThemeContext';
 import { TPainters } from '../store/types';
 import Button from '../ui/Button';
 import EditProfile from '../ui/EditProfile';
+import Filter from '../ui/FIlter';
 import List from '../ui/List';
 import Preloader from '../ui/Preloader';
 import Search from '../ui/Search';
 import Toast from '../ui/Toast';
-import { ReactComponent as SearchParamsShowIcon } from '../assets/images/searchParamsShowIcon.svg';
+import { ReactComponent as FilterIcon } from '../assets/images/filterIcon.svg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -22,7 +23,7 @@ export const PaintersList: FC = () => {
   );
   const [isShow, setIsShow] = useState(!error);
   const [isShowAddProfile, setIsShowAddProfile] = useState(false);
-  const [isShowSearchParams, setIsShowSearchParams] = useState(false);
+  const [isShowFilter, setIsShowFilter] = useState(false);
 
   const handleCloseToast = () => {
     setIsShow(false);
@@ -41,9 +42,10 @@ export const PaintersList: FC = () => {
         </Button>
         <div className={cx('searchWrapp')}>
           <Search handleSubmitForm={handleSubmitForm} />
-          <SearchParamsShowIcon
+          <FilterIcon
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-            onClick={() => setIsShowSearchParams(!isShowSearchParams)}
+            onClick={() => setIsShowFilter(!isShowFilter)}
+            className={cx('filterIcon')}
           />
         </div>
       </div>
@@ -67,6 +69,7 @@ export const PaintersList: FC = () => {
         isShowEditProfile={isShowAddProfile}
         setIsShowEditProfile={() => setIsShowAddProfile(false)}
       />
+      <Filter isShowFilter={isShowFilter} setIsShowFilter={setIsShowFilter} />
     </main>
   );
 };

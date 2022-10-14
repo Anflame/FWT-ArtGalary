@@ -20,26 +20,49 @@ export const API = 'https://internship-front.framework.team';
 
 export const pages: Array<number> = [];
 
-export const paintings = [
+export const genres = [
   {
     id: 1,
-    title: 'Romanticism',
+    name: 'Romanticism',
+    isChecked: false,
   },
   {
     id: 2,
-    title: 'Art',
+    name: 'Art',
+    isChecked: false,
   },
   {
     id: 3,
-    title: 'Nature',
+    name: 'Nature',
+    isChecked: false,
   },
   {
     id: 4,
-    title: 'Bataille',
+    name: 'Bataille',
+    isChecked: false,
   },
   {
     id: 5,
-    title: 'Realistic',
+    name: 'Realistic',
+    isChecked: false,
+  },
+];
+
+export const sort = [
+  {
+    id: 1,
+    name: 'Recently added',
+    isChecked: false,
+  },
+  {
+    id: 2,
+    name: 'A-Z',
+    isChecked: false,
+  },
+  {
+    id: 3,
+    name: 'Z-A',
+    isChecked: false,
   },
 ];
 

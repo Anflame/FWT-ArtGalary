@@ -1,8 +1,8 @@
 @use '../mixins.scss' as mixins;
 
 .main {
-  padding-top: 180px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
+  padding-top: 104px;
   background-color: var(--color-primary);
   min-height: 100vh;
   z-index: 1;
@@ -11,9 +11,13 @@
     overflow: hidden;
   }
 
-  @media (max-width: 320px) {
-    padding-bottom: 80px;
-    padding-top: 80px;
+  @media (min-width: 768px) {
+    padding-bottom: 100px;
+    padding-top: 136px;
+  }
+
+  @media (min-width: 1440px) {
+    padding-top: 128px;
   }
 
   .editWrapp {
@@ -28,7 +32,12 @@
 
     .searchWrapp {
       & > form {
+        display: none;
         margin-right: 26px;
+      }
+
+      .filterIcon {
+        cursor: pointer;
       }
     }
   }

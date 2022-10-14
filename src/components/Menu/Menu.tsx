@@ -8,7 +8,7 @@ import { useThemeContext } from '../../hooks/useThemeContext';
 import { changeAuth } from '../../store/auth/slice';
 import Button from '../../ui/Button';
 import type { MenuProps } from '../../comon-types';
-import { ReactComponent as MenuIconClose } from '../../assets/images/menuIconClose.svg';
+import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
 import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
 import styles from './styles.module.scss';
@@ -37,7 +37,7 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
         className={cx('menuPopUpContent', isShow && 'menuPopUpContentShow')}
         onClick={(e) => e.stopPropagation()}
       >
-        <MenuIconClose
+        <IconClose
           fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
           onClick={() => setIsShow(!isShow)}
           className={cx('menuIconClose')}
