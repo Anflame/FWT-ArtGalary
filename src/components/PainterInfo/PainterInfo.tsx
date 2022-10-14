@@ -18,9 +18,10 @@ type PainterInfoProps = {
 export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
   const { theme } = useThemeContext();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
-  const { avatar, yearsOfLife, description, paintings, name } = useAppSelector(
-    ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
-  );
+  const { avatar, yearsOfLife, description, paintings, name, genres } =
+    useAppSelector(
+      ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
+    );
 
   return (
     <div className={cx('painter')}>
@@ -70,13 +71,11 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
               )}
             </div>
             <ul className={cx('paintingsList')}>
-              {paintings &&
-                typeof paintings !== 'boolean' &&
-                paintings.map(({ _id, name: painingName }) => (
-                  <li key={_id} className={cx('paintingsListes')}>
-                    <Label children={painingName} isDelAllowed={false} />
-                  </li>
-                ))}
+              {genres.map(({ _id, name: painingName }) => (
+                <li key={_id} className={cx('paintingsListes')}>
+                  <Label children={painingName} isDelAllowed={false} />
+                </li>
+              ))}
             </ul>
           </div>
         </div>
