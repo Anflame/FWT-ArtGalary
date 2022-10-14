@@ -1,0 +1,88 @@
+.dragAndDropWrapp {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 26px;
+  margin-bottom: 60px;
+  font-family: var(--font-family-paragraph);
+  border-image: url(../../assets/images/photoBorder.png) 30 fill/ 20px round;
+
+  @media (min-width: 768px) {
+    padding: 50px 116px;
+    max-width: 100%;
+  }
+
+  @media (min-width: 320px) {
+  }
+
+  .dragAndDropIcon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  .browseImageLabel {
+    text-align: center;
+    text-decoration: underline;
+    display: block;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 140%;
+    margin-bottom: 12px;
+    color: var(--color-primary-darkGrey);
+    font-weight: var(--font-weigth-medium);
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .broweImageWrapp {
+    display: none;
+    font-size: 16px;
+    line-height: 140%;
+    margin-bottom: 12px;
+    color: var(--color-primary-darkGrey);
+    font-weight: 300;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    .browseWrappImageLabel {
+      text-align: center;
+      text-decoration: underline;
+      display: block;
+      cursor: pointer;
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  .browseImage {
+    display: none;
+  }
+
+  .dragAndDropText {
+    font-size: 12px;
+    line-height: 140%;
+    text-align: center;
+    font-weight: var(--font-weght-medium);
+    color: var(--color-inputs-border-hover);
+  }
+}
+
+.drag {
+  background-color: var(--color-background-multiSelect-list);
+
+  & * {
+    pointer-events: none;
+  }
+}

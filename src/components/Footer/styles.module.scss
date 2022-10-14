@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@use '../../mixins.scss' as mixins;
 
 .footer {
   background-color: var(--color-primary);
@@ -8,11 +8,11 @@
     display: flex;
     justify-content: space-between;
 
-    @include small-viewport;
-    @include mini-viewport;
-    @include medium-viewport;
-    @include large-viewport;
-    @include ultra-large-viewport;
+    @include mixins.small-viewport;
+    @include mixins.mini-viewport;
+    @include mixins.medium-viewport;
+    @include mixins.large-viewport;
+    @include mixins.ultra-large-viewport;
 
     @media (max-width: 728px) {
       flex-direction: column;

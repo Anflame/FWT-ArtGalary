@@ -1,14 +1,14 @@
-export const dragAndDrop = (
+export const useDragAndDrop = (
   e: React.DragEvent<HTMLDivElement> | React.FormEvent<HTMLFormElement>,
   type: string,
+  drag: boolean,
   setDrag: (drag: boolean) => void,
 ) => {
   e.preventDefault();
   if (type === 'over') {
-    setDrag(true);
+    if (!drag) setDrag(true);
   }
   if (type === 'leave') {
-    setDrag(false);
+    if (drag) setDrag(false);
   }
-  return false;
 };

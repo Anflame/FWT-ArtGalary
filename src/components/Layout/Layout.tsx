@@ -5,7 +5,8 @@ import Auth from '../Auth';
 import Footer from '../Footer';
 import Header from '../Header';
 import Menu from '../Menu';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/useRedux';
+import { useUnScroll } from '../../hooks/useScroll';
 import { fetchPainters } from '../../store/API/painters';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
@@ -25,22 +26,11 @@ export const Layout: FC = () => {
   });
 
   const handleShowAuth = (type?: string | boolean) => {
-    if (!type) {
-      setIsShowAuth({
-        logIn: false,
-        signUp: false,
-      });
-    }
-    if (type === 'logIn')
-      setIsShowAuth({
-        logIn: true,
-        signUp: false,
-      });
-    if (type === 'signUp')
-      setIsShowAuth({
-        logIn: false,
-        signUp: true,
-      });
+    setIsShowAuth({
+      logIn: type === 'logIn',
+      signUp: type === 'signUp',
+    });
+    useUnScroll(!!type);
   };
 
   useEffect(() => {

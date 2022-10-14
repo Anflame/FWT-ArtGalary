@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { themeContext } from '../../hooks/themeContext';
+import { modalNode } from '../../constants';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -19,9 +21,9 @@ export const Toast: FC<ToastProps> = ({
   handleCloseToast,
   isShowToast,
 }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
 
-  return (
+  return createPortal(
     <div className={cx('toast', isShowToast && 'showToast')}>
       <h3 className={cx('toastHeading')}>
         {<Error className={cx('errorImg')} fill={'#AE2917'} />}
@@ -37,6 +39,7 @@ export const Toast: FC<ToastProps> = ({
         fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
         onClick={() => handleCloseToast(false)}
       />
-    </div>
+    </div>,
+    modalNode,
   );
 };

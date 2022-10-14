@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import DeleteProfile from '../ui/DeleteProfile';
+import DeleteProfile from '../components/DeleteProfile';
 
 export default {
   title: 'DeleteProfile',

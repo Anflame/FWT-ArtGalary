@@ -1,19 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 // import { useParams } from 'react-router';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import Input from '../Input';
-import MultiSelect from '../MultiSelect';
-import TextArea from '../TextArea';
 import Toast from '../Toast';
 import { SetIsShow } from '../../comon-types';
-import { selectListArray } from '../../constants';
-import { addFile } from '../../hooks/addFIle';
-import { dragAndDrop } from '../../hooks/dragAndDrop';
-import { overflowHidden } from '../../hooks/overFlowHidden';
-import { pressEscape } from '../../hooks/pressEscape';
-import { themeContext } from '../../hooks/themeContext';
-import { validation } from '../../hooks/validation';
+import EditProFileForm from '../../components/EditProfileForm';
+import { modalNode } from '../../constants';
+import { useAddFile } from '../../hooks/useAddFIle';
+import { useDragAndDrop } from '../../hooks/useDragAndDrop';
+import { usePressEscape } from '../../hooks/usePressEscape';
+import { useUnScroll } from '../../hooks/useScroll';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -29,86 +26,50 @@ export const EditProfile: FC<EditProfileProps> = ({
   isShowEditProfile,
   setIsShowEditProfile,
 }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
   // const { profileId } = useParams();
-  const [selectList, setSelectList] = useState(selectListArray);
-  const [width, setWidth] = useState<number>(window.innerWidth);
-  const [name, setName] = useState('');
   const [drag, setDrag] = useState(false);
-  const [dragStart, setDragStart] = useState(false);
   const [previewUrl, setPreviewUrl] = useState('');
   const [image, setImage] = useState<File>();
-  const [isErrorName, setErrorName] = useState(true);
-  const [errorNameMessage, setErrorNameMessage] = useState('Заполните поле');
   const [isError, setIsError] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(
-    'Выбирете минимум один жанр',
-  );
-  // const [year, setYear] = useState();
-  // const [location, setLocation] = useState();
-  // const [description, setDescription] = useState();
-
-  const changeSelect = (e: React.MouseEvent<HTMLLIElement>) => {
-    e.preventDefault();
-    setSelectList(
-      selectList.map((el) => {
-        if (el.title === e.currentTarget.textContent)
-          el.isChecked = !el.isChecked;
-        return el;
-      }),
-    );
-  };
+  const [errorMessage, setErrorMessage] = useState('Неккорректное изображение');
 
   const handleDrop = (
     e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLElement>,
   ) => {
-    const file = addFile(e);
-    if (file) {
-      setImage(file);
-      setDrag(false);
-      setPreviewUrl(URL.createObjectURL(file));
-    } else {
-      setIsError(true);
-      setDrag(false);
-      setErrorMessage('Некорректное изображение');
-    }
+    useAddFile(
+      e,
+      setImage,
+      setPreviewUrl,
+      setIsError,
+      setDrag,
+      setErrorMessage,
+    );
     return URL.revokeObjectURL(previewUrl);
   };
 
   useEffect(() => {
-    pressEscape(setIsShowEditProfile);
-    overflowHidden(isShowEditProfile);
-    window.addEventListener('resize', () => setWidth(window.innerWidth));
-
-    validation('name', name, setErrorName, setErrorNameMessage);
-    if (selectListArray.filter((el) => el.isChecked).length === 0) {
-      setIsError(true);
-      setErrorMessage('Выбирете минимум один жанр');
-    } else setIsError(false);
-
-    return () => {
-      document.removeEventListener('keydown', () =>
-        setIsShowEditProfile(false),
-      );
-      document.removeEventListener('resize', () => setWidth(window.innerWidth));
-    };
-  }, [window.innerWidth, name, width, image, dragStart, changeSelect]);
+    usePressEscape(setIsShowEditProfile, isShowEditProfile);
+    useUnScroll(isShowEditProfile);
+    return document.removeEventListener('keydown', () =>
+      setIsShowEditProfile(false),
+    );
+  }, [image, isShowEditProfile]);
 
   const handleEditProfile = () => {};
 
-  return (
+  return createPortal(
     <>
       {isShowEditProfile && (
         <section
           className={cx('editProfile')}
           onClick={() => setIsShowEditProfile(false)}
-          onDragStart={() => setDragStart(true)}
         >
           <div
             className={cx('editProfileContent', drag && 'drag')}
             onClick={(e) => e.stopPropagation()}
-            onDragOver={(e) => dragAndDrop(e, 'over', setDrag)}
-            onDragLeave={(e) => dragAndDrop(e, 'leave', setDrag)}
+            onDragOver={(e) => useDragAndDrop(e, 'over', drag, setDrag)}
+            onDragLeave={(e) => useDragAndDrop(e, 'leave', drag, setDrag)}
             onDrop={handleDrop}
           >
             {!drag ? (
@@ -138,39 +99,7 @@ export const EditProfile: FC<EditProfileProps> = ({
                     onChange={handleDrop}
                   />
                 </div>
-                <form
-                  className={cx('editProfileForm')}
-                  onSubmit={handleEditProfile}
-                >
-                  <Input
-                    id={'name'}
-                    placeholder={'Ivan Aivazovky'}
-                    label={'Name*'}
-                    errorMessage={errorNameMessage}
-                    isError={isErrorName}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    readOnly={drag}
-                  />
-                  <Input
-                    id={'yearsOfLife'}
-                    label={'Years of life'}
-                    readOnly={drag}
-                  />
-                  <Input id={'location'} label={'Location'} readOnly={drag} />
-                  <TextArea id={'description'} />
-                  <MultiSelect
-                    label={'Genres*'}
-                    selectList={selectList}
-                    changeSelect={changeSelect}
-                  />
-                  <Button
-                    className={'defaultBtn'}
-                    disabled={isError || isErrorName}
-                  >
-                    save
-                  </Button>
-                </form>
+                <EditProFileForm handleEditProfile={handleEditProfile} />
                 <CloseIcon
                   className={cx('closeIcon')}
                   fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
@@ -178,11 +107,7 @@ export const EditProfile: FC<EditProfileProps> = ({
                 />
               </>
             ) : (
-              <div
-                className={cx('dropPhotoWrapp', 'drop')}
-                onDragOver={(e) => dragAndDrop(e, 'over', setDrag)}
-                onDragLeave={(e) => dragAndDrop(e, 'leave', setDrag)}
-              >
+              <div className={cx('dropPhotoWrapp', 'drop')}>
                 <WithoutPhotoIcon
                   className={cx('withoutPhotoIcon', 'dropPhotoIcon')}
                   fill={'#9C9C9C'}
@@ -201,6 +126,7 @@ export const EditProfile: FC<EditProfileProps> = ({
           </div>
         </section>
       )}
-    </>
+    </>,
+    modalNode,
   );
 };

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import { themeContext } from '../../hooks/themeContext';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import { ReactComponent as CheckedImg } from '../../assets/images/checkedImg.svg';
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ type CheckBoxProps = {
 };
 
 export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
   return (
     <>
       <input

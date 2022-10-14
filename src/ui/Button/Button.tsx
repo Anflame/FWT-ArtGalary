@@ -27,6 +27,7 @@ export const Button: FC<
         isFilled && 'btn_filled',
         disabled && 'btn_disabled',
       )}
+      {...args}
     >
       {children}
     </button>

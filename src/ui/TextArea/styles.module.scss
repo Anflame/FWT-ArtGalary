@@ -1,74 +1,76 @@
-@import '../../index.scss';
-
-.textarea {
-  padding: 12px 16px;
-  font-size: 16px;
-  line-height: 22.4px;
+.textAreaWrapp {
   width: 100%;
   max-width: 340px;
-  height: 150px;
-  resize: none;
-  overflow: auto;
-  font-family: var(--font-family-paragraph);
-  color: var(--color-primary-grey);
-  background-color: var(--color-secondary);
-  border: 1px solid var(--color-inputs-border);
-  border-radius: 4px;
 
-  &:hover {
-    border: 1px solid var(--color-inputs-border-hover);
-  }
-
-  &:focus {
-    border: 1px solid var(--color-primary-grey);
-  }
-
-  &::-webkit-scrollbar {
-    width: 6px;
+  .textarea {
+    padding: 12px 16px;
+    font-size: 16px;
+    line-height: 22.4px;
+    width: inherit;
+    height: 150px;
+    resize: none;
+    overflow: auto;
+    font-family: var(--font-family-paragraph);
+    color: var(--color-primary-grey);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-inputs-border);
     border-radius: 4px;
+
+    &:hover {
+      border: 1px solid var(--color-inputs-border-hover);
+    }
+
+    &:focus {
+      border: 1px solid var(--color-primary-grey);
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--color-background-labels);
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-inputs-border-hover);
+      border: 2px solid var(--color-background-srollbar);
+      border-radius: 4px;
+    }
   }
 
-  &::-webkit-scrollbar-track {
-    background-color: var(--color-background-labels);
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-inputs-border-hover);
-    border: 2px solid var(--color-background-srollbar);
-    border-radius: 4px;
-  }
-}
-
-.textareaLabel {
-  display: block;
-  font-family: var(--font-family-paragraph);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary-hover);
-  font-size: 12px;
-  margin-bottom: 8px;
-}
-
-.textAreaError {
-  border: 1px solid var(--color-accent-error);
-
-  &:hover,
-  &:focus {
-    border: 1px solid var(--color-accent-error);
-  }
-}
-
-.errorText {
-  color: var(--color-accent-error);
-  font-size: 12px;
-  font-family: var(--font-family-paragraph);
-  line-height: 140%;
-  margin-top: 7px;
-  display: flex;
-  align-items: center;
-
-  .errorImg {
+  .textareaLabel {
     display: block;
-    margin-right: 8px;
+    font-family: var(--font-family-paragraph);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-hover);
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .textAreaError {
+    border: 1px solid var(--color-accent-error);
+
+    &:hover,
+    &:focus {
+      border: 1px solid var(--color-accent-error);
+    }
+  }
+
+  .errorText {
+    color: var(--color-accent-error);
+    font-size: 12px;
+    font-family: var(--font-family-paragraph);
+    line-height: 140%;
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+
+    .errorImg {
+      display: block;
+      margin-right: 8px;
+    }
   }
 }

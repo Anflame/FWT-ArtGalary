@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
 import { pages } from '../../constants';
-import { themeContext } from '../../hooks/themeContext';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import { ReactComponent as ArrowLeft } from '../../assets/images/arrowLeft.svg';
 import { ReactComponent as ArrowRight } from '../../assets/images/arrowRight.svg';
 import styles from './styles.module.scss';
@@ -19,7 +19,7 @@ export const Pagination: FC<PaginationProps> = ({
   maxPages,
   setCurrentPage,
 }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
 
   if (pages.length !== 0) {
     pages.splice(0);

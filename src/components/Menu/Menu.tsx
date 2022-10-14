@@ -1,8 +1,10 @@
 import { FC, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { overflowHidden } from '../../hooks/overFlowHidden';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { themeContext } from '../../hooks/themeContext';
+import { modalNode } from '../../constants';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useUnScroll } from '../../hooks/useScroll';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import { changeAuth } from '../../store/auth/slice';
 import Button from '../../ui/Button';
 import type { MenuProps } from '../../comon-types';
@@ -14,7 +16,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
-  const { theme, toggleTheme } = themeContext();
+  const { theme, toggleTheme } = useThemeContext();
   const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
 
@@ -23,10 +25,10 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
   };
 
   useEffect(() => {
-    overflowHidden(isShow);
+    useUnScroll(isShow);
   }, [isShow]);
 
-  return (
+  return createPortal(
     <div
       className={cx('menu', isShow && 'menuShow')}
       onClick={() => setIsShow(false)}
@@ -76,6 +78,7 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
           </Button>
         )}
       </div>
-    </div>
+    </div>,
+    modalNode,
   );
 };

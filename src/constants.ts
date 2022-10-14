@@ -83,3 +83,5 @@ export const selectListArray = [
     isChecked: false,
   },
 ];
+
+export const modalNode = document.getElementById('modal') as HTMLElement;

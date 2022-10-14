@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import PainterItem from '../components/PainterItem';
-import { useAppSelector } from '../hooks/redux';
-import { themeContext } from '../hooks/themeContext';
+import { useAppSelector } from '../hooks/useRedux';
+import { useThemeContext } from '../hooks/useThemeContext';
 import { TPainters } from '../store/types';
 import Button from '../ui/Button';
 import EditProfile from '../ui/EditProfile';
@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const PaintersList: FC = () => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
   const { painterList, isLoading, error } = useAppSelector(
     ({ painters }) => painters,
   );

@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@use '../../mixins.scss' as mixins;
 
 .list {
   display: grid;
@@ -9,12 +9,12 @@
     margin-bottom: 20px;
   }
 
-  @include mini-viewport {
+  @include mixins.mini-viewport {
     grid-template-columns: 1fr;
   }
 
-  @include small-viewport;
-  @include medium-viewport;
-  @include large-viewport;
-  @include ultra-large-viewport;
+  @include mixins.small-viewport;
+  @include mixins.medium-viewport;
+  @include mixins.large-viewport;
+  @include mixins.ultra-large-viewport;
 }

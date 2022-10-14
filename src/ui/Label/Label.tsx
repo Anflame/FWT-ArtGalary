@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import cn from 'classnames/bind';
-import { themeContext } from '../../hooks/themeContext';
+import { useThemeContext } from '../../hooks/useThemeContext';
 import { ReactComponent as LabelDelete } from '../../assets/images/labelDelete.svg';
 import styles from './styles.module.scss';
 
@@ -17,7 +17,7 @@ export const Label: FC<LabelsProps> = ({
   children,
   changeSelect,
 }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
   return (
     <>
       {!isDelAllowed && <div className={cx('label')}>{children}</div>}

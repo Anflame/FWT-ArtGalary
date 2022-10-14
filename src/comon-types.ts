@@ -29,6 +29,7 @@ export type InputsProps = {
   isError?: boolean;
   errorMessage?: string;
   label: string;
+  handleChangeShowPassword?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

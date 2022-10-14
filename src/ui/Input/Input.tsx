@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes, useState } from 'react';
+import { FC, InputHTMLAttributes } from 'react';
 import cn from 'classnames/bind';
 import type { InputsProps } from '../../comon-types';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -13,10 +13,10 @@ export const Input: FC<InputsProps & InputHTMLAttributes<HTMLInputElement>> = ({
   label,
   isError,
   errorMessage,
+  handleChangeShowPassword,
   ...args
 }) => {
   const { placeholder, value, id, type } = args;
-  const [isShowPassword, setIsShowPassword] = useState(false);
 
   return (
     <div className={cx('inputWrapp', className)}>
@@ -26,16 +26,18 @@ export const Input: FC<InputsProps & InputHTMLAttributes<HTMLInputElement>> = ({
       <div className={cx('inputWrapp')}>
         <input
           className={cx('input', isError && 'inputError')}
-          type={type === 'password' && isShowPassword ? 'text' : type}
-          {...args}
+          type={type}
           placeholder={isError ? 'Wrong Text' : placeholder || ''}
           value={value}
           onChange={onChange}
+          {...args}
         />
-        {type === 'password' && (
+        {label === 'Password' && (
           <ShowPasswordIcon
             className={cx('passwordShowIcon')}
-            onClick={() => setIsShowPassword(!isShowPassword)}
+            onClick={
+              label === 'Password' ? handleChangeShowPassword : undefined
+            }
           />
         )}
       </div>

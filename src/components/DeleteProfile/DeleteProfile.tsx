@@ -1,9 +1,11 @@
 import React, { FC, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import Button from '../Button';
-import { overflowHidden } from '../../hooks/overFlowHidden';
-import { pressEscape } from '../../hooks/pressEscape';
-import { themeContext } from '../../hooks/themeContext';
+import { modalNode } from '../../constants';
+import { usePressEscape } from '../../hooks/usePressEscape';
+import { useUnScroll } from '../../hooks/useScroll';
+import { useThemeContext } from '../../hooks/useThemeContext';
+import Button from '../../ui/Button';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -20,19 +22,19 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
   isShowDeleteProfile,
   setIsShowDeleteProfile,
 }) => {
-  const { theme } = themeContext();
+  const { theme } = useThemeContext();
 
   const handleDeleteProfile = () => {};
 
   useEffect(() => {
-    pressEscape(setIsShowDeleteProfile);
-    overflowHidden(isShowDeleteProfile);
+    useUnScroll(isShowDeleteProfile);
+    usePressEscape(setIsShowDeleteProfile, isShowDeleteProfile);
     return document.removeEventListener('keydown', () =>
       setIsShowDeleteProfile(false),
     );
   }, [isShowDeleteProfile]);
 
-  return (
+  return createPortal(
     <>
       {isShowDeleteProfile && (
         <section
@@ -72,6 +74,7 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
           </div>
         </section>
       )}
-    </>
+    </>,
+    modalNode,
   );
 };

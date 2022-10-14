@@ -1,0 +1,105 @@
+@use '../../mixins.scss' as mixins;
+
+.artWorks {
+  .artWorksHeaderWrapp {
+    text-align: left;
+    color: var(--color-accent);
+    font-family: var(--font-family-heading);
+    position: relative;
+
+    .artWorksHeader {
+      font-size: 60px;
+      line-height: 73px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+
+      @media (min-width: 768px) {
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-left: 80px;
+      }
+
+      @media (max-width: 600px) {
+        font-size: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  & button[title='add picture'] {
+    margin: 0 0 25px auto;
+    display: block;
+  }
+
+  .withoutPaintingsWrapp {
+    .addPainting {
+      margin-bottom: 110px;
+      padding: 35px;
+      position: relative;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      max-width: 392px;
+      height: 260px;
+      border: 1px solid transparent;
+      background-color: var(--color-secondary);
+      border-image: url(../../assets/images/photoBorder.png) 30 fill/ 30px round;
+
+      @media (max-width: 320px) {
+        margin-bottom: 64px;
+        width: 100%;
+      }
+
+      .addPhotoIcon {
+        width: 168px;
+        height: 152px;
+      }
+
+      .addPaintingBtn {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        bottom: -24px;
+        left: calc(50% - 24px);
+        border: none;
+        cursor: pointer;
+        background-color: var(--color-accent);
+      }
+    }
+
+    .withOutPainingsText {
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      padding-top: 20px;
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weght-medium);
+      color: var(--color-primary-darkGrey);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: calc(50% - 80px);
+        width: 160px;
+        border: 2px solid var(--color-accent);
+      }
+    }
+  }
+}
+
+.container {
+  @include mixins.small-viewport;
+  @include mixins.mini-viewport;
+  @include mixins.medium-viewport;
+  @include mixins.large-viewport;
+  @include mixins.ultra-large-viewport;
+}

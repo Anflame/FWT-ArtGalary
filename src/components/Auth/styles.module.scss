@@ -117,32 +117,6 @@
       }
     }
 
-    .validationForm {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      justify-self: center;
-      text-align: left;
-
-      & > div:not(:last-of-type) {
-        margin-bottom: 32px;
-
-        @media (min-width: 768px) {
-          margin-bottom: 40px;
-        }
-      }
-
-      & > div:last-of-type {
-        margin-bottom: 60px;
-      }
-
-      @media (min-width: 768px) {
-        width: 340px;
-      }
-    }
-
     .closeIcon {
       position: absolute;
       top: 36px;

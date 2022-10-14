@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, TextareaHTMLAttributes, useState } from 'react';
 import cn from 'classnames/bind';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
 import styles from './styles.module.scss';
@@ -9,7 +9,9 @@ type TextAreaProps = {
   id: string;
 };
 
-export const TextArea: FC<TextAreaProps> = ({ id, ...args }) => {
+export const TextArea: FC<
+  TextAreaProps & TextareaHTMLAttributes<HTMLTextAreaElement>
+> = ({ id, ...args }) => {
   const [isError, setIsError] = useState(false);
   const [text, setText] = useState('');
 
@@ -23,8 +25,8 @@ export const TextArea: FC<TextAreaProps> = ({ id, ...args }) => {
   return (
     <>
       {!isError && (
-        <>
-          <label htmlFor="deskription" className={cx('textareaLabel')}>
+        <div className={cx('textAreaWrapp')}>
+          <label htmlFor={id} className={cx('textareaLabel')}>
             Description
           </label>
           <textarea
@@ -33,11 +35,11 @@ export const TextArea: FC<TextAreaProps> = ({ id, ...args }) => {
             id={id}
             {...args}
           ></textarea>
-        </>
+        </div>
       )}
       {isError && (
         <>
-          <label htmlFor="deskription" className={cx('textareaLabel')}>
+          <label htmlFor={id} className={cx('textareaLabel')}>
             Description
           </label>
           <textarea

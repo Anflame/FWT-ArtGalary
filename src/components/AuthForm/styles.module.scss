@@ -1,0 +1,62 @@
+.validationForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-self: center;
+  text-align: left;
+
+  & > div:not(:last-of-type) {
+    margin-bottom: 32px;
+
+    @media (min-width: 768px) {
+      margin-bottom: 40px;
+    }
+  }
+
+  & > div:last-of-type {
+    margin-bottom: 60px;
+  }
+
+  @media (min-width: 768px) {
+    width: 340px;
+  }
+}
+
+.link {
+  font-family: var(--font-family-paragraph);
+  color: var(--color-text-auth);
+  font-weight: 300;
+  margin-bottom: 60px;
+  text-align: center;
+
+  @media (max-width: 320px) {
+    display: none;
+  }
+}
+
+.linkMobile {
+  display: none;
+
+  @media (max-width: 320px) {
+    display: block;
+    margin-top: 60px;
+    font-size: 12px;
+  }
+}
+.goTo {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 140%;
+  color: var(--color-text-auth);
+  font-family: var(--font-family-paragraph);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-text-auth);
+  }
+}

@@ -1,4 +1,4 @@
-@import '../index.scss';
+@use '../mixins.scss' as mixins;
 
 .main {
   padding-top: 180px;
@@ -20,11 +20,11 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px !important;
-    @include mini-viewport;
-    @include small-viewport;
-    @include medium-viewport;
-    @include large-viewport;
-    @include ultra-large-viewport;
+    @include mixins.mini-viewport;
+    @include mixins.small-viewport;
+    @include mixins.medium-viewport;
+    @include mixins.large-viewport;
+    @include mixins.ultra-large-viewport;
 
     .searchWrapp {
       & > form {
