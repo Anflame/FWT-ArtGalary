@@ -47,7 +47,11 @@
     }
 
     .photoWrapp {
-      margin-right: 60px;
+      margin: 0 auto;
+
+      @media (min-width: 1024px) {
+        margin-right: 60px;
+      }
 
       .photoIconWrapp {
         display: flex;
