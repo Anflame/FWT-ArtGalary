@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const PainterProfile = () => (
+export const ProfilePage = () => (
   <main className={cx('profile')}>
     <Profile painterMotherland={'Feodosia, Russian Empire'} />
   </main>

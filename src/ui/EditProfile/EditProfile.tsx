@@ -32,7 +32,7 @@ export const EditProfile: FC<EditProfileProps> = ({
   const [previewUrl, setPreviewUrl] = useState('');
   const [image, setImage] = useState<File>();
   const [isError, setIsError] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('Неккорректное изображение');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleDrop = (
     e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLElement>,

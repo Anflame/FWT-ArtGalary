@@ -3,7 +3,7 @@ import cn from 'classnames/bind';
 import CheckBox from '../CheckBox';
 import Label from '../Label';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import type { SelectListes } from '../../comon-types';
+import type { Listes } from '../../comon-types';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
 import styles from './styles.module.scss';
@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 type MultiSelectProps = {
-  selectList: SelectListes[];
+  selectList: Listes[];
   changeSelect: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   label: string;
 };
@@ -31,12 +31,12 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       </label>
       <div id="selectInput" className={cx('selectInput')}>
         <div className={cx('checkedSelect')}>
-          {selectList.map(({ id, title, isChecked }) => {
+          {selectList.map(({ id, name, isChecked }) => {
             if (isChecked) {
               return (
                 <Label
                   isDelAllowed={true}
-                  children={title}
+                  children={name}
                   key={id}
                   changeSelect={changeSelect}
                 />
@@ -61,15 +61,15 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       </div>
       {isShow && (
         <ul className={cx('selectList')}>
-          {selectList.map(({ id, title, isChecked }) => (
+          {selectList.map(({ id, name, isChecked }) => (
             <li
               key={id}
               className={cx('selectListes')}
               onClick={changeSelect}
-              title={title}
+              title={name}
             >
               <CheckBox isChecked={isChecked} />
-              <p className={cx('selectListesTitle')}>{title}</p>
+              <p className={cx('selectListesTitle')}>{name}</p>
             </li>
           ))}
         </ul>

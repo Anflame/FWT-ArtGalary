@@ -2,11 +2,11 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { PainterProfile } from '../pages/PainterProfile';
+import { ProfilePage } from '../pages/ProfilePage';
 
 export default {
   title: 'Profile',
-  component: PainterProfile,
+  component: ProfilePage,
   decorators: [withRouter],
   parameters: {
     reactRouter: {
@@ -15,8 +15,8 @@ export default {
       routeState: { fromPage: '/' },
     }
   }
-} as ComponentMeta<typeof PainterProfile>;
+} as ComponentMeta<typeof ProfilePage>;
 
-const Template: ComponentStory<typeof PainterProfile> = () => <PainterProfile />;
+const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage />;
 
 export const Primary = Template.bind({});

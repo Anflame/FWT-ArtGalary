@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { genres, modalNode, sort } from '../../constants';
+import { Listes } from '../../comon-types';
+import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useUnScroll } from '../../hooks/useScroll';
 import { useThemeContext } from '../../hooks/useThemeContext';
+import Button from '../../ui/Button';
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
-import { ReactComponent as MinusIcon } from '../../assets/images/minus.svg';
-import { ReactComponent as PlusIcon } from '../../assets/images/plus.svg';
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -15,13 +15,26 @@ const cx = cn.bind(styles);
 type FilterProps = {
   isShowFilter: boolean;
   setIsShowFilter: (isShowFilter: boolean) => void;
+  handleSumbitFilter: () => void;
+  handleClearFilter: () => void;
+  sortList: Listes[];
+  setSortList: (sortListes: Listes[]) => void;
+  genresList: Listes[];
+  setGenresList: (genresList: Listes[]) => void;
 };
 
-export const Filter: FC<FilterProps> = ({ isShowFilter, setIsShowFilter }) => {
+export const Filter: FC<FilterProps> = ({
+  isShowFilter,
+  setIsShowFilter,
+  handleSumbitFilter,
+  handleClearFilter,
+  sortList,
+  setSortList,
+  genresList,
+  setGenresList,
+}) => {
   const [isShowGenres, setIsShowGenres] = useState(false);
   const [isShowSortList, setIsShowSortList] = useState(false);
-  const [genresList, setGenresList] = useState(genres);
-  const [sortList, setSortList] = useState(sort);
   const { theme } = useThemeContext();
 
   const handleChangeChecked = (
@@ -64,22 +77,13 @@ export const Filter: FC<FilterProps> = ({ isShowFilter, setIsShowFilter }) => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={cx('genresWrapp')}>
-          <div className={cx('headingWrapp')}>
+        <div className={cx('filterItemsWrapp')}>
+          <div
+            className={cx('headingWrapp')}
+            onClick={() => setIsShowGenres(!isShowGenres)}
+          >
             <h4 className={cx('filterHeading')}>Genres</h4>
-            {!isShowGenres ? (
-              <PlusIcon
-                className={cx('showIcon')}
-                onClick={() => setIsShowGenres(true)}
-                fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-              />
-            ) : (
-              <MinusIcon
-                className={cx('showIcon')}
-                onClick={() => setIsShowGenres(false)}
-                fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-              />
-            )}
+            <p className={cx('showIcon')}>{!isShowGenres ? '+' : '-'}</p>
           </div>
           {isShowGenres && (
             <ul className={cx('list')}>
@@ -96,22 +100,13 @@ export const Filter: FC<FilterProps> = ({ isShowFilter, setIsShowFilter }) => {
             </ul>
           )}
         </div>
-        <div className={cx('sortWrapp')}>
-          <div className={cx('headingWrapp')}>
+        <div className={cx('filterItemsWrapp')}>
+          <div
+            className={cx('headingWrapp')}
+            onClick={() => setIsShowSortList(!isShowSortList)}
+          >
             <h4 className={cx('filterHeading')}>Sort by</h4>
-            {!isShowSortList ? (
-              <PlusIcon
-                className={cx('showIcon')}
-                onClick={() => setIsShowSortList(true)}
-                fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-              />
-            ) : (
-              <MinusIcon
-                className={cx('showIcon')}
-                onClick={() => setIsShowSortList(false)}
-                fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-              />
-            )}
+            <p className={cx('showIcon')}>{!isShowSortList ? '+' : '-'}</p>
           </div>
           {isShowSortList && (
             <ul className={cx('list')}>
@@ -127,6 +122,14 @@ export const Filter: FC<FilterProps> = ({ isShowFilter, setIsShowFilter }) => {
               ))}
             </ul>
           )}
+        </div>
+        <div className={cx('submitWrapp')}>
+          <Button className="linkBtn" onClick={handleSumbitFilter}>
+            show the result
+          </Button>
+          <Button className="linkBtn" onClick={handleClearFilter}>
+            clear
+          </Button>
         </div>
         <IconClose
           fill={theme === 'dark' ? '#DEDEDE' : '#575757'}

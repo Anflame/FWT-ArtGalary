@@ -32,7 +32,7 @@ export const EditProFileForm: FC<EditProfileFormProps> = ({
     e.preventDefault();
     setSelectList(
       selectList.map((el) => {
-        if (el.title === e.currentTarget.textContent)
+        if (el.name === e.currentTarget.textContent)
           el.isChecked = !el.isChecked;
         return el;
       }),

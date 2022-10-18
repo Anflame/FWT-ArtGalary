@@ -16,32 +16,32 @@ Primary.args = {
   selectList: [
     {
       id: 1,
-      title: 'Romanticism',
+      name: 'Romanticism',
       isChecked: true,
     },
     {
       id: 2,
-      title: 'Art',
+      name: 'Art',
       isChecked: true,
     },
     {
       id: 3,
-      title: 'Nature',
+      name: 'Nature',
       isChecked: true,
     },
     {
       id: 4,
-      title: 'Art',
+      name: 'Art',
       isChecked: true,
     },
     {
       id: 5,
-      title: 'Bataille',
+      name: 'Bataille',
       isChecked: true,
     },
     {
       id: 6,
-      title: 'Realistic',
+      name: 'Realistic',
       isChecked: false,
     }
   ],

@@ -33,8 +33,8 @@ export type InputsProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export type SelectListes = {
+export type Listes = {
   id: number;
-  title: string;
+  name: string;
   isChecked: boolean;
 };

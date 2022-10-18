@@ -72,37 +72,37 @@ export const biography =
 export const selectListArray = [
   {
     id: 1,
-    title: 'Albert',
+    name: 'Albert',
     isChecked: false,
   },
   {
     id: 2,
-    title: 'Ludovic',
+    name: 'Ludovic',
     isChecked: false,
   },
   {
     id: 3,
-    title: 'Aurelius',
+    name: 'Aurelius',
     isChecked: false,
   },
   {
     id: 4,
-    title: 'Viktor',
+    name: 'Viktor',
     isChecked: false,
   },
   {
     id: 5,
-    title: 'Lembrant',
+    name: 'Lembrant',
     isChecked: false,
   },
   {
     id: 6,
-    title: 'Hanz',
+    name: 'Hanz',
     isChecked: false,
   },
   {
     id: 7,
-    title: 'Lanselot',
+    name: 'Lanselot',
     isChecked: false,
   },
 ];
