@@ -38,3 +38,12 @@ export type Listes = {
   name: string;
   isChecked: boolean;
 };
+
+export type TemporaryPaintings = {
+  _id: string;
+  image: {
+    src: string;
+  };
+  name: string;
+  yearOfCreation: string;
+};

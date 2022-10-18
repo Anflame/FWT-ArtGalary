@@ -1,0 +1,51 @@
+.slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+
+  .sliderList {
+    white-space: nowrap;
+    transition: ease 1s;
+    height: inherit;
+    width: inherit;
+
+    .sliderListes {
+      display: inline-block;
+      width: 100%;
+      height: inherit;
+      background-color: var(--color-background-popup);
+
+      .sliderListesImg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .sliderControlWrapp {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover .slideIcon {
+      fill: #ffffff;
+    }
+  }
+
+  .left {
+    left: 0;
+    padding-left: 9px;
+  }
+  .right {
+    right: 0;
+    padding-right: 9px;
+  }
+}
