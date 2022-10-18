@@ -13,15 +13,22 @@
     width: inherit;
 
     .sliderListes {
-      display: inline-block;
+      display: inline-flex;
       width: 100%;
       height: inherit;
       background-color: var(--color-background-popup);
+      position: relative;
 
       .sliderListesImg {
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+
+      .infoWrapp {
+        position: absolute;
+        left: 0;
+        bottom: 0;
       }
     }
   }
