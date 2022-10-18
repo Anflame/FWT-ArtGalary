@@ -2,9 +2,10 @@ import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
 import { Listes } from '../../comon-types';
-import { modalNode } from '../../constants';
+import { modalNode, sort } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useUnScroll } from '../../hooks/useScroll';
+import { useSort } from '../../hooks/useSort';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import Button from '../../ui/Button';
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
@@ -42,21 +43,10 @@ export const Filter: FC<FilterProps> = ({
     type: string,
   ) => {
     if (type === 'sort') {
-      setSortList(
-        sortList.map((el) => {
-          if (el.id === +e.currentTarget.title) el.isChecked = !el.isChecked;
-          else if (el.isChecked) el.isChecked = !el.isChecked;
-          return el;
-        }),
-      );
+      setSortList(useSort(sortList, e, true));
     }
     if (type === 'genres') {
-      setGenresList(
-        genresList.map((el) => {
-          if (el.id === +e.currentTarget.title) el.isChecked = !el.isChecked;
-          return el;
-        }),
-      );
+      setGenresList(useSort(genresList, e));
     }
   };
 

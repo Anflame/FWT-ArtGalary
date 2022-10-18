@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
 import { selectListArray } from '../../constants';
+import { useSort } from '../../hooks/useSort';
 import { useValidation } from '../../hooks/useValidation';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
@@ -28,15 +29,8 @@ export const EditProFileForm: FC<EditProfileFormProps> = ({
   const [description, setDescription] = useState('');
   const [selectList, setSelectList] = useState(selectListArray);
 
-  const changeSelect = (e: React.MouseEvent<HTMLLIElement>) => {
-    e.preventDefault();
-    setSelectList(
-      selectList.map((el) => {
-        if (el.name === e.currentTarget.textContent)
-          el.isChecked = !el.isChecked;
-        return el;
-      }),
-    );
+  const changeSelect = (e: React.MouseEvent<HTMLElement>) => {
+    setSelectList(useSort(selectList, e));
   };
 
   useEffect(() => {

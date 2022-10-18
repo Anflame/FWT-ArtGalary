@@ -12,7 +12,7 @@ const cx = cn.bind(styles);
 
 type MultiSelectProps = {
   selectList: Listes[];
-  changeSelect: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  changeSelect: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   label: string;
 };
 

@@ -31,7 +31,7 @@ export const EditProfile: FC<EditProfileProps> = ({
   const [drag, setDrag] = useState(false);
   const [previewUrl, setPreviewUrl] = useState('');
   const [image, setImage] = useState<File>();
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleDrop = (
