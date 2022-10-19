@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
-import DeleteProfile from '../DeleteProfile';
 import PainterArtWorks from '../PainterArtworks';
 import PainterInfo from '../PainterInfo';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { fetchPainterProfle } from '../../store/API/painterProfile';
 import Button from '../../ui/Button';
+import DeleteProfile from '../../ui/Delete';
 import EditProfile from '../../ui/EditProfile';
 import Preloader from '../../ui/Preloader';
 import Toast from '../../ui/Toast';
@@ -25,7 +25,7 @@ type ProfileProps = {
 export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { theme } = useThemeContext();
   const [isShowEditProfile, setIsShowEditProfile] = useState(false);
-  const [isShowDeleteProfile, setIsShowDeleteProfile] = useState(false);
+  const [isShowDelete, setIsShowDelete] = useState(false);
   const [isError, setIsError] = useState(true);
   const { error, isLoading } = useAppSelector(
     ({ painterProfile }) => painterProfile,
@@ -66,7 +66,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
             <div className={cx('actionEditWrapp')}>
               <Button
                 className="deleteBtn"
-                handleClick={() => setIsShowDeleteProfile(true)}
+                handleClick={() => setIsShowDelete(true)}
               >
                 <DeleteIcon
                   fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
@@ -90,8 +90,8 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
         </div>
         <PainterArtWorks />
         <DeleteProfile
-          isShowDeleteProfile={isShowDeleteProfile}
-          setIsShowDeleteProfile={() => setIsShowDeleteProfile(false)}
+          isShowDelete={isShowDelete}
+          setIsShowDelete={() => setIsShowDelete(false)}
         />
         <EditProfile
           isShowEditProfile={isShowEditProfile}

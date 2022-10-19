@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import DeleteProfile from '../components/DeleteProfile';
+import DeleteProfile from '../ui/Delete';
 
 export default {
   title: 'DeleteProfile',
@@ -13,6 +13,6 @@ const Template: ComponentStory<typeof DeleteProfile> = (args) => <DeleteProfile 
 export const Primary = Template.bind({});
 
 Primary.args = {
-  isShowDeleteProfile: false,
+  isShowDelete: false,
 };
 

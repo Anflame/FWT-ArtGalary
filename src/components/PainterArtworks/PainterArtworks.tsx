@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import AddPainting from '../AddPainting';
 import PaintingItem from '../PaintingItem';
 import { useAppSelector } from '../../hooks/useRedux';
 import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
+import EditPainting from '../../ui/EditPainting';
 import List from '../../ui/List';
 import { ReactComponent as PlusIcon } from '../../assets/images/plus.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
@@ -16,7 +16,7 @@ export const PainterArtWorks: FC = () => {
   const { paintings } = useAppSelector(
     ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
   );
-  const [isShowAddPhoto, setIsShowAddPhoto] = useState(false);
+  const [isShowEditPainting, setIsShowEditPainting] = useState(false);
 
   return (
     <>
@@ -29,7 +29,7 @@ export const PainterArtWorks: FC = () => {
         <div className={cx('container')}>
           <Button
             className="linkBtn"
-            handleClick={() => setIsShowAddPhoto(true)}
+            handleClick={() => setIsShowEditPainting(true)}
             title="add picture"
           >
             add picture
@@ -45,16 +45,16 @@ export const PainterArtWorks: FC = () => {
         ) : (
           <div className={cx('withoutPaintingsWrapp')}>
             <div className={cx('container')}>
-              <div className={cx('addPainting')}>
+              <div className={cx('editPainting')}>
                 <WithoutPainterPhotoIcon
                   fill="#DEDEDE"
                   className={cx('addPhotoIcon')}
                 />
                 <button
-                  className={cx('addPaintingBtn')}
-                  onClick={() => setIsShowAddPhoto(true)}
+                  className={cx('editPaintingBtn')}
+                  onClick={() => setIsShowEditPainting(true)}
                 >
-                  <PlusIcon fill="#DEDEDE" />
+                  <PlusIcon fill="#DEDEDE" width="16px" height="16px" />
                 </button>
               </div>
               <h3 className={cx('withOutPainingsText')}>
@@ -65,9 +65,9 @@ export const PainterArtWorks: FC = () => {
         )}
       </div>
 
-      <AddPainting
-        isShowAddPhoto={isShowAddPhoto}
-        setIsShowAddPhoto={() => setIsShowAddPhoto(false)}
+      <EditPainting
+        isShowEditPainting={isShowEditPainting}
+        setIsShowEditPaintings={() => setIsShowEditPainting(false)}
       />
     </>
   );

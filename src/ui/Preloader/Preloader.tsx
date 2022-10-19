@@ -5,8 +5,12 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Preloader: FC = () => (
-  <div className={cx('preloaderWrapp')}>
+type PreloaderProps = {
+  className?: string;
+};
+
+export const Preloader: FC<PreloaderProps> = ({ className }) => (
+  <div className={cx('preloaderWrapp', className)}>
     <PreloaderIcon className={cx('preloader')} />
     <PreloaderIcon className={cx('preloader')} />
     <PreloaderIcon className={cx('preloader')} />

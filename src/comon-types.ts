@@ -1,4 +1,4 @@
-export type SetIsShow = (isShow?: boolean) => void;
+export type SetIsShow = (isShow: boolean) => void;
 
 export type CardProps = {
   id: string;

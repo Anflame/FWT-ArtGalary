@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import AddPainting from '../components/AddPainting';
+import EditPainting from '../ui/EditPainting';
 
 export default {
-  title: 'AddPainting',
-  component: AddPainting,
-} as ComponentMeta<typeof AddPainting>;
+  title: 'EditPainting',
+  component: EditPainting,
+} as ComponentMeta<typeof EditPainting>;
 
-const Template: ComponentStory<typeof AddPainting> = (args) => <AddPainting {...args} />;
+const Template: ComponentStory<typeof EditPainting> = (args) => <EditPainting {...args} />;
 
 export const Primary = Template.bind({});
 
 Primary.args = {
-  isShowAddPhoto: true,
+  isShowEditPainting: true,
 };

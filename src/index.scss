@@ -61,6 +61,7 @@ html[data-theme='light'] {
   --color-background-popup: rgba(3, 3, 3, 0.3);
   --color-background-dropFile: #dedede;
   --color-dropFile-text: #1a1818;
+  --color-background-actionBtn: rgba(255, 255, 255, 0.3);
 }
 
 html[data-theme='dark'] {
@@ -85,6 +86,7 @@ html[data-theme='dark'] {
   --color-background-popup: rgba(3, 3, 3, 0.6);
   --color-background-dropFile: rgba(255, 255, 255, 0.4);
   --color-dropFile-text: rgba(255, 255, 255, 0.4);
+  --color-background-actionBtn: rgba(26, 24, 24, 0.3);
 }
 
 ::-webkit-scrollbar {

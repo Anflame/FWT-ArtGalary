@@ -21,7 +21,6 @@
     & path {
       stroke: var(--color-primary-heading);
     }
-
     &:first-child {
       opacity: 1;
       animation: rotateFirst 2s infinite linear;
@@ -36,6 +35,14 @@
       animation: rotateForth 2s infinite linear;
     }
   }
+}
+
+.firstLoading {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.firstLoading svg {
+  stroke: black;
 }
 
 @keyframes rotateFirst {

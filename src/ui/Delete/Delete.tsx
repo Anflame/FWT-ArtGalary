@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
+import Button from '../Button';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
-import { useUnScroll } from '../../hooks/useScroll';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import Button from '../../ui/Button';
+import { useUnScroll } from '../../hooks/useUnScroll';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -13,33 +13,30 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-type DeleteProfileProps = {
-  isShowDeleteProfile: boolean;
-  setIsShowDeleteProfile: SetIsShow;
+type DeleteProps = {
+  isShowDelete: boolean;
+  setIsShowDelete: SetIsShow;
 };
 
-export const DeleteProfile: FC<DeleteProfileProps> = ({
-  isShowDeleteProfile,
-  setIsShowDeleteProfile,
-}) => {
+export const Delete: FC<DeleteProps> = ({ isShowDelete, setIsShowDelete }) => {
   const { theme } = useThemeContext();
 
   const handleDeleteProfile = () => {};
 
   useEffect(() => {
-    useUnScroll(isShowDeleteProfile);
-    usePressEscape(setIsShowDeleteProfile, isShowDeleteProfile);
+    useUnScroll(isShowDelete);
+    usePressEscape(setIsShowDelete, isShowDelete);
     return document.removeEventListener('keydown', () =>
-      setIsShowDeleteProfile(false),
+      setIsShowDelete(false),
     );
-  }, [isShowDeleteProfile]);
+  }, [isShowDelete]);
 
   return createPortal(
     <>
-      {isShowDeleteProfile && (
+      {isShowDelete && (
         <section
           className={cx('deleteProfile')}
-          onClick={() => setIsShowDeleteProfile(false)}
+          onClick={() => setIsShowDelete(false)}
         >
           <div
             className={cx('deleteProfileContent')}
@@ -62,12 +59,12 @@ export const DeleteProfile: FC<DeleteProfileProps> = ({
             </Button>
             <p
               className={cx('deleteProfileCancel')}
-              onClick={() => setIsShowDeleteProfile(false)}
+              onClick={() => setIsShowDelete(false)}
             >
               cancel
             </p>
             <CloseIcon
-              onClick={() => setIsShowDeleteProfile(false)}
+              onClick={() => setIsShowDelete(false)}
               fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
               className={cx('closeIcon')}
             />
