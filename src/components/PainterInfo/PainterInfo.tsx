@@ -4,6 +4,7 @@ import { API } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import Label from '../../ui/Label';
+import LoadingImage from '../../ui/LoadingImage';
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
@@ -27,7 +28,7 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
     <div className={cx('painter')}>
       <div className={cx('painterInfo')}>
         {avatar.src ? (
-          <img
+          <LoadingImage
             src={API + avatar.src}
             alt="painterPhoto"
             className={cx('painterImg')}

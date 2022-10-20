@@ -9,7 +9,7 @@ const cx = cn.bind(styles);
 type ILoadableImage = {
   src: string;
   alt?: string;
-  className: string;
+  className?: string;
 };
 
 export const LoadingImage: FC<ILoadableImage> = ({ src, alt, className }) => {

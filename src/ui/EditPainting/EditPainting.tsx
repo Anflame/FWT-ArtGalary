@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
+import LoadingImage from '../LoadingImage';
 import { SetIsShow } from '../../comon-types';
 import DragAndDrop from '../../components/DragAndDrop';
 import { modalNode } from '../../constants';
@@ -83,11 +84,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
               />
             ) : (
               <div className={cx('previewImageWrapp')}>
-                <img
-                  src={previewUrl}
-                  alt="preview"
-                  className={cx('previewImage')}
-                />
+                <LoadingImage src={previewUrl} alt="preview" />
                 <DeleteIcon
                   width="16px"
                   height="16px"
