@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import PainterArtWorks from '../PainterArtworks';
-import PainterInfo from '../PainterInfo';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { fetchPainterProfle } from '../../store/API/painterProfile';
@@ -15,6 +14,8 @@ import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../../assets/images/editIcon.svg';
 import styles from './styles.module.scss';
+
+const PainterInfo = React.lazy(() => import('../PainterInfo'));
 
 const cx = cn.bind(styles);
 
