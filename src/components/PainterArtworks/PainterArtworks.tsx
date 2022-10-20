@@ -7,6 +7,7 @@ import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
 import EditPainting from '../../ui/EditPainting';
 import List from '../../ui/List';
+import Pagination from '../../ui/Pagination';
 import { ReactComponent as PlusIcon } from '../../assets/images/plus.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
 import styles from './styles.module.scss';
@@ -19,6 +20,7 @@ export const PainterArtWorks: FC = () => {
   );
   const [isShowEditPainting, setIsShowEditPainting] = useState(false);
   const [isShowSlider, setIsShowSlider] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
@@ -38,16 +40,23 @@ export const PainterArtWorks: FC = () => {
           </Button>
         </div>
         {paintings.length !== 0 ? (
-          <List
-            items={paintings}
-            renderItem={(painting: Paintings) => (
-              <PaintingItem
-                painting={painting}
-                key={painting._id}
-                onClick={() => setIsShowSlider(true)}
-              />
-            )}
-          />
+          <>
+            <List
+              items={paintings}
+              renderItem={(painting: Paintings) => (
+                <PaintingItem
+                  painting={painting}
+                  key={painting._id}
+                  onClick={() => setIsShowSlider(true)}
+                />
+              )}
+            />
+            <Pagination
+              currentPage={currentPage}
+              maxPages={paintings.length}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
         ) : (
           <div className={cx('withoutPaintingsWrapp')}>
             <div className={cx('container')}>
