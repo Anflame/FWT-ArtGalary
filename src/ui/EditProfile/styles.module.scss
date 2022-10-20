@@ -14,7 +14,7 @@
 
   .editProfileContent {
     width: 100%;
-    height: calc(100vh - 148px);
+    height: 100%;
     padding: 80px 30px;
     background-color: var(--color-primary);
     display: flex;
@@ -40,6 +40,7 @@
 
     @media (min-width: 1024px) {
       max-width: 800px;
+      height: calc(100vh - 148px);
       padding: 80px 100px;
       flex-direction: row;
       justify-content: center;

@@ -45,18 +45,18 @@
     }
   }
 
-  .cardImg {
+  & img {
     display: block;
     width: 100%;
     transition: 1s;
   }
 
-  &:hover .cardImg {
+  &:hover img {
     transform: scale(1.3);
   }
 
   @media (max-width: 768px) {
-    &:hover .cardImg {
+    &:hover img {
       transform: scale(1);
     }
   }
