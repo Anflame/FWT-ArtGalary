@@ -4,6 +4,7 @@ import { useThemeContext } from '../../hooks/useThemeContext';
 import Button from '../../ui/Button';
 import Delete from '../../ui/Delete';
 import EditPainting from '../../ui/EditPainting';
+import LoadingImage from '../../ui/LoadingImage';
 import type { SetIsShow, TemporaryPaintings } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -40,7 +41,7 @@ export const SliderItem: FC<SliderItemProps> = ({
 
   return (
     <li key={_id} className={cx('sliderListes')}>
-      <img
+      <LoadingImage
         src={src}
         alt={name}
         className={cx('sliderListesImg', isDoContain && 'doContain')}
