@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: auto;
 
     @media (min-width: 768px) {
       padding: 80px 100px;
