@@ -154,4 +154,4 @@ export const slides: TemporaryPaintings[] = [
   },
 ];
 
-export const modalNode = document.getElementById('modal') as HTMLElement;
+export const modalNode = document.getElementById('root') as HTMLElement;

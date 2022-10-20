@@ -23,7 +23,7 @@ export const Slider: FC<SliderProps> = ({
   isShowSlider,
   setIsShowSlider,
 }) => {
-  const [isDoContain, setIsDoContain] = useState(false);
+  const [isDoCover, setIsDoCover] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [startTouch, setStartTouch] = useState(0);
   const sliderRef = useRef<HTMLUListElement>(null);
@@ -76,7 +76,7 @@ export const Slider: FC<SliderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              className={cx('sliderControlWrapp', 'left')}
+              className={cx('sliderControlWrapp', 'left', isDoCover && 'hide')}
               onClick={() =>
                 setCurrentSlide(
                   currentSlide > 0 ? currentSlide - 1 : slides.length - 1,
@@ -86,7 +86,7 @@ export const Slider: FC<SliderProps> = ({
               <SlideLeftIcon fill="#9C9C9C" className={cx('slideIcon')} />
             </div>
             <div
-              className={cx('sliderControlWrapp', 'right')}
+              className={cx('sliderControlWrapp', 'right', isDoCover && 'hide')}
               onClick={() =>
                 setCurrentSlide(
                   currentSlide < slides.length - 1 ? currentSlide + 1 : 0,
@@ -109,8 +109,8 @@ export const Slider: FC<SliderProps> = ({
                   name={name}
                   src={src}
                   yearOfCreation={yearOfCreation}
-                  isDoContain={isDoContain}
-                  setIsDoContain={setIsDoContain}
+                  isDoCover={isDoCover}
+                  setIsDoCover={setIsDoCover}
                   setIsShowSlider={setIsShowSlider}
                 />
               ))}

@@ -20,8 +20,8 @@ type SliderItemProps = {
   src: string;
   name: string;
   yearOfCreation: string;
-  isDoContain: boolean;
-  setIsDoContain: SetIsShow;
+  isDoCover: boolean;
+  setIsDoCover: SetIsShow;
   setIsShowSlider: SetIsShow;
 };
 
@@ -31,8 +31,8 @@ export const SliderItem: FC<SliderItemProps> = ({
   src,
   name,
   yearOfCreation,
-  isDoContain,
-  setIsDoContain,
+  isDoCover,
+  setIsDoCover,
   setIsShowSlider,
 }) => {
   const { theme } = useThemeContext();
@@ -41,17 +41,13 @@ export const SliderItem: FC<SliderItemProps> = ({
 
   return (
     <li key={_id} className={cx('sliderListes')}>
-      <LoadingImage
-        src={src}
-        alt={name}
-        className={cx('sliderListesImg', isDoContain && 'doContain')}
-      />
-      <div className={cx('infoWrapp')}>
+      <LoadingImage src={src} alt={name} className={cx('sliderListesImg')} />
+      <div className={cx('infoWrapp', isDoCover && 'hide')}>
         <div className={cx('textWrapp')}>
           <p className={cx('infoYearsOfCreation')}>{yearOfCreation}</p>
           <p className={cx('infoName')}>{name}</p>
         </div>
-        <div className={cx('actionWrapp')}>
+        <div className={cx('actionWrapp', isDoCover)}>
           <Button className="deleteBtn" onClick={() => setIsShowDelete(true)}>
             <DeleteIcon
               fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
@@ -71,7 +67,7 @@ export const SliderItem: FC<SliderItemProps> = ({
           </Button>
         </div>
       </div>
-      <div className={cx('actionWrappMobile')}>
+      <div className={cx('actionWrappMobile', isDoCover && 'hide')}>
         <Button className="deleteBtn" onClick={() => setIsShowDelete(true)}>
           <DeleteIcon
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
@@ -90,22 +86,22 @@ export const SliderItem: FC<SliderItemProps> = ({
           />
         </Button>
       </div>
-      <h4 className={cx('currentSlide')}>
+      <h4 className={cx('currentSlide', isDoCover && 'hide')}>
         {_id}/{slides.length}
       </h4>
       <div
         className={cx('makeTheCoverWrapp')}
-        onClick={() => setIsDoContain(!isDoContain)}
+        onClick={() => setIsDoCover(!isDoCover)}
       >
         <div className={cx('makeTheCoverImgWrapp')}>
           <ImageIcon />
         </div>
         <p className={cx('makeTheCoverText')}>
-          {isDoContain ? 'Make the cover' : 'remove the cover'}
+          {isDoCover ? 'remove the cover' : 'Make the cover'}
         </p>
       </div>
       <CloseIcon
-        className={cx('closeIcon')}
+        className={cx('closeIcon', isDoCover && 'hide')}
         fill="#DEDEDE"
         onClick={() => setIsShowSlider(false)}
       />
