@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import PaintingItem from '../PaintingItem';
 import Slider from '../Slider';
-import { slides } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
@@ -20,7 +19,7 @@ export const PainterArtWorks: FC = () => {
     ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
   );
   const [isShowEditPainting, setIsShowEditPainting] = useState(false);
-  const [isShowSlider, setIsShowSlider] = useState(true);
+  const [isShowSlider, setIsShowSlider] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
@@ -88,7 +87,7 @@ export const PainterArtWorks: FC = () => {
       <Slider
         isShowSlider={isShowSlider}
         setIsShowSlider={setIsShowSlider}
-        slides={slides}
+        slides={paintings}
       />
     </>
   );
