@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import PaintingItem from '../PaintingItem';
+import Slider from '../Slider';
 import { useAppSelector } from '../../hooks/useRedux';
 import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
@@ -17,6 +18,7 @@ export const PainterArtWorks: FC = () => {
     ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
   );
   const [isShowEditPainting, setIsShowEditPainting] = useState(false);
+  const [isShowSlider, setIsShowSlider] = useState(false);
 
   return (
     <>
@@ -39,7 +41,11 @@ export const PainterArtWorks: FC = () => {
           <List
             items={paintings}
             renderItem={(painting: Paintings) => (
-              <PaintingItem painting={painting} key={painting._id} />
+              <PaintingItem
+                painting={painting}
+                key={painting._id}
+                onClick={() => setIsShowSlider(true)}
+              />
             )}
           />
         ) : (
@@ -68,6 +74,11 @@ export const PainterArtWorks: FC = () => {
       <EditPainting
         isShowEditPainting={isShowEditPainting}
         setIsShowEditPaintings={() => setIsShowEditPainting(false)}
+      />
+      <Slider
+        isShowSlider={isShowSlider}
+        setIsShowSlider={setIsShowSlider}
+        slides={paintings}
       />
     </>
   );

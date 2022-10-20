@@ -5,10 +5,11 @@ import Card from '../../ui/Card';
 
 type PaintingItemProps = {
   painting: Paintings;
+  onClick: () => void;
 };
 
-export const PaintingItem: FC<PaintingItemProps> = ({ painting }) => (
-  <li key={painting._id}>
+export const PaintingItem: FC<PaintingItemProps> = ({ painting, onClick }) => (
+  <li key={painting._id} onClick={onClick}>
     <Card
       title={painting.name}
       img={API + painting.image.src}
