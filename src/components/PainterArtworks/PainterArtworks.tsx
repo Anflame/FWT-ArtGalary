@@ -19,7 +19,7 @@ export const PainterArtWorks: FC = () => {
     ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
   );
   const [isShowEditPainting, setIsShowEditPainting] = useState(false);
-  const [isShowSlider, setIsShowSlider] = useState(false);
+  const [isShowSlider, setIsShowSlider] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
