@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
 import SliderItem from '../SliderItem';
@@ -26,24 +26,30 @@ export const Slider: FC<SliderProps> = ({
   const [isDoContain, setIsDoContain] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [startTouch, setStartTouch] = useState(0);
-  const [touchMove, setTouchMove] = useState(0);
+  const sliderRef = useRef<HTMLUListElement>(null);
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
     if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth <=
       -30
     ) {
-      setTouchMove(0);
       if (currentSlide !== 0) setCurrentSlide(currentSlide - 1);
       else setCurrentSlide(slides.length - 1);
     } else if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth >=
       30
     ) {
-      setTouchMove(0);
       if (currentSlide + 1 !== slides.length) setCurrentSlide(currentSlide + 1);
       else setCurrentSlide(0);
-    } else setTouchMove(0);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (sliderRef.current)
+      sliderRef.current.style.transform = `translateX(${-(
+        currentSlide * 100 +
+        (startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth)
+      )}%)`;
   };
 
   useEffect(() => {
@@ -65,11 +71,7 @@ export const Slider: FC<SliderProps> = ({
                 (e.changedTouches[0].clientX * 100) / window.innerWidth,
               )
             }
-            onTouchMove={(e) =>
-              setTouchMove(
-                (e.changedTouches[0].clientX * 100) / window.innerWidth,
-              )
-            }
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onClick={(e) => e.stopPropagation()}
           >
@@ -95,12 +97,9 @@ export const Slider: FC<SliderProps> = ({
             </div>
             <ul
               className={cx('sliderList')}
+              ref={sliderRef}
               style={{
-                transform: `translateX(${
-                  touchMove !== 0
-                    ? `${-(currentSlide * 100 + (startTouch - touchMove))}%`
-                    : `${-currentSlide * 100}%`
-                })`,
+                transform: `translateX(${`${-currentSlide * 100}%`})`,
               }}
             >
               {slides.map(({ _id, image: { src }, name, yearOfCreation }) => (
