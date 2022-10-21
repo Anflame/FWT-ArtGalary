@@ -31,17 +31,20 @@ export const Slider: FC<SliderProps> = ({
   const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
     if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth <=
-      -30
+      -60
     ) {
       if (currentSlide !== 0) setCurrentSlide(currentSlide - 1);
       else setCurrentSlide(slides.length - 1);
     } else if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth >=
-      30
+      60
     ) {
       if (currentSlide + 1 !== slides.length) setCurrentSlide(currentSlide + 1);
       else setCurrentSlide(0);
-    }
+    } else if (sliderRef.current)
+      sliderRef.current.style.transform = `translateX(${-(
+        currentSlide * 100
+      )}%)`;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
