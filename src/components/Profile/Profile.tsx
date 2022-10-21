@@ -27,7 +27,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { theme } = useThemeContext();
   const [isShowEditProfile, setIsShowEditProfile] = useState(false);
   const [isShowDelete, setIsShowDelete] = useState(false);
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const { error, isLoading } = useAppSelector(
     ({ painterProfile }) => painterProfile,
   );
