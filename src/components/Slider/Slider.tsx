@@ -41,7 +41,9 @@ export const Slider: FC<SliderProps> = ({
     ) {
       if (currentSlide + 1 !== slides.length) setCurrentSlide(currentSlide + 1);
       else setCurrentSlide(0);
-    }
+    } else if (sliderRef.current)
+      sliderRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
+    setStartTouch(0);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
