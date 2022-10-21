@@ -54,8 +54,8 @@ export const Slider: FC<SliderProps> = ({
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (sliderRef.current) {
       const sliderRefStyle = sliderRef.current.style;
-      if (sliderRefStyle.transition !== 'transfrom 0.1s')
-        sliderRefStyle.transition = 'transform 0.1s';
+      if (sliderRefStyle.transition !== 'transfrom 0s')
+        sliderRefStyle.transition = 'transform 0s';
       sliderRefStyle.transform = `translateX(${-(
         currentSlide * 100 +
         (startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth)
