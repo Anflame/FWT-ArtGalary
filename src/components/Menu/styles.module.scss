@@ -60,22 +60,22 @@
       }
     }
   }
+}
 
-  .menu .menuPopUpContent {
-    padding-top: 34px;
-    padding-right: 28px;
-    display: grid;
-    justify-items: flex-end;
-    align-items: flex-end;
-    grid-template-rows: 52px 204px 132px 100px;
+.menu .menuPopUpContent {
+  padding-top: 34px;
+  padding-right: 28px;
+  display: grid;
+  justify-items: flex-end;
+  align-items: flex-end;
+  grid-template-rows: 52px 204px 132px 100px;
 
-    @media (max-width: 320px) {
-      padding-right: 24px;
-      padding-top: 24px;
-    }
+  @media (max-width: 320px) {
+    padding-right: 24px;
+    padding-top: 24px;
+  }
 
-    @media (max-width: 550px) {
-      grid-template-rows: 52px 204px 72px 64px;
-    }
+  @media (max-width: 550px) {
+    grid-template-rows: 52px 204px 72px 64px;
   }
 }
