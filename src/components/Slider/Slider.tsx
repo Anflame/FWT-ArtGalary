@@ -36,13 +36,13 @@ export const Slider: FC<SliderProps> = ({
     }
     if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth <=
-      -20
+      -25
     ) {
       if (currentSlide !== 0) setCurrentSlide(currentSlide - 1);
       else setCurrentSlide(slides.length - 1);
     } else if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth >=
-      20
+      25
     ) {
       if (currentSlide + 1 !== slides.length) setCurrentSlide(currentSlide + 1);
       else setCurrentSlide(0);
