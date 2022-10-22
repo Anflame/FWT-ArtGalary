@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Cookies from 'js-cookie';
+import Menu from '../Menu';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { useUnScroll } from '../../hooks/useUnScroll';
 import { fetchPainters } from '../../store/API/painters';
@@ -9,7 +10,6 @@ import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 const Auth = React.lazy(() => import('../Auth'));
 const Footer = React.lazy(() => import('../Footer'));
 const Header = React.lazy(() => import('../Header'));
-const Menu = React.lazy(() => import('../Menu'));
 
 export const Layout: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);

@@ -29,6 +29,11 @@ export const Slider: FC<SliderProps> = ({
   const sliderRef = useRef<HTMLUListElement>(null);
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
+    if (sliderRef.current) {
+      const sliderRefStyle = sliderRef.current.style;
+      if (sliderRefStyle.transition !== 'transfrom 0.5s')
+        sliderRefStyle.transition = 'transform 0.5s';
+    }
     if (
       startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth <=
       -30
@@ -41,15 +46,21 @@ export const Slider: FC<SliderProps> = ({
     ) {
       if (currentSlide + 1 !== slides.length) setCurrentSlide(currentSlide + 1);
       else setCurrentSlide(0);
-    }
+    } else if (sliderRef.current)
+      sliderRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
+    setStartTouch(0);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (sliderRef.current)
-      sliderRef.current.style.transform = `translateX(${-(
+    if (sliderRef.current) {
+      const sliderRefStyle = sliderRef.current.style;
+      if (sliderRefStyle.transition !== 'transfrom 0s')
+        sliderRefStyle.transition = 'transform 0s';
+      sliderRefStyle.transform = `translateX(${-(
         currentSlide * 100 +
         (startTouch - (e.changedTouches[0].clientX * 100) / window.innerWidth)
       )}%)`;
+    }
   };
 
   useEffect(() => {
