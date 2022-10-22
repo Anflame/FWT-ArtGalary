@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import PaintingItem from '../PaintingItem';
 import Slider from '../Slider';
+import { slides } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
@@ -87,7 +88,7 @@ export const PainterArtWorks: FC = () => {
       <Slider
         isShowSlider={isShowSlider}
         setIsShowSlider={setIsShowSlider}
-        slides={paintings}
+        slides={slides}
       />
     </>
   );
