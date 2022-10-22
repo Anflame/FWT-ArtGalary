@@ -14,28 +14,18 @@ type ILoadableImage = {
 
 export const LoadingImage: FC<ILoadableImage> = ({ src, alt, className }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const imageRef = useRef<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useOnScreen(containerRef);
 
-  React.useEffect(() => {
-    if (!isVisible || isLoaded) {
-      return;
-    }
-    if (imageRef.current) {
-      imageRef.current.onload = () => {
-        setIsLoaded(true);
-      };
-    }
-  }, [isVisible, isLoaded]);
-
   return (
-    <div ref={containerRef} className={cx('imageContainer')}>
-      {isVisible || isLoaded ? (
-        <img ref={imageRef} className={cx(className)} src={src} alt={alt} />
-      ) : (
-        <Preloader />
-      )}
+    <div className={cx('imageContainer')} ref={containerRef}>
+      <img
+        className={cx('img', className, isLoaded && isVisible && 'loaded')}
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+      />
+      {(!isLoaded || !isVisible) && <Preloader />}
     </div>
   );
 };
