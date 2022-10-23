@@ -29,6 +29,7 @@ export const Slider: FC<SliderProps> = ({
   const sliderRef = useRef<HTMLUListElement>(null);
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
+    e.preventDefault();
     if (sliderRef.current) {
       const sliderRefStyle = sliderRef.current.style;
       if (sliderRefStyle.transition !== 'transfrom 0.5s')
@@ -52,6 +53,7 @@ export const Slider: FC<SliderProps> = ({
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.preventDefault();
     if (sliderRef.current) {
       const sliderRefStyle = sliderRef.current.style;
       if (sliderRefStyle.transition !== 'transfrom 0s')
@@ -77,11 +79,12 @@ export const Slider: FC<SliderProps> = ({
         >
           <div
             className={cx('slider')}
-            onTouchStart={(e) =>
+            onTouchStart={(e) => {
+              e.preventDefault();
               setStartTouch(
                 (e.changedTouches[0].clientX * 100) / window.innerWidth,
-              )
-            }
+              );
+            }}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onClick={(e) => e.stopPropagation()}
