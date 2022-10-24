@@ -38,12 +38,12 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
 
   const handleChangeShowDelete = () => {
     setIsShowDelete(!isShowDelete);
-    useUnScroll(isShowDelete);
+    useUnScroll(!isShowDelete);
   };
 
   const handleChangeShowEditProfile = () => {
     setIsShowEditProfile(!isShowEditProfile);
-    useUnScroll(isShowEditProfile);
+    useUnScroll(!isShowEditProfile);
   };
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
             <div className={cx('actionEditWrapp')}>
               <Button
                 className="deleteBtn"
-                handleClick={() => setIsShowDelete(true)}
+                handleClick={() => handleChangeShowDelete()}
               >
                 <DeleteIcon
                   fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
@@ -88,7 +88,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
               </Button>
               <Button
                 className="deleteBtn"
-                handleClick={() => setIsShowEditProfile(true)}
+                handleClick={() => handleChangeShowEditProfile()}
               >
                 <EditIcon
                   fill={theme === 'dark' ? '#DEDEDE' : '#575757'}

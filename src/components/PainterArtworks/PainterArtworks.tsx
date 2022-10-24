@@ -26,12 +26,12 @@ export const PainterArtWorks: FC = () => {
 
   const handleChangeShowSlider = () => {
     setIsShowSlider(!isShowSlider);
-    useUnScroll(isShowSlider);
+    useUnScroll(!isShowSlider);
   };
 
   const handleChangeShowEditPainting = () => {
     setIsShowEditPainting(!isShowEditPainting);
-    useUnScroll(isShowEditPainting);
+    useUnScroll(!isShowEditPainting);
   };
 
   return (
@@ -45,7 +45,7 @@ export const PainterArtWorks: FC = () => {
         <div className={cx('container')}>
           <Button
             className="linkBtn"
-            handleClick={() => setIsShowEditPainting(true)}
+            handleClick={() => handleChangeShowEditPainting()}
             title="add picture"
           >
             add picture
@@ -79,7 +79,7 @@ export const PainterArtWorks: FC = () => {
                 />
                 <button
                   className={cx('editPaintingBtn')}
-                  onClick={() => setIsShowEditPainting(true)}
+                  onClick={() => handleChangeShowEditPainting()}
                 >
                   <PlusIcon fill="#DEDEDE" width="16px" height="16px" />
                 </button>
