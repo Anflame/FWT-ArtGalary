@@ -4,6 +4,7 @@ import cn from 'classnames/bind';
 import PainterArtWorks from '../PainterArtworks';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
+import { useUnScroll } from '../../hooks/useUnScroll';
 import { fetchPainterProfle } from '../../store/API/painterProfile';
 import Button from '../../ui/Button';
 import DeleteProfile from '../../ui/Delete';
@@ -34,6 +35,16 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { accessToken } = useAppSelector(({ auth: { tokens } }) => tokens);
   const dispatch = useAppDispatch();
   const { painterId } = useParams();
+
+  const handleChangeShowDelete = () => {
+    setIsShowDelete(!isShowDelete);
+    useUnScroll(isShowDelete);
+  };
+
+  const handleChangeShowEditProfile = () => {
+    setIsShowEditProfile(!isShowEditProfile);
+    useUnScroll(isShowEditProfile);
+  };
 
   useEffect(() => {
     dispatch(
@@ -92,11 +103,11 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
         <PainterArtWorks />
         <DeleteProfile
           isShowDelete={isShowDelete}
-          setIsShowDelete={() => setIsShowDelete(false)}
+          handleChangeShowDelete={handleChangeShowDelete}
         />
         <EditProfile
           isShowEditProfile={isShowEditProfile}
-          setIsShowEditProfile={() => setIsShowEditProfile(false)}
+          handleChangeShowEditProfile={handleChangeShowEditProfile}
         />
       </section>
     </>

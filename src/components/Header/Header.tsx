@@ -15,8 +15,7 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 export const Header: FC<MenuProps> = ({
-  isShow,
-  setIsShow,
+  handleChangeShowMenu,
   handleShowAuth,
 }) => {
   const { theme, toggleTheme } = useThemeContext();
@@ -78,7 +77,7 @@ export const Header: FC<MenuProps> = ({
           <MenuIcon
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             className={cx('menuIcon')}
-            onClick={() => setIsShow(!isShow)}
+            onClick={handleChangeShowMenu}
           />
         </div>
       </header>

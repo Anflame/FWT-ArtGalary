@@ -6,7 +6,6 @@ import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useSort } from '../../hooks/useSort';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import Button from '../../ui/Button';
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
 import styles from './styles.module.scss';
@@ -15,7 +14,7 @@ const cx = cn.bind(styles);
 
 type FilterProps = {
   isShowFilter: boolean;
-  setIsShowFilter: (isShowFilter: boolean) => void;
+  handleChangeShowFilter: (isShowFilter: boolean) => void;
   handleSumbitFilter: () => void;
   handleClearFilter: () => void;
   sortList: Listes[];
@@ -26,7 +25,7 @@ type FilterProps = {
 
 export const Filter: FC<FilterProps> = ({
   isShowFilter,
-  setIsShowFilter,
+  handleChangeShowFilter,
   handleSumbitFilter,
   handleClearFilter,
   sortList,
@@ -51,14 +50,13 @@ export const Filter: FC<FilterProps> = ({
   };
 
   useEffect(() => {
-    useUnScroll(isShowFilter);
-    usePressEscape(setIsShowFilter, isShowFilter);
-  }, [isShowFilter]);
+    usePressEscape(handleChangeShowFilter, isShowFilter);
+  }, []);
 
   return createPortal(
     <div
       className={cx('filterWrapp', isShowFilter && 'showFilterWrapp')}
-      onClick={() => setIsShowFilter(false)}
+      onClick={() => handleChangeShowFilter(false)}
     >
       <div
         className={cx(
@@ -123,7 +121,7 @@ export const Filter: FC<FilterProps> = ({
         </div>
         <IconClose
           fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-          onClick={() => setIsShowFilter(false)}
+          onClick={() => handleChangeShowFilter(false)}
           className={cx('iconClose')}
         />
       </div>

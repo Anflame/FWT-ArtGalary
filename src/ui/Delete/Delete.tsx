@@ -5,7 +5,6 @@ import Button from '../Button';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import type { SetIsShow } from '../../comon-types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -15,19 +14,21 @@ const cx = cn.bind(styles);
 
 type DeleteProps = {
   isShowDelete: boolean;
-  setIsShowDelete: SetIsShow;
+  handleChangeShowDelete: SetIsShow;
 };
 
-export const Delete: FC<DeleteProps> = ({ isShowDelete, setIsShowDelete }) => {
+export const Delete: FC<DeleteProps> = ({
+  isShowDelete,
+  handleChangeShowDelete,
+}) => {
   const { theme } = useThemeContext();
 
   const handleDeleteProfile = () => {};
 
   useEffect(() => {
-    useUnScroll(isShowDelete);
-    usePressEscape(setIsShowDelete, isShowDelete);
+    usePressEscape(handleChangeShowDelete, isShowDelete);
     return document.removeEventListener('keydown', () =>
-      setIsShowDelete(false),
+      handleChangeShowDelete(false),
     );
   }, [isShowDelete]);
 
@@ -36,7 +37,7 @@ export const Delete: FC<DeleteProps> = ({ isShowDelete, setIsShowDelete }) => {
       {isShowDelete && (
         <section
           className={cx('deleteProfile')}
-          onClick={() => setIsShowDelete(false)}
+          onClick={() => handleChangeShowDelete(false)}
         >
           <div
             className={cx('deleteProfileContent')}
@@ -59,12 +60,12 @@ export const Delete: FC<DeleteProps> = ({ isShowDelete, setIsShowDelete }) => {
             </Button>
             <p
               className={cx('deleteProfileCancel')}
-              onClick={() => setIsShowDelete(false)}
+              onClick={() => handleChangeShowDelete(false)}
             >
               cancel
             </p>
             <CloseIcon
-              onClick={() => setIsShowDelete(false)}
+              onClick={() => handleChangeShowDelete(false)}
               fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
               className={cx('closeIcon')}
             />

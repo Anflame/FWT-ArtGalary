@@ -1,10 +1,9 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
 import { modalNode } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import { changeAuth } from '../../store/auth/slice';
 import Button from '../../ui/Button';
 import type { MenuProps } from '../../comon-types';
@@ -15,7 +14,11 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
+export const Menu: FC<MenuProps> = ({
+  isShow,
+  handleChangeShowMenu,
+  handleShowAuth,
+}) => {
   const { theme, toggleTheme } = useThemeContext();
   const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
@@ -24,14 +27,10 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
     dispatch(changeAuth(false));
   };
 
-  useEffect(() => {
-    useUnScroll(isShow);
-  }, [isShow]);
-
   return createPortal(
     <div
       className={cx('menu', isShow && 'menuShow')}
-      onClick={() => setIsShow(false)}
+      onClick={() => handleChangeShowMenu(false)}
     >
       <div
         className={cx('menuPopUpContent', isShow && 'menuPopUpContentShow')}
@@ -39,7 +38,7 @@ export const Menu: FC<MenuProps> = ({ isShow, setIsShow, handleShowAuth }) => {
       >
         <IconClose
           fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
-          onClick={() => setIsShow(!isShow)}
+          onClick={() => handleChangeShowMenu(!isShow)}
           className={cx('menuIconClose')}
         />
         <div className={cx('menuThemeWrapp')} onClick={toggleTheme}>

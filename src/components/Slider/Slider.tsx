@@ -4,7 +4,6 @@ import cn from 'classnames/bind';
 import SliderItem from '../SliderItem';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import type { SetIsShow, TemporaryPaintings } from '../../comon-types';
 import { ReactComponent as SlideLeftIcon } from '../../assets/images/slideLeftIcon.svg';
 import { ReactComponent as SlideRightIcon } from '../../assets/images/slideRightIcon.svg';
@@ -15,13 +14,13 @@ const cx = cn.bind(styles);
 type SliderProps = {
   slides: TemporaryPaintings[];
   isShowSlider: boolean;
-  setIsShowSlider: SetIsShow;
+  handleChangeShowSlider: SetIsShow;
 };
 
 export const Slider: FC<SliderProps> = ({
   slides,
   isShowSlider,
-  setIsShowSlider,
+  handleChangeShowSlider,
 }) => {
   const [isDoCover, setIsDoCover] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,7 +28,6 @@ export const Slider: FC<SliderProps> = ({
   const sliderRef = useRef<HTMLUListElement>(null);
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
-    e.preventDefault();
     if (sliderRef.current) {
       const sliderRefStyle = sliderRef.current.style;
       if (sliderRefStyle.transition !== 'transfrom 0.5s')
@@ -53,7 +51,6 @@ export const Slider: FC<SliderProps> = ({
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    e.preventDefault();
     if (sliderRef.current) {
       const sliderRefStyle = sliderRef.current.style;
       if (sliderRefStyle.transition !== 'transfrom 0s')
@@ -66,16 +63,15 @@ export const Slider: FC<SliderProps> = ({
   };
 
   useEffect(() => {
-    useUnScroll(isShowSlider);
-    usePressEscape(setIsShowSlider, isShowSlider);
-  }, [isShowSlider]);
+    usePressEscape(handleChangeShowSlider, isShowSlider);
+  }, []);
 
   return createPortal(
     <>
       {isShowSlider && (
         <section
           className={cx('sliderWrapp')}
-          onClick={() => setIsShowSlider(false)}
+          onClick={() => handleChangeShowSlider(false)}
         >
           <div
             className={cx('slider')}
@@ -125,7 +121,7 @@ export const Slider: FC<SliderProps> = ({
                   yearOfCreation={yearOfCreation}
                   isDoCover={isDoCover}
                   setIsDoCover={setIsDoCover}
-                  setIsShowSlider={setIsShowSlider}
+                  handleChangeShowSlider={handleChangeShowSlider}
                 />
               ))}
             </ul>

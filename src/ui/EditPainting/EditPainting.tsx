@@ -9,7 +9,6 @@ import DragAndDrop from '../../components/DragAndDrop';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import { useValidation } from '../../hooks/useValidation';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
@@ -19,12 +18,12 @@ const cx = cn.bind(styles);
 
 type EditPaintingProps = {
   isShowEditPainting: boolean;
-  setIsShowEditPaintings: SetIsShow;
+  handleChangeShowEditPainting: SetIsShow;
 };
 
 export const EditPainting: FC<EditPaintingProps> = ({
   isShowEditPainting,
-  setIsShowEditPaintings,
+  handleChangeShowEditPainting,
 }) => {
   const { theme } = useThemeContext();
   const [image, setImage] = useState<File>();
@@ -41,8 +40,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
   };
 
   useEffect(() => {
-    usePressEscape(setIsShowEditPaintings, isShowEditPainting);
-    useUnScroll(isShowEditPainting);
+    usePressEscape(handleChangeShowEditPainting, isShowEditPainting);
     useValidation('name', name, setIsErrorName, setNameMessage);
     useValidation('year', year, setIsErrorYear, setYearMessage);
   }, [name, year, image, isShowEditPainting]);
@@ -52,7 +50,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
       {isShowEditPainting && (
         <div
           className={cx('editPaintingWrapp')}
-          onClick={() => setIsShowEditPaintings(false)}
+          onClick={() => handleChangeShowEditPainting(false)}
         >
           <form
             className={cx('editPaintingWrappContent')}
@@ -103,7 +101,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
             <CloseIcon
               className={cx('closeIcon')}
               fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
-              onClick={() => setIsShowEditPaintings(false)}
+              onClick={() => handleChangeShowEditPainting(false)}
             />
           </form>
         </div>

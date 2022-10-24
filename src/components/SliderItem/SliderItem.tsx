@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
 import { useThemeContext } from '../../hooks/useThemeContext';
+import { useUnScroll } from '../../hooks/useUnScroll';
 import Button from '../../ui/Button';
 import Delete from '../../ui/Delete';
 import EditPainting from '../../ui/EditPainting';
@@ -22,7 +23,7 @@ type SliderItemProps = {
   yearOfCreation: string;
   isDoCover: boolean;
   setIsDoCover: SetIsShow;
-  setIsShowSlider: SetIsShow;
+  handleChangeShowSlider: SetIsShow;
 };
 
 export const SliderItem: FC<SliderItemProps> = ({
@@ -33,11 +34,21 @@ export const SliderItem: FC<SliderItemProps> = ({
   yearOfCreation,
   isDoCover,
   setIsDoCover,
-  setIsShowSlider,
+  handleChangeShowSlider,
 }) => {
   const { theme } = useThemeContext();
   const [isShowDelete, setIsShowDelete] = useState(false);
-  const [isShowEditPaiting, setIsShowEditPainting] = useState(false);
+  const [isShowEditPainting, setIsShowEditPainting] = useState(false);
+
+  const handleChangeShowEditPainting = () => {
+    setIsShowEditPainting(!isShowEditPainting);
+    useUnScroll(isShowEditPainting);
+  };
+
+  const handleChangeShowDelete = () => {
+    setIsShowDelete(!isShowDelete);
+    useUnScroll(isShowDelete);
+  };
 
   return (
     <li key={_id} className={cx('sliderListes')}>
@@ -103,14 +114,17 @@ export const SliderItem: FC<SliderItemProps> = ({
       <CloseIcon
         className={cx('closeIcon', isDoCover && 'hide')}
         fill="#DEDEDE"
-        onClick={() => setIsShowSlider(false)}
+        onClick={() => handleChangeShowSlider(false)}
       />
 
       <EditPainting
-        isShowEditPainting={isShowEditPaiting}
-        setIsShowEditPaintings={setIsShowEditPainting}
+        isShowEditPainting={isShowEditPainting}
+        handleChangeShowEditPainting={handleChangeShowEditPainting}
       />
-      <Delete isShowDelete={isShowDelete} setIsShowDelete={setIsShowDelete} />
+      <Delete
+        isShowDelete={isShowDelete}
+        handleChangeShowDelete={handleChangeShowDelete}
+      />
     </li>
   );
 };

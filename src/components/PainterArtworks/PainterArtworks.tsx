@@ -4,6 +4,7 @@ import PaintingItem from '../PaintingItem';
 import Slider from '../Slider';
 import { slides } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
+import { useUnScroll } from '../../hooks/useUnScroll';
 import { Paintings } from '../../store/types';
 import Button from '../../ui/Button';
 import EditPainting from '../../ui/EditPainting';
@@ -22,6 +23,16 @@ export const PainterArtWorks: FC = () => {
   const [isShowEditPainting, setIsShowEditPainting] = useState(false);
   const [isShowSlider, setIsShowSlider] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const handleChangeShowSlider = () => {
+    setIsShowSlider(!isShowSlider);
+    useUnScroll(isShowSlider);
+  };
+
+  const handleChangeShowEditPainting = () => {
+    setIsShowEditPainting(!isShowEditPainting);
+    useUnScroll(isShowEditPainting);
+  };
 
   return (
     <>
@@ -83,11 +94,11 @@ export const PainterArtWorks: FC = () => {
 
       <EditPainting
         isShowEditPainting={isShowEditPainting}
-        setIsShowEditPaintings={() => setIsShowEditPainting(false)}
+        handleChangeShowEditPainting={handleChangeShowEditPainting}
       />
       <Slider
         isShowSlider={isShowSlider}
-        setIsShowSlider={setIsShowSlider}
+        handleChangeShowSlider={handleChangeShowSlider}
         slides={slides}
       />
     </>

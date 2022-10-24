@@ -12,6 +12,7 @@ const Footer = React.lazy(() => import('../Footer'));
 const Header = React.lazy(() => import('../Header'));
 
 export const Layout: FC = () => {
+  const [isShow, setIsShow] = useState(false);
   const [theme, setTheme] = useState(defaultContext.theme);
   const dispatch = useAppDispatch();
 
@@ -34,22 +35,24 @@ export const Layout: FC = () => {
     useUnScroll(!!type);
   };
 
+  const handleChangeShowMenu = () => {
+    setIsShow(!isShow);
+    useUnScroll(!isShow);
+  };
+
   useEffect(() => {
     dispatch(fetchPainters());
   }, [fetchPainters]);
 
-  const [isShow, setIsShow] = useState(false);
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <Header
-        isShow={isShow}
-        setIsShow={setIsShow}
+        handleChangeShowMenu={handleChangeShowMenu}
         handleShowAuth={handleShowAuth}
       />
       <Menu
         isShow={isShow}
-        setIsShow={setIsShow}
+        handleChangeShowMenu={handleChangeShowMenu}
         handleShowAuth={handleShowAuth}
       />
       <Outlet />

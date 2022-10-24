@@ -10,7 +10,6 @@ import { useAddFile } from '../../hooks/useAddFIle';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
 import styles from './styles.module.scss';
@@ -19,12 +18,12 @@ const cx = cn.bind(styles);
 
 type EditProfileProps = {
   isShowEditProfile: boolean;
-  setIsShowEditProfile: SetIsShow;
+  handleChangeShowEditProfile: SetIsShow;
 };
 
 export const EditProfile: FC<EditProfileProps> = ({
   isShowEditProfile,
-  setIsShowEditProfile,
+  handleChangeShowEditProfile,
 }) => {
   const { theme } = useThemeContext();
   // const { profileId } = useParams();
@@ -49,12 +48,11 @@ export const EditProfile: FC<EditProfileProps> = ({
   };
 
   useEffect(() => {
-    usePressEscape(setIsShowEditProfile, isShowEditProfile);
-    useUnScroll(isShowEditProfile);
+    usePressEscape(handleChangeShowEditProfile, isShowEditProfile);
     return document.removeEventListener('keydown', () =>
-      setIsShowEditProfile(false),
+      handleChangeShowEditProfile(false),
     );
-  }, [image, isShowEditProfile]);
+  }, [image]);
 
   const handleEditProfile = () => {};
 
@@ -63,7 +61,7 @@ export const EditProfile: FC<EditProfileProps> = ({
       {isShowEditProfile && (
         <section
           className={cx('editProfile')}
-          onClick={() => setIsShowEditProfile(false)}
+          onClick={() => handleChangeShowEditProfile(false)}
         >
           <div
             className={cx('editProfileContent', drag && 'drag')}
@@ -103,7 +101,7 @@ export const EditProfile: FC<EditProfileProps> = ({
                 <CloseIcon
                   className={cx('closeIcon')}
                   fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
-                  onClick={() => setIsShowEditProfile(false)}
+                  onClick={() => handleChangeShowEditProfile(false)}
                 />
               </>
             ) : (

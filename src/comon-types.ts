@@ -19,8 +19,8 @@ export type AuthParams = {
 };
 
 export type MenuProps = {
-  isShow: boolean;
-  setIsShow: (isShow: boolean) => void;
+  isShow?: boolean;
+  handleChangeShowMenu: (isShow: boolean) => void;
   handleShowAuth: (type?: string | boolean) => void;
 };
 
