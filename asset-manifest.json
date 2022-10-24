@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/projectSettings/static/css/main.9ff96cdb.css",
-    "main.js": "/projectSettings/static/js/main.9a441ecb.js",
+    "main.js": "/projectSettings/static/js/main.75353dfb.js",
     "static/css/841.3315b60d.chunk.css": "/projectSettings/static/css/841.3315b60d.chunk.css",
     "static/js/841.9d25412c.chunk.js": "/projectSettings/static/js/841.9d25412c.chunk.js",
     "static/css/283.69a0ca1a.chunk.css": "/projectSettings/static/css/283.69a0ca1a.chunk.css",
     "static/js/283.0451436c.chunk.js": "/projectSettings/static/js/283.0451436c.chunk.js",
     "static/css/80.3b9ed1aa.chunk.css": "/projectSettings/static/css/80.3b9ed1aa.chunk.css",
-    "static/js/80.ae7dcb2e.chunk.js": "/projectSettings/static/js/80.ae7dcb2e.chunk.js",
+    "static/js/80.39ea6e7a.chunk.js": "/projectSettings/static/js/80.39ea6e7a.chunk.js",
     "static/css/486.c4557f68.chunk.css": "/projectSettings/static/css/486.c4557f68.chunk.css",
     "static/js/486.b055c151.chunk.js": "/projectSettings/static/js/486.b055c151.chunk.js",
     "static/media/cardImg.jpg": "/projectSettings/static/media/cardImg.0a5176e1f1b6db3d6ed1.jpg",
@@ -48,18 +48,18 @@
     "static/media/iconShow.svg": "/projectSettings/static/media/iconShow.a3b9d04c3821035c0531087e6abffba4.svg",
     "static/media/iconHide.svg": "/projectSettings/static/media/iconHide.64042c1d9dd59e6b60658d780bb18c01.svg",
     "main.9ff96cdb.css.map": "/projectSettings/static/css/main.9ff96cdb.css.map",
-    "main.9a441ecb.js.map": "/projectSettings/static/js/main.9a441ecb.js.map",
+    "main.75353dfb.js.map": "/projectSettings/static/js/main.75353dfb.js.map",
     "841.3315b60d.chunk.css.map": "/projectSettings/static/css/841.3315b60d.chunk.css.map",
     "841.9d25412c.chunk.js.map": "/projectSettings/static/js/841.9d25412c.chunk.js.map",
     "283.69a0ca1a.chunk.css.map": "/projectSettings/static/css/283.69a0ca1a.chunk.css.map",
     "283.0451436c.chunk.js.map": "/projectSettings/static/js/283.0451436c.chunk.js.map",
     "80.3b9ed1aa.chunk.css.map": "/projectSettings/static/css/80.3b9ed1aa.chunk.css.map",
-    "80.ae7dcb2e.chunk.js.map": "/projectSettings/static/js/80.ae7dcb2e.chunk.js.map",
+    "80.39ea6e7a.chunk.js.map": "/projectSettings/static/js/80.39ea6e7a.chunk.js.map",
     "486.c4557f68.chunk.css.map": "/projectSettings/static/css/486.c4557f68.chunk.css.map",
     "486.b055c151.chunk.js.map": "/projectSettings/static/js/486.b055c151.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ff96cdb.css",
-    "static/js/main.9a441ecb.js"
+    "static/js/main.75353dfb.js"
   ]
 }
