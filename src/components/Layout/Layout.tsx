@@ -42,6 +42,7 @@ export const Layout: FC = () => {
 
   useEffect(() => {
     dispatch(fetchPainters());
+    useUnScroll(true);
   }, [fetchPainters]);
 
   return (
