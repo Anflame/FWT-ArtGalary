@@ -10,7 +10,7 @@ type PainterItemProps = {
 
 export const PainterItem: FC<PainterItemProps> = ({ painter }) => (
   <li key={painter._id}>
-    <Link to={`/profile/${painter._id}}`}>
+    <Link to={`/profile/${painter._id}`}>
       <Card
         title={painter.name}
         img={API + painter.mainPainting.image.src}

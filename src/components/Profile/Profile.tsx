@@ -47,12 +47,14 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   };
 
   useEffect(() => {
-    dispatch(
-      fetchPainterProfle({
-        url: painterId,
-        accessToken,
-      }),
-    );
+    if (accessToken) {
+      dispatch(
+        fetchPainterProfle({
+          url: painterId,
+          accessToken,
+        }),
+      );
+    } else console.log('токен');
   }, []);
 
   return (
