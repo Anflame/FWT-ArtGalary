@@ -32,6 +32,7 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
             src={API + avatar.src}
             alt="painterPhoto"
             className={cx('painterImg')}
+            containerClassName={cx('painterImgWrapp')}
           />
         ) : (
           <div className={cx('painterImg', 'withoutPainterPhotoWrapp')}>

@@ -10,15 +10,24 @@ type ILoadableImage = {
   src: string;
   alt?: string;
   className?: string;
+  containerClassName?: string;
 };
 
-export const LoadingImage: FC<ILoadableImage> = ({ src, alt, className }) => {
+export const LoadingImage: FC<ILoadableImage> = ({
+  src,
+  alt,
+  className,
+  containerClassName,
+}) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useOnScreen(containerRef);
 
   return (
-    <div className={cx('imageContainer')} ref={containerRef}>
+    <div
+      className={cx('imageContainer', containerClassName)}
+      ref={containerRef}
+    >
       <img
         className={cx('img', className, isLoaded && isVisible && 'loaded')}
         src={src}

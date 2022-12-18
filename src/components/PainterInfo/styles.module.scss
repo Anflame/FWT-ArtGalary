@@ -1,6 +1,6 @@
 .painter {
   position: relative;
-  margin-bottom: 160px;
+  margin-bottom: 40%;
 
   @media (max-width: 768px) {
     margin-bottom: 80px;
@@ -21,6 +21,13 @@
       @media (max-width: 768px) {
         width: 100%;
       }
+    }
+    .painterImgWrapp {
+      width: 1000px;
+      max-width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
     }
 
     .withoutPainterPhotoWrapp {
