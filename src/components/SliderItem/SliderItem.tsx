@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
+import { API } from '../../constants';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useUnScroll } from '../../hooks/useUnScroll';
 import Button from '../../ui/Button';
@@ -18,6 +19,7 @@ const cx = cn.bind(styles);
 type SliderItemProps = {
   slides: TemporaryPaintings[];
   _id: string;
+  currentSlide: number;
   src: string;
   name: string;
   yearOfCreation: string;
@@ -29,6 +31,7 @@ type SliderItemProps = {
 export const SliderItem: FC<SliderItemProps> = ({
   slides,
   _id,
+  currentSlide,
   src,
   name,
   yearOfCreation,
@@ -52,7 +55,11 @@ export const SliderItem: FC<SliderItemProps> = ({
 
   return (
     <li key={_id} className={cx('sliderListes')}>
-      <LoadingImage src={src} alt={name} className={cx('sliderListesImg')} />
+      <LoadingImage
+        src={API + src}
+        alt={name}
+        className={cx('sliderListesImg')}
+      />
       <div className={cx('infoWrapp', isDoCover && 'hide')}>
         <div className={cx('textWrapp')}>
           <p className={cx('infoYearsOfCreation')}>{yearOfCreation}</p>
@@ -98,7 +105,7 @@ export const SliderItem: FC<SliderItemProps> = ({
         </Button>
       </div>
       <h4 className={cx('currentSlide', isDoCover && 'hide')}>
-        {_id}/{slides.length}
+        {currentSlide}/{slides.length}
       </h4>
       <div
         className={cx('makeTheCoverWrapp')}

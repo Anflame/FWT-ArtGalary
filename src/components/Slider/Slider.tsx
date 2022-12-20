@@ -76,7 +76,6 @@ export const Slider: FC<SliderProps> = ({
           <div
             className={cx('slider')}
             onTouchStart={(e) => {
-              e.preventDefault();
               setStartTouch(
                 (e.changedTouches[0].clientX * 100) / window.innerWidth,
               );
@@ -112,18 +111,22 @@ export const Slider: FC<SliderProps> = ({
                 transform: `translateX(${`${-currentSlide * 100}%`})`,
               }}
             >
-              {slides.map(({ _id, image: { src }, name, yearOfCreation }) => (
-                <SliderItem
-                  slides={slides}
-                  _id={_id}
-                  name={name}
-                  src={src}
-                  yearOfCreation={yearOfCreation}
-                  isDoCover={isDoCover}
-                  setIsDoCover={setIsDoCover}
-                  handleChangeShowSlider={handleChangeShowSlider}
-                />
-              ))}
+              {slides.map(
+                ({ _id, image: { src }, name, yearOfCreation }, id) => (
+                  <SliderItem
+                    slides={slides}
+                    currentSlide={id + 1}
+                    _id={_id}
+                    name={name}
+                    src={src}
+                    yearOfCreation={yearOfCreation}
+                    isDoCover={isDoCover}
+                    setIsDoCover={setIsDoCover}
+                    handleChangeShowSlider={handleChangeShowSlider}
+                    key={_id}
+                  />
+                ),
+              )}
             </ul>
           </div>
         </section>

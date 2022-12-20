@@ -54,7 +54,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
           accessToken,
         }),
       );
-    } else console.log('токен');
+    }
   }, []);
 
   return (
