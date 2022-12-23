@@ -1,18 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchAuth } from '../API/auth';
 import { TAuth } from '../types';
+import { TAuthState, TTokens } from './types';
 
-type AuthState = {
-  tokens: {
-    accessToken: string;
-    refreshToken: string;
-  };
-  isLoading: boolean;
-  error: string;
-  isAuth: boolean;
-};
-
-const initialState: AuthState = {
+const initialState: TAuthState = {
   tokens: {
     accessToken: '',
     refreshToken: '',
@@ -33,6 +24,9 @@ const authSlice = createSlice({
         state.tokens.refreshToken = '';
       }
     },
+    setTokens(state, action: PayloadAction<TTokens>) {
+      state.tokens = action.payload;
+    },
   },
   extraReducers: {
     [fetchAuth.fulfilled.type]: (state, action: PayloadAction<TAuth>) => {
@@ -50,5 +44,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeAuth } = authSlice.actions;
+export const { changeAuth, setTokens } = authSlice.actions;
 export const authReducer = authSlice.reducer;

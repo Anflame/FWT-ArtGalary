@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Cookies from 'js-cookie';
 import Menu from '../Menu';
+import { useCheckAuth } from '../../hooks/useCheckAuth';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { useUnScroll } from '../../hooks/useUnScroll';
 import { fetchPainters } from '../../store/API/painters';
@@ -12,6 +13,7 @@ const Footer = React.lazy(() => import('../Footer'));
 const Header = React.lazy(() => import('../Header'));
 
 export const Layout: FC = () => {
+  useCheckAuth();
   const [isShow, setIsShow] = useState(false);
   const [theme, setTheme] = useState(defaultContext.theme);
   const dispatch = useAppDispatch();

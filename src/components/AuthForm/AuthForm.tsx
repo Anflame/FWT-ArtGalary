@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
+import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useValidation } from '../../hooks/useValidation';
 import { fetchAuth } from '../../store/API/auth';
@@ -76,6 +77,7 @@ export const AuthForm: FC<AuthFormProps> = ({
     ).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
         dispatch(changeAuth(true));
+        Cookies.set('tokens', JSON.stringify(data.payload));
         handleShowAuth(false);
       } else {
         setIsErrorAuth(true);

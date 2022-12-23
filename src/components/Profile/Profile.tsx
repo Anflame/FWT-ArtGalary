@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
+import Cookies from 'js-cookie';
 import PainterArtWorks from '../PainterArtworks';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
@@ -47,14 +48,15 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   };
 
   useEffect(() => {
-    if (accessToken) {
-      dispatch(
-        fetchPainterProfle({
-          url: painterId,
-          accessToken,
-        }),
-      );
-    }
+    if (!accessToken && !Cookies.get('tokens')) return;
+    dispatch(
+      fetchPainterProfle({
+        url: painterId,
+        accessToken:
+          accessToken ||
+          JSON.parse(Cookies.get('tokens') as string).accessToken,
+      }),
+    );
   }, []);
 
   return (
