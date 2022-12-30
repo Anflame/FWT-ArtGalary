@@ -36,7 +36,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
