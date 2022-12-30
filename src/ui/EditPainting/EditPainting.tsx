@@ -8,6 +8,7 @@ import { SetIsShow } from '../../comon-types';
 import DragAndDrop from '../../components/DragAndDrop';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useValidation } from '../../hooks/useValidation';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
@@ -34,6 +35,8 @@ export const EditPainting: FC<EditPaintingProps> = ({
   const [isErrorYear, setIsErrorYear] = useState(true);
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -63,11 +63,13 @@ export const PainterArtWorks: FC = () => {
                 />
               )}
             />
-            <Pagination
-              currentPage={currentPage}
-              maxPages={paintings.length}
-              setCurrentPage={setCurrentPage}
-            />
+            {paintings.length > 6 && (
+              <Pagination
+                currentPage={currentPage}
+                maxPages={paintings.length / 6}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
           </>
         ) : (
           <div className={cx('withoutPaintingsWrapp')}>
