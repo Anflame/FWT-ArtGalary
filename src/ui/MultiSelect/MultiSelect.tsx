@@ -31,13 +31,13 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       </label>
       <div id="selectInput" className={cx('selectInput')}>
         <div className={cx('checkedSelect')}>
-          {selectList.map(({ id, name, isChecked }) => {
+          {selectList.map(({ _id, name, isChecked }) => {
             if (isChecked) {
               return (
                 <Label
                   isDelAllowed={true}
                   children={name}
-                  key={id}
+                  key={_id}
                   changeSelect={changeSelect}
                 />
               );
@@ -61,9 +61,9 @@ export const MultiSelect: FC<MultiSelectProps> = ({
       </div>
       {isShow && (
         <ul className={cx('selectList')}>
-          {selectList.map(({ id, name, isChecked }) => (
+          {selectList.map(({ _id, name, isChecked }) => (
             <li
-              key={id}
+              key={_id}
               className={cx('selectListes')}
               onClick={changeSelect}
               title={name}

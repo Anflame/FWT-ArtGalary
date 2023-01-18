@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
+import { Listes } from '../comon-types';
 import Filter from '../components/FIlter';
 import PainterItem from '../components/PainterItem';
-import { genres, sort } from '../constants';
+import { sort } from '../constants';
 import { useAppSelector } from '../hooks/useRedux';
 import { useThemeContext } from '../hooks/useThemeContext';
 import { useUnScroll } from '../hooks/useUnScroll';
@@ -23,10 +24,15 @@ export const MainPage: FC = () => {
   const { painterList, isLoading, error } = useAppSelector(
     ({ painters }) => painters,
   );
+  const {
+    genres,
+    isLoading: isLoadingGenres,
+    error: errorGenres,
+  } = useAppSelector(({ genresState }) => genresState);
   const [isShow, setIsShow] = useState(!error);
   const [isShowAddProfile, setIsShowAddProfile] = useState(false);
   const [isShowFilter, setIsShowFilter] = useState(false);
-  const [genresList, setGenresList] = useState(genres);
+  const [genresList, setGenresList] = useState<Listes[]>([]);
   const [sortList, setSortList] = useState(sort);
 
   const handleCloseToast = () => {
@@ -34,26 +40,16 @@ export const MainPage: FC = () => {
   };
 
   useEffect(() => {
+    setGenresList(
+      genres.map((el) => ({
+        ...el,
+        isChecked: false,
+      })),
+    );
     useUnScroll(isShowFilter || isShowAddProfile);
-  }, [isShowFilter, isShowAddProfile]);
+  }, [isShowFilter, isShowAddProfile, genres]);
 
   const handleSubmitForm = () => {};
-
-  const handleSumbitFilter = () => {};
-  const handleClearFilter = () => {
-    setGenresList(
-      genresList.map((el) => {
-        if (el.isChecked) el.isChecked = false;
-        return el;
-      }),
-    );
-    setSortList(
-      sortList.map((el) => {
-        if (el.isChecked) el.isChecked = false;
-        return el;
-      }),
-    );
-  };
 
   return (
     <main className={cx('main')}>
@@ -96,8 +92,6 @@ export const MainPage: FC = () => {
       <Filter
         isShowFilter={isShowFilter}
         handleChangeShowFilter={() => setIsShowFilter(false)}
-        handleSumbitFilter={handleSumbitFilter}
-        handleClearFilter={handleClearFilter}
         sortList={sortList}
         setSortList={setSortList}
         genresList={genresList}

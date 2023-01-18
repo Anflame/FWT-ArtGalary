@@ -6,6 +6,7 @@ import { useCheckAuth } from '../../hooks/useCheckAuth';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { useUnScroll } from '../../hooks/useUnScroll';
 import { fetchPainters } from '../../store/API/painters';
+import { fetchGenres } from '../../store/API/paintersInfo';
 import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 const Auth = React.lazy(() => import('../Auth'));
@@ -44,6 +45,7 @@ export const Layout: FC = () => {
 
   useEffect(() => {
     dispatch(fetchPainters());
+    dispatch(fetchGenres());
   }, [fetchPainters]);
 
   return (

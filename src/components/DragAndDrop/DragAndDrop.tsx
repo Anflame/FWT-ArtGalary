@@ -10,7 +10,7 @@ const cx = cn.bind(styles);
 
 type DragAndDropProps = {
   setImage: (file: File) => void;
-  image: File | undefined;
+  image: File[] | undefined;
   setPreviewUrl: (url: string) => void;
   previewUrl: string;
 };

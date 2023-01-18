@@ -79,8 +79,9 @@
     .list {
       list-style-type: none;
       display: grid;
-      grid-auto-flow: column;
-      grid-template-rows: repeat(4, auto);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      align-content: center;
 
       .listes {
         margin-bottom: 12px;
@@ -92,10 +93,21 @@
         color: var(--color-primary-grey);
       }
 
+      .genresListes {
+        width: 70px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
       .checked {
         font-weight: var(--font-weight-medium);
         color: var(--color-default-background-btn);
       }
+    }
+
+    .sortList {
+      display: block;
     }
 
     .submitWrapp {

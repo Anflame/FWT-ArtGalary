@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { addPaintingReducer } from './addPainting/slice';
 import { authReducer } from './auth/slice';
+import { genresReducer } from './genres/slice';
 import { painterProfileReducer } from './painterProfile/slice';
 import { paintersReducer } from './painters/slice';
 
@@ -7,6 +9,8 @@ export const rootReducer = combineReducers({
   painters: paintersReducer,
   auth: authReducer,
   painterProfile: painterProfileReducer,
+  addPaintng: addPaintingReducer,
+  genresState: genresReducer,
 });
 
 export const setupStore = () =>
