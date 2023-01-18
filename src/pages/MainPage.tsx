@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
-import { Listes } from '../comon-types';
 import Filter from '../components/FIlter';
 import PainterItem from '../components/PainterItem';
 import { sort } from '../constants';
@@ -14,6 +13,7 @@ import List from '../ui/List';
 import Preloader from '../ui/Preloader';
 import Search from '../ui/Search';
 import Toast from '../ui/Toast';
+import type { Listes } from '../comon-types';
 import { ReactComponent as FilterIcon } from '../assets/images/filterIcon.svg';
 import styles from './styles.module.scss';
 
