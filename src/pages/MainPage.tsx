@@ -26,8 +26,8 @@ export const MainPage: FC = () => {
   );
   const {
     genres,
-    isLoading: isLoadingGenres,
-    error: errorGenres,
+    // isLoading: isLoadingGenres,
+    // error: errorGenres,
   } = useAppSelector(({ genresState }) => genresState);
   const [isShow, setIsShow] = useState(!error);
   const [isShowAddProfile, setIsShowAddProfile] = useState(false);
