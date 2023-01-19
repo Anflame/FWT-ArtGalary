@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Cookies from 'js-cookie';
 import PainterArtWorks from '../PainterArtworks';
-import { useCheckAuth } from '../../hooks/useCheckAuth';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useUnScroll } from '../../hooks/useUnScroll';
