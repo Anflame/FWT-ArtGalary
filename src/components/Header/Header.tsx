@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
@@ -26,11 +26,6 @@ export const Header: FC<MenuProps> = ({
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-  const logOut = () => {
-    dispatch(changeAuth(false));
-    Cookies.remove('tokens');
-  };
 
   return (
     <>
@@ -59,7 +54,10 @@ export const Header: FC<MenuProps> = ({
                   </Button>
                 </>
               ) : (
-                <Button handleClick={logOut} className={'authBtn'}>
+                <Button
+                  handleClick={() => dispatch(changeAuth(false))}
+                  className={'authBtn'}
+                >
                   {'logout'}
                 </Button>
               )}

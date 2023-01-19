@@ -39,7 +39,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
 
-  const { accessToken } = useAppSelector(({ auth: { tokens } }) => tokens);
+  const { accessToken } = useAppSelector(({ auth: { token } }) => token);
 
   const dispatch = useAppDispatch();
 

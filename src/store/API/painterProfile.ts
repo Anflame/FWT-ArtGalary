@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { API } from '../../constants';
+import $api from '../../http';
 import {
   PaintersParams,
   TAddPainting,
@@ -11,16 +11,10 @@ import {
 export const fetchPainterProfle = createAsyncThunk(
   'painters/fetchPainterProfile',
   async (params: PaintersParams, thunkAPI) => {
-    const { url, accessToken } = params;
+    const { url } = params;
     try {
-      const response = await axios.get<TPainterProfile[]>(
-        `${API}/artists/${url || ''}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
+      const response = await $api.get<TPainterProfile[]>(
+        `/artists/${url || ''}`,
       );
       return response.data;
     } catch (e) {

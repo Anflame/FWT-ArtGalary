@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { API } from '../../constants';
+import { BASE_URL } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import type { TPainters } from '../../store/types';
 import Card from '../../ui/Card';
@@ -17,7 +17,7 @@ export const PainterItem: FC<PainterItemProps> = ({ painter }) => {
         <Link to={`/profile/${painter._id}`}>
           <Card
             title={painter.name}
-            img={API + painter.mainPainting.image.src}
+            img={BASE_URL + painter.mainPainting.image.src}
             id={painter._id}
             year={painter.yearsOfLife}
           />
@@ -25,7 +25,7 @@ export const PainterItem: FC<PainterItemProps> = ({ painter }) => {
       ) : (
         <Card
           title={painter.name}
-          img={API + painter.mainPainting.image.src}
+          img={BASE_URL + painter.mainPainting.image.src}
           id={painter._id}
           year={painter.yearsOfLife}
         />

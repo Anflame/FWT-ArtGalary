@@ -46,7 +46,7 @@ export const Layout: FC = () => {
   useEffect(() => {
     dispatch(fetchPainters());
     dispatch(fetchGenres());
-  }, [fetchPainters]);
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

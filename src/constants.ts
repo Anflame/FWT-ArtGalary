@@ -20,7 +20,7 @@ export const socNetworks = [
   },
 ];
 
-export const API = 'https://internship-front.framework.team';
+export const BASE_URL = 'https://internship-front.framework.team';
 
 export const pages: Array<number> = [];
 

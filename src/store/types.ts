@@ -62,10 +62,14 @@ export type Paintings = {
   artist: string;
 };
 
-export type TAuth = {
-  isAuth?: boolean;
+export type TTokens = {
   accessToken: string;
   refreshToken: string;
+};
+
+export type TAuth = {
+  isAuth: boolean;
+  token: TTokens;
   fingerprint?: string;
 };
 
