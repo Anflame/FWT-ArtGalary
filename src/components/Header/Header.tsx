@@ -27,11 +27,6 @@ export const Header: FC<MenuProps> = ({
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const logOut = () => {
-    dispatch(changeAuth(false));
-    Cookies.remove('tokens');
-  };
-
   return (
     <>
       <header className={cx('header')}>
