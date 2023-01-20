@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Cookies from 'js-cookie';
 import PainterArtWorks from '../PainterArtworks';
@@ -33,8 +33,9 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { error, isLoading } = useAppSelector(
     ({ painterProfile }) => painterProfile,
   );
-  const { accessToken } = useAppSelector(({ auth: { tokens } }) => tokens);
+  const { accessToken } = useAppSelector(({ auth: { token } }) => token);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { painterId } = useParams();
 
   const handleChangeShowDelete = () => {
@@ -48,16 +49,15 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   };
 
   useEffect(() => {
-    if (!accessToken && !Cookies.get('tokens')) return;
+    if (!Cookies.get('token')) navigate('/');
     dispatch(
       fetchPainterProfle({
         url: painterId,
         accessToken:
-          accessToken ||
-          JSON.parse(Cookies.get('tokens') as string).accessToken,
+          accessToken || JSON.parse(Cookies.get('token') as string).accessToken,
       }),
     );
-  }, []);
+  }, [Cookies.get('token'), dispatch]);
 
   return (
     <>

@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 import { fetchAuth } from '../API/auth';
-import { TAuth } from '../types';
-import { TAuthState, TTokens } from './types';
+import { TTokens } from '../types';
+import { TAuthState } from './types';
 
 const initialState: TAuthState = {
-  tokens: {
+  token: {
     accessToken: '',
     refreshToken: '',
   },
@@ -20,19 +21,21 @@ const authSlice = createSlice({
     changeAuth(state, action: PayloadAction<boolean>) {
       state.isAuth = action.payload;
       if (action.payload === false) {
-        state.tokens.accessToken = '';
-        state.tokens.refreshToken = '';
+        state.token.accessToken = ' ';
+        state.token.refreshToken = ' ';
+        Cookies.remove('token');
       }
     },
     setTokens(state, action: PayloadAction<TTokens>) {
-      state.tokens = action.payload;
+      state.token = action.payload;
     },
   },
   extraReducers: {
-    [fetchAuth.fulfilled.type]: (state, action: PayloadAction<TAuth>) => {
+    [fetchAuth.fulfilled.type]: (state, action: PayloadAction<TTokens>) => {
       state.isLoading = false;
       state.error = '';
-      state.tokens = action.payload;
+      state.token = action.payload;
+      Cookies.set('token', JSON.stringify(action.payload));
     },
     [fetchAuth.pending.type]: (state) => {
       state.isLoading = true;

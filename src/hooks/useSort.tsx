@@ -7,7 +7,7 @@ export const useSort = (
 ) => {
   if (isUnique) {
     return array.map((el) => {
-      if (el.id === +e.currentTarget.title) el.isChecked = !el.isChecked;
+      if (el.name === e.currentTarget.title) el.isChecked = !el.isChecked;
       else if (el.isChecked) el.isChecked = !el.isChecked;
       return el;
     });

@@ -59,7 +59,10 @@ export const Header: FC<MenuProps> = ({
                   </Button>
                 </>
               ) : (
-                <Button handleClick={logOut} className={'authBtn'}>
+                <Button
+                  handleClick={() => dispatch(changeAuth(false))}
+                  className={'authBtn'}
+                >
                   {'logout'}
                 </Button>
               )}

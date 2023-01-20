@@ -34,7 +34,7 @@ export type InputsProps = {
 };
 
 export type Listes = {
-  id: number;
+  _id: string;
   name: string;
   isChecked: boolean;
 };

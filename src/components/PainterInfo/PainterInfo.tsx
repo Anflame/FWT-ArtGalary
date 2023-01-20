@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { API } from '../../constants';
+import { BASE_URL } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import Label from '../../ui/Label';
@@ -29,7 +29,7 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
       <div className={cx('painterInfo')}>
         {avatar.src ? (
           <LoadingImage
-            src={API + avatar.src}
+            src={BASE_URL + avatar.src}
             alt="painterPhoto"
             className={cx('painterImg')}
             containerClassName={cx('painterImgWrapp')}

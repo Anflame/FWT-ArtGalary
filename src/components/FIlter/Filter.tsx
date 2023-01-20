@@ -15,8 +15,6 @@ const cx = cn.bind(styles);
 type FilterProps = {
   isShowFilter: boolean;
   handleChangeShowFilter: (isShowFilter: boolean) => void;
-  handleSumbitFilter: () => void;
-  handleClearFilter: () => void;
   sortList: Listes[];
   setSortList: (sortListes: Listes[]) => void;
   genresList: Listes[];
@@ -26,8 +24,6 @@ type FilterProps = {
 export const Filter: FC<FilterProps> = ({
   isShowFilter,
   handleChangeShowFilter,
-  handleSumbitFilter,
-  handleClearFilter,
   sortList,
   setSortList,
   genresList,
@@ -47,6 +43,23 @@ export const Filter: FC<FilterProps> = ({
     if (type === 'genres') {
       setGenresList(useSort(genresList, e));
     }
+  };
+
+  const handleSumbitFilter = () => {};
+
+  const handleClearFilter = () => {
+    setGenresList(
+      genresList.map((el) => {
+        if (el.isChecked) el.isChecked = false;
+        return el;
+      }),
+    );
+    setSortList(
+      sortList.map((el) => {
+        if (el.isChecked) el.isChecked = false;
+        return el;
+      }),
+    );
   };
 
   useEffect(() => {
@@ -75,11 +88,15 @@ export const Filter: FC<FilterProps> = ({
           </div>
           {isShowGenres && (
             <ul className={cx('list')}>
-              {genresList.map(({ id, isChecked, name }) => (
+              {genresList.map(({ _id, isChecked, name }) => (
                 <li
-                  className={cx('listes', isChecked && 'checked')}
-                  key={id}
-                  title={`${id}`}
+                  className={cx(
+                    'listes',
+                    'genresListes',
+                    isChecked && 'checked',
+                  )}
+                  key={_id}
+                  title={`${name}`}
                   onClick={(e) => handleChangeChecked(e, 'genres')}
                 >
                   {name}
@@ -97,12 +114,12 @@ export const Filter: FC<FilterProps> = ({
             <p className={cx('showIcon')}>{!isShowSortList ? '+' : '-'}</p>
           </div>
           {isShowSortList && (
-            <ul className={cx('list')}>
-              {sortList.map(({ id, name, isChecked }) => (
+            <ul className={cx('list', 'sortList')}>
+              {sortList.map(({ _id, name, isChecked }) => (
                 <li
                   className={cx('listes', isChecked && 'checked')}
-                  key={id}
-                  title={`${id}`}
+                  key={_id}
+                  title={`${name}`}
                   onClick={(e) => handleChangeChecked(e, 'sort')}
                 >
                   {name}

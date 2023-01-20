@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { API } from '../../constants';
+import { BASE_URL } from '../../constants';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useUnScroll } from '../../hooks/useUnScroll';
 import Button from '../../ui/Button';
@@ -56,7 +56,7 @@ export const SliderItem: FC<SliderItemProps> = ({
   return (
     <li key={_id} className={cx('sliderListes')}>
       <LoadingImage
-        src={API + src}
+        src={BASE_URL + src}
         alt={name}
         className={cx('sliderListesImg')}
       />

@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useParams } from 'react-router';
 import cn from 'classnames/bind';
 import Button from '../Button';
 import Input from '../Input';
@@ -8,9 +9,11 @@ import { SetIsShow } from '../../comon-types';
 import DragAndDrop from '../../components/DragAndDrop';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
-// import { useAppDispatch } from '../../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useValidation } from '../../hooks/useValidation';
+import { fetchAddPainting } from '../../store/API/painterProfile';
+import { TAddPaintingParams } from '../../store/types';
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import styles from './styles.module.scss';
@@ -36,10 +39,26 @@ export const EditPainting: FC<EditPaintingProps> = ({
   const [nameErrorMessage, setNameMessage] = useState('');
   const [yearErrorMessage, setYearMessage] = useState('');
 
-  // const dispatch = useAppDispatch();
+  const { accessToken } = useAppSelector(({ auth: { token } }) => token);
+
+  const dispatch = useAppDispatch();
+
+  const { painterId } = useParams();
 
   const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (image) {
+      const resultObj: TAddPaintingParams = {
+        id: painterId,
+        accessToken,
+        imageInfo: {
+          name,
+          yearOfCreation: year,
+          image,
+        },
+      };
+      dispatch(fetchAddPainting(resultObj));
+    }
   };
 
   useEffect(() => {

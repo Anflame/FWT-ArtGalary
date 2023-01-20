@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL } from '../../constants';
 import { TPainters } from '../types';
 
 export const fetchPainters = createAsyncThunk(
@@ -7,7 +8,7 @@ export const fetchPainters = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get<TPainters[]>(
-        'https://internship-front.framework.team/artists/static',
+        `${BASE_URL}/artists/static`,
       );
       return response.data;
     } catch (e) {

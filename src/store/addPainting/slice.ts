@@ -1,22 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchPainterProfle } from '../API/painterProfile';
-import { TPainterProfile } from '../types';
+import { fetchAddPainting } from '../API/painterProfile';
+import { TAddPainting } from '../types';
 
 type PainterProfileState = {
-  painterProfileInfo: TPainterProfile;
+  painting: TAddPainting;
   isLoading: boolean;
   error: string;
 };
 
 const initialState: PainterProfileState = {
-  painterProfileInfo: {
-    paintings: [],
-    genres: [],
+  painting: {
     _id: '',
     name: '',
-    description: '',
-    yearsOfLife: '',
-    avatar: {
+    yearOfCreation: '',
+    image: {
       _id: '',
       src: '',
       webp: '',
@@ -24,43 +21,28 @@ const initialState: PainterProfileState = {
       webp2x: '',
       original: '',
     },
-    __v: 0,
-    mainPainting: {
-      _id: '',
-      name: '',
-      yearOfCreation: '',
-      image: {
-        _id: '',
-        src: '',
-        webp: '',
-        src2x: '',
-        webp2x: '',
-        original: '',
-      },
-      artist: '',
-    },
   },
   isLoading: false,
   error: '',
 };
 
-const painterProfileSlice = createSlice({
-  name: 'painterProfile',
+const addPainting = createSlice({
+  name: 'addPainting',
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchPainterProfle.fulfilled.type]: (
+    [fetchAddPainting.fulfilled.type]: (
       state,
-      action: PayloadAction<TPainterProfile>,
+      action: PayloadAction<TAddPainting>,
     ) => {
       state.isLoading = false;
       state.error = '';
-      state.painterProfileInfo = action.payload;
+      state.painting = action.payload;
     },
-    [fetchPainterProfle.pending.type]: (state) => {
+    [fetchAddPainting.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [fetchPainterProfle.rejected.type]: (
+    [fetchAddPainting.rejected.type]: (
       state,
       action: PayloadAction<string>,
     ) => {
@@ -70,4 +52,4 @@ const painterProfileSlice = createSlice({
   },
 });
 
-export const painterProfileReducer = painterProfileSlice.reducer;
+export const addPaintingReducer = addPainting.reducer;

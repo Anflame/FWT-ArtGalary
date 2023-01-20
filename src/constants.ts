@@ -20,7 +20,7 @@ export const socNetworks = [
   },
 ];
 
-export const API = 'https://internship-front.framework.team';
+export const BASE_URL = 'https://internship-front.framework.team';
 
 export const pages: Array<number> = [];
 
@@ -54,17 +54,17 @@ export const genres = [
 
 export const sort = [
   {
-    id: 1,
+    _id: '1',
     name: 'Recently added',
     isChecked: false,
   },
   {
-    id: 2,
+    _id: '2',
     name: 'A-Z',
     isChecked: false,
   },
   {
-    id: 3,
+    _id: '3',
     name: 'Z-A',
     isChecked: false,
   },
@@ -75,37 +75,37 @@ export const biography =
 
 export const selectListArray = [
   {
-    id: 1,
+    _id: '1',
     name: 'Albert',
     isChecked: false,
   },
   {
-    id: 2,
+    _id: '2',
     name: 'Ludovic',
     isChecked: false,
   },
   {
-    id: 3,
+    _id: '3',
     name: 'Aurelius',
     isChecked: false,
   },
   {
-    id: 4,
+    _id: '4',
     name: 'Viktor',
     isChecked: false,
   },
   {
-    id: 5,
+    _id: '5',
     name: 'Lembrant',
     isChecked: false,
   },
   {
-    id: 6,
+    _id: '6',
     name: 'Hanz',
     isChecked: false,
   },
   {
-    id: 7,
+    _id: '7',
     name: 'Lanselot',
     isChecked: false,
   },

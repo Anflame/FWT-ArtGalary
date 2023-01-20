@@ -1,20 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { PaintersParams, TPainterProfile } from '../types';
+import $api from '../../http';
+import {
+  PaintersParams,
+  TAddPainting,
+  TAddPaintingParams,
+  TPainterProfile,
+} from '../types';
 
 export const fetchPainterProfle = createAsyncThunk(
   'painters/fetchPainterProfile',
   async (params: PaintersParams, thunkAPI) => {
-    const { url, accessToken } = params;
+    const { url } = params;
     try {
-      const response = await axios.get<TPainterProfile[]>(
-        `https://internship-front.framework.team/artists/${url || ''}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
+      const response = await $api.get<TPainterProfile[]>(
+        `/artists/${url || ''}`,
       );
       return response.data;
     } catch (e) {
@@ -25,21 +25,35 @@ export const fetchPainterProfle = createAsyncThunk(
 
 export const fetchAddPainting = createAsyncThunk(
   'painters/fetchAddPainting',
-  async (params: PaintersParams, thunkAPI) => {
-    const { url, accessToken } = params;
+  async (params: TAddPaintingParams, thunkAPI) => {
+    const { id, accessToken, imageInfo } = params;
     try {
-      const response = await axios.get<TPainterProfile[]>(
-        `https://internship-front.framework.team/artists/${url || ''}`,
+      const formData = new FormData();
+      formData.append('file', imageInfo.image);
+      const response = await axios.post<TAddPainting[]>(
+        `https://internship-front.framework.team/artists/${id}/paintings`,
         {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
+          data: {
+            name: 'Moonlight',
+            yearOfCreation: '1234',
+            image: {
+              size: 0,
+              buffer: {},
+              encoding: 'string',
+              mimetype: 'string',
+              fieldname: 'string',
+              originalname: 'string',
+            },
+          },
         },
       );
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue('Не удалось загрузить художника');
+      return thunkAPI.rejectWithValue('Не удалось добвить Картину');
     }
   },
 );

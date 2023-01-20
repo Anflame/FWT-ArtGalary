@@ -1,11 +1,8 @@
+import { TTokens } from '../types';
+
 export type TAuthState = {
-  tokens: TTokens;
+  token: TTokens;
   isLoading: boolean;
   error: string;
   isAuth: boolean;
-};
-
-export type TTokens = {
-  accessToken: string;
-  refreshToken: string;
 };
