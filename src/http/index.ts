@@ -1,7 +1,6 @@
 import axios, { RawAxiosRequestHeaders } from 'axios';
 import Cookies from 'js-cookie';
 import { BASE_URL } from '../constants';
-import { changeAuth } from '../store/auth/slice';
 import { TTokens } from '../store/types';
 
 const $api = axios.create({
@@ -40,7 +39,7 @@ $api.interceptors.response.use(
         Cookies.set('token', JSON.stringify(response.data));
         return await $api.request(originalRequest);
       } catch (e) {
-        changeAuth(false);
+        Cookies.remove('token');
       }
     }
     throw error;
