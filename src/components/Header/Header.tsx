@@ -1,7 +1,6 @@
 import { FC, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
-import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { changeAuth } from '../../store/auth/slice';
