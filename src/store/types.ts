@@ -1,5 +1,3 @@
-import { Listes } from '../comon-types';
-
 export type TPainterProfile = {
   paintings: Paintings[];
   genres: {
