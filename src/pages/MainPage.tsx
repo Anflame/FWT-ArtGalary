@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
-import Cookies from 'js-cookie';
 import Filter from '../components/FIlter';
 import PainterItem from '../components/PainterItem';
 import { sort } from '../constants';
@@ -11,7 +10,6 @@ import {
   fetchPainters,
   fetchPaintersAuthorizedPerson,
 } from '../store/API/painters';
-import { fetchGenres } from '../store/API/paintersInfo';
 import { TPainters } from '../store/types';
 import Button from '../ui/Button';
 import EditProfile from '../ui/EditProfile';
