@@ -4,6 +4,7 @@ import cn from 'classnames/bind';
 import { Listes } from '../../comon-types';
 import { modalNode } from '../../constants';
 import { usePressEscape } from '../../hooks/usePressEscape';
+import { useAppSelector } from '../../hooks/useRedux';
 import { useSort } from '../../hooks/useSort';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import Button from '../../ui/Button';
@@ -19,6 +20,8 @@ type FilterProps = {
   setSortList: (sortListes: Listes[]) => void;
   genresList: Listes[];
   setGenresList: (genresList: Listes[]) => void;
+  handleSubmitFilter: () => void;
+  handleClearFilter: () => void;
 };
 
 export const Filter: FC<FilterProps> = ({
@@ -28,10 +31,13 @@ export const Filter: FC<FilterProps> = ({
   setSortList,
   genresList,
   setGenresList,
+  handleSubmitFilter,
+  handleClearFilter,
 }) => {
   const [isShowGenres, setIsShowGenres] = useState(false);
   const [isShowSortList, setIsShowSortList] = useState(false);
   const { theme } = useThemeContext();
+  const { isLoading, error } = useAppSelector(({ genresState }) => genresState);
 
   const handleChangeChecked = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
@@ -43,23 +49,6 @@ export const Filter: FC<FilterProps> = ({
     if (type === 'genres') {
       setGenresList(useSort(genresList, e));
     }
-  };
-
-  const handleSumbitFilter = () => {};
-
-  const handleClearFilter = () => {
-    setGenresList(
-      genresList.map((el) => {
-        if (el.isChecked) el.isChecked = false;
-        return el;
-      }),
-    );
-    setSortList(
-      sortList.map((el) => {
-        if (el.isChecked) el.isChecked = false;
-        return el;
-      }),
-    );
   };
 
   useEffect(() => {
@@ -86,7 +75,7 @@ export const Filter: FC<FilterProps> = ({
             <h4 className={cx('filterHeading')}>Genres</h4>
             <p className={cx('showIcon')}>{!isShowGenres ? '+' : '-'}</p>
           </div>
-          {isShowGenres && (
+          {!isLoading && !error && isShowGenres && (
             <ul className={cx('list')}>
               {genresList.map(({ _id, isChecked, name }) => (
                 <li
@@ -127,9 +116,10 @@ export const Filter: FC<FilterProps> = ({
               ))}
             </ul>
           )}
+          ;
         </div>
         <div className={cx('submitWrapp')}>
-          <Button className="linkBtn" onClick={handleSumbitFilter}>
+          <Button className="linkBtn" onClick={handleSubmitFilter}>
             show the result
           </Button>
           <Button className="linkBtn" onClick={handleClearFilter}>

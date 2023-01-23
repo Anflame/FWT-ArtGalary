@@ -1,3 +1,5 @@
+import { Listes } from '../comon-types';
+
 export type TPainterProfile = {
   paintings: Paintings[];
   genres: {
@@ -96,4 +98,18 @@ export type TGenresState = {
   isLoading: boolean;
   error: string;
   genres: TGenre[];
+};
+
+export type TPaintersParams = {
+  genres: string[];
+  sorting: string[];
+};
+
+export type TPainterAuthorizedPerson = {
+  data: TPainters[];
+  meta: {
+    count: number;
+    perPage: number;
+    pageNumber: number;
+  };
 };

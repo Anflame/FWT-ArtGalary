@@ -1,11 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
+import Cookies from 'js-cookie';
 import Filter from '../components/FIlter';
 import PainterItem from '../components/PainterItem';
 import { sort } from '../constants';
-import { useAppSelector } from '../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import { useThemeContext } from '../hooks/useThemeContext';
 import { useUnScroll } from '../hooks/useUnScroll';
+import {
+  fetchPainters,
+  fetchPaintersAuthorizedPerson,
+} from '../store/API/painters';
+import { fetchGenres } from '../store/API/paintersInfo';
 import { TPainters } from '../store/types';
 import Button from '../ui/Button';
 import EditProfile from '../ui/EditProfile';
@@ -24,16 +30,21 @@ export const MainPage: FC = () => {
   const { painterList, isLoading, error } = useAppSelector(
     ({ painters }) => painters,
   );
-  const {
-    genres,
-    // isLoading: isLoadingGenres,
-    // error: errorGenres,
-  } = useAppSelector(({ genresState }) => genresState);
+  const { genres } = useAppSelector(({ genresState }) => genresState);
   const [isShow, setIsShow] = useState(!error);
   const [isShowAddProfile, setIsShowAddProfile] = useState(false);
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [genresList, setGenresList] = useState<Listes[]>([]);
   const [sortList, setSortList] = useState(sort);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const dispatch = useAppDispatch();
+  const {
+    paintersList: painterAuthList,
+    isLoading: isLoadingAuth,
+    error: errorAuth,
+  } = useAppSelector(
+    ({ paintersAuthorizedPerson }) => paintersAuthorizedPerson,
+  );
 
   const handleCloseToast = () => {
     setIsShow(false);
@@ -46,9 +57,51 @@ export const MainPage: FC = () => {
         isChecked: false,
       })),
     );
-    useUnScroll(isShowFilter || isShowAddProfile);
-  }, [isShowFilter, isShowAddProfile, genres]);
+  }, [genres]);
 
+  useEffect(() => {
+    if (!isFiltered) dispatch(fetchPainters());
+    useUnScroll(isShowFilter || isShowAddProfile);
+  }, [isShowFilter, isShowAddProfile]);
+
+  const handleSubmitFilter = () => {
+    const filteredGenres = genresList
+      .filter((el) => el.isChecked !== false)
+      .reduce((acc, curr) => {
+        acc.push(curr.name);
+        return acc;
+      }, [] as string[]);
+    const checkedSorting = sortList
+      .filter((el) => el.isChecked !== false)
+      .reduce((acc, curr) => {
+        if (curr.name === 'Z-A') acc.push('desc');
+        else acc.push('asc');
+        return acc;
+      }, [] as string[]);
+    dispatch(
+      fetchPaintersAuthorizedPerson({
+        genres: filteredGenres,
+        sorting: checkedSorting,
+      }),
+    );
+    setIsFiltered(true);
+  };
+
+  const handleClearFilter = () => {
+    setGenresList(
+      genresList.map((el) => {
+        if (el.isChecked) el.isChecked = false;
+        return el;
+      }),
+    );
+    setSortList(
+      sortList.map((el) => {
+        if (el.isChecked) el.isChecked = false;
+        return el;
+      }),
+    );
+    setIsFiltered(false);
+  };
   const handleSubmitForm = () => {};
 
   return (
@@ -69,15 +122,23 @@ export const MainPage: FC = () => {
           />
         </div>
       </div>
-      {isLoading && <Preloader />}
-      {error && (
+      {(isLoading || isLoadingAuth) && <Preloader />}
+      {(error || errorAuth) && (
         <Toast
-          message={error}
+          message={error || errorAuth}
           handleCloseToast={handleCloseToast}
           isShowToast={isShow}
         />
       )}
-      {painterList && (
+      {painterAuthList && isFiltered && (
+        <List
+          items={painterAuthList}
+          renderItem={(painter: TPainters) => (
+            <PainterItem painter={painter} key={painter._id} />
+          )}
+        />
+      )}
+      {painterList && !isFiltered && (
         <List
           items={painterList}
           renderItem={(painter: TPainters) => (
@@ -96,6 +157,8 @@ export const MainPage: FC = () => {
         setSortList={setSortList}
         genresList={genresList}
         setGenresList={setGenresList}
+        handleSubmitFilter={handleSubmitFilter}
+        handleClearFilter={handleClearFilter}
       />
     </main>
   );

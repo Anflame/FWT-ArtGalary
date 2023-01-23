@@ -15,7 +15,7 @@ const initialState: PaintersState = {
 };
 
 const themeSlice = createSlice({
-  name: 'slice',
+  name: 'painters',
   initialState,
   reducers: {},
   extraReducers: {
