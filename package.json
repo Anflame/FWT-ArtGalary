@@ -2,7 +2,7 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anflame.github.io/FWT-ArtGallary/",
+  "homepage": "https://anflame.github.io/FWT-ArtGallery/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
