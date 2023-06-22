@@ -1,9 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
+
+import Toast from '../../ui/Toast';
+
 import { useAddFile } from '../../hooks/useAddFIle';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
-import Toast from '../../ui/Toast';
+
 import { ReactComponent as DragAndDropIcon } from '../../assets/images/dragAndDropIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

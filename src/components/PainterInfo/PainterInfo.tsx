@@ -1,13 +1,18 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { BASE_URL } from '../../constants';
-import { useAppSelector } from '../../hooks/useRedux';
-import { useThemeContext } from '../../hooks/useThemeContext';
+
 import Label from '../../ui/Label';
 import LoadingImage from '../../ui/LoadingImage';
+
+import { useAppSelector } from '../../hooks/useRedux';
+import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { BASE_URL } from '../../constants';
+
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

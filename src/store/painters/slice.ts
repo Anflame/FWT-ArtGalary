@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { fetchPainters } from '../API/painters';
 import { TPainters } from '../types';
 

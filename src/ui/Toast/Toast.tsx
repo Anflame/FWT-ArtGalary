@@ -1,11 +1,16 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { modalNode } from '../../constants';
+
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { modalNode } from '../../constants';
+
 import type { SetIsShow } from '../../comon-types';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

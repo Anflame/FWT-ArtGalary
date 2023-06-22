@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { fetchAddPainting } from '../API/painterProfile';
-import { TAddPainting } from '../types';
+
+import type { TAddPainting } from '../types';
 
 type PainterProfileState = {
   painting: TAddPainting;

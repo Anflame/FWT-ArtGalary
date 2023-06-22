@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+
 import { fetchAuth } from '../API/auth';
 import { TTokens } from '../types';
 import { TAuthState } from './types';

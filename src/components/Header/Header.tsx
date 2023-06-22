@@ -1,15 +1,21 @@
 import { FC, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
+
+import { changeAuth } from '../../store/auth/slice';
+
+import Button from '../../ui/Button';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { changeAuth } from '../../store/auth/slice';
-import Button from '../../ui/Button';
+
 import type { MenuProps } from '../../comon-types';
+
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
 import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

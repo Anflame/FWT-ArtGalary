@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Route, Routes } from 'react-router';
-import Layout from '../Layout';
+
 import { MainPage } from '../../pages/MainPage';
 import { ProfilePage } from '../../pages/ProfilePage';
+import Layout from '../Layout';
 
 export const AppRouter: FC = () => (
   <Routes>

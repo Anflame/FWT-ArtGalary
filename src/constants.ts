@@ -1,6 +1,7 @@
-import { TemporaryPaintings } from './comon-types';
 import CardImg from './assets/images/cardImg.jpg';
 import SecondCardImg from './assets/images/secondCardImg.jpg';
+
+import { TemporaryPaintings } from './comon-types';
 
 export const socNetworks = [
   {

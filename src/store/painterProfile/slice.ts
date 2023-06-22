@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { fetchPainterProfle } from '../API/painterProfile';
+
 import { TPainterProfile } from '../types';
 
 type PainterProfileState = {

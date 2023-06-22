@@ -1,17 +1,23 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { BASE_URL } from '../../constants';
-import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
+
 import Button from '../../ui/Button';
 import Delete from '../../ui/Delete';
 import EditPainting from '../../ui/EditPainting';
 import LoadingImage from '../../ui/LoadingImage';
+
+import { useThemeContext } from '../../hooks/useThemeContext';
+import { useUnScroll } from '../../hooks/useUnScroll';
+
+import { BASE_URL } from '../../constants';
+
 import type { SetIsShow, TemporaryPaintings } from '../../comon-types';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../../assets/images/editIcon.svg';
 import { ReactComponent as ImageIcon } from '../../assets/images/imageIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+
 import '../index.scss';
 
 interface ThemeContextType {

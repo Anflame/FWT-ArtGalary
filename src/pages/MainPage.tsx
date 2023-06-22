@@ -1,24 +1,31 @@
 import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames/bind';
-import Filter from '../components/FIlter';
-import PainterItem from '../components/PainterItem';
-import { sort } from '../constants';
-import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
-import { useThemeContext } from '../hooks/useThemeContext';
-import { useUnScroll } from '../hooks/useUnScroll';
+
 import {
   fetchPainters,
   fetchPaintersAuthorizedPerson,
 } from '../store/API/painters';
 import { TPainters } from '../store/types';
+
+import Filter from '../components/FIlter';
+import PainterItem from '../components/PainterItem';
 import Button from '../ui/Button';
 import EditProfile from '../ui/EditProfile';
 import List from '../ui/List';
 import Preloader from '../ui/Preloader';
 import Search from '../ui/Search';
 import Toast from '../ui/Toast';
+
+import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
+import { useThemeContext } from '../hooks/useThemeContext';
+import { useUnScroll } from '../hooks/useUnScroll';
+
+import { sort } from '../constants';
+
 import type { Listes } from '../comon-types';
+
 import { ReactComponent as FilterIcon } from '../assets/images/filterIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

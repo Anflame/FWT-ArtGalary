@@ -1,9 +1,13 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../constants';
-import { useAppSelector } from '../../hooks/useRedux';
+
 import type { TPainters } from '../../store/types';
+
 import Card from '../../ui/Card';
+
+import { useAppSelector } from '../../hooks/useRedux';
+
+import { BASE_URL } from '../../constants';
 
 type PainterItemProps = {
   painter: TPainters;

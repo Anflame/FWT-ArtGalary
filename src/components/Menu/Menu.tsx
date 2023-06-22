@@ -1,15 +1,22 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { modalNode } from '../../constants';
+
+import { changeAuth } from '../../store/auth/slice';
+
+import Button from '../../ui/Button';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { changeAuth } from '../../store/auth/slice';
-import Button from '../../ui/Button';
+
+import { modalNode } from '../../constants';
+
 import type { MenuProps } from '../../comon-types';
+
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
 import { ReactComponent as ThemeIconLight } from '../../assets/images/themeIconLight.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

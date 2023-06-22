@@ -1,12 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Cookies from 'js-cookie';
+
+import { fetchGenres } from '../../store/API/paintersInfo';
+
 import Menu from '../Menu';
+
+import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
+
 import { useCheckAuth } from '../../hooks/useCheckAuth';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { useUnScroll } from '../../hooks/useUnScroll';
-import { fetchGenres } from '../../store/API/paintersInfo';
-import { defaultContext, ThemeContext } from '../../utils/ThemeContext';
 
 const Auth = React.lazy(() => import('../Auth'));
 const Footer = React.lazy(() => import('../Footer'));

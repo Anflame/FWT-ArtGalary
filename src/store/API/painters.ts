@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { BASE_URL } from '../../constants';
+
 import $api from '../../http';
 import { TPainterAuthorizedPerson, TPainters, TPaintersParams } from '../types';
 

@@ -1,14 +1,20 @@
 import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { Listes } from '../../comon-types';
-import { modalNode } from '../../constants';
+
+import Button from '../../ui/Button';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useSort } from '../../hooks/useSort';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import Button from '../../ui/Button';
+
+import { modalNode } from '../../constants';
+
+import type { Listes } from '../../comon-types';
+
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

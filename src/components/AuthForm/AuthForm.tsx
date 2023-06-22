@@ -1,12 +1,16 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { useValidation } from '../../hooks/useValidation';
+
 import { fetchAuth } from '../../store/API/auth';
 import { changeAuth } from '../../store/auth/slice';
+
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Toast from '../../ui/Toast';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useValidation } from '../../hooks/useValidation';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

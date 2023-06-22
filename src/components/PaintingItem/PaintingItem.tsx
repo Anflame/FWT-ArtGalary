@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import { BASE_URL } from '../../constants';
+
 import type { Paintings } from '../../store/types';
+
 import Card from '../../ui/Card';
+
+import { BASE_URL } from '../../constants';
 
 type PaintingItemProps = {
   painting: Paintings;

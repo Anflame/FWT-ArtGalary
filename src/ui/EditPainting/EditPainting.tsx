@@ -2,21 +2,28 @@ import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useParams } from 'react-router';
 import cn from 'classnames/bind';
+
+import { fetchAddPainting } from '../../store/API/painterProfile';
+import { TAddPaintingParams } from '../../store/types';
+
+import DragAndDrop from '../../components/DragAndDrop';
 import Button from '../Button';
 import Input from '../Input';
 import LoadingImage from '../LoadingImage';
-import { SetIsShow } from '../../comon-types';
-import DragAndDrop from '../../components/DragAndDrop';
-import { modalNode } from '../../constants';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useValidation } from '../../hooks/useValidation';
-import { fetchAddPainting } from '../../store/API/painterProfile';
-import { TAddPaintingParams } from '../../store/types';
+
+import { modalNode } from '../../constants';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
+
 import styles from './styles.module.scss';
+
+import { SetIsShow } from '../../comon-types';
 
 const cx = cn.bind(styles);
 

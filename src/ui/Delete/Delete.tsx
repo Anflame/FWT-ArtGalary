@@ -1,13 +1,19 @@
 import React, { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
+
 import Button from '../Button';
-import { modalNode } from '../../constants';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { modalNode } from '../../constants';
+
 import type { SetIsShow } from '../../comon-types';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

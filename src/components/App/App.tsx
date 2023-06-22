@@ -1,7 +1,9 @@
-import React, { FC, Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+
 import { setupStore } from '../../store';
+
 import Preloader from '../../ui/Preloader';
 import { AppRouter } from '../AppRouter/AppRouter';
 

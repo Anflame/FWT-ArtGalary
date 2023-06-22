@@ -2,17 +2,23 @@ import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 // import { useParams } from 'react-router';
 import cn from 'classnames/bind';
-import Toast from '../Toast';
-import { SetIsShow } from '../../comon-types';
+
 import EditProFileForm from '../../components/EditProfileForm';
-import { modalNode } from '../../constants';
+import Toast from '../Toast';
+
 import { useAddFile } from '../../hooks/useAddFIle';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { modalNode } from '../../constants';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
+
 import styles from './styles.module.scss';
+
+import { SetIsShow } from '../../comon-types';
 
 const cx = cn.bind(styles);
 

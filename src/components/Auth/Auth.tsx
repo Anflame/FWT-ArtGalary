@@ -1,13 +1,18 @@
 import React, { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { modalNode } from '../../constants';
+
+import { AuthForm } from '../AuthForm/AuthForm';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { AuthForm } from '../AuthForm/AuthForm';
+
+import { modalNode } from '../../constants';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import logInImg from '../../assets/images/logInImg.jpg';
 import signUpImg from '../../assets/images/signUpImg.jpg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

@@ -1,7 +1,10 @@
 import React, { FC, useRef } from 'react';
 import cn from 'classnames/bind';
+
 import Preloader from '../Preloader';
+
 import { useOnScreen } from '../../hooks/useOnScreen';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import { addPaintingReducer } from './addPainting/slice';
 import { authReducer } from './auth/slice';
 import { genresReducer } from './genres/slice';

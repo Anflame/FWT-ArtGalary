@@ -1,7 +1,9 @@
 import axios, { RawAxiosRequestHeaders } from 'axios';
 import Cookies from 'js-cookie';
-import { BASE_URL } from '../constants';
+
 import { TTokens } from '../store/types';
+
+import { BASE_URL } from '../constants';
 
 const $api = axios.create({
   withCredentials: true,
