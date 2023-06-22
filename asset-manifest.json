@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/FWT-ArtGallery/static/css/main.eb4b2c92.css",
-    "main.js": "/FWT-ArtGallery/static/js/main.ea98927f.js",
-    "static/css/841.3315b60d.chunk.css": "/FWT-ArtGallery/static/css/841.3315b60d.chunk.css",
-    "static/js/841.0f3d8098.chunk.js": "/FWT-ArtGallery/static/js/841.0f3d8098.chunk.js",
-    "static/css/283.69a0ca1a.chunk.css": "/FWT-ArtGallery/static/css/283.69a0ca1a.chunk.css",
-    "static/js/283.0451436c.chunk.js": "/FWT-ArtGallery/static/js/283.0451436c.chunk.js",
-    "static/css/80.3b9ed1aa.chunk.css": "/FWT-ArtGallery/static/css/80.3b9ed1aa.chunk.css",
-    "static/js/80.f2de0324.chunk.js": "/FWT-ArtGallery/static/js/80.f2de0324.chunk.js",
+    "main.css": "/FWT-ArtGallery/static/css/main.e61363cc.css",
+    "main.js": "/FWT-ArtGallery/static/js/main.5c47d3cc.js",
     "static/css/486.57b5bfc8.chunk.css": "/FWT-ArtGallery/static/css/486.57b5bfc8.chunk.css",
-    "static/js/486.277a1719.chunk.js": "/FWT-ArtGallery/static/js/486.277a1719.chunk.js",
+    "static/js/486.b7e11d11.chunk.js": "/FWT-ArtGallery/static/js/486.b7e11d11.chunk.js",
+    "static/css/841.3315b60d.chunk.css": "/FWT-ArtGallery/static/css/841.3315b60d.chunk.css",
+    "static/js/841.ca048978.chunk.js": "/FWT-ArtGallery/static/js/841.ca048978.chunk.js",
+    "static/css/283.69a0ca1a.chunk.css": "/FWT-ArtGallery/static/css/283.69a0ca1a.chunk.css",
+    "static/js/283.c6076251.chunk.js": "/FWT-ArtGallery/static/js/283.c6076251.chunk.js",
+    "static/css/80.3b9ed1aa.chunk.css": "/FWT-ArtGallery/static/css/80.3b9ed1aa.chunk.css",
+    "static/js/80.d2e2d9b3.chunk.js": "/FWT-ArtGallery/static/js/80.d2e2d9b3.chunk.js",
     "static/media/cardImg.jpg": "/FWT-ArtGallery/static/media/cardImg.0a5176e1f1b6db3d6ed1.jpg",
     "static/media/signUpImg.jpg": "/FWT-ArtGallery/static/media/signUpImg.47e2484839c204499d5c.jpg",
     "static/media/logInImg.jpg": "/FWT-ArtGallery/static/media/logInImg.8af190a2b12b96064383.jpg",
@@ -47,19 +47,19 @@
     "static/media/plus.svg": "/FWT-ArtGallery/static/media/plus.ff046f0e1a844aa7799fd8a0d583a7a0.svg",
     "static/media/iconShow.svg": "/FWT-ArtGallery/static/media/iconShow.a3b9d04c3821035c0531087e6abffba4.svg",
     "static/media/iconHide.svg": "/FWT-ArtGallery/static/media/iconHide.64042c1d9dd59e6b60658d780bb18c01.svg",
-    "main.eb4b2c92.css.map": "/FWT-ArtGallery/static/css/main.eb4b2c92.css.map",
-    "main.ea98927f.js.map": "/FWT-ArtGallery/static/js/main.ea98927f.js.map",
-    "841.3315b60d.chunk.css.map": "/FWT-ArtGallery/static/css/841.3315b60d.chunk.css.map",
-    "841.0f3d8098.chunk.js.map": "/FWT-ArtGallery/static/js/841.0f3d8098.chunk.js.map",
-    "283.69a0ca1a.chunk.css.map": "/FWT-ArtGallery/static/css/283.69a0ca1a.chunk.css.map",
-    "283.0451436c.chunk.js.map": "/FWT-ArtGallery/static/js/283.0451436c.chunk.js.map",
-    "80.3b9ed1aa.chunk.css.map": "/FWT-ArtGallery/static/css/80.3b9ed1aa.chunk.css.map",
-    "80.f2de0324.chunk.js.map": "/FWT-ArtGallery/static/js/80.f2de0324.chunk.js.map",
+    "main.e61363cc.css.map": "/FWT-ArtGallery/static/css/main.e61363cc.css.map",
+    "main.5c47d3cc.js.map": "/FWT-ArtGallery/static/js/main.5c47d3cc.js.map",
     "486.57b5bfc8.chunk.css.map": "/FWT-ArtGallery/static/css/486.57b5bfc8.chunk.css.map",
-    "486.277a1719.chunk.js.map": "/FWT-ArtGallery/static/js/486.277a1719.chunk.js.map"
+    "486.b7e11d11.chunk.js.map": "/FWT-ArtGallery/static/js/486.b7e11d11.chunk.js.map",
+    "841.3315b60d.chunk.css.map": "/FWT-ArtGallery/static/css/841.3315b60d.chunk.css.map",
+    "841.ca048978.chunk.js.map": "/FWT-ArtGallery/static/js/841.ca048978.chunk.js.map",
+    "283.69a0ca1a.chunk.css.map": "/FWT-ArtGallery/static/css/283.69a0ca1a.chunk.css.map",
+    "283.c6076251.chunk.js.map": "/FWT-ArtGallery/static/js/283.c6076251.chunk.js.map",
+    "80.3b9ed1aa.chunk.css.map": "/FWT-ArtGallery/static/css/80.3b9ed1aa.chunk.css.map",
+    "80.d2e2d9b3.chunk.js.map": "/FWT-ArtGallery/static/js/80.d2e2d9b3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb4b2c92.css",
-    "static/js/main.ea98927f.js"
+    "static/css/main.e61363cc.css",
+    "static/js/main.5c47d3cc.js"
   ]
 }
