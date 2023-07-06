@@ -1,3 +1,1 @@
-import { PaintingItem } from './PaintingItem';
-
-export default PaintingItem;
+export { default } from './PaintingItem';

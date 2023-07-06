@@ -18,7 +18,7 @@ export type PaginationProps = {
   setCurrentPage: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({
+const Pagination: FC<PaginationProps> = ({
   currentPage,
   maxPages,
   setCurrentPage,
@@ -91,3 +91,5 @@ export const Pagination: FC<PaginationProps> = ({
     </ul>
   );
 };
+
+export default Pagination;

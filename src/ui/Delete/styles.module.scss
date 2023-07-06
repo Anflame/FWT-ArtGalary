@@ -45,7 +45,7 @@
     }
 
     .deleteProfileText {
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
       font-size: 12px;
       line-height: 140%;
       margin-bottom: 32px;

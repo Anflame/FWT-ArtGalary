@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchPainterProfle } from '../API/painterProfile';
+import { fetchAddPainting, fetchPainterProfle } from '../API/painterProfile';
 
-import { TPainterProfile } from '../types';
+import { Paintings, TPainterProfile } from '../types';
 
 type PainterProfileState = {
   painterProfileInfo: TPainterProfile;
@@ -49,7 +49,11 @@ const initialState: PainterProfileState = {
 const painterProfileSlice = createSlice({
   name: 'painterProfile',
   initialState,
-  reducers: {},
+  reducers: {
+    clearPainterProfileError(state) {
+      state.error = '';
+    },
+  },
   extraReducers: {
     [fetchPainterProfle.fulfilled.type]: (
       state,
@@ -69,7 +73,27 @@ const painterProfileSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    [fetchAddPainting.fulfilled.type]: (
+      state,
+      action: PayloadAction<Paintings>,
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.painterProfileInfo.paintings.push(action.payload);
+    },
+    [fetchAddPainting.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchAddPainting.rejected.type]: (
+      state,
+      action: PayloadAction<string>,
+    ) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
+export const { clearPainterProfileError } = painterProfileSlice.actions;
 export const painterProfileReducer = painterProfileSlice.reducer;

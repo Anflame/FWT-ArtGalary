@@ -1,7 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import cn from 'classnames/bind';
 
+import Button from '../Button/Button';
+
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { BtnVariants } from '../../variants';
 
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
@@ -12,10 +16,11 @@ import styles from './styles.module.scss';
 const cx = cn.bind(styles);
 
 type SearchProps = {
-  handleSubmitForm: () => void;
+  handleSubmitForm: (value: string, e: FormEvent<HTMLFormElement>) => void;
+  handleClear: () => void;
 };
 
-export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
+const Search: FC<SearchProps> = ({ handleSubmitForm, handleClear }) => {
   const { theme } = useThemeContext();
   const [isblurSearch, setIsBlurSearch] = useState(false);
   const [value, setValue] = useState('');
@@ -28,10 +33,11 @@ export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
   const handeDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setValue('');
+    handleClear();
   };
 
   return (
-    <form className={cx('search')} onSubmit={handleSubmitForm}>
+    <form className={cx('search')} onSubmit={(e) => handleSubmitForm(value, e)}>
       <>
         <input
           type="text"
@@ -46,10 +52,12 @@ export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
           onFocus={() => setIsBlurSearch(false)}
           onChange={handleChange}
         />
-        <SearchIcon
-          className={cx('searchBtn')}
-          fill={theme === 'dark' ? '#575757' : '#DEDEDE'}
-        />
+        <button type="submit" style={{ background: 'none', border: 'none' }}>
+          <SearchIcon
+            className={cx('searchBtn')}
+            fill={theme === 'dark' ? '#575757' : '#DEDEDE'}
+          />
+        </button>
         {isblurSearch && (
           <CleanSearchIcon
             onClick={handeDelete}
@@ -67,3 +75,5 @@ export const Search: FC<SearchProps> = ({ handleSubmitForm }) => {
     </form>
   );
 };
+
+export default Search;

@@ -1,4 +1,3 @@
-@import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=Inter:wght@300;500;900&display=swap');
 
 * {
@@ -8,12 +7,15 @@
   vertical-align: baseline;
   outline: none;
 }
+
 .overflowHidden {
   overflow: hidden;
 }
+
 :root {
   --font-family-heading: 'Cormorant SC', serif;
   --font-family-paragraph: 'Inter', sans-serif;
+  --font-weight-light: 300;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;

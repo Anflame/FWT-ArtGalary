@@ -1,3 +1,1 @@
-import { Links } from './Links';
-
-export default Links;
+export { default } from './Links';

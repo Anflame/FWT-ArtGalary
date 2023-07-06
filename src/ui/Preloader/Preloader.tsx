@@ -11,7 +11,7 @@ type PreloaderProps = {
   className?: string;
 };
 
-export const Preloader: FC<PreloaderProps> = ({ className }) => (
+const Preloader: FC<PreloaderProps> = ({ className }) => (
   <div className={cx('preloaderWrapp', className)}>
     <PreloaderIcon className={cx('preloader')} />
     <PreloaderIcon className={cx('preloader')} />
@@ -19,3 +19,5 @@ export const Preloader: FC<PreloaderProps> = ({ className }) => (
     <PreloaderIcon className={cx('preloader')} />
   </div>
 );
+
+export default Preloader;

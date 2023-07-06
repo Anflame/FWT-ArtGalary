@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import Layout from '../components/Layout';
+import { Layout } from '../components/Layout';
 
 export default {
   title: 'Layout',

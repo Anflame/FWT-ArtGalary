@@ -1,3 +1,1 @@
-import { PainterItem } from './PainterItem';
-
-export default PainterItem;
+export { default } from './PainterItem';

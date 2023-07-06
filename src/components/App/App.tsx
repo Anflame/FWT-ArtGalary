@@ -5,11 +5,11 @@ import { HashRouter } from 'react-router-dom';
 import { setupStore } from '../../store';
 
 import Preloader from '../../ui/Preloader';
-import { AppRouter } from '../AppRouter/AppRouter';
+import { AppRouter } from '../AppRouter';
 
 const store = setupStore();
 
-export const App: FC = () => (
+const App: FC = () => (
   <Provider store={store}>
     <Suspense fallback={<Preloader className="firstLoading" />}>
       <HashRouter>
@@ -18,3 +18,5 @@ export const App: FC = () => (
     </Suspense>
   </Provider>
 );
+
+export default App;

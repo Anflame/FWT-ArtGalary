@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SliderItem from '../components/SliderItem';
-import { slides } from '../constants';
 
 export default {
   title: 'SliderItem',
@@ -12,5 +11,5 @@ const Template: ComponentStory<typeof SliderItem> = (args) => <SliderItem {...ar
 export const Primary = Template.bind({});
 
 Primary.args = {
-  slides: slides
+  // slides: slides
 };

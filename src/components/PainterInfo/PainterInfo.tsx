@@ -7,8 +7,6 @@ import LoadingImage from '../../ui/LoadingImage';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 
-import { BASE_URL } from '../../constants';
-
 import { ReactComponent as IconHide } from '../../assets/images/iconHide.svg';
 import { ReactComponent as IconShow } from '../../assets/images/iconShow.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
@@ -21,7 +19,7 @@ type PainterInfoProps = {
   painterMotherland: string;
 };
 
-export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
+const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
   const { theme } = useThemeContext();
   const [isShowMoreInfo, setIsShowMoreInfo] = useState(false);
   const { avatar, yearsOfLife, description, paintings, name, genres } =
@@ -32,9 +30,10 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
   return (
     <div className={cx('painter')}>
       <div className={cx('painterInfo')}>
-        {avatar.src ? (
+        {avatar && avatar.src ? (
           <LoadingImage
-            src={BASE_URL + avatar.src}
+            image={avatar}
+            needOptimizing
             alt="painterPhoto"
             className={cx('painterImg')}
             containerClassName={cx('painterImgWrapp')}
@@ -61,22 +60,23 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
             className={cx('painterInfoFooter', 'paintingInfoFooterFullSize')}
           >
             <div className={cx('painterBiography')}>
-              {!isShowMoreInfo && description.length < 265
+              {isShowMoreInfo || description.length < 265
                 ? description
                 : `${description.substring(0, 265)}...`}
-              {isShowMoreInfo && description}
             </div>
-            <div
-              className={cx('readMoreWrapp')}
-              onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
-            >
-              <button className={cx('readMoreBtn')}>read more</button>
-              {isShowMoreInfo ? (
-                <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
-              ) : (
-                <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
-              )}
-            </div>
+            {description.length > 265 && (
+              <div
+                className={cx('readMoreWrapp')}
+                onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
+              >
+                <button className={cx('readMoreBtn')}>read more</button>
+                {isShowMoreInfo ? (
+                  <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+                ) : (
+                  <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+                )}
+              </div>
+            )}
             <ul className={cx('paintingsList')}>
               {genres.map(({ _id, name: painingName }) => (
                 <li key={_id} className={cx('paintingsListes')}>
@@ -94,17 +94,19 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
             : `${description.substring(0, 265)}...`}
           {isShowMoreInfo && description}
         </div>
-        <div
-          className={cx('readMoreWrapp')}
-          onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
-        >
-          <button className={cx('readMoreBtn')}>read more</button>
-          {isShowMoreInfo ? (
-            <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
-          ) : (
-            <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
-          )}
-        </div>
+        {description.length > 265 && (
+          <div
+            className={cx('readMoreWrapp')}
+            onClick={() => setIsShowMoreInfo(!isShowMoreInfo)}
+          >
+            <button className={cx('readMoreBtn')}>read more</button>
+            {isShowMoreInfo ? (
+              <IconShow fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+            ) : (
+              <IconHide fill={theme === 'dark' ? '#DEDEDE' : '#575757'} />
+            )}
+          </div>
+        )}
         <ul className={cx('paintingsList')}>
           {paintings &&
             typeof paintings !== 'boolean' &&
@@ -118,3 +120,5 @@ export const PainterInfo: FC<PainterInfoProps> = ({ painterMotherland }) => {
     </div>
   );
 };
+
+export default PainterInfo;

@@ -1,0 +1,45 @@
+@use '../../mixins.scss' as mixins;
+
+.menuShow {
+  overflow: hidden;
+}
+
+.editWrapp {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px !important;
+  @include mixins.mini-viewport;
+  @include mixins.small-viewport;
+  @include mixins.medium-viewport;
+  @include mixins.large-viewport;
+  @include mixins.ultra-large-viewport;
+
+  .searchWrapp {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    & > form {
+      margin-right: 26px;
+    }
+
+    .filterIcon {
+      cursor: pointer;
+    }
+  }
+}
+
+.loadMoreWrapp {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+  .loadMoreBtn {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: var(--color-primary-grey);
+    text-transform: uppercase;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}

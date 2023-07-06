@@ -21,11 +21,7 @@ type ToastProps = {
   isShowToast: boolean;
 };
 
-export const Toast: FC<ToastProps> = ({
-  message,
-  handleCloseToast,
-  isShowToast,
-}) => {
+const Toast: FC<ToastProps> = ({ message, handleCloseToast, isShowToast }) => {
   const { theme } = useThemeContext();
 
   return createPortal(
@@ -48,3 +44,5 @@ export const Toast: FC<ToastProps> = ({
     modalNode,
   );
 };
+
+export default Toast;

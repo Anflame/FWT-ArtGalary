@@ -86,11 +86,16 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
+      padding-right: 10px;
       align-content: center;
+
+      @media (max-width: 767px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
 
       .listes {
         margin-bottom: 12px;
-        font-weight: 300;
+        font-weight: var(--font-weight-light);
         font-size: 12px;
         line-height: 140%;
         cursor: pointer;
@@ -99,7 +104,7 @@
       }
 
       .genresListes {
-        width: 70px;
+        max-width: 70px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;

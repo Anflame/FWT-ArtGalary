@@ -1,19 +1,14 @@
 import { Listes } from '../comon-types';
 
-export const useSort = (
-  array: Listes[],
-  e: React.MouseEvent<HTMLElement, MouseEvent>,
-  isUnique?: boolean,
-) => {
+export const useSort = (array: Listes[], id: string, isUnique?: boolean) => {
   if (isUnique) {
-    return array.map((el) => {
-      if (el.name === e.currentTarget.title) el.isChecked = !el.isChecked;
-      else if (el.isChecked) el.isChecked = !el.isChecked;
-      return el;
-    });
+    return array.map((el) => ({
+      ...el,
+      isChecked: el._id === id,
+    }));
   }
-  return array.map((el) => {
-    if (el.name === e.currentTarget.textContent) el.isChecked = !el.isChecked;
-    return el;
-  });
+  return array.map((el) => ({
+    ...el,
+    isChecked: el._id === id ? !el.isChecked : el.isChecked,
+  }));
 };

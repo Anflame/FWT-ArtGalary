@@ -13,7 +13,7 @@ type CheckBoxProps = {
   isChecked: boolean;
 };
 
-export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
+const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
   const { theme } = useThemeContext();
   return (
     <>
@@ -32,3 +32,5 @@ export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
     </>
   );
 };
+
+export default CheckBox;

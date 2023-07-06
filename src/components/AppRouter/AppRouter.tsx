@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { MainPage } from '../../pages/MainPage';
+import MainPage from '../../pages/MainPage';
 import { ProfilePage } from '../../pages/ProfilePage';
-import Layout from '../Layout';
+import { Layout } from '../Layout';
 
-export const AppRouter: FC = () => (
+const AppRouter: FC = () => (
   <Routes>
     <Route path={'/'} element={<Layout />}>
       <Route index element={<MainPage />} />
@@ -14,3 +14,5 @@ export const AppRouter: FC = () => (
     <Route path="*" element={<h2>404 page</h2>} />
   </Routes>
 );
+
+export default AppRouter;

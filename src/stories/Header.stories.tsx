@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import AppRouter from '../components/AppRouter';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { AppRouter } from '../components/AppRouter';
 
 export default {
   title: 'AppRouter',

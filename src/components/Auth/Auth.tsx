@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
 
-import { AuthForm } from '../AuthForm/AuthForm';
+import AuthForm from '../AuthForm/AuthForm';
 
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
@@ -25,12 +25,11 @@ export type AuthProps = {
   handleShowAuth: (type?: string | boolean) => void;
 };
 
-export const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
+const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
   const { theme } = useThemeContext();
   const { logIn, signUp } = isShowAuth;
 
-  const goTo = (e: React.MouseEvent<HTMLButtonElement>, type: string) => {
-    e.preventDefault();
+  const goTo = (type: string) => {
     handleShowAuth(type);
   };
   useEffect(() => {
@@ -48,7 +47,7 @@ export const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
             >
               <img
                 src={signUp ? signUpImg : logInImg}
-                alt="authBackGround"
+                alt="authBackground"
                 className={cx('signUpBackgroundImg')}
               />
               <div className={cx('validationWrapp')}>
@@ -59,20 +58,16 @@ export const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
                   {signUp
                     ? 'If you already have an account, please '
                     : 'If you don"t have an account yet, please '}
-                  <button
+                  <a
                     className={cx('goTo')}
-                    onClick={
-                      signUp
-                        ? (e) => goTo(e, 'logIn')
-                        : (e) => goTo(e, 'signUp')
-                    }
+                    onClick={() => goTo(signUp ? 'login' : 'signUp')}
                   >
                     {signUp ? 'log in' : 'sign up'}
-                  </button>
+                  </a>
                 </p>
                 <AuthForm
                   signUp={signUp}
-                  goTo={goTo}
+                  goTo={() => goTo(signUp ? 'login' : 'signUp')}
                   handleShowAuth={handleShowAuth}
                 />
                 <CloseIcon
@@ -89,3 +84,5 @@ export const Auth: FC<AuthProps> = ({ isShowAuth, handleShowAuth }) => {
     modalNode,
   );
 };
+
+export default Auth;

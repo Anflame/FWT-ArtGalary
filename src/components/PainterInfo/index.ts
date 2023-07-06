@@ -1,3 +1,1 @@
-import { PainterInfo } from './PainterInfo';
-
-export default PainterInfo;
+export { default } from './PainterInfo';

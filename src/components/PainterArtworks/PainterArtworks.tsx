@@ -13,6 +13,8 @@ import Slider from '../Slider';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useUnScroll } from '../../hooks/useUnScroll';
 
+import { BtnVariants } from '../../variants';
+
 import { ReactComponent as PlusIcon } from '../../assets/images/plus.svg';
 import { ReactComponent as WithoutPainterPhotoIcon } from '../../assets/images/withoutPainterPhoto.svg';
 
@@ -20,7 +22,7 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const PainterArtWorks: FC = () => {
+const PainterArtWorks: FC = () => {
   const { paintings } = useAppSelector(
     ({ painterProfile: { painterProfileInfo } }) => painterProfileInfo,
   );
@@ -49,7 +51,7 @@ export const PainterArtWorks: FC = () => {
         </div>
         <div className={cx('container')}>
           <Button
-            className="linkBtn"
+            variant={BtnVariants.LINK}
             handleClick={() => handleChangeShowEditPainting()}
             title="add picture"
           >
@@ -111,3 +113,5 @@ export const PainterArtWorks: FC = () => {
     </>
   );
 };
+
+export default PainterArtWorks;

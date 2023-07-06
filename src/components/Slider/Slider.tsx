@@ -23,7 +23,7 @@ type SliderProps = {
   handleChangeShowSlider: SetIsShow;
 };
 
-export const Slider: FC<SliderProps> = ({
+const Slider: FC<SliderProps> = ({
   slides,
   isShowSlider,
   handleChangeShowSlider,
@@ -117,22 +117,20 @@ export const Slider: FC<SliderProps> = ({
                 transform: `translateX(${`${-currentSlide * 100}%`})`,
               }}
             >
-              {slides.map(
-                ({ _id, image: { src }, name, yearOfCreation }, id) => (
-                  <SliderItem
-                    slides={slides}
-                    currentSlide={id + 1}
-                    _id={_id}
-                    name={name}
-                    src={src}
-                    yearOfCreation={yearOfCreation}
-                    isDoCover={isDoCover}
-                    setIsDoCover={setIsDoCover}
-                    handleChangeShowSlider={handleChangeShowSlider}
-                    key={_id}
-                  />
-                ),
-              )}
+              {slides.map(({ _id, image, name, yearOfCreation }, id) => (
+                <SliderItem
+                  slides={slides}
+                  currentSlide={id + 1}
+                  _id={_id}
+                  name={name}
+                  image={image}
+                  yearOfCreation={yearOfCreation}
+                  isDoCover={isDoCover}
+                  setIsDoCover={setIsDoCover}
+                  handleChangeShowSlider={handleChangeShowSlider}
+                  key={_id}
+                />
+              ))}
             </ul>
           </div>
         </section>
@@ -141,3 +139,5 @@ export const Slider: FC<SliderProps> = ({
     modalNode,
   );
 };
+
+export default Slider;

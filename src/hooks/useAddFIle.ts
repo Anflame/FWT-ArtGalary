@@ -1,3 +1,5 @@
+import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit';
+
 export const useAddFile = (
   e:
     | React.ChangeEvent<HTMLInputElement>
@@ -5,9 +7,13 @@ export const useAddFile = (
     | React.DragEvent<HTMLElement>,
   setImage: (file: File) => void,
   setPreviewUrl: (url: string) => void,
-  setIsError: (isSHow: boolean) => void,
   setDrag: (isSHow: boolean) => void,
-  setErrorMessage: (text: string) => void,
+  showError:
+    | ((
+        message: string,
+        func?: ActionCreatorWithoutPayload<string> | undefined,
+      ) => void)
+    | undefined,
 ) => {
   e.preventDefault();
   let file;
@@ -25,8 +31,7 @@ export const useAddFile = (
     setPreviewUrl(URL.createObjectURL(file));
     setDrag(false);
   } else {
-    setIsError(true);
-    setErrorMessage('Не корректное изображение');
+    showError?.('Не корректное изображение');
     setDrag(false);
   }
 };

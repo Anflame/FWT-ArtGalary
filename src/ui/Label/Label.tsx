@@ -12,14 +12,12 @@ const cx = cn.bind(styles);
 type LabelsProps = {
   isDelAllowed: boolean;
   children: string;
-  changeSelect?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  changeSelect?:
+    | ((e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void)
+    | ((event: React.ChangeEvent<Element>) => void);
 };
 
-export const Label: FC<LabelsProps> = ({
-  isDelAllowed,
-  children,
-  changeSelect,
-}) => {
+const Label: FC<LabelsProps> = ({ isDelAllowed, children, changeSelect }) => {
   const { theme } = useThemeContext();
   return (
     <>
@@ -38,3 +36,5 @@ export const Label: FC<LabelsProps> = ({
     </>
   );
 };
+
+export default Label;

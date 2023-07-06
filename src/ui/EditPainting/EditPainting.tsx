@@ -1,29 +1,33 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import { yupResolver } from '@hookform/resolvers/yup';
 import cn from 'classnames/bind';
 
 import { fetchAddPainting } from '../../store/API/painterProfile';
-import { TAddPaintingParams } from '../../store/types';
 
 import DragAndDrop from '../../components/DragAndDrop';
 import Button from '../Button';
 import Input from '../Input';
 import LoadingImage from '../LoadingImage';
 
+import { ErrorContext } from '../../utils/ErrorContext';
+import { editPaintingScheme } from '../../utils/yupSchemes';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useValidation } from '../../hooks/useValidation';
 
 import { modalNode } from '../../constants';
+
+import type { SetIsShow, TAddPaintingData } from '../../comon-types';
+import { BtnVariants } from '../../variants';
 
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 
 import styles from './styles.module.scss';
-
-import { SetIsShow } from '../../comon-types';
 
 const cx = cn.bind(styles);
 
@@ -32,47 +36,56 @@ type EditPaintingProps = {
   handleChangeShowEditPainting: SetIsShow;
 };
 
-export const EditPainting: FC<EditPaintingProps> = ({
+type TPaintingData = {
+  name: string;
+  yearOfCreation: string;
+};
+
+const EditPainting: FC<EditPaintingProps> = ({
   isShowEditPainting,
   handleChangeShowEditPainting,
 }) => {
   const { theme } = useThemeContext();
-  const [image, setImage] = useState<File>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      yearOfCreation: '',
+    },
+    resolver: yupResolver(editPaintingScheme),
+  });
+  const [image, setImage] = useState<Blob>();
   const [previewUrl, setPreviewUrl] = useState('');
-  const [name, setName] = useState('');
-  const [year, setYear] = useState('');
-  const [isErrorName, setIsErrorName] = useState(true);
-  const [isErrorYear, setIsErrorYear] = useState(true);
-  const [nameErrorMessage, setNameMessage] = useState('');
-  const [yearErrorMessage, setYearMessage] = useState('');
-
-  const { accessToken } = useAppSelector(({ auth: { token } }) => token);
+  const { showError } = useContext(ErrorContext);
 
   const dispatch = useAppDispatch();
 
   const { painterId } = useParams();
 
-  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (image) {
-      const resultObj: TAddPaintingParams = {
-        id: painterId,
-        accessToken,
-        imageInfo: {
-          name,
-          yearOfCreation: year,
-          image,
-        },
-      };
-      dispatch(fetchAddPainting(resultObj));
+  const editArtist = (data: TPaintingData) => {
+    if (!image) {
+      showError?.('Выберите изображение');
+      return;
     }
+    const resultObj: TAddPaintingData = {
+      formData: new FormData(),
+      id: painterId,
+    };
+    const { formData } = resultObj;
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key as keyof typeof data] as string);
+    });
+    resultObj.formData.append('image', image as Blob);
+    dispatch(fetchAddPainting(resultObj));
+    handleChangeShowEditPainting(false);
   };
 
   useEffect(() => {
     usePressEscape(handleChangeShowEditPainting, isShowEditPainting);
-    useValidation('name', name, setIsErrorName, setNameMessage);
-    useValidation('year', year, setIsErrorYear, setYearMessage);
-  }, [name, year, image, isShowEditPainting]);
+  }, [isShowEditPainting]);
 
   return createPortal(
     <>
@@ -84,34 +97,37 @@ export const EditPainting: FC<EditPaintingProps> = ({
           <form
             className={cx('editPaintingWrappContent')}
             onClick={(e) => e.stopPropagation()}
-            onSubmit={handelSubmit}
+            onSubmit={handleSubmit(editArtist)}
           >
             <div className={cx('inputsWrapp')}>
               <Input
                 label="The name of the picture"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                isError={isErrorName}
-                errorMessage={nameErrorMessage}
+                control={control}
+                name="name"
+                isError={Boolean(errors.name?.message)}
+                errorMessage={errors.name?.message}
               />
               <Input
+                control={control}
+                name="yearOfCreation"
                 label="Year of creation"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                isError={isErrorYear}
-                errorMessage={yearErrorMessage}
+                isError={Boolean(errors.yearOfCreation?.message)}
+                errorMessage={errors.yearOfCreation?.message}
               />
             </div>
             {!image ? (
               <DragAndDrop
                 setImage={setImage}
-                image={image}
                 setPreviewUrl={setPreviewUrl}
                 previewUrl={previewUrl}
               />
             ) : (
               <div className={cx('previewImageWrapp')}>
-                <LoadingImage src={previewUrl} alt="preview" />
+                <LoadingImage
+                  needOptimizing={false}
+                  image={previewUrl}
+                  alt="preview"
+                />
                 <DeleteIcon
                   width="16px"
                   height="16px"
@@ -121,10 +137,7 @@ export const EditPainting: FC<EditPaintingProps> = ({
                 />
               </div>
             )}
-            <Button
-              className="defaultBtn"
-              disabled={isErrorName || isErrorName || !image}
-            >
+            <Button variant={BtnVariants.DEFAULT} type="submit">
               Save
             </Button>
             <CloseIcon
@@ -139,3 +152,5 @@ export const EditPainting: FC<EditPaintingProps> = ({
     modalNode,
   );
 };
+
+export default EditPainting;

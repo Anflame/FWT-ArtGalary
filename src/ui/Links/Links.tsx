@@ -11,8 +11,10 @@ type LinksProps = {
   args?: HTMLAnchorElement;
 };
 
-export const Links: FC<LinksProps> = ({ href, children, ...args }) => (
+const Links: FC<LinksProps> = ({ href, children, ...args }) => (
   <a className={cx('link')} href={href} {...args}>
     {children}
   </a>
 );
+
+export default Links;

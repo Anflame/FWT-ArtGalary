@@ -1,6 +1,7 @@
 import { FC, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames/bind';
+import Cookies from 'js-cookie';
 
 import { changeAuth } from '../../store/auth/slice';
 
@@ -10,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
 
 import type { MenuProps } from '../../comon-types';
+import { BtnVariants } from '../../variants';
 
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/menuIcon.svg';
@@ -27,6 +29,11 @@ export const Header: FC<MenuProps> = ({
   const { theme, toggleTheme } = useThemeContext();
   const { isAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch();
+
+  const logOut = () => {
+    dispatch(changeAuth(false));
+    Cookies.remove('token');
+  };
 
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -46,30 +53,27 @@ export const Header: FC<MenuProps> = ({
               {!isAuth ? (
                 <>
                   <Button
-                    handleClick={() => handleShowAuth('logIn')}
-                    className={'authBtn'}
+                    handleClick={() => handleShowAuth('login')}
+                    variant={BtnVariants.AUTH}
                   >
                     {'login'}
                   </Button>
                   <Button
                     handleClick={() => handleShowAuth('signUp')}
-                    className={'authBtn'}
+                    variant={BtnVariants.AUTH}
                   >
                     {'signUp'}
                   </Button>
                 </>
               ) : (
-                <Button
-                  handleClick={() => dispatch(changeAuth(false))}
-                  className={'authBtn'}
-                >
+                <Button handleClick={logOut} variant={BtnVariants.AUTH}>
                   {'logout'}
                 </Button>
               )}
             </div>
             <Button
               handleClick={toggleTheme}
-              className={'themeBtn'}
+              variant={BtnVariants.THEME}
               children={
                 theme === 'dark' ? (
                   <ThemeIcon fill="#DEDEDE" />

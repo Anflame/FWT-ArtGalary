@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie';
 
 import { fetchAuth } from '../API/auth';
 import { TTokens } from '../types';
@@ -24,11 +23,13 @@ const authSlice = createSlice({
       if (action.payload === false) {
         state.token.accessToken = ' ';
         state.token.refreshToken = ' ';
-        Cookies.remove('token');
       }
     },
     setTokens(state, action: PayloadAction<TTokens>) {
       state.token = action.payload;
+    },
+    clearAuthError(state) {
+      state.error = '';
     },
   },
   extraReducers: {
@@ -36,7 +37,8 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = '';
       state.token = action.payload;
-      Cookies.set('token', JSON.stringify(action.payload));
+      if (action.payload.accessToken && action.payload.refreshToken)
+        state.isAuth = true;
     },
     [fetchAuth.pending.type]: (state) => {
       state.isLoading = true;
@@ -48,5 +50,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeAuth, setTokens } = authSlice.actions;
+export const { changeAuth, setTokens, clearAuthError } = authSlice.actions;
 export const authReducer = authSlice.reducer;

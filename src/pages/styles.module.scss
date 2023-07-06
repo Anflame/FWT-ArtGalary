@@ -1,15 +1,8 @@
-@use '../mixins.scss' as mixins;
-
 .main {
   padding-bottom: 80px;
   padding-top: 104px;
   background-color: var(--color-primary);
   min-height: 100vh;
-  z-index: 1;
-
-  .menuShow {
-    overflow: hidden;
-  }
 
   @media (min-width: 768px) {
     padding-bottom: 100px;
@@ -18,27 +11,5 @@
 
   @media (min-width: 1440px) {
     padding-top: 128px;
-  }
-
-  .editWrapp {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px !important;
-    @include mixins.mini-viewport;
-    @include mixins.small-viewport;
-    @include mixins.medium-viewport;
-    @include mixins.large-viewport;
-    @include mixins.ultra-large-viewport;
-
-    .searchWrapp {
-      & > form {
-        display: none;
-        margin-right: 26px;
-      }
-
-      .filterIcon {
-        cursor: pointer;
-      }
-    }
   }
 }

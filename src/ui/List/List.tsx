@@ -10,6 +10,8 @@ type ListProps<T> = {
   renderItem: (item: T) => React.ReactNode;
 };
 
-export function List<T>(props: ListProps<T>) {
+const List = <T,>(props: ListProps<T>) => {
   return <ul className={cx('list')}>{props.items.map(props.renderItem)}</ul>;
-}
+};
+
+export default List;

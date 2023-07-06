@@ -29,6 +29,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'no-underscore-dangle': 'off',
+    'no-restricted-exports': ["error", { restrictedNamedExports: [] }],
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -41,8 +42,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        singleQuote: true,
-        printWidth: 80,
+        usePrettierrc: true,
       },
     ],
     quotes: ['warn', 'single'],
@@ -61,7 +61,7 @@ module.exports = {
           ['utils'],
           ['hooks'],
           ['constants'],
-          ['^(\\.\\.\\/)*\\w+(-)?types\\u0000$'],
+          ['^(\\.\\.\\/)*\\w+(-)?types\\u0000$', 'variants'],
           ['(jpg|jpeg|png|svg)$'],
           ['^.+\\.?(css)$'],
         ],

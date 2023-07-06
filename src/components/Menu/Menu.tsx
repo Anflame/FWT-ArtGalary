@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
+import Cookies from 'js-cookie';
 
 import { changeAuth } from '../../store/auth/slice';
 
@@ -12,6 +13,7 @@ import { useThemeContext } from '../../hooks/useThemeContext';
 import { modalNode } from '../../constants';
 
 import type { MenuProps } from '../../comon-types';
+import { BtnVariants } from '../../variants';
 
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
 import { ReactComponent as ThemeIcon } from '../../assets/images/themeIcon.svg';
@@ -21,7 +23,7 @@ import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-export const Menu: FC<MenuProps> = ({
+const Menu: FC<MenuProps> = ({
   isShow,
   handleChangeShowMenu,
   handleShowAuth,
@@ -32,6 +34,7 @@ export const Menu: FC<MenuProps> = ({
 
   const logOut = () => {
     dispatch(changeAuth(false));
+    Cookies.remove('token');
   };
 
   return createPortal(
@@ -50,7 +53,7 @@ export const Menu: FC<MenuProps> = ({
         />
         <div className={cx('menuThemeWrapp')} onClick={toggleTheme}>
           <Button
-            className={'themeBtn'}
+            variant={BtnVariants.THEME}
             children={
               theme === 'dark' ? (
                 <ThemeIcon fill="#DEDEDE" />
@@ -66,20 +69,20 @@ export const Menu: FC<MenuProps> = ({
         {!isAuth ? (
           <>
             <Button
-              handleClick={() => handleShowAuth('logIn')}
-              className={'authBtnMobile'}
+              handleClick={() => handleShowAuth('login')}
+              variant={BtnVariants.AUTHMOBILE}
             >
               {'login'}
             </Button>
             <Button
               handleClick={() => handleShowAuth('signUp')}
-              className={'authBtnMobile'}
+              variant={BtnVariants.AUTHMOBILE}
             >
               {'signUp'}
             </Button>
           </>
         ) : (
-          <Button className={'authBtnMobile'} handleClick={logOut}>
+          <Button variant={BtnVariants.AUTHMOBILE} handleClick={logOut}>
             {'logout'}
           </Button>
         )}
@@ -88,3 +91,5 @@ export const Menu: FC<MenuProps> = ({
     modalNode,
   );
 };
+
+export default Menu;

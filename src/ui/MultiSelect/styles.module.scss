@@ -2,6 +2,8 @@
   width: 100%;
   max-width: 340px;
   font-family: var(--font-family-paragraph);
+  position: relative;
+  margin-bottom: 50px;
 
   .selectInput {
     width: inherit;
@@ -55,6 +57,10 @@
       }
     }
   }
+  
+  .notValidErrorInput {
+    border: 1px solid var(--color-accent-error);
+  }
 
   .selectTite {
     display: block;
@@ -67,9 +73,13 @@
   }
 
   .selectList {
+    position: relative;
     width: inherit;
     padding: 20px 16px;
     border-radius: 4px;
+    height: 300px;
+    width: inherit;
+    overflow: auto;
     list-style-type: none;
     background-color: var(--color-background-multiSelect-list);
     border: 1px solid var(--color-inputs-border);
@@ -89,8 +99,23 @@
       color: var(--color-primary-grey);
       font-size: 16px;
       line-height: 140%;
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
       margin-left: 12px;
+    }
+  }
+  .errorText {
+    color: var(--color-accent-error);
+    font-size: 12px;
+    font-family: var(--font-family-paragraph);
+    line-height: 140%;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+
+    .errorImg {
+      display: block;
+      margin-right: 8px;
     }
   }
 }
