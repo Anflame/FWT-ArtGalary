@@ -2,19 +2,30 @@ import React, { FC, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 import Cookies from 'js-cookie';
-import PainterArtWorks from '../PainterArtworks';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
-import { fetchPainterProfle } from '../../store/API/painterProfile';
+
+import {
+  fetchDeletePainter,
+  fetchPainterProfle,
+} from '../../store/API/painterProfile';
+import { clearPainterProfileError } from '../../store/painterProfile/slice';
+
 import Button from '../../ui/Button';
 import DeleteProfile from '../../ui/Delete';
 import EditProfile from '../../ui/EditProfile';
 import Preloader from '../../ui/Preloader';
-import Toast from '../../ui/Toast';
+import PainterArtWorks from '../PainterArtworks';
+
+import { useShowError } from '../../hooks/useErrorContext';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useThemeContext } from '../../hooks/useThemeContext';
+import { useUnScroll } from '../../hooks/useUnScroll';
+
+import { BtnVariants } from '../../variants';
+
 import { ReactComponent as ArrowBack } from '../../assets/images/arrowBack.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../../assets/images/editIcon.svg';
+
 import styles from './styles.module.scss';
 
 const PainterInfo = React.lazy(() => import('../PainterInfo'));
@@ -25,11 +36,10 @@ type ProfileProps = {
   painterMotherland: string;
 };
 
-export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
+const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const { theme } = useThemeContext();
   const [isShowEditProfile, setIsShowEditProfile] = useState(false);
   const [isShowDelete, setIsShowDelete] = useState(false);
-  const [isError, setIsError] = useState(false);
   const { error, isLoading } = useAppSelector(
     ({ painterProfile }) => painterProfile,
   );
@@ -37,6 +47,8 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { painterId } = useParams();
+
+  useShowError(error, clearPainterProfileError);
 
   const handleChangeShowDelete = () => {
     setIsShowDelete(!isShowDelete);
@@ -46,6 +58,13 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   const handleChangeShowEditProfile = () => {
     setIsShowEditProfile(!isShowEditProfile);
     useUnScroll(!isShowEditProfile);
+  };
+
+  const handleDeleteProfile = async () => {
+    const response = await dispatch(fetchDeletePainter(painterId));
+    if (response.payload) {
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -62,13 +81,6 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
   return (
     <>
       {isLoading && <Preloader />}
-      {error && (
-        <Toast
-          message={error}
-          isShowToast={isError}
-          handleCloseToast={() => setIsError(false)}
-        />
-      )}
       <section className={cx('profile')}>
         <div className={cx('container')}>
           <div className={cx('actionWrapp')}>
@@ -81,7 +93,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
             </Link>
             <div className={cx('actionEditWrapp')}>
               <Button
-                className="deleteBtn"
+                variant={BtnVariants.DELETE}
                 handleClick={() => handleChangeShowDelete()}
               >
                 <DeleteIcon
@@ -91,7 +103,7 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
                 />
               </Button>
               <Button
-                className="deleteBtn"
+                variant={BtnVariants.DELETE}
                 handleClick={() => handleChangeShowEditProfile()}
               >
                 <EditIcon
@@ -108,6 +120,9 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
         <DeleteProfile
           isShowDelete={isShowDelete}
           handleChangeShowDelete={handleChangeShowDelete}
+          handleDelete={handleDeleteProfile}
+          title="Do you want to delete this artist profile?"
+          subTitle="You will not be able to recover this profile afterwards."
         />
         <EditProfile
           isShowEditProfile={isShowEditProfile}
@@ -117,3 +132,5 @@ export const Profile: FC<ProfileProps> = ({ painterMotherland }) => {
     </>
   );
 };
+
+export default Profile;

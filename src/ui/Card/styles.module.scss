@@ -19,7 +19,7 @@
     }
 
     .cardTitle {
-      font-weight: var(--font-weight-bold);
+      font-weight: var(--font-weight-medium);
       font-family: var(--font-family--heading);
       color: var(--color-primary-heading);
       font-size: 16px;
@@ -47,6 +47,7 @@
   }
 
   & img {
+    aspect-ratio: 500/400;
     display: block;
     width: 100%;
     transition: 1s;
@@ -76,6 +77,27 @@
   @media (max-width: 768px) {
     .cardInfoWrapp::before {
       display: none;
+    }
+  }
+
+  .withoutPhotoWrapp {
+    aspect-ratio: 500/400;
+    background-color: var(--color-secondary);
+    border-image: url(../../assets/images/photoBorder.png) 30 fill/ 30px round;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 320px) {
+      margin-bottom: 64px;
+      width: 100%;
+    }
+
+    .withoutPhotoIcon {
+      width: 168px;
+      height: 152px;
+      object-fit: 'cover';
+      display: 'block';
     }
   }
 }

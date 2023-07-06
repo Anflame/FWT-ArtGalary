@@ -14,4 +14,4 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   isShowEditPainting: true,
-};
+};  

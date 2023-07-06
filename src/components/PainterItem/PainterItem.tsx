@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../constants';
-import { useAppSelector } from '../../hooks/useRedux';
+
 import type { TPainters } from '../../store/types';
+
 import Card from '../../ui/Card';
+
+import { useFormatDate } from '../../hooks/useFormatDate';
+import { useAppSelector } from '../../hooks/useRedux';
 
 type PainterItemProps = {
   painter: TPainters;
 };
 
-export const PainterItem: FC<PainterItemProps> = ({ painter }) => {
+const PainterItem: FC<PainterItemProps> = ({ painter }) => {
   const { isAuth } = useAppSelector(({ auth }) => auth);
   return (
     <li key={painter._id}>
@@ -17,15 +20,15 @@ export const PainterItem: FC<PainterItemProps> = ({ painter }) => {
         <Link to={`/profile/${painter._id}`}>
           <Card
             title={painter.name}
-            img={BASE_URL + painter.mainPainting.image.src}
+            image={painter.mainPainting && painter.mainPainting.image}
             id={painter._id}
-            year={painter.yearsOfLife}
+            year={useFormatDate(painter.yearsOfLife)}
           />
         </Link>
       ) : (
         <Card
           title={painter.name}
-          img={BASE_URL + painter.mainPainting.image.src}
+          image={painter.mainPainting && painter.mainPainting.image}
           id={painter._id}
           year={painter.yearsOfLife}
         />
@@ -33,3 +36,5 @@ export const PainterItem: FC<PainterItemProps> = ({ painter }) => {
     </li>
   );
 };
+
+export default PainterItem;

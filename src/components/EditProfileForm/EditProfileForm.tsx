@@ -1,89 +1,99 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import cn from 'classnames/bind';
-import { selectListArray } from '../../constants';
-import { useSort } from '../../hooks/useSort';
-import { useValidation } from '../../hooks/useValidation';
+
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import MultiSelect from '../../ui/MultiSelect';
 import TextArea from '../../ui/TextArea';
-import Toast from '../../ui/Toast';
+
+import { EditProfileScheme } from '../../utils/yupSchemes';
+
+import type { EditProfileFormData, Listes } from '../../comon-types';
+import { BtnVariants } from '../../variants';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
 type EditProfileFormProps = {
-  handleEditProfile: () => void;
+  handleEditProfile: (data: EditProfileFormData) => void;
+  list: Listes[];
+  setList: (list: Listes[]) => void;
 };
 
-export const EditProFileForm: FC<EditProfileFormProps> = ({
+const EditProfileForm: FC<EditProfileFormProps> = ({
   handleEditProfile,
+  list,
+  setList,
 }) => {
-  const [name, setName] = useState('');
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isErrorName, setErrorName] = useState(true);
-  const [errorNameMessage, setErrorNameMessage] = useState('Заполните поле');
-  const [year, setYear] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
-  const [selectList, setSelectList] = useState(selectListArray);
-
-  const changeSelect = (e: React.MouseEvent<HTMLElement>) => {
-    setSelectList(useSort(selectList, e));
-  };
-
-  useEffect(() => {
-    useValidation('name', name, setErrorName, setErrorNameMessage);
-    if (selectList.filter((el) => el.isChecked).length === 0) {
-      setIsError(true);
-      setErrorMessage('Выбирете минимум один жанр');
-    } else if (!/^Не корректное изображение$/.test(errorMessage))
-      setIsError(false);
-  }, [selectList]);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      yearsOfLife: '',
+      location: '',
+      description: '',
+      genres: [],
+    },
+    resolver: yupResolver(EditProfileScheme),
+  });
 
   return (
-    <form className={cx('editProfileForm')} onSubmit={handleEditProfile}>
+    <form
+      className={cx('editProfileForm')}
+      onSubmit={handleSubmit((data) => {
+        handleEditProfile(data);
+      })}
+    >
       <Input
+        control={control}
+        name="name"
         id={'name'}
         placeholder={'Ivan Aivazovky'}
         label={'Name*'}
-        errorMessage={errorNameMessage}
-        isError={isErrorName}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        errorMessage={errors.name?.message}
+        isError={Boolean(errors.name?.message)}
       />
       <Input
-        id={'yearsOfLife'}
+        id={'year'}
+        name="yearsOfLife"
+        control={control}
         label={'Years of life'}
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
+        errorMessage={errors.yearsOfLife?.message}
+        isError={Boolean(errors.yearsOfLife?.message)}
       />
       <Input
+        name="location"
+        control={control}
         id={'location'}
         label={'Location'}
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
+        errorMessage={errors.location?.message}
+        isError={Boolean(errors.location?.message)}
       />
       <TextArea
         id={'description'}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        control={control}
+        name="description"
+        isError={Boolean(errors.description?.message)}
+        errorMessage={errors.description?.message}
       />
       <MultiSelect
         label={'Genres*'}
-        selectList={selectList}
-        changeSelect={changeSelect}
+        name="genres"
+        control={control}
+        list={list}
+        setList={setList}
+        errorMessage={errors.genres?.message}
       />
-      <Button className={'defaultBtn'} disabled={isError || isErrorName}>
-        save
-      </Button>
 
-      <Toast
-        isShowToast={isError}
-        handleCloseToast={() => setIsError(false)}
-        message={errorMessage}
-      />
+      <Button variant={BtnVariants.DEFAULT} children="save" />
     </form>
   );
 };
+
+export default EditProfileForm;

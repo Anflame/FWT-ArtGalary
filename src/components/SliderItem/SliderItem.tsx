@@ -1,17 +1,24 @@
 import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
-import { BASE_URL } from '../../constants';
-import { useThemeContext } from '../../hooks/useThemeContext';
-import { useUnScroll } from '../../hooks/useUnScroll';
+
+import { TImage } from '../../store/types';
+
 import Button from '../../ui/Button';
 import Delete from '../../ui/Delete';
 import EditPainting from '../../ui/EditPainting';
 import LoadingImage from '../../ui/LoadingImage';
+
+import { useThemeContext } from '../../hooks/useThemeContext';
+import { useUnScroll } from '../../hooks/useUnScroll';
+
 import type { SetIsShow, TemporaryPaintings } from '../../comon-types';
+import { BtnVariants } from '../../variants';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../../assets/images/editIcon.svg';
 import { ReactComponent as ImageIcon } from '../../assets/images/imageIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -20,7 +27,7 @@ type SliderItemProps = {
   slides: TemporaryPaintings[];
   _id: string;
   currentSlide: number;
-  src: string;
+  image: TImage | string;
   name: string;
   yearOfCreation: string;
   isDoCover: boolean;
@@ -28,11 +35,11 @@ type SliderItemProps = {
   handleChangeShowSlider: SetIsShow;
 };
 
-export const SliderItem: FC<SliderItemProps> = ({
+const SliderItem: FC<SliderItemProps> = ({
   slides,
   _id,
   currentSlide,
-  src,
+  image,
   name,
   yearOfCreation,
   isDoCover,
@@ -53,10 +60,13 @@ export const SliderItem: FC<SliderItemProps> = ({
     useUnScroll(isShowDelete);
   };
 
+  const handleDeletePicture = () => {};
+
   return (
     <li key={_id} className={cx('sliderListes')}>
       <LoadingImage
-        src={BASE_URL + src}
+        image={image}
+        needOptimizing
         alt={name}
         className={cx('sliderListesImg')}
       />
@@ -66,7 +76,10 @@ export const SliderItem: FC<SliderItemProps> = ({
           <p className={cx('infoName')}>{name}</p>
         </div>
         <div className={cx('actionWrapp', isDoCover)}>
-          <Button className="deleteBtn" onClick={() => setIsShowDelete(true)}>
+          <Button
+            variant={BtnVariants.DELETE}
+            onClick={() => setIsShowDelete(true)}
+          >
             <DeleteIcon
               fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
               width="16px"
@@ -74,7 +87,7 @@ export const SliderItem: FC<SliderItemProps> = ({
             />
           </Button>
           <Button
-            className="deleteBtn"
+            variant={BtnVariants.DELETE}
             onClick={() => setIsShowEditPainting(true)}
           >
             <EditIcon
@@ -86,7 +99,10 @@ export const SliderItem: FC<SliderItemProps> = ({
         </div>
       </div>
       <div className={cx('actionWrappMobile', isDoCover && 'hide')}>
-        <Button className="deleteBtn" onClick={() => setIsShowDelete(true)}>
+        <Button
+          variant={BtnVariants.DELETE}
+          onClick={() => setIsShowDelete(true)}
+        >
           <DeleteIcon
             fill={theme === 'dark' ? '#DEDEDE' : '#575757'}
             width="16px"
@@ -94,7 +110,7 @@ export const SliderItem: FC<SliderItemProps> = ({
           />
         </Button>
         <Button
-          className="deleteBtn"
+          variant={BtnVariants.DELETE}
           onClick={() => setIsShowEditPainting(true)}
         >
           <EditIcon
@@ -131,7 +147,12 @@ export const SliderItem: FC<SliderItemProps> = ({
       <Delete
         isShowDelete={isShowDelete}
         handleChangeShowDelete={handleChangeShowDelete}
+        handleDelete={handleDeletePicture}
+        title="Do you want to delete this picture?"
+        subTitle="You will not be able to recover this picture afterwards."
       />
     </li>
   );
 };
+
+export default SliderItem;

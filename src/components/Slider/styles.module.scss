@@ -14,15 +14,7 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    max-width: 1024px;
     position: relative;
-
-    @media (min-width: 1024px) {
-      height: 719px;
-    }
-    @media (min-width: 1440px) {
-      height: 800px;
-    }
 
     .sliderList {
       white-space: nowrap;

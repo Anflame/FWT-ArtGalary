@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { fetchGenres } from '../API/paintersInfo';
+
 import { TGenre, TGenresState } from '../types';
 
 const initialState: TGenresState = {

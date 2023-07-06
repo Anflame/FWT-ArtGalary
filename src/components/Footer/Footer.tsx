@@ -1,10 +1,14 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import { useThemeContext } from '../../hooks/useThemeContext';
+
 import Links from '../../ui/Links';
+
+import { useThemeContext } from '../../hooks/useThemeContext';
+
 import { ReactComponent as Facebook } from '../../assets/images/facebook.svg';
 import { ReactComponent as Instagram } from '../../assets/images/instagram.svg';
 import { ReactComponent as Vk } from '../../assets/images/vk.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);

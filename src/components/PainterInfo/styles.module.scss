@@ -22,9 +22,11 @@
         width: 100%;
       }
     }
+
     .painterImgWrapp {
       width: 1000px;
       max-width: 100%;
+      min-height: 500px;
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
@@ -73,7 +75,7 @@
     left: 0;
     top: 60px;
     background: var(--color-primary);
-    max-width: 604px;
+    width: 604px;
     padding: 60px 0;
     display: grid;
     grid-template-areas:
@@ -215,7 +217,7 @@
     .painterBiography {
       color: var(--color-primary-grey);
       font-family: var(--font-family-paragraph);
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
       font-size: 16px;
       line-height: 140%;
       margin-bottom: 20px;

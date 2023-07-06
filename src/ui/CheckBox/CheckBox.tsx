@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
+
 import { useThemeContext } from '../../hooks/useThemeContext';
+
 import { ReactComponent as CheckedImg } from '../../assets/images/checkedImg.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -10,7 +13,7 @@ type CheckBoxProps = {
   isChecked: boolean;
 };
 
-export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
+const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
   const { theme } = useThemeContext();
   return (
     <>
@@ -29,3 +32,5 @@ export const CheckBox: FC<CheckBoxProps> = ({ isChecked }) => {
     </>
   );
 };
+
+export default CheckBox;

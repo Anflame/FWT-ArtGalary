@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 export type TPainterProfile = {
   paintings: Paintings[];
   genres: {
@@ -62,6 +64,15 @@ export type Paintings = {
   artist: string;
 };
 
+export type TImage = {
+  _id: string;
+  src: string;
+  webp: string;
+  src2x: string;
+  webp2x: string;
+  original: string;
+};
+
 export type TTokens = {
   accessToken: string;
   refreshToken: string;
@@ -99,8 +110,10 @@ export type TGenresState = {
 };
 
 export type TPaintersParams = {
-  genres: string[];
-  sorting: string[];
+  genres?: string[];
+  sorting?: string[];
+  name?: string;
+  perPage: number;
 };
 
 export type TPainterAuthorizedPerson = {
@@ -111,3 +124,22 @@ export type TPainterAuthorizedPerson = {
     pageNumber: number;
   };
 };
+
+export type TAddPainter = {
+  data: TPainters;
+  meta: {
+    count: number;
+    perPage: number;
+    pageNumber: number;
+  };
+};
+
+export type TResponseError = {
+  response: {
+    data: {
+      error: 'string';
+      message: 'string';
+      statusCode: number;
+    };
+  };
+} & AxiosError;

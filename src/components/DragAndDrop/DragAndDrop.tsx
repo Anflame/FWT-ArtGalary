@@ -1,50 +1,38 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import cn from 'classnames/bind';
+
 import { useAddFile } from '../../hooks/useAddFIle';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
-import Toast from '../../ui/Toast';
+import { useShowError } from '../../hooks/useErrorContext';
+
 import { ReactComponent as DragAndDropIcon } from '../../assets/images/dragAndDropIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
 type DragAndDropProps = {
   setImage: (file: File) => void;
-  image: File[] | undefined;
   setPreviewUrl: (url: string) => void;
   previewUrl: string;
 };
 
-export const DragAndDrop: FC<DragAndDropProps> = ({
+const DragAndDrop: FC<DragAndDropProps> = ({
   setImage,
-  image,
   setPreviewUrl,
   previewUrl,
 }) => {
   const [drag, setDrag] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isError, setIsError] = useState(true);
+
+  useShowError(errorMessage);
 
   const handleAddFile = (
     e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>,
   ) => {
-    useAddFile(
-      e,
-      setImage,
-      setPreviewUrl,
-      setIsError,
-      setDrag,
-      setErrorMessage,
-    );
+    useAddFile(e, setImage, setPreviewUrl, setDrag, setErrorMessage);
     return URL.revokeObjectURL(previewUrl);
   };
-
-  useEffect(() => {
-    if (!image) {
-      setErrorMessage('Выберите изображение');
-      setIsError(true);
-    } else setIsError(false);
-  }, [image]);
 
   return (
     <>
@@ -75,12 +63,8 @@ export const DragAndDrop: FC<DragAndDropProps> = ({
           Upload only .jpg or .png format less than 3 MB
         </p>
       </div>
-
-      <Toast
-        message={errorMessage}
-        isShowToast={isError}
-        handleCloseToast={() => setIsError(false)}
-      />
     </>
   );
 };
+
+export default DragAndDrop;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import img from '../assets/images/cardImg.jpg';
+import image from '../assets/images/cardImg.jpg';
 import Card from '../ui/Card';
 import '../index.scss';
 
@@ -16,6 +16,6 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   isPrimary: true,
-  img,
+  image,
   title: 'Jean-Honore Fragonard',
 };

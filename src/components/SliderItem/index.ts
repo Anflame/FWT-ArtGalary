@@ -1,3 +1,1 @@
-import { SliderItem } from './SliderItem';
-
-export default SliderItem;
+export { default } from './SliderItem';

@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof MultiSelect> = (args) => <MultiSelect {...
 export const Primary = Template.bind({});
 
 Primary.args = {
-  selectList: selectListArray
+  // selectList: selectListArray
 };

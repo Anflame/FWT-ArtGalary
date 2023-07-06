@@ -22,7 +22,7 @@
     }
 
     .projectInfoSignature {
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-light);
       font-family: var(--font-family-paragraph);
       color: var(--color-primary-grey);
       font-size: 16px;
@@ -34,7 +34,7 @@
       }
 
       .projectSignature {
-        font-weight: 300;
+        font-weight: var(--font-weight-light);
       }
     }
 

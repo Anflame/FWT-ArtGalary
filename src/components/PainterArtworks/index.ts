@@ -1,3 +1,1 @@
-import { PainterArtWorks } from './PainterArtworks';
-
-export default PainterArtWorks;
+export { default } from './PainterArtworks';

@@ -1,3 +1,1 @@
-import { EditPainting } from './EditPainting';
-
-export default EditPainting;
+export { default } from './EditPainting';

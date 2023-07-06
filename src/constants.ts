@@ -1,7 +1,3 @@
-import { TemporaryPaintings } from './comon-types';
-import CardImg from './assets/images/cardImg.jpg';
-import SecondCardImg from './assets/images/secondCardImg.jpg';
-
 export const socNetworks = [
   {
     id: 1,
@@ -52,7 +48,7 @@ export const genres = [
   },
 ];
 
-export const sort = [
+export const sortParams = [
   {
     _id: '1',
     name: 'Recently added',
@@ -111,47 +107,6 @@ export const selectListArray = [
   },
 ];
 
-export const slides: TemporaryPaintings[] = [
-  {
-    _id: '1',
-    image: {
-      src: CardImg,
-    },
-    name: 'Alibaba',
-    yearOfCreation: '1929',
-  },
-  {
-    _id: '2',
-    image: {
-      src: SecondCardImg,
-    },
-    name: 'Anuta',
-    yearOfCreation: '1899',
-  },
-  {
-    _id: '3',
-    image: {
-      src: CardImg,
-    },
-    name: 'House',
-    yearOfCreation: '1465',
-  },
-  {
-    _id: '4',
-    image: {
-      src: SecondCardImg,
-    },
-    name: 'Angelina Jolie',
-    yearOfCreation: '1549',
-  },
-  {
-    _id: '5',
-    image: {
-      src: CardImg,
-    },
-    name: 'Anheim',
-    yearOfCreation: '1745',
-  },
-];
+export const COUNT_PAINTERS_MAIN_PAGE = 6;
 
 export const modalNode = document.getElementById('modal') as HTMLElement;

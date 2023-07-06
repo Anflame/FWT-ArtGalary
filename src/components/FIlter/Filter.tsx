@@ -1,14 +1,20 @@
 import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
-import { Listes } from '../../comon-types';
-import { modalNode } from '../../constants';
+
+import Button from '../../ui/Button';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useAppSelector } from '../../hooks/useRedux';
-import { useSort } from '../../hooks/useSort';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import Button from '../../ui/Button';
+
+import { modalNode } from '../../constants';
+
+import type { Listes } from '../../comon-types';
+import { BtnVariants } from '../../variants';
+
 import { ReactComponent as IconClose } from '../../assets/images/iconClose.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -17,39 +23,25 @@ type FilterProps = {
   isShowFilter: boolean;
   handleChangeShowFilter: (isShowFilter: boolean) => void;
   sortList: Listes[];
-  setSortList: (sortListes: Listes[]) => void;
   genresList: Listes[];
-  setGenresList: (genresList: Listes[]) => void;
   handleSubmitFilter: () => void;
   handleClearFilter: () => void;
+  handleChangeChecked: (event: string, type: string) => void;
 };
 
-export const Filter: FC<FilterProps> = ({
+const Filter: FC<FilterProps> = ({
   isShowFilter,
   handleChangeShowFilter,
   sortList,
-  setSortList,
   genresList,
-  setGenresList,
   handleSubmitFilter,
   handleClearFilter,
+  handleChangeChecked,
 }) => {
   const [isShowGenres, setIsShowGenres] = useState(false);
   const [isShowSortList, setIsShowSortList] = useState(false);
   const { theme } = useThemeContext();
   const { isLoading, error } = useAppSelector(({ genresState }) => genresState);
-
-  const handleChangeChecked = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    type: string,
-  ) => {
-    if (type === 'sort') {
-      setSortList(useSort(sortList, e, true));
-    }
-    if (type === 'genres') {
-      setGenresList(useSort(genresList, e));
-    }
-  };
 
   useEffect(() => {
     usePressEscape(handleChangeShowFilter, isShowFilter);
@@ -86,7 +78,7 @@ export const Filter: FC<FilterProps> = ({
                   )}
                   key={_id}
                   title={`${name}`}
-                  onClick={(e) => handleChangeChecked(e, 'genres')}
+                  onClick={() => handleChangeChecked(_id, 'genres')}
                 >
                   {name}
                 </li>
@@ -109,20 +101,19 @@ export const Filter: FC<FilterProps> = ({
                   className={cx('listes', isChecked && 'checked')}
                   key={_id}
                   title={`${name}`}
-                  onClick={(e) => handleChangeChecked(e, 'sort')}
+                  onClick={() => handleChangeChecked(_id, 'sort')}
                 >
                   {name}
                 </li>
               ))}
             </ul>
           )}
-          ;
         </div>
         <div className={cx('submitWrapp')}>
-          <Button className="linkBtn" onClick={handleSubmitFilter}>
+          <Button variant={BtnVariants.LINK} onClick={handleSubmitFilter}>
             show the result
           </Button>
-          <Button className="linkBtn" onClick={handleClearFilter}>
+          <Button variant={BtnVariants.LINK} onClick={handleClearFilter}>
             clear
           </Button>
         </div>
@@ -136,3 +127,5 @@ export const Filter: FC<FilterProps> = ({
     modalNode,
   );
 };
+
+export default Filter;

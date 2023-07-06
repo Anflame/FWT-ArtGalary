@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { BASE_URL } from '../../constants';
+
 import type { Paintings } from '../../store/types';
+
 import Card from '../../ui/Card';
 
 type PaintingItemProps = {
@@ -8,13 +9,15 @@ type PaintingItemProps = {
   onClick: () => void;
 };
 
-export const PaintingItem: FC<PaintingItemProps> = ({ painting, onClick }) => (
+const PaintingItem: FC<PaintingItemProps> = ({ painting, onClick }) => (
   <li key={painting._id} onClick={onClick}>
     <Card
       title={painting.name}
-      img={BASE_URL + painting.image.src}
+      image={painting.image}
       id={painting._id}
       year={painting.yearOfCreation}
     />
   </li>
 );
+
+export default PaintingItem;

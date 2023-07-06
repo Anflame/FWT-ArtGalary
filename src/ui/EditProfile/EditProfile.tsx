@@ -1,17 +1,27 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 // import { useParams } from 'react-router';
 import cn from 'classnames/bind';
-import Toast from '../Toast';
-import { SetIsShow } from '../../comon-types';
-import EditProFileForm from '../../components/EditProfileForm';
-import { modalNode } from '../../constants';
+
+import { fetchAddPainter } from '../../store/API/painters';
+
+import EditProfileForm from '../../components/EditProfileForm';
+
+import { ErrorContext } from '../../utils/ErrorContext';
+
 import { useAddFile } from '../../hooks/useAddFIle';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import { usePressEscape } from '../../hooks/usePressEscape';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { modalNode } from '../../constants';
+
+import type { EditProfileFormData, Listes, SetIsShow } from '../../comon-types';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as WithoutPhotoIcon } from '../../assets/images/withoutPhotoIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -21,29 +31,27 @@ type EditProfileProps = {
   handleChangeShowEditProfile: SetIsShow;
 };
 
-export const EditProfile: FC<EditProfileProps> = ({
+const EditProfile: FC<EditProfileProps> = ({
   isShowEditProfile,
   handleChangeShowEditProfile,
 }) => {
+  const { genres } = useAppSelector(({ genresState }) => genresState);
+  const [list, setList] = useState<Listes[]>([]);
   const { theme } = useThemeContext();
-  // const { profileId } = useParams();
   const [drag, setDrag] = useState(false);
   const [previewUrl, setPreviewUrl] = useState('');
   const [image, setImage] = useState<File>();
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useAppDispatch();
+  const { showError } = useContext(ErrorContext);
+
+  useEffect(() => {
+    setList(genres.map((el) => ({ ...el, isChecked: false })));
+  }, [genres]);
 
   const handleDrop = (
     e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLElement>,
   ) => {
-    useAddFile(
-      e,
-      setImage,
-      setPreviewUrl,
-      setIsError,
-      setDrag,
-      setErrorMessage,
-    );
+    useAddFile(e, setImage, setPreviewUrl, setDrag, showError);
     return URL.revokeObjectURL(previewUrl);
   };
 
@@ -54,7 +62,35 @@ export const EditProfile: FC<EditProfileProps> = ({
     );
   }, [image]);
 
-  const handleEditProfile = () => {};
+  const handleEditProfile = (data: EditProfileFormData) => {
+    const formData = new FormData();
+    if (data.genres) {
+      formData.append(
+        'genres',
+        JSON.stringify(
+          data.genres
+            .map((el) => ({
+              _id: el._id,
+            }))
+            .reduce((acc, curr) => {
+              acc.push(curr._id as never);
+              return acc;
+            }, []),
+        ),
+      );
+    }
+
+    Object.keys(data).forEach((key) => {
+      if (
+        data[key as keyof EditProfileFormData] &&
+        key !== 'location' &&
+        key !== 'genres'
+      )
+        formData.append(key, data[key as keyof EditProfileFormData] as string);
+    });
+    if (image) formData.append('avatar', image);
+    dispatch(fetchAddPainter(formData));
+  };
 
   return createPortal(
     <>
@@ -97,7 +133,11 @@ export const EditProfile: FC<EditProfileProps> = ({
                     onChange={handleDrop}
                   />
                 </div>
-                <EditProFileForm handleEditProfile={handleEditProfile} />
+                <EditProfileForm
+                  handleEditProfile={handleEditProfile}
+                  list={list}
+                  setList={setList}
+                />
                 <CloseIcon
                   className={cx('closeIcon')}
                   fill={theme === 'dark' ? '#9C9C9C' : '#575757'}
@@ -116,11 +156,6 @@ export const EditProfile: FC<EditProfileProps> = ({
                 </p>
               </div>
             )}
-            <Toast
-              isShowToast={isError}
-              handleCloseToast={() => setIsError(false)}
-              message={errorMessage}
-            />
           </div>
         </section>
       )}
@@ -128,3 +163,5 @@ export const EditProfile: FC<EditProfileProps> = ({
     modalNode,
   );
 };
+
+export default EditProfile;

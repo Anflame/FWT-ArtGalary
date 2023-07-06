@@ -1,13 +1,20 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames/bind';
+
 import Button from '../Button';
-import { modalNode } from '../../constants';
+
 import { usePressEscape } from '../../hooks/usePressEscape';
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { modalNode } from '../../constants';
+
 import type { SetIsShow } from '../../comon-types';
+import { BtnVariants } from '../../variants';
+
 import { ReactComponent as CloseIcon } from '../../assets/images/closeIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/deleteIcon.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -15,15 +22,19 @@ const cx = cn.bind(styles);
 type DeleteProps = {
   isShowDelete: boolean;
   handleChangeShowDelete: SetIsShow;
+  handleDelete: () => void;
+  title: string;
+  subTitle: string;
 };
 
-export const Delete: FC<DeleteProps> = ({
+const Delete: FC<DeleteProps> = ({
   isShowDelete,
   handleChangeShowDelete,
+  handleDelete,
+  title,
+  subTitle,
 }) => {
   const { theme } = useThemeContext();
-
-  const handleDeleteProfile = () => {};
 
   useEffect(() => {
     usePressEscape(handleChangeShowDelete, isShowDelete);
@@ -49,13 +60,9 @@ export const Delete: FC<DeleteProps> = ({
               width="40px"
               height="40px"
             />
-            <h3 className={cx('deleteProfileHeading')}>
-              Do you want to delete this artist profile?
-            </h3>
-            <p className={cx('deleteProfileText')}>
-              You will not be able to recover this profile afterwards.
-            </p>
-            <Button handleClick={handleDeleteProfile} className={'defaultBtn'}>
+            <h3 className={cx('deleteProfileHeading')}>{title}</h3>
+            <p className={cx('deleteProfileText')}>{subTitle}</p>
+            <Button handleClick={handleDelete} variant={BtnVariants.DEFAULT}>
               delete
             </Button>
             <p
@@ -76,3 +83,5 @@ export const Delete: FC<DeleteProps> = ({
     modalNode,
   );
 };
+
+export default Delete;

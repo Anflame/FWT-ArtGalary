@@ -1,60 +1,54 @@
-import { FC, TextareaHTMLAttributes, useState } from 'react';
+import { TextareaHTMLAttributes } from 'react';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import cn from 'classnames/bind';
+
 import { ReactComponent as Error } from '../../assets/images/error.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
-type TextAreaProps = {
+type TextAreaProps<T extends FieldValues> = {
   id: string;
+  control: Control<T>;
+  name: Path<T>;
+  isError: boolean;
+  errorMessage: string | undefined;
 };
 
-export const TextArea: FC<
-  TextAreaProps & TextareaHTMLAttributes<HTMLTextAreaElement>
-> = ({ id, ...args }) => {
-  const [isError, setIsError] = useState(false);
-  const [text, setText] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length <= 255) {
-      setText(e.target.value);
-      if (isError) setIsError(false);
-    } else setIsError(true);
-  };
-
-  return (
-    <>
-      {!isError && (
-        <div className={cx('textAreaWrapp')}>
-          <label htmlFor={id} className={cx('textareaLabel')}>
-            Description
-          </label>
-          <textarea
-            name="description"
-            className={cx('textarea')}
-            id={id}
-            {...args}
-          ></textarea>
-        </div>
-      )}
-      {isError && (
-        <>
-          <label htmlFor={id} className={cx('textareaLabel')}>
-            Description
-          </label>
-          <textarea
-            className={cx('textarea', 'textAreaError')}
-            placeholder="Wrong Text"
-            onChange={handleChange}
-          >
-            {text}
-          </textarea>
+const TextArea = <T extends FieldValues>({
+  id,
+  control,
+  name,
+  isError,
+  errorMessage,
+  ...args
+}: TextAreaProps<T> & TextareaHTMLAttributes<HTMLTextAreaElement>) => (
+  <Controller
+    control={control}
+    name={name}
+    render={({ field: { value, onChange } }) => (
+      <div className={cx('textAreaWrapp')}>
+        <label htmlFor={id} className={cx('textareaLabel')}>
+          {name.charAt(0).toUpperCase() + name.slice(1)}
+        </label>
+        <textarea
+          name="description"
+          className={cx('textarea', isError && 'textAreaError')}
+          id={id}
+          {...args}
+          onChange={onChange}
+          value={value}
+        ></textarea>
+        {isError && (
           <p className={cx('errorText')}>
-            {<Error className={cx('errorImg')} fill={'#AE2917'} />}This is an
-            error message!
+            {<Error className={cx('errorImg')} fill={'#AE2917'} />}
+            {errorMessage}
           </p>
-        </>
-      )}
-    </>
-  );
-};
+        )}
+      </div>
+    )}
+  />
+);
+
+export default TextArea;

@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import Cookies from 'js-cookie';
+
 import { changeAuth, setTokens } from '../store/auth/slice';
 import { TTokens } from '../store/types';
+
 import { useAppDispatch } from './useRedux';
 
 export const useCheckAuth = () => {

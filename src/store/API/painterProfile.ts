@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+
+import { TAddPaintingData } from '../../comon-types';
 import $api from '../../http';
 import {
   PaintersParams,
   TAddPainting,
-  TAddPaintingParams,
   TPainterProfile,
+  TResponseError,
 } from '../types';
 
 export const fetchPainterProfle = createAsyncThunk(
@@ -25,35 +26,34 @@ export const fetchPainterProfle = createAsyncThunk(
 
 export const fetchAddPainting = createAsyncThunk(
   'painters/fetchAddPainting',
-  async (params: TAddPaintingParams, thunkAPI) => {
-    const { id, accessToken, imageInfo } = params;
+  async (params: TAddPaintingData, thunkAPI) => {
     try {
-      const formData = new FormData();
-      formData.append('file', imageInfo.image);
-      const response = await axios.post<TAddPainting[]>(
-        `https://internship-front.framework.team/artists/${id}/paintings`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-          data: {
-            name: 'Moonlight',
-            yearOfCreation: '1234',
-            image: {
-              size: 0,
-              buffer: {},
-              encoding: 'string',
-              mimetype: 'string',
-              fieldname: 'string',
-              originalname: 'string',
-            },
-          },
-        },
+      const { id, formData } = params;
+      const response = await $api.post<TAddPainting[]>(
+        `/artists/${id}/paintings`,
+        formData,
       );
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue('Не удалось добвить Картину');
+      const error = e as TResponseError;
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  },
+);
+
+export const fetchDeletePainter = createAsyncThunk(
+  'painter/delete',
+  async (id: string | undefined, thunkAPI) => {
+    try {
+      const response = await $api.delete<TAddPainting[]>(`/artists/${id}`, {
+        params: {
+          id,
+        },
+      });
+      return response.data;
+    } catch (e) {
+      const error = e as TResponseError;
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   },
 );

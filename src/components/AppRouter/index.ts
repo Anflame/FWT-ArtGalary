@@ -1,3 +1,1 @@
-import { AppRouter } from './AppRouter';
-
-export default AppRouter;
+export { default as AppRouter } from './AppRouter';

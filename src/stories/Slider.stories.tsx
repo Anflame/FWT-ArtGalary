@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { slides } from '../constants';
 import Slider from '../components/Slider';
 
 export default {
@@ -14,6 +13,6 @@ const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  slides: slides,
+  // slides: slides,
   isShowSlider: false,
 };

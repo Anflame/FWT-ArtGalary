@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 import cn from 'classnames/bind';
+
 import { useThemeContext } from '../../hooks/useThemeContext';
+
 import { ReactComponent as LabelDelete } from '../../assets/images/labelDelete.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -9,14 +12,12 @@ const cx = cn.bind(styles);
 type LabelsProps = {
   isDelAllowed: boolean;
   children: string;
-  changeSelect?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  changeSelect?:
+    | ((e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void)
+    | ((event: React.ChangeEvent<Element>) => void);
 };
 
-export const Label: FC<LabelsProps> = ({
-  isDelAllowed,
-  children,
-  changeSelect,
-}) => {
+const Label: FC<LabelsProps> = ({ isDelAllowed, children, changeSelect }) => {
   const { theme } = useThemeContext();
   return (
     <>
@@ -35,3 +36,5 @@ export const Label: FC<LabelsProps> = ({
     </>
   );
 };
+
+export default Label;

@@ -38,7 +38,7 @@
   &:before {
     content: '+';
     font-size: 20px;
-    font-weight: 300;
+    font-weight: var(--font-weight-light);
     display: block;
     margin-right: 12px;
     color: var(--color-primary-grey);
@@ -103,6 +103,7 @@
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   color: var(--color-primary-grey);
+  font-family: var(--font-family-heading);
 
   &:hover {
     color: var(--color-primary-hover);
@@ -137,4 +138,8 @@
 .btn_disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+.loading {
+  position: relative;
 }

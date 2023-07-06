@@ -1,20 +1,30 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 import cn from 'classnames/bind';
+
+import { BtnVariants } from '../../variants';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
 
 type BaseButtonProps = {
   handleClick?: () => void;
+  variant: BtnVariants;
   className?: string;
   children: ReactNode;
   isOutlined?: boolean;
   isFilled?: boolean;
 };
 
-export const Button: FC<
-  BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
-> = ({ handleClick, className, children, isOutlined, isFilled, ...args }) => {
+const Button: FC<BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  handleClick,
+  variant,
+  className,
+  children,
+  isOutlined,
+  isFilled,
+  ...args
+}) => {
   const { disabled } = args;
   return (
     <button
@@ -22,10 +32,11 @@ export const Button: FC<
       disabled={disabled}
       className={cx(
         'commonBtn',
-        className,
+        variant,
         isOutlined && 'btn_outlined',
         isFilled && 'btn_filled',
         disabled && 'btn_disabled',
+        className,
       )}
       {...args}
     >
@@ -33,3 +44,5 @@ export const Button: FC<
     </button>
   );
 };
+
+export default Button;

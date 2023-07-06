@@ -1,9 +1,13 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import { pages } from '../../constants';
+
 import { useThemeContext } from '../../hooks/useThemeContext';
+
+import { pages } from '../../constants';
+
 import { ReactComponent as ArrowLeft } from '../../assets/images/arrowLeft.svg';
 import { ReactComponent as ArrowRight } from '../../assets/images/arrowRight.svg';
+
 import styles from './styles.module.scss';
 
 const cx = cn.bind(styles);
@@ -14,7 +18,7 @@ export type PaginationProps = {
   setCurrentPage: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({
+const Pagination: FC<PaginationProps> = ({
   currentPage,
   maxPages,
   setCurrentPage,
@@ -87,3 +91,5 @@ export const Pagination: FC<PaginationProps> = ({
     </ul>
   );
 };
+
+export default Pagination;

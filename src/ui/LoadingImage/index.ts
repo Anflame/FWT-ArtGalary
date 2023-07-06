@@ -1,3 +1,1 @@
-import { LoadingImage } from './LoadingImage';
-
-export default LoadingImage;
+export { default } from './LoadingImage';
