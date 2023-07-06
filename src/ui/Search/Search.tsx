@@ -1,11 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
 import cn from 'classnames/bind';
 
-import Button from '../Button/Button';
-
 import { useThemeContext } from '../../hooks/useThemeContext';
-
-import { BtnVariants } from '../../variants';
 
 import { ReactComponent as CleanSearchIcon } from '../../assets/images/cleanSearchIcon.svg';
 import { ReactComponent as Error } from '../../assets/images/error.svg';
